@@ -1,0 +1,88 @@
+//Whenever you update your Prisma schema,run  prisma db push command to create new indexes and regenerate Prisma Client.
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+//@id-primary key. default.. autogenerates a mongodb id and since it uses_id you need to map it to the id schema part @db.Objid is they type
+model User {
+  id              String          @id @default(auto()) @map("_id") @db.ObjectId
+  name            String
+  email           String          @unique
+  password        String
+  mobile          String
+  avatar          String?
+  role            Role            @default(USER)
+  company         String?
+  properties      Property[]
+  savedProperties SavedProperty[]
+  createdAt       DateTime        @default(now())
+}
+
+model Property {
+  id              String          @id @default(auto()) @map("_id") @db.ObjectId
+  title           String
+  description     String
+  price           Float
+  location        String
+  city            String
+  longitude       Float
+  latitude        Float
+  image           String[]
+  bedrooms        Int
+  bathrooms       Int
+  area            Float
+  amenities       String[]
+  type            Type
+  property_type   PropertyType
+  utilities       Utilities
+  furnishing      Furnishing?
+  userId          String          @db.ObjectId
+  //Here, userId is the field that references the corresponding User record and id .
+  user            User            @relation(fields: [userId], references: [id])
+  //we write savedproperty[] to create the many to many relatinship and reference the property in saved property
+  savedProperties SavedProperty[]
+  createdAt       DateTime        @default(now())
+}
+
+model SavedProperty {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId     String   @db.ObjectId
+  user       User     @relation(fields: [userId], references: [id])
+  propertyId String   @unique @db.ObjectId
+  property   Property @relation(fields: [propertyId], references: [id])
+}
+
+enum Role {
+  USER
+  AGENT
+}
+
+enum Type {
+  Rent
+  Sell
+}
+
+enum PropertyType {
+  Studio
+  Apartment
+  Villa
+  Condo
+  Penthouse
+}
+
+enum Utilities {
+  Inclusive
+  Exclusive
+}
+
+enum Furnishing {
+  Unfurnished
+  Semifurnished
+  Furnished
+}
