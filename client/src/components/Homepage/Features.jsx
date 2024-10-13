@@ -35,7 +35,7 @@ const features = [
 //
 export default function Main() {
   return (
-    <div className=" w-full h-auto relative overflow-hidden  grid lg:grid-cols-5 place-items-center items-stretch   font-jakarta bg-gradient-to-b from-white to-[#f7f6fc]">
+    <div className=" w-full h-auto relative overflow-hidden  grid lg:grid-cols-5 place-items-center items-stretch   font-jakarta bg-gradient-to-b from-white to-[#f7f6fc] pt-10">
       {/* Left Side: Card with image */}
 
       <div className="col-span-2  flex   flex-col max-w-[400px] h-[480px] rounded-lg overflow-hidden border border-[#e0def7] bg-[#f7f6fc] relative md:hidden lg:flex shadow-md shadow-[#f7f6fc]">

@@ -14,6 +14,13 @@ const HomePage = () => {
       <Features />
       <Browse />
       <Testimonials />
+      <div className="w-full py-10">
+        <img
+          alt="banner img"
+          src="/Banner1.jpeg"
+          className="w-[95%] md:w-[85%] mx-auto rounded-xl lg:rounded-3xl lg:h-[90%]"
+        />
+      </div>
       <Footer />
     </div>
   );

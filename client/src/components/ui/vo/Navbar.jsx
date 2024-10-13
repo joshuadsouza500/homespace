@@ -18,7 +18,7 @@ export default function Navbar() {
           onClick={() => navigate("/")}
         >
           <HomeIcon strokeWidth={2.5} className="text-Primary" />
-          <span className="text-xl font-bold text-Primary">HomeSpace</span>
+          <span className="text-xl font-bold text-Bgpurple">HomeSpace</span>
         </div>
         <div className="hidden md:flex space-x-2 pl-2">
           <Button

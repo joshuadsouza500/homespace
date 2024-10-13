@@ -15,7 +15,7 @@ const getPropertyById = async (req, res) => {
   try {
     const property = await propertyService.getPropertyById(propertyId);
     if (!property) {
-      return res.status(500).send({ message: "Property not found" });
+      return res.status(404).send({ message: "Property not found" });
     }
     return res.status(201).send(property);
   } catch (error) {
@@ -28,7 +28,7 @@ const createProperty = async (req, res) => {
   try {
     const property = await propertyService.createProperty(userId, req.body);
     if (!property) {
-      return res.status(500).send({ message: "property not created" });
+      return res.status(404).send({ message: "property not created" });
     }
     return res
       .status(201)
