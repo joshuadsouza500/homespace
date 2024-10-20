@@ -4,36 +4,37 @@ const createProperty = async (userId, reqData) => {
   const {
     title,
     description,
-    price,
+
     location,
     city,
-    longitude,
-    latitude,
     image,
-    bedrooms,
-    bathrooms,
-    area,
     type,
     property_type,
     utilities,
     furnishing,
     amenities,
   } = reqData;
+
   try {
-    // console.log("prop reqdata", reqData);
+    console.log("prop reqdata", reqData);
+    const imagesArray = Array.isArray(image) ? image : [image]; // Convert to array
     const newProperty = await prisma.property.create({
       data: {
         title,
         description,
-        price,
+        price: parseFloat(reqData.price),
         location,
         city,
-        longitude,
-        latitude,
-        image,
-        bedrooms,
-        bathrooms,
-        area,
+        longitude: parseFloat(reqData.longitude),
+        latitude: parseFloat(reqData.latitude),
+        image: [
+          "https://ssl.cdn-redfin.com/photo/rent/a74eac66-33c6-44b2-ae12-c588747356b2/islphoto/genIsl.0_2.jpg",
+          //apartment/// https://ssl.cdn-redfin.com/photo/rent/3609c29e-d0be-45e7-9ff7-1adc72cb29cd/islphoto/genIsl.0_2.jpg
+          //"https://ssl.cdn-redfin.com/photo/rent/b27faf06-4ca2-4021-b5d9-4da0611843fa/islphoto/genIsl.0_1.jpg",
+        ], //useimageArray here after you configue cloudinary
+        bedrooms: parseInt(reqData.bedrooms),
+        bathrooms: parseInt(reqData.bathrooms),
+        area: parseFloat(reqData.area),
         type,
         property_type,
         utilities,
@@ -42,16 +43,16 @@ const createProperty = async (userId, reqData) => {
         userId,
       },
     });
-    // console.log("prop ", newProperty);
+    console.log("prop ", newProperty);
     return newProperty;
   } catch (error) {
     throw new Error("Could not create property: " + error.message);
   }
 };
 
-//
 const updateProperty = async (userId, propertyId, updateData) => {
   try {
+    // Find the property by ID
     const property = await prisma.property.findUnique({
       where: { id: propertyId },
     });
@@ -62,22 +63,53 @@ const updateProperty = async (userId, propertyId, updateData) => {
 
     // Check if the user is the owner of the property
     if (property.userId !== userId) {
-      throw new Error("You are not authorized to update this property");
+      throw new Error(
+        "Unauthorized: You are not allowed to update this property"
+      );
     }
 
-    // If property exists and user is authorized, proceed with the update
+    const {
+      description,
+      amenities,
+      area,
+      bathrooms,
+      bedrooms,
+      furnishing,
+      image,
+      price,
+      title,
+      type,
+      utilities,
+    } = updateData;
+
+    // Proceed with the update
     const updatedProperty = await prisma.property.update({
       where: { id: propertyId },
-      data: updateData,
+      data: {
+        description,
+        amenities,
+        area,
+        bathrooms,
+        bedrooms,
+        furnishing,
+        image,
+        price,
+        title,
+        type,
+        utilities,
+      },
     });
 
+    //  console.log("Updated Property:", updatedProperty);
     return updatedProperty;
   } catch (error) {
+    console.error("Error updating property:", error);
     throw new Error("Could not update property: " + error.message);
   }
 };
 
 const deleteProperty = async (propertyId) => {
+  console.log(propertyId);
   try {
     const property = await prisma.property.findUnique({
       where: { id: propertyId },
@@ -96,7 +128,7 @@ const deleteProperty = async (propertyId) => {
       message: `property with id ${propertyId} has been successfully deleted.`,
     };
   } catch (error) {
-    throw new Error("Could not delete property.");
+    throw new Error("Could not delete property." + error.message);
   }
 };
 

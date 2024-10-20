@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { useDispatch, useSelector } from "react-redux";
+import { signup } from "@/store/auth/action";
+import { getUserProfile } from "@/store/auth/action";
 
 export default function SignUp() {
   const [currentStep, setCurrentStep] = useState(1);
@@ -13,7 +16,25 @@ export default function SignUp() {
     email: "",
     password: "",
     role: "USER",
+    company: "",
   });
+  const dispatch = useDispatch();
+  const auth = useSelector((store) => store.auth);
+  const navigate = useNavigate();
+  const jwt = localStorage.getItem("jwt");
+
+  //check if jwt exists and then get user using it so if user exists naviagte to homepage
+  useEffect(() => {
+    if (jwt) {
+      dispatch(getUserProfile(jwt));
+    }
+  }, [dispatch, jwt]);
+
+  useEffect(() => {
+    if (auth.user) {
+      navigate("/");
+    }
+  }, [auth.user, navigate]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -26,11 +47,10 @@ export default function SignUp() {
   const handleNext = (e) => {
     e.preventDefault();
     if (currentStep === 1) {
-      // You might want to validate the first step's data here
       setCurrentStep(2);
     } else {
-      // Here you would typically validate form data and submit
       console.log(formData);
+      dispatch(signup(formData));
       // In a real application, submit this data to your backend
     }
   };
@@ -65,6 +85,7 @@ export default function SignUp() {
                     id="name"
                     required
                     value={formData.name}
+                    placeholder="Enter Full Name"
                     onChange={handleChange}
                   />
                 </div>
@@ -74,6 +95,7 @@ export default function SignUp() {
                     id="mobile"
                     required
                     type="tel"
+                    placeholder="Enter mobile"
                     value={formData.mobile}
                     onChange={handleChange}
                   />
@@ -84,6 +106,7 @@ export default function SignUp() {
                     id="email"
                     required
                     type="email"
+                    placeholder="Enter email"
                     value={formData.email}
                     onChange={handleChange}
                   />
@@ -98,6 +121,7 @@ export default function SignUp() {
                     id="password"
                     required
                     type="password"
+                    placeholder="Enter password"
                     value={formData.password}
                     onChange={handleChange}
                   />
@@ -107,29 +131,48 @@ export default function SignUp() {
                   <RadioGroup
                     value={formData.role}
                     onValueChange={handleRoleChange}
+                    className="flex"
                   >
                     <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="user" id="user" />
+                      <RadioGroupItem value="USER" id="user" />
                       <Label htmlFor="user">User</Label>
                     </div>
                     <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="agent" id="agent" />
+                      <RadioGroupItem value="AGENT" id="agent" />
                       <Label htmlFor="agent">Agent</Label>
                     </div>
                   </RadioGroup>
                 </div>
+                {formData.role === "AGENT" && (
+                  <div className="space-y-2">
+                    <Label htmlFor="company">Company</Label>
+                    <Input
+                      id="company"
+                      value={formData.company}
+                      placeholder="Enter Company Name"
+                      onChange={handleChange}
+                    />
+                  </div>
+                )}
+                {auth.error?.status === 409 && (
+                  <h1 className=" font-semibold text-red-600 py-2">
+                    {auth.error?.data.error}!
+                  </h1>
+                )}
               </>
             )}
             <Button className="w-full bg-text" type="submit">
               {currentStep === 1 ? "Next" : "Create Account"}
             </Button>
-            <button
-              className="w-full"
-              type="button"
-              onClick={() => setCurrentStep(1)}
-            >
-              {currentStep === 2 ? "Back" : ""}
-            </button>
+            {currentStep == 2 && (
+              <button
+                className="w-full border-Bgpurple/80 rounded-lg border  h-10 px-4 py-2"
+                type="button"
+                onClick={() => setCurrentStep(1)}
+              >
+                Back
+              </button>
+            )}
           </form>
           <div className="text-center text-sm">
             Already have an account?{" "}

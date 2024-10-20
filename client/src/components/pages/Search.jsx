@@ -3,8 +3,22 @@ import PropertySearch from "../PropertySearch";
 import PropertyCard2 from "../ui/vo/property-card2";
 import BigProperyCard from "../ui/vo/Big-propery-card";
 import Navbar from "../ui/vo/Navbar";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { getAllProperties } from "@/store/property/action";
 
 const Search = () => {
+  const Property = useSelector((store) => store.property);
+
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    dispatch(getAllProperties());
+  }, [dispatch]);
+  console.log("PROPE", Property.property);
   return (
     <div className="font-jakarta">
       <Navbar />
@@ -14,20 +28,9 @@ const Search = () => {
         <BigProperyCard />
         <section className=" grid lg:grid-cols-5 ">
           <div className="space-y-7 col-span-4 pl-6 ">
-            <PropertyCard2 />
-            <PropertyCard2 />
-            <PropertyCard2 />
-          </div>
-          <div className="hidden  col-span-1 mt-[300px]">
-            <p className="font-bold text-lg">Popular Seaches</p>
-            <ol className="text-sm font-semibold list-disc  cursor-pointer ml-1">
-              <li className="hover:underline">Properties near Awali</li>
-              <li className="hover:underline">Properties near Jhds</li>
-              <li className="hover:underline">Properties near Riffa</li>
-              <li className="hover:underline">Properties near Sitra</li>
-              <li className="hover:underline">Properties near mksadnfj</li>
-              <li className="hover:underline">Properties near thw</li>
-            </ol>
+            {Property.property?.map((property) => (
+              <PropertyCard2 key={property?.id} property={property} />
+            ))}
           </div>
         </section>
       </section>

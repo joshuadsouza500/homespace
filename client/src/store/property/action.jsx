@@ -6,6 +6,9 @@ import {
   DELETE_PROPERTY_FAILURE,
   DELETE_PROPERTY_REQUEST,
   DELETE_PROPERTY_SUCCESS,
+  GET_ALL_PROPERTY_FAILURE,
+  GET_ALL_PROPERTY_REQUEST,
+  GET_ALL_PROPERTY_SUCCESS,
   GET_PROPERTY_BY_ID_FAILURE,
   GET_PROPERTY_BY_ID_REQUEST,
   GET_PROPERTY_BY_ID_SUCCESS,
@@ -23,16 +26,17 @@ export const createProperty = (propertyDetails) => async (dispatch) => {
   try {
     const response = await api.post(`/api/property`, propertyDetails);
     const property = response.data;
-
-    dispatch({ CREATE_PROPERTY_SUCCESS, payload: property });
+    console.log("action property", property);
+    dispatch({ type: CREATE_PROPERTY_SUCCESS, payload: property });
+    alert("Property created successfully");
   } catch (error) {
-    dispatch({ CREATE_PROPERTY_FAILURE, payload: error.message });
+    dispatch({ type: CREATE_PROPERTY_FAILURE, payload: error.message });
   }
 };
 
 export const updateProperty =
   (propertyDetails, propertyId) => async (dispatch) => {
-    dispatch({ UPDATE_PROPERTY_REQUEST });
+    dispatch({ type: UPDATE_PROPERTY_REQUEST });
 
     try {
       const response = await api.put(
@@ -40,48 +44,64 @@ export const updateProperty =
         propertyDetails
       );
       const updatedProperty = response.data;
-
-      dispatch({ UPDATE_PROPERTY_SUCCESS, payload: updatedProperty });
+      console.log("suc", updatedProperty);
+      dispatch({ type: UPDATE_PROPERTY_SUCCESS, payload: updatedProperty });
+      return { success: true };
     } catch (error) {
-      dispatch({ UPDATE_PROPERTY_FAILURE, payload: error.message });
+      dispatch({ type: UPDATE_PROPERTY_FAILURE, payload: error.message });
+      return { success: false, message: error.message };
     }
   };
 
 export const deleteProperty = (propertyId) => async (dispatch) => {
-  dispatch({ DELETE_PROPERTY_REQUEST });
-
+  dispatch({ type: DELETE_PROPERTY_REQUEST });
+  console.log(propertyId);
   try {
     const response = await api.delete(`/api/property/${propertyId}`);
     const deletedProperty = response.data;
-
-    dispatch({ DELETE_PROPERTY_SUCCESS, payload: deletedProperty });
+    console.log("action", deletedProperty);
+    dispatch({ type: DELETE_PROPERTY_SUCCESS, payload: deletedProperty });
+    return true;
   } catch (error) {
-    dispatch({ DELETE_PROPERTY_FAILURE, payload: error.message });
+    dispatch({ type: DELETE_PROPERTY_FAILURE, payload: error.message });
   }
 };
 
 export const saveProperty = () => async (dispatch) => {
-  dispatch({ SAVE_PROPERTY_REQUEST });
+  dispatch({ type: SAVE_PROPERTY_REQUEST });
 
   try {
     const response = await api.post(`/api/property/saved`);
     const savedProperty = response.data;
 
-    dispatch({ SAVE_PROPERTY_SUCCESS, payload: savedProperty });
+    dispatch({ type: SAVE_PROPERTY_SUCCESS, payload: savedProperty });
   } catch (error) {
-    dispatch({ SAVE_PROPERTY_FAILURE, payload: error.message });
+    dispatch({ type: SAVE_PROPERTY_FAILURE, payload: error.message });
   }
 };
 
 export const getPropertyById = (propertyId) => async (dispatch) => {
-  dispatch({ GET_PROPERTY_BY_ID_REQUEST });
+  dispatch({ type: GET_PROPERTY_BY_ID_REQUEST });
 
   try {
     const response = await api.get(`/api/property/${propertyId}`);
     const property = response.data;
 
-    dispatch({ GET_PROPERTY_BY_ID_SUCCESS, payload: property });
+    dispatch({ type: GET_PROPERTY_BY_ID_SUCCESS, payload: property });
   } catch (error) {
-    dispatch({ GET_PROPERTY_BY_ID_FAILURE, payload: error.message });
+    dispatch({ type: GET_PROPERTY_BY_ID_FAILURE, payload: error.message });
+  }
+};
+
+export const getAllProperties = () => async (dispatch) => {
+  dispatch({ type: GET_ALL_PROPERTY_REQUEST });
+
+  try {
+    const response = await api.get(`/api/property/`);
+    const properties = response.data;
+    console.log("Action props", properties);
+    dispatch({ type: GET_ALL_PROPERTY_SUCCESS, payload: properties });
+  } catch (error) {
+    dispatch({ type: GET_ALL_PROPERTY_FAILURE, payload: error.message });
   }
 };

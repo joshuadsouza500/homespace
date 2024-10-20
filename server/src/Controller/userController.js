@@ -13,12 +13,13 @@ const getAllUser = async (req, res) => {
 const getUserProfile = async (req, res) => {
   try {
     const jwt = req.headers.authorization?.split(" ")[1];
+
     if (!jwt) {
       return res.status(404).send({ error: "Token not found" });
     }
     const user = await userService.getUserProfileFromToken(jwt);
     if (!user) {
-      return res.status(500).send({ message: "User not found" });
+      return res.status(404).send({ message: "User not found" });
     }
     return res.status(200).send(user);
   } catch (error) {
@@ -29,7 +30,7 @@ const updateUserProfile = async (req, res) => {
   const userId = req.user.id;
 
   const updatedData = req.body;
-
+  console.log(userId, updatedData);
   try {
     const updatedUser = await userService.updateUser(userId, updatedData); // Pass userId and updated data into the service function
     if (!updatedUser) {

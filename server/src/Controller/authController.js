@@ -9,11 +9,14 @@ const signup = async (req, res) => {
     const user = await userService.createUser(req.body);
 
     console.log("auth controller", user);
-    const jwt = await jwtProvider.generateToken(user.id);
+    const jwt = jwtProvider.generateToken(user.id);
 
     return res.status(200).send({ jwt, user, message: "User Sign up Success" });
   } catch (error) {
-    return res.status(500).send({ error: error.message });
+    if (error.message === "User already exists with this email") {
+      return res.status(409).send({ error: error.message });
+    }
+    return res.status(500).send({ error: "Server Error" });
   }
 };
 const signin = async (req, res) => {
@@ -31,7 +34,7 @@ const signin = async (req, res) => {
     if (!passwordIsValid) {
       return res.status(404).send({ message: " Incorrect password " });
     }
-    const jwt = await jwtProvider.generateToken(user.id);
+    const jwt = jwtProvider.generateToken(user.id);
 
     return res.status(200).send({ jwt, user, message: "User Sign in Success" });
   } catch (error) {

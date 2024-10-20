@@ -9,8 +9,6 @@ const UserFavourites = () => {
       <section>
         <div className="space-y-7 col-span-4 lg:ml-10 sm:ml-6 ">
           <PropertyCard2 />
-          <PropertyCard2 />
-          <PropertyCard2 />
         </div>
       </section>
     </div>

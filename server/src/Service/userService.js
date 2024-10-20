@@ -4,7 +4,7 @@ import bcrypt from "bcrypt";
 
 const createUser = async (reqData) => {
   //hashpassword and create user
-  let { name, mobile, email, password, role } = reqData;
+  let { name, mobile, email, password, role, company } = reqData;
 
   try {
     const userExists = await prisma.user.findUnique({
@@ -12,15 +12,15 @@ const createUser = async (reqData) => {
     });
 
     if (userExists) {
-      throw new Error("User already exists with email: ", email);
+      throw new Error("User already exists with this email");
     }
     const hashedPassword = await bcrypt.hash(password, 8);
     const newUser = await prisma.user.create({
       data: {
         name,
+        mobile,
         email,
         password: hashedPassword,
-        mobile,
         role,
         ...(role === "AGENT" && { company }), // spread operator to conditionally add company
       },
@@ -73,11 +73,8 @@ const getAllUsers = async () => {
 };
 
 const getUserProfileFromToken = async (jwt) => {
-  //getuseridfromjwt
-  //then find user by id
-
   try {
-    const userId = jwtProvider.getUserIdFromToken(jwt);
+    const userId = await jwtProvider.getUserIdFromToken(jwt);
 
     if (!userId) {
       throw new Error("User Id not found..Invalid Token");
@@ -93,8 +90,8 @@ const getUserProfileFromToken = async (jwt) => {
 };
 
 const updateUser = async (userId, reqData) => {
-  const { name, email, password, mobile, role, company } = reqData;
-  const avatar = "https://cdn-icons-png.flaticon.com/128/10643/10643283.png"; // Placeholder for the avatar image
+  const { name, mobile, email, password, role, company, avatar } = reqData;
+  //const avatar = "https://cdn-icons-png.flaticon.com/128/10643/10643283.png"; // Placeholder for the avatar image
 
   // Create an object to hold the updated data
   const updateData = {
@@ -113,6 +110,8 @@ const updateUser = async (userId, reqData) => {
   // Conditionally add the company if the role is AGENT
   if (role === "AGENT" && company) {
     updateData.company = company; // Add the company field to updateData
+  } else {
+    updateData.company = null;
   }
 
   try {

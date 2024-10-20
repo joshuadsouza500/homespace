@@ -2,9 +2,6 @@ import {
   DELETE_USER_FAILURE,
   DELETE_USER_REQUEST,
   DELETE_USER_SUCCESS,
-  GET_USER_PROFILE_FAILURE,
-  GET_USER_PROFILE_REQUEST,
-  GET_USER_PROFILE_SUCCESS,
   GET_USER_PROPERTIES_FAILURE,
   GET_USER_PROPERTIES_REQUEST,
   GET_USER_PROPERTIES_SUCCESS,
@@ -26,7 +23,6 @@ const initialState = {
 
 export const userReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_USER_PROFILE_REQUEST:
     case UPDATE_USER_PROFILE_REQUEST:
     case GET_USER_PROPERTIES_REQUEST:
     case GET_USER_SAVED_PROPERTIES_REQUEST:
@@ -37,7 +33,6 @@ export const userReducer = (state = initialState, action) => {
         error: null,
       };
 
-    case GET_USER_PROFILE_SUCCESS:
     case UPDATE_USER_PROFILE_SUCCESS:
       return {
         ...state,
@@ -63,7 +58,6 @@ export const userReducer = (state = initialState, action) => {
         user: null, // Optionally set user to null if you want to clear it
       };
 
-    case GET_USER_PROFILE_FAILURE:
     case UPDATE_USER_PROFILE_FAILURE:
     case GET_USER_PROPERTIES_FAILURE:
     case GET_USER_SAVED_PROPERTIES_FAILURE:

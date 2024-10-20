@@ -9,7 +9,7 @@ import { BanknoteIcon, KeyRoundIcon } from "lucide-react";
 const Hero = () => {
   return (
     <div className=" h-dvh w-full py-10 max-w-6xl mx-auto">
-      <div className="h-full   max-w-full bg-[url('/Hero2.png')] object-cover object-center rounded-3xl overflow-clip flex flex-col justify-around items-start relative ">
+      <div className="h-full   max-w-full bg-[url('/Hero2.png')] object-cover object-center rounded-3xl overflow-clip flex flex-col justify-around items-start relative bg-no-repeat ">
         <div className="absolute h-full w-full bg-black opacity-5 z-0" />
         <div className="flex flex-col items-start   w-6/12  gap-y-4  mt-10 ml-16">
           <h1 className="text-7xl text-balance font-semibold z-10 font-serif tracking-wide">

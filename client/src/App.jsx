@@ -13,8 +13,10 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/" element={<HomePage />} />
-        {/* <Route path="/search" element={<Search />} />
-        <Route path="/property" element={<PropertyDetails />} />
+        <Route path="/search" element={<Search />} />
+        <Route path="/property/:propertyId" element={<PropertyDetails />} />
+        {/* 
+        
          */}
         <Route path="/user/*" element={<User />} />
       </Routes>

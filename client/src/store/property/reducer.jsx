@@ -5,6 +5,9 @@ import {
   DELETE_PROPERTY_FAILURE,
   DELETE_PROPERTY_REQUEST,
   DELETE_PROPERTY_SUCCESS,
+  GET_ALL_PROPERTY_FAILURE,
+  GET_ALL_PROPERTY_REQUEST,
+  GET_ALL_PROPERTY_SUCCESS,
   GET_PROPERTY_BY_ID_FAILURE,
   GET_PROPERTY_BY_ID_REQUEST,
   GET_PROPERTY_BY_ID_SUCCESS,
@@ -30,6 +33,7 @@ export const propertyReducer = (state = initialState, action) => {
     case UPDATE_PROPERTY_REQUEST:
     case SAVE_PROPERTY_REQUEST:
     case GET_PROPERTY_BY_ID_REQUEST:
+    case GET_ALL_PROPERTY_REQUEST:
       return {
         ...state,
         isLoading: true,
@@ -39,6 +43,7 @@ export const propertyReducer = (state = initialState, action) => {
     case UPDATE_PROPERTY_SUCCESS:
     case DELETE_PROPERTY_SUCCESS:
     case GET_PROPERTY_BY_ID_SUCCESS:
+    case GET_ALL_PROPERTY_SUCCESS:
       return {
         ...state,
         property: action.payload,
@@ -58,6 +63,7 @@ export const propertyReducer = (state = initialState, action) => {
     case SAVE_PROPERTY_FAILURE:
     case DELETE_PROPERTY_FAILURE:
     case GET_PROPERTY_BY_ID_FAILURE:
+    case GET_ALL_PROPERTY_FAILURE:
       return {
         ...state,
         isLoading: false,

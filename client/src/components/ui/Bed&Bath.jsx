@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import * as React from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -10,7 +11,7 @@ import {
 const bedroomOptions = ["1", "2", "3", "4", "5+"];
 const bathroomOptions = ["1", "2", "3", "4+"];
 
-export default function Bed_Bath() {
+export default function Bed_Bath({ onSelectionChange }) {
   const [isOpen, setIsOpen] = React.useState(false);
   const [selectedBedrooms, setSelectedBedrooms] = React.useState();
   const [selectedBathrooms, setSelectedBathrooms] = React.useState();
@@ -18,8 +19,10 @@ export default function Bed_Bath() {
   const handleSelect = (type, value) => {
     if (type === "bedroom") {
       setSelectedBedrooms(value);
+      onSelectionChange("bedrooms", value);
     } else {
       setSelectedBathrooms(value);
+      onSelectionChange("bathrooms", value);
     }
   };
 

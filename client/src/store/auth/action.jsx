@@ -12,37 +12,65 @@ import {
   SIGNUP_SUCCESS,
 } from "./actionType";
 import { API_BASE_URL } from "@/config/apiConfig";
+import {
+  GET_USER_PROFILE_FAILURE,
+  GET_USER_PROFILE_REQUEST,
+  GET_USER_PROFILE_SUCCESS,
+} from "../user/actionType";
 
 // return function(dispatch) { instwad of having to return a obj it returns a function to handle asycn api
 export const signup = (userData) => async (dispatch) => {
-  dispatch({ SIGNUP_REQUEST });
+  dispatch({ type: SIGNUP_REQUEST });
   try {
     const response = await axios.post(`${API_BASE_URL}/auth/signup`, userData);
     const user = response.data;
+    console.log("signed up user", user);
     if (user.jwt) {
       localStorage.setItem("jwt", user.jwt);
     }
-    dispatch({ SIGNUP_SUCCESS, payload: user.jwt });
+    dispatch({ type: SIGNUP_SUCCESS, payload: user.jwt });
   } catch (error) {
-    dispatch({ SIGNUP_FAILURE, payload: error.message });
+    dispatch({ type: SIGNUP_FAILURE, payload: error.response });
   }
 };
 
+//better for redirecting user after signin and to get userprofile immediately as it adds the jwt to header
 export const signin = (userData) => async (dispatch) => {
-  dispatch({ SIGNIN_REQUEST });
+  dispatch({ type: SIGNIN_REQUEST });
   try {
     const response = await axios.post(`${API_BASE_URL}/auth/signin`, userData);
     const user = response.data;
+    console.log("dddfdsa", user);
     if (user.jwt) {
       localStorage.setItem("jwt", user.jwt);
     }
-    dispatch({ SIGNIN_SUCCESS, payload: user.jwt });
+    dispatch({ type: SIGNIN_SUCCESS, payload: user.jwt });
   } catch (error) {
-    dispatch({ SIGNIN_FAILURE, payload: error.message });
+    dispatch({ type: SIGNIN_FAILURE, payload: error.response });
   }
 };
 
 export const logout = () => (dispatch) => {
-  dispatch({ LOGOUT, payload: null });
+  dispatch({ type: LOGOUT, payload: null });
   localStorage.clear();
+  console.log("user logged out");
+};
+
+//It relies on the JWT stored in localStorage when the api instance was created. If the JWT in localStorage changes after the api instance is created, the api instance won't automatically use the updated JWT.
+
+export const getUserProfile = (jwt) => async (dispatch) => {
+  dispatch({ type: GET_USER_PROFILE_REQUEST });
+  try {
+    const response = await axios.get(`${API_BASE_URL}/api/user/profile`, {
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+      },
+    });
+    const user = response.data;
+
+    dispatch({ type: GET_USER_PROFILE_SUCCESS, payload: user });
+  } catch (error) {
+    console.log(error);
+    dispatch({ type: GET_USER_PROFILE_FAILURE, payload: error.message });
+  }
 };

@@ -15,6 +15,7 @@ import {
   UserCircleIcon,
   XCircle,
 } from "lucide-react";
+import PropertyUpdate from "../ui/vo/propertyUpdate";
 
 const menu = [
   { id: 1, name: "Profile", path: "/user", icon: <UserCircleIcon /> },
@@ -39,6 +40,11 @@ const User = () => {
   const [activeItem, setActiveItem] = useState(null);
   const navigate = useNavigate();
 
+  {
+    /***/
+  }
+
+  // console.log("uservv", user);
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
@@ -141,7 +147,7 @@ const User = () => {
           {menu.map((item) => (
             <li
               key={item.id}
-              className={`hover:bg-Primary/50 font-medium cursor-pointer transition-colors duration-200 ${
+              className={`hover:bg-Primary/30 mt-1 font-medium cursor-pointer transition-colors duration-200 ${
                 activeItem === item.id ? "bg-Primary/50" : ""
               } ${
                 expanded
@@ -199,6 +205,7 @@ const User = () => {
             <Route path="/" element={<UserProfile />} />
             <Route path="/saved" element={<UserFavourites />} />
             <Route path="/property" element={<UserListings />} />
+            <Route path="/property/:propertyId" element={<PropertyUpdate />} />
             <Route path="/property/create" element={<AddProperty />} />
           </Routes>
         </div>

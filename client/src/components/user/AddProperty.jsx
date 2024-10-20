@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Upload, DollarSign, Home } from "lucide-react";
+import { Upload, DollarSign, Home, MoveUpIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -14,6 +14,9 @@ import {
 } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import Bed_Bath from "../ui/Bed&Bath";
+import { useDispatch } from "react-redux";
+import { createProperty } from "@/store/property/action";
+import UploadWidget from "../ui/UploadWidget";
 
 const propertyTypes = ["Apartment", "Studio", "Villas", "Penthouse", "Condo"];
 
@@ -32,14 +35,25 @@ const amenities = [
 export default function AddProperty() {
   const [formData, setFormData] = useState({
     title: "",
-    address: "",
     description: "",
     price: "",
-    Utilities: "exclusive",
-    propertyType: "",
+    location: "",
+    city: "",
+    longitude: "",
+    latitude: "",
+    //Array.isArray(formData.image) ? formData.image : [formData.image], // Force to array
+    image: [],
+    bedrooms: "",
+    bathrooms: "",
+    area: "",
+    type: "Rent",
+    property_type: "",
+    utilities: "Exclusive",
+    furnishing: "",
     amenities: [],
-    image: null,
   });
+
+  const dispatch = useDispatch();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -55,26 +69,35 @@ export default function AddProperty() {
     }));
   };
 
-  const handleImageUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setFormData((prev) => ({ ...prev, image: file }));
-    }
+  const handleImageUpload = (imageUrl) => {
+    // Array.isArray(formData.image) ? formData.image : [formData.image];
+    setFormData((prev) => ({ ...prev, image: [...prev.image, imageUrl] }));
+  };
+  const handleImageDelete = (index) => {
+    setFormData((prev) => ({
+      ...prev,
+      image: prev.image.filter((_, i) => i !== index), // Remove image by index
+    }));
+  };
+  const handleBedBathChange = (type, value) => {
+    setFormData((prev) => ({ ...prev, [type]: value }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Here you would typically send the formData to your backend
     console.log("Submitting property:", formData);
+    dispatch(createProperty(formData));
   };
 
+  console.log(formData);
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-2xl md:text-4xl font-bold mb-8 text-text text-center">
         Add New Property
       </h1>
       <form onSubmit={handleSubmit} className="space-y-8">
-        <div className="space-y-4">
+        {/** 
+         *  <div className="space-y-4">
           <Label htmlFor="image">Property Image</Label>
           <div className="flex items-center space-x-4">
             {formData.image && (
@@ -84,7 +107,8 @@ export default function AddProperty() {
                 className="w-24 h-24 object-cover rounded"
               />
             )}
-            <Label htmlFor="image" className="cursor-pointer">
+          
+         *  <Label htmlFor="image" className="cursor-pointer">
               <div className="flex items-center justify-center w-24 h-24 bg-muted rounded">
                 <Upload className="w-8 h-8 text-muted-foreground" />
               </div>
@@ -96,12 +120,41 @@ export default function AddProperty() {
                 onChange={handleImageUpload}
               />
             </Label>
+        
           </div>
+        </div> */}
+        <div className="bg-gray-200 h-56  w-full rounded-lg flex flex-col justify-between items-start">
+          <div className="space-x-4 flex ">
+            {formData.image.map((url, index) => (
+              <div key={index} className="relative">
+                <img
+                  src={url}
+                  alt={`Uploaded ${index + 1}`}
+                  className="h-40 w-40 object-cover rounded-sm"
+                />
+                <button
+                  type="button"
+                  onClick={() => handleImageDelete(index)}
+                  className="absolute top-2 right-2 bg-red-500 text-white p-1 rounded-full"
+                >
+                  ✕
+                </button>
+              </div>
+            ))}
+          </div>
+          <UploadWidget
+            uwConfig={{
+              cloudName: "diafh6bdm",
+              uploadPreset: "homespace",
+              multiple: true,
+              maxImageFileSize: 2000000,
+              folder: "avatars",
+            }}
+            handleImageUpload={handleImageUpload}
+          />
         </div>
-
         <div className="space-y-4">
           <div className="flex flex-col sm:flex-row w-full gap-2">
-            {/* Title */}
             <div className="w-full sm:w-[50%]">
               <Label htmlFor="title">Title</Label>
               <Input
@@ -113,29 +166,26 @@ export default function AddProperty() {
               />
             </div>
 
-            {/* Rent or Buy and Price */}
             <div className="flex sm:w-[50%] gap-2">
-              {/* Rent or Sell selector */}
               <div className="flex-1">
-                <Label htmlFor="propertySale">To Rent or Sell</Label>
+                <Label htmlFor="type">To Rent or Sell</Label>
                 <Select
-                  name="propertySale"
-                  value={formData.propertySale}
+                  name="type"
+                  value={formData.type}
                   onValueChange={(value) =>
-                    setFormData((prev) => ({ ...prev, propertySale: value }))
+                    setFormData((prev) => ({ ...prev, type: value }))
                   }
                 >
                   <SelectTrigger>
                     <SelectValue placeholder="Rent" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="rent">Rent</SelectItem>
-                    <SelectItem value="sell">Sell</SelectItem>
+                    <SelectItem value="Rent">Rent</SelectItem>
+                    <SelectItem value="Sell">Sell</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
 
-              {/* Price input */}
               <div className="flex-1 relative">
                 <Label htmlFor="price">Price</Label>
                 <DollarSign className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" />
@@ -151,15 +201,64 @@ export default function AddProperty() {
               </div>
             </div>
           </div>
+
+          {/* New fields: City, Latitude, Longitude, Area */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div>
+              <Label htmlFor="city">City</Label>
+              <Input
+                id="city"
+                name="city"
+                value={formData.city}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+            <div>
+              <Label htmlFor="latitude">Latitude</Label>
+              <Input
+                id="latitude"
+                name="latitude"
+                type="number"
+                step="any"
+                value={formData.latitude}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+            <div>
+              <Label htmlFor="longitude">Longitude</Label>
+              <Input
+                id="longitude"
+                name="longitude"
+                type="number"
+                step="any"
+                value={formData.longitude}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+            <div>
+              <Label htmlFor="area">Area (sq ft)</Label>
+              <Input
+                id="area"
+                name="area"
+                type="number"
+                value={formData.area}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+          </div>
+
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 max-lg:p-4 ">
-            {/**Property type */}
             <div className="flex flex-col">
               <Label htmlFor="propertyType">Property Type</Label>
               <Select
                 name="propertyType"
-                value={formData.propertyType}
+                value={formData.property_type}
                 onValueChange={(value) =>
-                  setFormData((prev) => ({ ...prev, propertyType: value }))
+                  setFormData((prev) => ({ ...prev, property_type: value }))
                 }
               >
                 <SelectTrigger>
@@ -174,34 +273,11 @@ export default function AddProperty() {
                 </SelectContent>
               </Select>
             </div>
-
-            <div>
-              <Label>Utilities</Label>
-              <RadioGroup
-                name="Utilities"
-                value={formData.Utilities}
-                onValueChange={(value) =>
-                  setFormData((prev) => ({ ...prev, Utilities: value }))
-                }
-                className="flex space-x-4"
-              >
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="exclusive" id="exclusive" />
-                  <Label htmlFor="exclusive">Exclusive</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="inclusive" id="inclusive" />
-                  <Label htmlFor="inclusive">Inclusive</Label>
-                </div>
-              </RadioGroup>
-            </div>
-
             <div className="flex flex-col">
               <Label className="pb-1">Bedrooms and Bathrooms</Label>
-              <Bed_Bath />
+              <Bed_Bath onSelectionChange={handleBedBathChange} />
             </div>
 
-            {/**Furnishing */}
             <div>
               <Label htmlFor="furnishing">Furnishing</Label>
               <Select
@@ -215,22 +291,41 @@ export default function AddProperty() {
                   <SelectValue placeholder="Furnishing" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="unfurnished">UnFurnished</SelectItem>
-                  <SelectItem value="semifurnished">Semi Furnished</SelectItem>
-                  <SelectItem value="fullyfurnished">
-                    Fully Furnished
-                  </SelectItem>
+                  <SelectItem value="Unfurnished">UnFurnished</SelectItem>
+                  <SelectItem value="Semifurnished">Semi Furnished</SelectItem>
+                  <SelectItem value="Furnished">Fully Furnished</SelectItem>
                 </SelectContent>
               </Select>
+            </div>
+
+            <div>
+              <Label>Utilities</Label>
+              <RadioGroup
+                name="Utilities"
+                value={formData.utilities}
+                onValueChange={(value) =>
+                  setFormData((prev) => ({ ...prev, utilities: value }))
+                }
+                className="flex space-x-4"
+              >
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="Exclusive" id="Exclusive" />
+                  <Label htmlFor="Exclusive">Exclusive</Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="Inclusive" id="Inclusive" />
+                  <Label htmlFor="Inclusive">Inclusive</Label>
+                </div>
+              </RadioGroup>
             </div>
           </div>
 
           <div>
-            <Label htmlFor="address">Address</Label>
+            <Label htmlFor="location">Location</Label>
             <Textarea
-              id="address"
-              name="address"
-              value={formData.address}
+              id="location"
+              name="location"
+              value={formData.location}
               onChange={handleInputChange}
               required
             />

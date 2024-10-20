@@ -1,14 +1,39 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 
 import { HomeIcon, PlusIcon } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import UserDropdown from "../UserDropdown";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserProfile } from "@/store/auth/action";
+import { logout } from "@/store/auth/action";
 
+//Get user.. if user exists isSigned is true and then pass logout and user to dropdown
 export default function Navbar() {
   const [activeTab, setActiveTab] = useState("rent");
-  const [isSigned, setIsSigned] = useState(true);
+  const [isSigned, setIsSigned] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const auth = useSelector((store) => store.auth);
+  const jwt = localStorage.getItem("jwt");
+
+  useEffect(() => {
+    if (jwt) {
+      dispatch(getUserProfile(jwt));
+    }
+  }, [dispatch, jwt]);
+
+  useEffect(() => {
+    if (auth.user) {
+      console.log(" navbar", auth.user);
+      setIsSigned(true);
+    }
+  }, [auth.user]);
+
+  const handleLogout = () => {
+    dispatch(logout());
+    setIsSigned(false);
+  };
 
   return (
     <nav className="flex items-center justify-between p-4 bg-white shadow-sm max-w-7xl mx-auto">
@@ -53,10 +78,10 @@ export default function Navbar() {
           Add Property <PlusIcon strokeWidth={3} className="pl-1 size-5" />
         </Button>
         {isSigned === true ? (
-          <UserDropdown />
+          <UserDropdown handleLogout={handleLogout} user={auth.user} />
         ) : (
           <Button className="bg-Primary text-white font-semibold tracking-wide hover:bg-purple-700">
-            Sign up
+            <Link to={"/signup"}>Sign up</Link>
           </Button>
         )}
       </div>

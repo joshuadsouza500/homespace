@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { MapPin, Bed, Bath, Maximize, Wifi, Car } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -35,39 +36,48 @@ import { Card, CardContent } from "@/components/ui/card";
       </div> */
 }
 
-export default function PropertyDetails2() {
+export default function PropertyDetails2({ property }) {
+  console.log("thwe ", property);
   return (
     <div className="container mx-auto px-4 py-8  *:font-jakarta">
       {/**images */}
-      <div className="w-full grid  lg:grid-cols-5 gap-5 ">
-        <div className="col-span-4  md:aspect-video ">
+      <div className="w-full grid lg:grid-cols-5 gap-5">
+        {/* Main Image (First Image in Array) */}
+        <div className="col-span-4 md:aspect-video">
           <img
-            src="https://media.gettyimages.com/id/496649791/photo/beautiful-country-estate.jpg?s=612x612&w=gi&k=20&c=S9rzVEAVSdDfLHFTP5JC9INQ50xD4CeW9fc4ZN3V8Go="
-            alt="Property main img"
-            className="rounded-md object-cover object-center  w-full h-full"
+            src={property?.image[0] || "https://via.placeholder.com/800x400"}
+            alt="Property main"
+            className="rounded-md object-cover object-center w-full h-full"
           />
         </div>
-        <div className="col-span-1 lg:flex flex-col  gap-3 hidden items-center">
-          <div>
-            <img
-              src="/HomeCard3.png"
-              alt="Property img 2"
-              className="rounded-sm object-cover object-center aspect-square  "
-            />
-          </div>
-          <div className="relative">
-            <div className="bg-black opacity-70 h-full w-full absolute">
-              <h6 className="text-white z-10 flex justify-center items-center h-full">
-                View All
-              </h6>
+
+        {/* Sidebar Images (Remaining Images) */}
+        <div className="col-span-1 lg:flex flex-col gap-3 hidden items-center">
+          {property?.image.slice(1, 3).map((url, index) => (
+            <div key={index}>
+              <img
+                src={url}
+                alt={`Property img ${index + 2}`}
+                className="rounded-sm object-cover object-center aspect-square"
+              />
             </div>
-            <img
-              src="/HomeCard3.png"
-              alt="Property img 2"
-              className="rounded-sm object-cover object-center aspect-square  "
-            />
-          </div>
-          <p className="p-2 bg-Primary">View more</p>
+          ))}
+
+          {/* "View All" Overlay (Shown if more than 3 images) */}
+          {property?.image.length > 3 && (
+            <div className="relative">
+              <div className="bg-black opacity-70 h-full w-full absolute flex justify-center items-center">
+                <h6 className="text-white">View All</h6>
+              </div>
+              <img
+                src={property?.image[2] || "/HomeCard3.png"}
+                alt="Property img 3"
+                className="rounded-sm object-cover object-center aspect-square"
+              />
+            </div>
+          )}
+
+          <p className="p-2 bg-Primary cursor-pointer">View more</p>
         </div>
       </div>
       <div className="flex flex-col lg:flex-row gap-8 pt-6 md:pt-10">
@@ -75,14 +85,14 @@ export default function PropertyDetails2() {
         <div className="flex-1 lg:pl-1">
           <div className="mb-6">
             <h1 className="text-2xl font-bold mb-1 text-text">
-              Star Sun Hotel & Apartment
+              {property?.title}
             </h1>
             <div className="flex items-center text-muted-foreground mb-4">
               <MapPin className="w-4 h-4 mr-2 text-Primary" />
-              <span>123 Main St, Anytown, USA</span>
+              <span>{property?.city}</span>
             </div>
             <div className="text-2xl font-bold text-Primary mb-4 ">
-              $1,500{" "}
+              ${property?.price}{" "}
               <span className="text-muted-foreground font-medium">/month</span>
             </div>
             <div className="flex flex-wrap gap-4 mb-4"></div>
@@ -123,13 +133,7 @@ export default function PropertyDetails2() {
               Description
             </h2>
             <p className="text-[#4d5461] tracking-wide ">
-              This apartment by Star Hotel is an en-suite that has a room
-              connected to an apartment, which is comfortable and clean. The
-              apartment features a beautiful view of surrounding hills. You can
-              enjoy the sunrise, in the morning from your room.The apartment
-              features a beautiful view of surrounding hills. Theres a swimming
-              pool, fitness center, and access to the apartments pool and
-              restaurant.
+              {property?.description}
             </p>
           </div>
 
