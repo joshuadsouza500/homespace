@@ -38,48 +38,51 @@ import { Card, CardContent } from "@/components/ui/card";
 
 export default function PropertyDetails2({ property }) {
   console.log("thwe ", property);
+
   return (
     <div className="container mx-auto px-4 py-8  *:font-jakarta">
       {/**images */}
-      <div className="w-full grid lg:grid-cols-5 gap-5">
-        {/* Main Image (First Image in Array) */}
-        <div className="col-span-4 md:aspect-video">
-          <img
-            src={property?.image[0] || "https://via.placeholder.com/800x400"}
-            alt="Property main"
-            className="rounded-md object-cover object-center w-full h-full"
-          />
-        </div>
+      {property?.image && (
+        <div className="w-full grid lg:grid-cols-5 gap-5">
+          {/* Main Image (First Image in Array) */}
+          <div className="col-span-4 md:aspect-video">
+            <img
+              src={property?.image[0] || "https://via.placeholder.com/800x400"}
+              alt="Property main"
+              className="rounded-md object-cover object-center w-full h-full"
+            />
+          </div>
 
-        {/* Sidebar Images (Remaining Images) */}
-        <div className="col-span-1 lg:flex flex-col gap-3 hidden items-center">
-          {property?.image.slice(1, 3).map((url, index) => (
-            <div key={index}>
-              <img
-                src={url}
-                alt={`Property img ${index + 2}`}
-                className="rounded-sm object-cover object-center aspect-square"
-              />
-            </div>
-          ))}
-
-          {/* "View All" Overlay (Shown if more than 3 images) */}
-          {property?.image.length > 3 && (
-            <div className="relative">
-              <div className="bg-black opacity-70 h-full w-full absolute flex justify-center items-center">
-                <h6 className="text-white">View All</h6>
+          {/* Sidebar Images (Remaining Images) */}
+          <div className="col-span-1 lg:flex flex-col gap-3 hidden items-center">
+            {property?.image.slice(1, 3).map((url, index) => (
+              <div key={index}>
+                <img
+                  src={url}
+                  alt={`Property img ${index + 2}`}
+                  className="rounded-sm object-cover object-center aspect-square"
+                />
               </div>
-              <img
-                src={property?.image[2] || "/HomeCard3.png"}
-                alt="Property img 3"
-                className="rounded-sm object-cover object-center aspect-square"
-              />
-            </div>
-          )}
+            ))}
 
-          <p className="p-2 bg-Primary cursor-pointer">View more</p>
+            {/* "View All" Overlay (Shown if more than 3 images) */}
+            {property?.image.length > 3 && (
+              <div className="relative">
+                <div className="bg-black opacity-70 h-full w-full absolute flex justify-center items-center">
+                  <h6 className="text-white">View All</h6>
+                </div>
+                <img
+                  src={property?.image[2] || "/HomeCard3.png"}
+                  alt="Property img 3"
+                  className="rounded-sm object-cover object-center aspect-square"
+                />
+              </div>
+            )}
+
+            <p className="p-2 bg-Primary cursor-pointer">View more</p>
+          </div>
         </div>
-      </div>
+      )}
       <div className="flex flex-col lg:flex-row gap-8 pt-6 md:pt-10">
         {/* Left column - Property details */}
         <div className="flex-1 lg:pl-1">
@@ -151,31 +154,36 @@ export default function PropertyDetails2({ property }) {
 
         {/* Right column - Agent details and Map */}
         <div className="lg:w-1/3 space-y-6 lg:sticky lg:top-6 lg:self-start">
-          <Card className="">
+          <Card className="cursor-pointer">
             <CardContent className="p-5 ">
               <div className="flex items-center  gap-3 -ml-2 mb-4 justify-center ">
                 <img
-                  src="https://cdn-icons-png.flaticon.com/128/10643/10643273.png"
+                  src={property?.user?.avatar}
                   alt="Agent profile"
-                  width={64}
-                  height={64}
-                  className="rounded-full"
+                  className="rounded-full size-16 "
                 />
                 <div>
-                  <h3 className="font-semibold text-text">Rico Martinez</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Real Estate Agent
-                  </p>
+                  <h3 className="font-semibold text-text">
+                    {property?.user?.name}
+                  </h3>
+                  {property.user?.role === "AGENT" ? (
+                    <p className="text-sm text-muted-foreground">
+                      Real Estate Agent
+                    </p>
+                  ) : null}
                 </div>
               </div>
 
               <div className="mb-6">
-                <div className="flex items-center text-sm justify-center gap-1 text-muted-foreground mb-1">
-                  <MapPin className="w-4 h-4  text-Primary" />
-                  <span>123 Main St, RealT Properties</span>
-                </div>
-                <p className="text-sm text-center text-muted-foreground">
-                  12 Properties
+                {property?.user?.role === "AGENT" ? (
+                  <div className="flex items-center text-sm justify-center gap-1 text-muted-foreground mb-1">
+                    <MapPin className="w-4 h-4  text-Primary" />
+                    <span>{property?.user?.company}</span>
+                  </div>
+                ) : null}
+
+                <p className="mx-auto w-fit  text-xs hover:underline text-center text-blue-500">
+                  View all listings
                 </p>
               </div>
               <div className="  gap-x-2 flex">

@@ -93,11 +93,25 @@ export const getPropertyById = (propertyId) => async (dispatch) => {
   }
 };
 
-export const getAllProperties = () => async (dispatch) => {
+export const getAllProperties = (reqQuery) => async (dispatch) => {
   dispatch({ type: GET_ALL_PROPERTY_REQUEST });
-
+  {
+    /** const {
+    minPrice,
+    maxPrice,
+    search,
+    bedrooms,
+    bathrooms,
+    type,
+    property_type,
+    utilities,
+    furnishing,
+  } = reqQuery;
+  const params = URLSearchParams **/
+  }
+  console.log("reqQuery", reqQuery);
   try {
-    const response = await api.get(`/api/property/`);
+    const response = await api.get(`/api/property?${reqQuery}`);
     const properties = response.data;
     console.log("Action props", properties);
     dispatch({ type: GET_ALL_PROPERTY_SUCCESS, payload: properties });

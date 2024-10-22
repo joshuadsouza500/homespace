@@ -193,7 +193,7 @@ export default function AddProperty() {
                   id="price"
                   name="price"
                   type="number"
-                  value={formData.price}
+                  defaultValue={formData.price}
                   onChange={handleInputChange}
                   className="pl-10"
                   required

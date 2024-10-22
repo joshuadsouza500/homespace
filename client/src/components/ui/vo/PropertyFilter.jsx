@@ -7,19 +7,21 @@ import {
 } from "@/components/ui/popover";
 import { ChevronUp, ChevronDown } from "lucide-react";
 
-export default function PropertyFilter() {
+export default function PropertyFilter({ onSelectionChange }) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedFurnishing, setSelectedFurnishing] = useState("");
   const [selectedUtilities, setSelectedUtilities] = useState("");
 
-  const furnishingOptions = ["Furnished", "Semi Furnished", "Unfurnished"];
+  const furnishingOptions = ["Furnished", "Semifurnished", "Unfurnished"];
   const utilitiesOptions = ["Inclusive", "Exclusive"];
 
-  const handleSelect = (type, option) => {
+  const handleSelect = (type, value) => {
     if (type === "furnishing") {
-      setSelectedFurnishing(selectedFurnishing === option ? "" : option);
+      setSelectedFurnishing(selectedFurnishing === value ? "" : value);
+      onSelectionChange("furnishing", value);
     } else {
-      setSelectedUtilities(selectedUtilities === option ? "" : option);
+      setSelectedUtilities(selectedUtilities === value ? "" : value);
+      onSelectionChange("utilities", value);
     }
   };
 

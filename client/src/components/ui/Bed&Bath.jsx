@@ -17,8 +17,8 @@ export default function Bed_Bath({ onSelectionChange }) {
   const [selectedBathrooms, setSelectedBathrooms] = React.useState();
 
   const handleSelect = (type, value) => {
-    if (type === "bedroom") {
-      setSelectedBedrooms(value);
+    if (type === "bedrooms") {
+      setSelectedBedrooms(selectedBedrooms === value ? "" : value);
       onSelectionChange("bedrooms", value);
     } else {
       setSelectedBathrooms(value);
@@ -54,7 +54,7 @@ export default function Bed_Bath({ onSelectionChange }) {
                 key={`bed-${option}`}
                 variant={selectedBedrooms === option ? "default" : "outline"}
                 size="sm"
-                onClick={() => handleSelect("bedroom", option)}
+                onClick={() => handleSelect("bedrooms", option)}
               >
                 {option}
               </Button>
@@ -67,7 +67,7 @@ export default function Bed_Bath({ onSelectionChange }) {
                 key={`bath-${option}`}
                 variant={selectedBathrooms === option ? "default" : "outline"}
                 size="sm"
-                onClick={() => handleSelect("bathroom", option)}
+                onClick={() => handleSelect("bathrooms", option)}
               >
                 {option}
               </Button>
