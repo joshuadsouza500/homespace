@@ -15,13 +15,13 @@ import { Badge } from "@/components/ui/badge";
 /***/
 const BigProperyCard = () => {
   return (
-    <Card className="max-w-md md:max-w-5xl mx-1 cursor-pointer hover:shadow-m h-full">
+    <Card className="hidden md:block max-w-md sm:max-w-2xl md:max-w-5xl mx-1 cursor-pointer hover:shadow-m h-full">
       <div className="flex flex-col gap-1 sm:flex-row">
         <div className="relative w-full sm:w-2/5">
           <img
             src="https://www.wilsonhomes.com.au/sites/default/files/styles/blog_hero_banner/public/My%20project%20-%202023-06-20T095818.329%20%281%29_0.jpg?itok=UbtVbhT0"
             alt="Red house"
-            className="w-full h-[240px] sm:h-[350px] object-fill rounded-t-lg sm:rounded-l-lg sm:rounded-tr-none object-center "
+            className="w-full h-[260px] sm:h-[350px] object-fill rounded-t-lg sm:rounded-l-lg sm:rounded-tr-none object-center "
           />
           <Badge className="absolute top-2 left-2 bg-green-500 text-white">
             For Sale

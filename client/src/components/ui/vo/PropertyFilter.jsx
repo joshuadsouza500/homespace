@@ -35,7 +35,10 @@ export default function PropertyFilter({ onSelectionChange }) {
   return (
     <Popover open={isOpen} onOpenChange={setIsOpen}>
       <PopoverTrigger asChild>
-        <Button variant="outline" className="w-[200px] justify-between">
+        <Button
+          variant="outline"
+          className="max-md:h-9 w-32 md:w-[200px] justify-between"
+        >
           {getButtonText()}
           {isOpen ? (
             <ChevronUp className="ml-2 h-4 w-4" />

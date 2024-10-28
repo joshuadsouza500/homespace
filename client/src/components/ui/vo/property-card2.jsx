@@ -54,14 +54,14 @@ export default function PropertyCard2({ update, className, property }) {
   return (
     <Card
       className={cn(
-        "max-w-sm sm:max-w-lg md:max-w-3xl mx-1 lg:h-64 cursor-pointer hover:shadow-md  ",
+        "max-w-sm sm:max-w-xl md:max-w-3xl mx-1 md:h-64 cursor-pointer hover:shadow-md  ",
         className
       )}
       onClick={() => {
         propertyDetails(property?.id);
       }}
     >
-      <div className="flex flex-col sm:flex-row lg:h-full">
+      <div className="flex flex-col sm:flex-row md:h-full">
         <div className="relative w-full sm:w-2/5 ">
           <img
             src={property?.image[0]} // Use the first image from the property data
@@ -126,7 +126,7 @@ export default function PropertyCard2({ update, className, property }) {
             </div>
           </div>
           <div className="flex justify-between items-center mt-auto pt-4 border-t">
-            <span className="text-xs text-muted-foreground">
+            <span className="text-xs font-light text-muted-foreground">
               Listed {new Date(property?.createdAt).toLocaleDateString()}{" "}
               {/* Display listing date */}
             </span>
@@ -186,8 +186,16 @@ export default function PropertyCard2({ update, className, property }) {
                   <Mail className="h-4 w-4 mr-2" />
                   Email
                 </Button>
-                <Button variant="outline" size="icon" className="text-primary ">
-                  <Heart className="size-4" />
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className={`text-primary `}
+                >
+                  <Heart
+                    className={`size-4 ${
+                      property?.isSaved ? "fill-Primary" : "bg-white"
+                    }`}
+                  />
                 </Button>
               </div>
             )}

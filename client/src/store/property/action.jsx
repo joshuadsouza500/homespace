@@ -67,13 +67,15 @@ export const deleteProperty = (propertyId) => async (dispatch) => {
   }
 };
 
-export const saveProperty = () => async (dispatch) => {
+export const saveProperty = (propertyId) => async (dispatch) => {
   dispatch({ type: SAVE_PROPERTY_REQUEST });
 
   try {
-    const response = await api.post(`/api/property/saved`);
+    const response = await api.post(`/api/property/saved`, { propertyId });
     const savedProperty = response.data;
-
+    console.log("res", response.data);
+    // console.log("action", savedProperty);
+    // if text says saved then
     dispatch({ type: SAVE_PROPERTY_SUCCESS, payload: savedProperty });
   } catch (error) {
     dispatch({ type: SAVE_PROPERTY_FAILURE, payload: error.message });

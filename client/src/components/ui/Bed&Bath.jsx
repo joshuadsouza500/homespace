@@ -36,7 +36,10 @@ export default function Bed_Bath({ onSelectionChange }) {
   return (
     <Popover open={isOpen} onOpenChange={setIsOpen}>
       <PopoverTrigger asChild>
-        <Button variant="outline" className="w-[200px] justify-between">
+        <Button
+          variant="outline"
+          className=" justify-between md:w-[200px] w-36 max-md:h-9"
+        >
           {getButtonText()}
           {isOpen ? (
             <ChevronUp className="ml-2 h-4 w-4" />

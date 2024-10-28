@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { Button } from "../ui/button";
 import Popular from "../ui/vo/Popular";
+import { Link } from "react-router-dom";
 //text-[#000929]
 
 const properties = [
@@ -41,7 +42,7 @@ const properties = [
     id: 3,
     imageUrl: "/HomeCard3.png", // Add actual image URL
     label: "For Rent",
-    popular: "POPULAR",
+    popular: "",
     price: 2100,
     location: "SpringField VL",
     address: "10 Bay Ren , SpringField",
@@ -66,6 +67,7 @@ const properties = [
     imageUrl:
       "https://images.pexels.com/photos/1743227/pexels-photo-1743227.jpeg?auto=compress&cs=tinysrgb&w=600", // Add actual image URL
     label: "For Rent",
+
     popular: "",
     price: 2100,
     location: "Tarpon Bay",
@@ -77,8 +79,9 @@ const properties = [
 ];
 const Browse = () => {
   return (
-    <div className="h-full overflow-hidden  bg-gradient-to-b from-[#f7f6fc] to-white pt-28 pb-8 font-jakarta">
+    <div className="h-full  bg-gradient-to-b from-[#f7f6fc] to-white pt-28 pb-8 font-jakarta">
       <div className="flex flex-col gap-3 items-center justify-center">
+        <h1 className="md:hidden">MAke it horizontal scroll</h1>
         <h2 className="text-4xl font-bold text-[#000929]">
           Featured Properties
         </h2>
@@ -86,34 +89,37 @@ const Browse = () => {
           Here are some properties near you
         </p>
         <Tabs defaultValue="Rent" className=" z-10  ">
-          <TabsList className="bg-light_gray h-12 w-56    shadow-sm ring-2  ring-[#E0DEF7]">
+          <TabsList className="bg-light_gray h-12 w-44 md:w-56    shadow-sm ring-2  ring-[#E0DEF7]">
             <TabsTrigger
               value="Rent"
-              className="w-28 flex items-center gap-1 text-base data-[state=active]:text-Primary data-[state=active]:border border-bborder font-bold  data-[state=active]:shadow-sm shadow-Primary"
+              className="w-24 md:w-28 flex items-center gap-1 text-base data-[state=active]:text-Primary data-[state=active]:border border-bborder font-bold  data-[state=active]:shadow-sm shadow-Primary"
             >
               <KeyRoundIcon
                 strokeWidth={2.5}
-                className="size-4 text-Primary   "
+                className="max-sm:hidden size-4 text-Primary   "
               />
               For Rent
             </TabsTrigger>
             <TabsTrigger
               value="Sell"
-              className="w-28 flex items-center gap-1 text-base data-[state=active]:text-Primary data-[state=active]:border border-bborder font-bold"
+              className="w-20 md:w-28 flex items-center gap-1 text-base data-[state=active]:text-Primary data-[state=active]:border border-bborder font-bold"
             >
-              <BanknoteIcon strokeWidth={2.5} className="size-5 text-Primary" />
+              <BanknoteIcon
+                strokeWidth={2.5}
+                className="max-sm:hidden size-5 text-Primary"
+              />
               To Sell
             </TabsTrigger>
           </TabsList>
         </Tabs>
-        <section className="grid  md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10 pt-12 pb-4 ">
+        <section className=" grid    md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10 lg:gap-x-10 pt-12 pb-4 ">
           {properties.map((property) => (
             <div
               key={property.id}
-              className="h-[350px] w-[270px] rounded-lg border bg-white relative cursor-pointer  hover:shadow-lg"
+              className="md:h-[350px] h-[380px] w-[320px] md:w-[290px] rounded-lg border bg-white relative cursor-pointer  hover:shadow-lg"
             >
               <div
-                className="w-full h-44 rounded-t-lg bg-cover bg-center bg-no-repeat transition-transform duration-500 ease-in-out relative"
+                className="w-full h-48 md:h-44 rounded-t-lg bg-cover bg-center bg-no-repeat transition-transform duration-500 ease-in-out relative"
                 style={{ backgroundImage: `url(${property.imageUrl})` }}
               >
                 {property.popular != "" && (
@@ -166,9 +172,11 @@ const Browse = () => {
           ))}
         </section>
         <div className="w-full flex justify-center pt-4">
-          <Button className="flex  h-11 bg-Bgpurple rounded-lg hover:bg-Bgpurple/80 text-white text-sm tracking-wide font-semibold">
-            Browse All Properties
-          </Button>
+          <Link to="/property">
+            <Button className="flex  h-11 bg-Bgpurple rounded-lg hover:bg-Bgpurple/80 text-white text-sm tracking-wide font-semibold">
+              Browse All Properties
+            </Button>
+          </Link>
         </div>
       </div>
     </div>

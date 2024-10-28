@@ -18,7 +18,7 @@ import { useDispatch } from "react-redux";
 import { createProperty } from "@/store/property/action";
 import UploadWidget from "../ui/UploadWidget";
 
-const propertyTypes = ["Apartment", "Studio", "Villas", "Penthouse", "Condo"];
+const propertyTypes = ["Apartment", "Studio", "Villa", "Penthouse", "Condo"];
 
 const amenities = [
   "Air Conditioning",
@@ -135,7 +135,7 @@ export default function AddProperty() {
                 <button
                   type="button"
                   onClick={() => handleImageDelete(index)}
-                  className="absolute top-2 right-2 bg-red-500 text-white p-1 rounded-full"
+                  className="absolute top-2 right-2 bg-red-500 text-white  size-6 rounded-full hover:bg-red-600"
                 >
                   ✕
                 </button>

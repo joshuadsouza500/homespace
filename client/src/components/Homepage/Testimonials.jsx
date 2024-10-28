@@ -51,22 +51,22 @@ export default function Testimonials() {
   }, []);
 
   return (
-    <section className="w-full pt-12 pb-28 bg-gradient-to-b from-inherit to-light_gray">
-      <div className="container px-4 md:px-6">
+    <section className="w-full pt-12 pb-28 bg-gradient-to-b from-inherit to-light_gray px-2">
+      <div className="container px-2 md:px-4">
         <div className="flex flex-col gap-3 items-center mt-8 mb-12  ">
-          <h2 className="text-4xl font-bold text-[#000929]">
+          <h2 className="text-4xl text-center max-sm:pb-2 font-bold text-[#000929]">
             What Our Clients Say
           </h2>
-          <p className=" max-sm:text-sm  w-[40%] text-center text-[#4d5461] pb-3">
+          <p className=" max-sm:text-sm w-[90%]  md:w-[35%] text-center text-[#4d5461] pb-3">
             Hear from happy buyers and sellers {"who've"} achieved their real
             estate goals with us.
           </p>
         </div>
         <div className="relative max-w-2xl mx-auto">
-          <Card className="bg-white border-[#e0def7] shadow-sm">
-            <CardContent className="p-6">
-              <QuoteIcon className="h-8 w-8 text-[#e0def7] mb-4 mx-auto" />
-              <p className="text-gray-700 mb-4 text-center text-lg">
+          <Card className="bg-white border-[#e0def7] shadow-md">
+            <CardContent className="p-4 md:p-6">
+              <QuoteIcon className="size-6 md:size-8 text-[#e0def7] mb-4 mx-auto " />
+              <p className="text-[#4d5461]  mb-4 text-center text-pretty max-md:tracking-wide text-base md:text-lg">
                 {testimonials[currentIndex].quote}
               </p>
               <div className="flex items-center justify-center">

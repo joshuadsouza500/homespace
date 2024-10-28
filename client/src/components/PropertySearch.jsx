@@ -9,7 +9,14 @@ import {
   SelectLabel,
   SelectGroup,
 } from "@/components/ui/select";
-import { ChevronDown, ChevronRight, SearchIcon } from "lucide-react";
+import {
+  ChevronDown,
+  ChevronRight,
+  FilterIcon,
+  Search,
+  SearchIcon,
+  Settings,
+} from "lucide-react";
 import {
   Popover,
   PopoverContent,
@@ -22,6 +29,7 @@ import { useCallback, useEffect, useState } from "react";
 import { getAllProperties } from "@/store/property/action";
 import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
+import SheetFilter from "./ui/vo/SheetFilter";
 
 export default function PropertySearch() {
   const dispatch = useDispatch();
@@ -34,7 +42,7 @@ export default function PropertySearch() {
   const [selectedUtilities, setSelectedUtilities] = useState();
 
   const [searchParams, setSearchParams] = useSearchParams();
-
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [filters, setFilters] = useState({
     type: searchParams.get("type") || "",
     pty: searchParams.get("pty") || "",
@@ -118,22 +126,39 @@ export default function PropertySearch() {
   };
 
   return (
-    <div className="w-full   space-y-4 border-t ">
-      <div className="flex flex-col max-lg:gap-y-4 lg:flex-row items-center space-x-2  py-4 max-w-6xl mx-auto border-b max-md:mx-2 lg:grid grid-cols-3">
-        <section className="w-full flex  lg:justify-start lg:pl-2  lg:col-span-1 py-2 justify-around">
-          <div className="relative w-[75%] lg:w-[90%] overflow-hidden">
+    <div className="w-full   border-t ">
+      <div className="flex flex-col max-lg:gap-y-1 items-center py-2  lg:py-4  mx-auto border-b  lg:px-6  grid-cols-3 ">
+        <section className="w-full lg:w-[95%] lg:pl-4  flex  justify-start  mx-auto   py-1 md:py-2 gap-x-1   ">
+          <div className="relative w-[65%] lg:w-[75%] ">
             <SearchIcon className="absolute left-2 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-            <Input className="pl-8" placeholder="City, community or building" />
+            <Input
+              className="pl-8 "
+              placeholder="City, community or building"
+            />
           </div>
           <Button
-            className="bg-Bgpurple w-20 text-white  lg:hidden"
+            className="bg-Bgpurple max-md:w-[20%] md:w-[15%]  text-white  lg:hidden"
             onClick={applyFilters}
           >
             Find
           </Button>
+          <div className="filter-component">
+            {/* SheetFilter Component */}
+            <SheetFilter
+              isFilterOpen={isFilterOpen}
+              setIsFilterOpen={setIsFilterOpen}
+              filters={filters}
+              handleFilterChange={handleFilterChange}
+              handleInputChange={handleInputChange}
+              onSelectionChange={onSelectionChange}
+              applyFilters={applyFilters}
+            />
+
+            {/* Trigger Button (Optional) */}
+          </div>
         </section>
 
-        <div className="  flex gap-x-1 w-full  lg:col-span-2 py-2 px-1">
+        <div className="  flex gap-x-1 w-full  lg:col-span-2 py-2  max-sm:overflow-x-scroll">
           {/*Rent & Sell*/}
           <Select
             id="type"
@@ -142,7 +167,7 @@ export default function PropertySearch() {
               handleFilterChange({ id: "type", value });
             }}
           >
-            <SelectTrigger className="w-[100px]">
+            <SelectTrigger className="w-24 max-md:h-9 md:w-[100px]">
               <SelectValue placeholder="Rent" />
             </SelectTrigger>
             <SelectContent>
@@ -156,8 +181,9 @@ export default function PropertySearch() {
             onValueChange={(value) => {
               handleFilterChange({ id: "pty", value });
             }}
+            className="bg-red-200"
           >
-            <SelectTrigger className="w-[150px]">
+            <SelectTrigger className="md:w-[200px] w-32  max-md:h-9  ">
               <SelectValue placeholder="Property type" />
             </SelectTrigger>
 
@@ -175,9 +201,12 @@ export default function PropertySearch() {
           {/*Beds & Baths*/}
           <Bed_Bath onSelectionChange={onSelectionChange} />
           {/*Price */}
-          <Popover className="w-40">
+          <Popover className=" md:w-40">
             <PopoverTrigger asChild>
-              <Button className="w-36 justify-between" variant="outline">
+              <Button
+                className="max-md:h-9 w-24 md:w-36 justify-between"
+                variant="outline"
+              >
                 Price
                 <ChevronDown className="ml-2 h-4 w-4" />
               </Button>
@@ -222,31 +251,31 @@ export default function PropertySearch() {
           {/*More FIlters*/}
           <PropertyFilter onSelectionChange={onSelectionChange} />
           <Button
-            className="bg-Bgpurple w-20 text-white hidden lg:block"
+            className="bg-Bgpurple  w-32 hover:bg-text text-white hidden lg:block ml-1 "
             onClick={applyFilters}
           >
             Find
           </Button>
         </div>
       </div>
-      <div className="flex justify-between items-end  max-w-6xl mx-auto max-md:mx-2 pb-6">
+      <div className="flex justify-between items-end  max-w-6xl mx-auto max-md:mx-2 pb-4 md:pb-6 sm:pt-1">
         <div>
           <p className="flex items-center text-xs font-light">
             Home
             <ChevronRight className="size-4" />
             properties for sale
           </p>
-          <h1 className="text-xl md:text-2xl font-bold pt-4">
+          <h1 className="text-lg md:text-2xl font-bold pt-2 md:pt-4">
             Properties for sale in Bahrain
           </h1>
         </div>
         <Select>
-          <SelectTrigger className="w-32 ">
+          <SelectTrigger className="w-24  md:w-32 text-xs max-sm:h-9 ">
             <SelectValue placeholder="Featured" />
           </SelectTrigger>
-          <SelectContent className="w-36">
+          <SelectContent className="w-28 md:w-36">
             <SelectGroup>
-              <SelectLabel value="featured" className="pl-7">
+              <SelectLabel value="featured" className="pl-6">
                 Featured
               </SelectLabel>
               <SelectItem value="newest">Newest</SelectItem>

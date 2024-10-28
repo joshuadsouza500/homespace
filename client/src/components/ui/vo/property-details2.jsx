@@ -1,8 +1,17 @@
 /* eslint-disable react/prop-types */
-import { MapPin, Bed, Bath, Maximize, Wifi, Car } from "lucide-react";
+import {
+  MapPin,
+  Bed,
+  Bath,
+  Maximize,
+  Wifi,
+  Car,
+  HeartIcon,
+} from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+
 {
   /** <div className="flex flex-col md:flex-row gap-4 h-[500px] ">
         <div className=" relative  bg-orange-200 w-[75%] ">
@@ -36,9 +45,7 @@ import { Card, CardContent } from "@/components/ui/card";
       </div> */
 }
 
-export default function PropertyDetails2({ property }) {
-  console.log("thwe ", property);
-
+export default function PropertyDetails2({ property, handleSave }) {
   return (
     <div className="container mx-auto px-4 py-8  *:font-jakarta">
       {/**images */}
@@ -87,9 +94,20 @@ export default function PropertyDetails2({ property }) {
         {/* Left column - Property details */}
         <div className="flex-1 lg:pl-1">
           <div className="mb-6">
-            <h1 className="text-2xl font-bold mb-1 text-text">
-              {property?.title}
-            </h1>
+            <span className=" w-full flex justify-between items-center">
+              <h1 className="text-2xl font-bold mb-1 text-text">
+                {property?.title}
+              </h1>
+              <HeartIcon
+                className={`p-2 rounded-full text-Primary size-11 hover:fill-Primary cursor-pointer ${
+                  property?.isSaved ? "fill-Primary" : "bg-white"
+                }`}
+                onClick={() => {
+                  handleSave(property?.id);
+                }}
+              />
+            </span>
+
             <div className="flex items-center text-muted-foreground mb-4">
               <MapPin className="w-4 h-4 mr-2 text-Primary" />
               <span>{property?.city}</span>
@@ -166,7 +184,7 @@ export default function PropertyDetails2({ property }) {
                   <h3 className="font-semibold text-text">
                     {property?.user?.name}
                   </h3>
-                  {property.user?.role === "AGENT" ? (
+                  {property?.user?.role === "AGENT" ? (
                     <p className="text-sm text-muted-foreground">
                       Real Estate Agent
                     </p>

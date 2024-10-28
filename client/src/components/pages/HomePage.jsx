@@ -1,27 +1,20 @@
 import Hero from "../Homepage/Hero";
 import Browse from "../Homepage/Browse";
-import Footer from "../Footer";
+
 import Testimonials from "../Homepage/Testimonials";
 import Features from "../Homepage/Features";
-import Navbar from "../ui/vo/Navbar";
+import Banner from "../Homepage/Banner";
 
 const HomePage = () => {
   return (
-    <div className=" w-full ">
+    <div className=" md:px-6 w-full max-w-6xl 2xl:max-w-7xl mx-auto font-jakarta">
       {" "}
-      <Navbar />
       <Hero />
+      <div className="h-32 bg-gray-300 py-2"> COmpany logos</div>
       <Features />
       <Browse />
       <Testimonials />
-      <div className="w-full py-10">
-        <img
-          alt="banner img"
-          src="/Banner1.jpeg"
-          className="w-[95%] md:w-[85%] mx-auto rounded-xl lg:rounded-3xl lg:h-[90%]"
-        />
-      </div>
-      <Footer />
+      <Banner />
     </div>
   );
 };

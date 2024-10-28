@@ -20,6 +20,7 @@ import {
 } from "./actionType";
 
 const initialState = {
+  properties: null,
   property: null,
   savedProperty: null,
   isLoading: false,
@@ -43,21 +44,37 @@ export const propertyReducer = (state = initialState, action) => {
     case UPDATE_PROPERTY_SUCCESS:
     case DELETE_PROPERTY_SUCCESS:
     case GET_PROPERTY_BY_ID_SUCCESS:
-    case GET_ALL_PROPERTY_SUCCESS:
       return {
         ...state,
         property: action.payload,
         isLoading: false,
         error: null,
       };
-    case SAVE_PROPERTY_SUCCESS:
+    case GET_ALL_PROPERTY_SUCCESS:
       return {
         ...state,
-        savedProperty: action.payload,
+        properties: action.payload,
         isLoading: false,
         error: null,
       };
-
+    case SAVE_PROPERTY_SUCCESS: {
+      if (action.payload.message.includes("removed")) {
+        // If property was removed
+        console.log("Remove");
+        return {
+          ...state,
+          savedProperty: state.savedProperty.filter(
+            (prop) => prop.propertyId !== action.payload.savedProperty.id
+          ),
+        };
+      } else {
+        // If property was saved
+        return {
+          ...state,
+          savedProperty: [...state.savedProperty, action.payload.savedProperty],
+        };
+      }
+    }
     case CREATE_PROPERTY_FAILURE:
     case UPDATE_PROPERTY_FAILURE:
     case SAVE_PROPERTY_FAILURE:
