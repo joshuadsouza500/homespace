@@ -8,7 +8,6 @@ import { useSelector } from "react-redux";
 const Search = () => {
   const Property = useSelector((store) => store.property);
 
-  console.log("PROPEprty", Property?.properties);
   return (
     <div className="font-jakarta px-2  md:px-6 max-w-6xl 2xl:max-w-7xl mx-auto">
       <PropertySearch />

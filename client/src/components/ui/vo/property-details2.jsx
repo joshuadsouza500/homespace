@@ -7,6 +7,20 @@ import {
   Wifi,
   Car,
   HeartIcon,
+  Snowflake,
+  CircleParking,
+  Waves,
+  DumbbellIcon,
+  HousePlus,
+  Fence,
+  Cctv,
+  Columns3,
+  FlameKindling,
+  Dog,
+  House,
+  BookMarked,
+  Bookmark,
+  CarFront,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -46,8 +60,21 @@ import { Card, CardContent } from "@/components/ui/card";
 }
 
 export default function PropertyDetails2({ property, handleSave }) {
+  const amenityIconMap = {
+    ["Air Conditioning"]: <Snowflake className="size-5 mr-2 text-Primary" />,
+    ["Parking"]: <CarFront className="size-5 mr-2 text-Primary" />,
+    "Swimming Pool": <Waves className="size-5 mr-2 text-Primary" />,
+    ["Gym"]: <DumbbellIcon className="size-5 mr-2 text-Primary" />,
+    ["Wifi"]: <Wifi className="size-5 mr-2 text-Primary" />,
+    ["Balcony"]: <Columns3 className="size-5 mr-2 text-Primary" />,
+    ["Garden"]: <Fence className="size-5 mr-2 text-Primary" />,
+    ["Security System"]: <Cctv className="size-5 mr-2 text-Primary" />,
+    ["Fireplace"]: <FlameKindling className="size-5 mr-2 text-Primary" />,
+    ["Pet-Friendly"]: <Dog className="size-5 mr-2 text-Primary" />,
+  };
+
   return (
-    <div className="container mx-auto px-4 py-8  *:font-jakarta">
+    <div className="container  mx-auto px-1 md:px-3 pt-2 md:pt-4 pb-8  ">
       {/**images */}
       {property?.image && (
         <div className="w-full grid lg:grid-cols-5 gap-5">
@@ -85,21 +112,33 @@ export default function PropertyDetails2({ property, handleSave }) {
                 />
               </div>
             )}
-
-            <p className="p-2 bg-Primary cursor-pointer">View more</p>
           </div>
         </div>
       )}
-      <div className="flex flex-col lg:flex-row gap-8 pt-6 md:pt-10">
+      <div className="flex flex-col lg:flex-row gap-8 pt-4  md:pt-6  ">
         {/* Left column - Property details */}
-        <div className="flex-1 lg:pl-1">
-          <div className="mb-6">
-            <span className=" w-full flex justify-between items-center">
-              <h1 className="text-2xl font-bold mb-1 text-text">
+        <div className="flex-1 pl-[2px] lg:pl-1">
+          <div className="mb-4 md:mb-8">
+            <div className="flex   md:w-[60%] items-center justify-start pb-2 md:pb-4 gap-x-2 text-text font-medium">
+              <div className="  flex items-center pl-1  border-r pr-3">
+                <Bed className="size-5 mr-2 text-Primary" />
+                <span className="   ">{property?.bedrooms} Bed</span>
+              </div>
+              <div className="flex items-center   pl-1  border-r pr-3">
+                <Bath className="size-5 mr-2 text-Primary" />
+                <span className="   ">{property?.bathrooms} Baths</span>
+              </div>
+              <div className="flex items-center pl-1">
+                <Maximize className="size-5 mr-2 text-Primary" />
+                <span className=" ">{property?.area} sqft</span>
+              </div>
+            </div>
+            <span className=" w-full flex justify-between items-center  py-1">
+              <h1 className="text-2xl sm:text-3xl font-bold mb-1 text-text leading-snug ">
                 {property?.title}
               </h1>
               <HeartIcon
-                className={`p-2 rounded-full text-Primary size-11 hover:fill-Primary cursor-pointer ${
+                className={`hidden md:block p-2 rounded-full text-Primary size-11 hover:scale-95 cursor-pointer ${
                   property?.isSaved ? "fill-Primary" : "bg-white"
                 }`}
                 onClick={() => {
@@ -108,7 +147,7 @@ export default function PropertyDetails2({ property, handleSave }) {
               />
             </span>
 
-            <div className="flex items-center text-muted-foreground mb-4">
+            <div className="flex items-center text-muted-foreground mb-4 pt-1">
               <MapPin className="w-4 h-4 mr-2 text-Primary" />
               <span>{property?.city}</span>
             </div>
@@ -116,69 +155,64 @@ export default function PropertyDetails2({ property, handleSave }) {
               ${property?.price}{" "}
               <span className="text-muted-foreground font-medium">/month</span>
             </div>
-            <div className="flex flex-wrap gap-4 mb-4"></div>
-            <div className="">
-              <h2 className="text-xl font-semibold mb-2 text-text">
+
+            <div className="pt-2">
+              {/**
+              *  <div className="flex w-full items-center justify-between pb-4">
+                <div className="w-[30%] font-bold flex items-center ">
+                  <Bed className="size-5 mr-2 text-Primary" />
+                  <span className="text-text ">{property?.bedrooms} Bed</span>
+                </div>
+                <div className="flex items-center w-[30%] font-bold">
+                  <Bath className="size-5 mr-2 text-Primary" />
+                  <span className="text-text ">
+                    {property?.bathrooms} Baths
+                  </span>
+                </div>
+                <div className="flex items-center  w-[30%] font-bold">
+                  <Maximize className="size-5 mr-2 text-Primary" />
+                  <span className="text-text ">{property?.area} sqft</span>
+                </div>
+              </div>
+              */}
+
+              <h2 className="text-xl font-semibold mb-3 text-text">
                 Amenities
               </h2>
-              <div className="flex flex-wrap gap-x-5 gap-y-6 mb-4 font-medium">
-                <div className="flex items-center">
-                  <Bed className="w-5 h-5 mr-2 text-Primary" />
-                  <span className="text-text ">2 Beds</span>
-                </div>
-                <div className="flex items-center">
-                  <Bath className="w-5 h-5 mr-2 text-Primary" />
-                  <span className="text-text ">2 Baths</span>
-                </div>
-                <div className="flex items-center">
-                  <Maximize className="w-5 h-5 mr-2 text-Primary" />
-                  <span className="text-text ">1,234 sqft</span>
-                </div>
-                <div className="flex items-center">
-                  <Wifi className="w-5 h-5 mr-2 text-Primary" />
-                  <span className="text-text ">WiFi</span>
-                </div>
-                <div className="flex items-center">
-                  <Car className="w-5 h-5 mr-2 text-Primary" />
-                  <span className="text-text ">Parking Area</span>
-                </div>
-                <div className="flex items-center">
-                  <Maximize className="w-5 h-5 mr-2 text-Primary" />
-                  <span className="text-text ">1,234 sqft</span>
-                </div>
+              <div className="grid grid-cols-3 lg:grid-cols-3 md:gap-x-5 gap-x-2 md:gap-y-6 gap-y-4  font-medium max-sm:text-sm">
+                {property?.amenities?.map((am) => (
+                  <div
+                    className="flex items-center hover:text-Bgpurple"
+                    key={am}
+                  >
+                    {amenityIconMap[am] || (
+                      <House className="size-5 mr-2 text-Primary" /> // Default icon
+                    )}
+                    <p className="text-text ">{am}</p>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
-          <div className="mb-6">
-            <h2 className="text-xl font-semibold text-text mb-2">
+          <div className="mb-6  pt-2">
+            <h2 className="text-xl font-semibold text-text mb-3">
               Description
             </h2>
-            <p className="text-[#4d5461] tracking-wide ">
+            <p className="text-[#4d5461] tracking-wide leading-relaxed md:mr-3 text-pretty">
               {property?.description}
             </p>
           </div>
-
-          <ul
-            className="text-foreground/80 pt-2 list-disc font-medium tracking-wide pb-44"
-            style={{ listStylePosition: "inside" }}
-          >
-            <li>Swimming pool access.</li>
-            <li>Walk in closets.</li>
-            <li>Built in Desks in some units.</li>
-            <li>Private Balcony.</li>
-            <li>Oversized Soaking Tubs in some units.</li>
-          </ul>
         </div>
 
         {/* Right column - Agent details and Map */}
         <div className="lg:w-1/3 space-y-6 lg:sticky lg:top-6 lg:self-start">
-          <Card className="cursor-pointer">
+          <Card className="cursor-pointer md:w-[80%] lg:w-full mx-auto">
             <CardContent className="p-5 ">
               <div className="flex items-center  gap-3 -ml-2 mb-4 justify-center ">
                 <img
                   src={property?.user?.avatar}
                   alt="Agent profile"
-                  className="rounded-full size-16 "
+                  className="rounded-full size-16  ring-1"
                 />
                 <div>
                   <h3 className="font-semibold text-text">
@@ -204,7 +238,7 @@ export default function PropertyDetails2({ property, handleSave }) {
                   View all listings
                 </p>
               </div>
-              <div className="  gap-x-2 flex">
+              <div className="  gap-x-2 flex  items-center justify-center">
                 <Button className=" bg-blue-500 w-40">Message</Button>
                 <Button
                   variant="outline"
@@ -215,15 +249,17 @@ export default function PropertyDetails2({ property, handleSave }) {
               </div>
             </CardContent>
           </Card>
-          <Card>
+          <Card className="md:w-[80%] lg:w-full mx-auto">
             <CardContent className="p-0">
               <img
-                src="/placeholder.svg"
+                src="/Map.jpeg"
                 alt="Property location map"
-                width={400}
-                height={300}
-                className="rounded-lg bg-gray-500 "
+                className="max-lg:h-60 max-lg:w-full rounded-lg bg-gray-500 aspect-square object-cover"
               />
+              <div className="flex items-center text-muted-foreground text-sm pl-1 py-1">
+                <MapPin className="size-5 mr-2 text-Primary" />
+                <span>{property?.location}</span>
+              </div>
             </CardContent>
           </Card>
         </div>

@@ -7,7 +7,11 @@ import {
 } from "@/components/ui/popover";
 import { ChevronUp, ChevronDown } from "lucide-react";
 
-export default function PropertyFilter({ onSelectionChange }) {
+export default function PropertyFilter({
+  onSelectionChange,
+  defaultFrn,
+  defaultUt,
+}) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedFurnishing, setSelectedFurnishing] = useState("");
   const [selectedUtilities, setSelectedUtilities] = useState("");
@@ -54,7 +58,7 @@ export default function PropertyFilter({ onSelectionChange }) {
             {furnishingOptions.map((option) => (
               <Button
                 key={`furnishing-${option}`}
-                variant={selectedFurnishing === option ? "default" : "outline"}
+                variant={defaultFrn === option ? "default" : "outline"}
                 size="sm"
                 onClick={() => handleSelect("furnishing", option)}
               >
@@ -67,7 +71,7 @@ export default function PropertyFilter({ onSelectionChange }) {
             {utilitiesOptions.map((option) => (
               <Button
                 key={`utilities-${option}`}
-                variant={selectedUtilities === option ? "default" : "outline"}
+                variant={defaultUt === option ? "default" : "outline"}
                 size="sm"
                 onClick={() => handleSelect("utilities", option)}
               >

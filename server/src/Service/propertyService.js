@@ -4,7 +4,6 @@ const createProperty = async (userId, reqData) => {
   const {
     title,
     description,
-
     location,
     city,
     image,
@@ -13,6 +12,12 @@ const createProperty = async (userId, reqData) => {
     utilities,
     furnishing,
     amenities,
+    price,
+    longitude,
+    latitude,
+    bedrooms,
+    bathrooms,
+    area,
   } = reqData;
 
   try {
@@ -22,19 +27,15 @@ const createProperty = async (userId, reqData) => {
       data: {
         title,
         description,
-        price: parseFloat(reqData.price),
+        price: parseFloat(price),
         location,
         city,
-        longitude: parseFloat(reqData.longitude),
-        latitude: parseFloat(reqData.latitude),
-        image: [
-          "https://ssl.cdn-redfin.com/photo/rent/a74eac66-33c6-44b2-ae12-c588747356b2/islphoto/genIsl.0_2.jpg",
-          //apartment/// https://ssl.cdn-redfin.com/photo/rent/3609c29e-d0be-45e7-9ff7-1adc72cb29cd/islphoto/genIsl.0_2.jpg
-          //"https://ssl.cdn-redfin.com/photo/rent/b27faf06-4ca2-4021-b5d9-4da0611843fa/islphoto/genIsl.0_1.jpg",
-        ], //useimageArray here after you configue cloudinary
-        bedrooms: parseInt(reqData.bedrooms),
-        bathrooms: parseInt(reqData.bathrooms),
-        area: parseFloat(reqData.area),
+        longitude: parseFloat(longitude),
+        latitude: parseFloat(latitude),
+        image: imagesArray, //useimageArray here after you configue cloudinary
+        bedrooms: parseInt(bedrooms),
+        bathrooms: parseInt(bathrooms),
+        area: parseFloat(area),
         type,
         property_type,
         utilities,
@@ -132,79 +133,207 @@ const deleteProperty = async (propertyId) => {
   }
 };
 
-const getPropertyById = async (propertyId) => {
+const getPropertyById = async (propertyId, userId) => {
   try {
     const property = await prisma.property.findUnique({
       where: { id: propertyId },
+      include: { user: true },
     });
     if (!property) {
       throw new Error(`Property with id ${propertyId} not found.`);
     }
-    //  console.log(" id property:", property);
-    return property;
+
+    let savedProperty = null;
+    if (userId) {
+      savedProperty = await prisma.savedProperty.findUnique({
+        where: {
+          userId_propertyId: {
+            userId,
+            propertyId,
+          },
+        },
+      });
+    }
+
+    return { ...property, isSaved: savedProperty ? true : false };
   } catch (error) {
     throw new Error(error.message);
   }
 };
 //
-const getAllProperties = async (reqQuery) => {
-  const {
-    minPrice,
-    maxPrice,
-    search,
-    bedrooms,
-    bathrooms,
-    type,
-    property_type,
-    utilities,
-    furnishing,
-  } = reqQuery;
+/**
+ * const getAllProperties = async (reqQuery) => {
+  const { mnP, mxP, beds, baths, type, pty, ut, frn, search } = reqQuery;
 
+  const minPrice = mnP;
+  const maxPrice = mxP;
+
+  const bedrooms = beds;
+  const bathrooms = baths;
+
+  const property_type = pty;
+  const utilities = ut;
+  const furnishing = frn;
+  console.log(reqQuery);
   try {
-    const properties = await prisma.property.findMany();
+    const filters = [
+      //minPrice && is used to make sure that there is a value
+      minPrice && { price: { gte: parseFloat(minPrice) } },
+      maxPrice && { price: { lte: parseFloat(maxPrice) } },
+      bedrooms && { bedrooms: parseInt(bedrooms) },
+      bathrooms && { bathrooms: parseInt(bathrooms) },
+      type && { type },
+      property_type && { property_type },
+      utilities && { utilities },
+      furnishing && { furnishing },
+      search && {
+        OR: [
+          { title: { contains: search, mode: "insensitive" } },
+          { description: { contains: search, mode: "insensitive" } },
+        ],
+      },
+    ].filter(Boolean);
+
+    /*Boolean is a built-in function that converts any value to true or false. For example:
+    Boolean(undefined) -> false
+    Boolean(null) -> false
+    Boolean(0) -> false, Boolean("") -> false,    Boolean("some value") -> true
+    Boolean({}) -> true
+    */
+
+//Prisma throws errors if a value is undefined
+/*   const properties = await prisma.property.findMany({
+      where: {
+        //ANd mean all of these conditions must be met
+        AND: filters,
+      },
+      include: {
+        user: true, // Include related user details
+      },
+    });
+    console.log(properties);
+    
     return properties;
   } catch (error) {
+    throw new Error(error.message);
+  }
+};
+ */
+
+const getAllProperties = async (reqQuery, userId) => {
+  const { mnP, mxP, beds, baths, type, pty, ut, frn, search } = reqQuery;
+
+  const minPrice = mnP;
+  const maxPrice = mxP;
+
+  const bedrooms = beds;
+  const bathrooms = baths;
+
+  const property_type = pty;
+  const utilities = ut;
+  const furnishing = frn;
+  console.log(reqQuery);
+  try {
+    const filters = [
+      //minPrice && is used to make sure that there is a value
+      minPrice && { price: { gte: parseFloat(minPrice) } },
+      maxPrice && { price: { lte: parseFloat(maxPrice) } },
+      bedrooms && { bedrooms: parseInt(bedrooms) },
+      bathrooms && { bathrooms: parseInt(bathrooms) },
+      type && { type },
+      property_type && { property_type },
+      utilities && { utilities },
+      furnishing && { furnishing },
+      search && {
+        OR: [
+          { title: { contains: search, mode: "insensitive" } },
+          { description: { contains: search, mode: "insensitive" } },
+        ],
+      },
+    ].filter(Boolean);
+
+    /*Boolean is a built-in function that converts any value to true or false. For example:
+    Boolean(undefined) -> false
+    Boolean(null) -> false
+    Boolean(0) -> false, Boolean("") -> false,    Boolean("some value") -> true
+    Boolean({}) -> true
+    */
+
+    //Prisma throws errors if a value is undefined
+    const properties = await prisma.property.findMany({
+      where: {
+        //ANd mean all of these conditions must be met
+        AND: filters,
+      },
+      include: {
+        user: true, // Include related user details
+      },
+    });
+    let savedIds = new Set();
+
+    if (userId) {
+      const savedProperties = await prisma.savedProperty.findMany({
+        where: { userId },
+        select: { propertyId: true },
+      });
+
+      // Populate the Set with saved property IDs
+      savedIds = new Set(savedProperties.map((p) => p.propertyId));
+    }
+
+    // 4. Add the `isSaved` field to each property based on whether it exists in the savedIds Set.
+    return properties.map((property) => ({
+      ...property, // Copy all property details
+      isSaved: savedIds.has(property.id), // Check if property ID is in the Set
+    }));
+  } catch (error) {
+    console.error("Error in getAllProperties:", error.message);
     throw new Error(error.message);
   }
 };
 
 //check if prop is saved before
 const saveProperty = async (userId, propertyId) => {
-  /// it deletes it when you click twice but for some reason still shows as saved on message
   try {
     if (!userId || !propertyId) {
       throw new Error("User ID and Property ID are required");
     }
-
     // Check if the user has already saved this property
     const existingSavedProperty = await prisma.savedProperty.findUnique({
       where: {
-        userId: userId,
-        propertyId: propertyId,
+        //prisma makes a composite obj anf that is the composite key
+        userId_propertyId: {
+          userId,
+          propertyId,
+        },
       },
     });
-
     if (existingSavedProperty) {
-      // If the property is already saved, delete it (unsave)
+      // If the property is already saved, delete it
+      console.log("Property found, removing...");
       await prisma.savedProperty.delete({
         where: {
-          id: existingSavedProperty.id,
+          userId_propertyId: { userId, propertyId },
         },
       });
-
+      console.log("Property removed successfully.");
       return { message: "Saved Property removed successfully" };
     } else {
-      // If the property is not saved, create a new saved property record
-      const savedproperty = await prisma.savedProperty.create({
+      const savedProperty = await prisma.savedProperty.create({
         data: {
           userId,
           propertyId,
         },
+        include: {
+          property: true, //include the related property details
+        },
       });
-      return { message: "Property saved successfully", savedproperty };
+      console.log("Property saved successfully.", savedProperty);
+      return { message: "Property saved successfully", savedProperty };
     }
   } catch (error) {
-    throw new Error("Could not save property: " + error.message); // Pass error message
+    console.error("Error in saveProperty:", error.message);
+    throw new Error("Could not save property: " + error.message);
   }
 };
 

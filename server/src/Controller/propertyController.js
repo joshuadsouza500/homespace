@@ -1,9 +1,29 @@
+import jwtProvider from "../config/jwtProvider.js";
 import propertyService from "../Service/propertyService.js";
 
 //201-created, 200 ok, 204 no content
+
+//View an agents listings using find property where userId matches
+
 const getAllProperties = async (req, res) => {
   try {
-    const properties = await propertyService.getAllProperties(req.query);
+    const token = req.headers.authorization?.split(" ")[1];
+    let userId = null;
+    if (token) {
+      try {
+        userId = await jwtProvider.getUserIdFromToken(token);
+      } catch (error) {
+        console.warn(
+          "Invalid token, proceeding without user ID:",
+          error.message
+        );
+      }
+    }
+
+    const properties = await propertyService.getAllProperties(
+      req.query,
+      userId
+    );
     return res.status(200).send(properties);
   } catch (error) {
     return res.status(500).send({ error: error.message });
@@ -13,7 +33,21 @@ const getAllProperties = async (req, res) => {
 const getPropertyById = async (req, res) => {
   const propertyId = req.params.id;
   try {
-    const property = await propertyService.getPropertyById(propertyId);
+    const token = req.headers.authorization?.split(" ")[1];
+    let userId = null;
+    if (token) {
+      try {
+        userId = await jwtProvider.getUserIdFromToken(token);
+      } catch (error) {
+        console.warn(
+          "Invalid token, proceeding without user ID:",
+          error.message
+        );
+      }
+    }
+
+    const property = await propertyService.getPropertyById(propertyId, userId);
+    console.log("property control :", property);
     if (!property) {
       return res.status(404).send({ message: "Property not found" });
     }
@@ -69,20 +103,32 @@ const deleteProperty = async (req, res) => {
 const saveProperty = async (req, res) => {
   const userId = req.user.id;
   const propertyId = req.body.propertyId;
-
+  console.log("userId,propertyId", userId, propertyId);
   try {
-    const savedProperty = await propertyService.saveProperty(
-      userId,
-      propertyId
-    );
-    if (savedProperty.message == "Property saved successfully") {
+    let savedProperty = null;
+    if (userId) {
+      savedProperty = await propertyService.saveProperty(userId, propertyId);
+    }
+
+    if (!savedProperty) {
+      return res.status(404).send({ message: "saved Property removed" });
+    }
+    console.log("savedProperty", savedProperty);
+    return res.status(201).send(savedProperty);
+
+    {
+      /**
+     if (savedProperty.message == "Property saved successfully") {
       res.status(201).send({ message: "Property saved successfully " });
     } else {
       res
         .status(200)
         .send({ message: " Property removed from saved propereties" });
     }
+    */
+    }
   } catch (error) {
+    console.log(error.message);
     return res.status(500).send({ error: error.message });
   }
 };

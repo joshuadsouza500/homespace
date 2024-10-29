@@ -34,10 +34,11 @@ const SheetFilter = ({
   handleInputChange,
   applyFilters,
   onSelectionChange,
+  clearFilters,
 }) => {
   const furnishingOptions = ["Furnished", "Semifurnished", "Unfurnished"];
   const utilitiesOptions = ["Inclusive", "Exclusive"];
-  const bedroomOptions = ["Studio", "1", "2", "3", "4+", "5+"];
+  const bedroomOptions = ["Studio", "1", "2", "3", "4", "5+"];
   const bathroomOptions = ["1", "2", "3", "4+"];
   const handleSelect = (type, value) => {
     onSelectionChange(type, value);
@@ -72,7 +73,7 @@ const SheetFilter = ({
               Type
             </Label>
             <Tabs
-              defaultValue={filters.type || "rent"}
+              value={filters.type || "rent"}
               onValueChange={(value) =>
                 handleFilterChange({ id: "type", value })
               }
@@ -231,7 +232,10 @@ const SheetFilter = ({
               >
                 Apply Filters
               </Button>
-              <Button className="w-full border border-Bgpurple bg-white text-black">
+              <Button
+                onClick={clearFilters}
+                className="w-full border border-Bgpurple bg-white text-black"
+              >
                 Clear Filters
               </Button>
             </div>

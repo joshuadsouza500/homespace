@@ -35,7 +35,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className=" py-2 px-1 md:p-4 bg-white shadow-b-sm border-b sticky top-0 z-30 w-full ">
+    <nav className=" py-2 px-1  bg-white shadow-b-sm border-b sticky top-0 z-30 w-full ">
       <section className="max-w-6xl 2xl:max-w-7xl flex items-center justify-between mx-auto">
         <div className="flex items-center space-x-6  max-sm:w-full max-sm:justify-center">
           <div

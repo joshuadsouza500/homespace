@@ -54,9 +54,16 @@ model SavedProperty {
   id         String   @id @default(auto()) @map("_id") @db.ObjectId
   userId     String   @db.ObjectId
   user       User     @relation(fields: [userId], references: [id])
-  propertyId String   @unique @db.ObjectId
+  propertyId String   @db.ObjectId
   property   Property @relation(fields: [propertyId], references: [id])
+
+  @@unique([userId, propertyId])  // Composite unique constraint the same user can't save the same property multiple times and Multiple users can save the same property. SO it mean the combinatin of both so [user1, propA] must be unique. so a user could save different props. [user1, propB] as the combination must be unique
 }
+
+//id |	userID(Unique)|	propertyId (Unique)
+//1  |	User1	        | PropertyA
+//2  |	User2	        | PropertyB
+//Here the same user would not be allowed to save different properties as the userId must be unique in that record/col. same goes for property. a property could only be saved once.
 
 enum Role {
   USER

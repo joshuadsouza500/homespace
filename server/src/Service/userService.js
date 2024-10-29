@@ -154,11 +154,13 @@ const getUserSavedProperties = async (userId) => {
       include: { property: true },
     });
     // By adding the include option Prisma fetches and returns Property record alongside the saved property entries.
-    console.log("savedrr", savedProperties);
     if (!savedProperties) {
       throw new Error("No saved properties for this user ");
     }
-    return savedProperties;
+    return savedProperties.map((savedProperty) => ({
+      ...savedProperty.property,
+      isSaved: true,
+    }));
   } catch (error) {
     throw new Error(error.message);
   }

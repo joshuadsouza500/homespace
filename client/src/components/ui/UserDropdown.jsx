@@ -12,7 +12,7 @@ const UserDropdown = ({ handleLogout, user }) => {
   const navigate = useNavigate();
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="flex size-11 rounded-full bg-Primary   text-white font-bold justify-center  items-center ring-2 ">
+      <DropdownMenuTrigger className="flex size-11 rounded-full    text-white font-bold justify-center  items-center ring-2 ">
         {user?.avatar ? (
           <img src={user?.avatar} />
         ) : (

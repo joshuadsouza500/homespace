@@ -125,6 +125,12 @@ export default function PropertySearch() {
     dispatch(getAllProperties(updatedUrlParams));
   };
 
+  const clearFilters = () => {
+    setSearchParams({});
+    setFilters({});
+    dispatch(getAllProperties());
+  };
+
   return (
     <div className="w-full   border-t ">
       <div className="flex flex-col max-lg:gap-y-1 items-center py-2  lg:py-4  mx-auto border-b  lg:px-6  grid-cols-3 ">
@@ -152,6 +158,7 @@ export default function PropertySearch() {
               handleInputChange={handleInputChange}
               onSelectionChange={onSelectionChange}
               applyFilters={applyFilters}
+              clearFilters={clearFilters}
             />
 
             {/* Trigger Button (Optional) */}
@@ -163,6 +170,7 @@ export default function PropertySearch() {
           <Select
             id="type"
             name="type"
+            value={filters.type}
             onValueChange={(value) => {
               handleFilterChange({ id: "type", value });
             }}
@@ -181,6 +189,7 @@ export default function PropertySearch() {
             onValueChange={(value) => {
               handleFilterChange({ id: "pty", value });
             }}
+            value={filters.pty}
             className="bg-red-200"
           >
             <SelectTrigger className="md:w-[200px] w-32  max-md:h-9  ">
@@ -199,7 +208,11 @@ export default function PropertySearch() {
             </SelectContent>
           </Select>
           {/*Beds & Baths*/}
-          <Bed_Bath onSelectionChange={onSelectionChange} />
+          <Bed_Bath
+            onSelectionChange={onSelectionChange}
+            defaultBeds={filters.beds}
+            defaultBaths={filters.baths}
+          />
           {/*Price */}
           <Popover className=" md:w-40">
             <PopoverTrigger asChild>
@@ -224,7 +237,7 @@ export default function PropertySearch() {
                       id="mnP"
                       type="number"
                       name="mnP"
-                      defaultValue={`${filters.mnP || "800"}`}
+                      value={`${filters.mnP || "800"}`}
                       onChange={(e) => {
                         handleInputChange(e);
                       }}
@@ -237,7 +250,7 @@ export default function PropertySearch() {
                       id="mxP"
                       type="number"
                       name="mxP"
-                      defaultValue={`${filters.mxP || "200,000"}`}
+                      value={`${searchParams.mxP || "200000"}`}
                       className="col-span-2 h-8"
                       onChange={(e) => {
                         handleInputChange(e);
@@ -249,7 +262,11 @@ export default function PropertySearch() {
             </PopoverContent>
           </Popover>
           {/*More FIlters*/}
-          <PropertyFilter onSelectionChange={onSelectionChange} />
+          <PropertyFilter
+            onSelectionChange={onSelectionChange}
+            defaultFrn={filters.frn}
+            defaultUt={filters.ut}
+          />
           <Button
             className="bg-Bgpurple  w-32 hover:bg-text text-white hidden lg:block ml-1 "
             onClick={applyFilters}
