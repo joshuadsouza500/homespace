@@ -3,10 +3,24 @@ import PropertySearch from "../PropertySearch";
 import PropertyCard2 from "../ui/vo/property-card2";
 import BigProperyCard from "../ui/vo/Big-propery-card";
 import Navbar from "../ui/vo/Navbar";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getAllProperties } from "@/store/property/action";
+import { useLocation } from "react-router-dom";
 
 const Search = () => {
   const Property = useSelector((store) => store.property);
+
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const updatedUrlParams = params.toString();
+    dispatch(getAllProperties(updatedUrlParams));
+    console.log("updatedUrlParams", updatedUrlParams);
+  }, [location.search, dispatch]);
 
   return (
     <div className="font-jakarta px-2  md:px-6 max-w-6xl 2xl:max-w-7xl mx-auto">

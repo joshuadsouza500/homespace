@@ -86,9 +86,9 @@ export default function UserProfile() {
         User Profile
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 border-2 rounded-md py-2 items-center  ">
-        <div className="md:col-span-1   flex flex-col items-center justify-center">
+        <div className="md:col-span-1   flex flex-col pb-1 max-sm:border-b items-center justify-center">
           <div className="flex flex-col  items-center ">
-            <Avatar className="ring rounded-full size-48 mb-4">
+            <Avatar className="ring rounded-full size-48 mb-2 md:mb-4">
               <AvatarImage src={editedUser?.avatar} alt={editedUser?.name} />
               <AvatarFallback>
                 {editedUser?.name.slice(0, 2).toUpperCase()}
@@ -236,34 +236,37 @@ export default function UserProfile() {
             </div>
           )}
           {!isEditing && (
-            <AlertDialog>
-              <AlertDialogTrigger asChild>
-                <Button variant="destructive">
-                  <Trash2 className="w-4 h-4 mr-2" />
-                  Delete Account
-                </Button>
-              </AlertDialogTrigger>
-              <AlertDialogContent>
-                <AlertDialogHeader>
-                  <AlertDialogTitle>
-                    Are you sure you want to delete your account?
-                  </AlertDialogTitle>
-                  <AlertDialogDescription>
-                    This action cannot be undone. This will permanently delete
-                    your account and remove your data from our servers.
-                  </AlertDialogDescription>
-                </AlertDialogHeader>
-                <AlertDialogFooter>
-                  <AlertDialogCancel>Cancel</AlertDialogCancel>
-                  <AlertDialogAction
-                    className="bg-red-600"
-                    onClick={handleDelete}
-                  >
+            <div className=" max-md:pt-6  pb-2 max-md:flex justify-center items-center">
+              {" "}
+              <AlertDialog>
+                <AlertDialogTrigger asChild>
+                  <Button variant="destructive">
+                    <Trash2 className="w-4 h-4 mr-2" />
                     Delete Account
-                  </AlertDialogAction>
-                </AlertDialogFooter>
-              </AlertDialogContent>
-            </AlertDialog>
+                  </Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>
+                      Are you sure you want to delete your account?
+                    </AlertDialogTitle>
+                    <AlertDialogDescription>
+                      This action cannot be undone. This will permanently delete
+                      your account and remove your data from our servers.
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogAction
+                      className="bg-red-600"
+                      onClick={handleDelete}
+                    >
+                      Delete Account
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
+            </div>
           )}
         </div>
       </div>

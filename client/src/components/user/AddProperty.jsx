@@ -96,33 +96,6 @@ export default function AddProperty() {
         Add New Property
       </h1>
       <form onSubmit={handleSubmit} className="space-y-8">
-        {/** 
-         *  <div className="space-y-4">
-          <Label htmlFor="image">Property Image</Label>
-          <div className="flex items-center space-x-4">
-            {formData.image && (
-              <img
-                src={URL.createObjectURL(formData.image)}
-                alt="Property preview"
-                className="w-24 h-24 object-cover rounded"
-              />
-            )}
-          
-         *  <Label htmlFor="image" className="cursor-pointer">
-              <div className="flex items-center justify-center w-24 h-24 bg-muted rounded">
-                <Upload className="w-8 h-8 text-muted-foreground" />
-              </div>
-              <Input
-                id="image"
-                type="file"
-                accept="image/*"
-                className="hidden"
-                onChange={handleImageUpload}
-              />
-            </Label>
-        
-          </div>
-        </div> */}
         <div className="bg-gray-200 h-56  w-full rounded-lg flex flex-col justify-between items-start">
           <div className="space-x-4 flex ">
             {formData.image.map((url, index) => (
@@ -251,7 +224,7 @@ export default function AddProperty() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 max-lg:p-4 ">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-6  ">
             <div className="flex flex-col">
               <Label htmlFor="propertyType">Property Type</Label>
               <Select

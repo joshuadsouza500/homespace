@@ -1,12 +1,53 @@
 import { Button } from "../ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import DropDown from "../ui/DropDown";
+
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import { BanknoteIcon, KeyRoundIcon, Search } from "lucide-react";
 
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { useState } from "react";
+import { getAllProperties } from "@/store/property/action";
+import { useDispatch } from "react-redux";
+
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select";
+
 const Hero = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [filters, setFilters] = useState({
+    type: searchParams.get("type") || "",
+    pty: searchParams.get("pty") || "",
+  });
+  const handleFilterChange = ({ id, value }) => {
+    setFilters((prev) => ({ ...prev, [id]: value }));
+  };
+
+  const applyFilters = () => {
+    const params = new URLSearchParams();
+    // converts it into an array of key-value pairs.
+    Object.entries(filters).forEach(([key, value]) => {
+      if (value) params.set(key, value);
+    });
+    const updatedUrlParams = params.toString();
+    setSearchParams(params);
+
+    navigate(`/property?${params}`);
+    dispatch(getAllProperties(updatedUrlParams));
+  };
+
+  console.log(filters);
+
   return (
     <div className="h-[600px]  md:h-dvh w-full pt-1 md:pt-4 md:pb-10   mx-auto ">
       <div className="hidden sm:flex h-full  max-w-full sm:bg-[url('/Hero2.png')] object-cover object-center rounded-3xl overflow-clip  flex-col justify-around items-start relative bg-no-repeat ">
@@ -29,9 +70,16 @@ const Hero = () => {
           </p>
         </div>
 
-        <section className="z-10 w-full">
+        <section className="z-10 w-full  lg:-mt-4">
           {" "}
-          <Tabs defaultValue="Rent" className=" z-10  ml-8 lg:ml-16 ">
+          <Tabs
+            id="type"
+            value={filters.type}
+            className=" z-10  ml-8 lg:ml-16 "
+            onValueChange={(value) => {
+              handleFilterChange({ id: "type", value });
+            }}
+          >
             <TabsList className="bg-light_gray h-12 w-52 border-b  shadow-sm ring-0 rounded-b-none ring-[#E0DEF7]">
               <TabsTrigger
                 value="Rent"
@@ -68,10 +116,35 @@ const Hero = () => {
 
             <div className="border-l-2 pl-4">
               <p>Property Type</p>
-              <DropDown />
+              <Select
+                id="propertyType"
+                onValueChange={(value) => {
+                  handleFilterChange({ id: "pty", value });
+                }}
+                value={filters.pty}
+                className="bg-red-200"
+              >
+                <SelectTrigger className="md:w-[200px] w-32  max-md:h-9  ">
+                  <SelectValue placeholder="Property type" />
+                </SelectTrigger>
+
+                <SelectContent>
+                  <SelectGroup>
+                    <SelectLabel className="pl-4">Property Type</SelectLabel>
+                    <SelectItem value="Studio">Studio</SelectItem>
+                    <SelectItem value="Apartment">Apartment</SelectItem>
+                    <SelectItem value="Villa">Villa</SelectItem>
+                    <SelectItem value="Condo">Condo</SelectItem>
+                    <SelectItem value="Penthouse">Penthouse</SelectItem>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
             </div>
             <div className="mt-3">
-              <Button className="bg-Primary font-semibold w-28 md:w-32">
+              <Button
+                className="bg-Primary font-semibold w-28 md:w-32"
+                onClick={applyFilters}
+              >
                 Find Properties
               </Button>
             </div>

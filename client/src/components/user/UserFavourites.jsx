@@ -12,16 +12,16 @@ const UserFavourites = () => {
   }, [dispatch]);
   console.log("user's saved prop", userSavedProperties);
   return (
-    <div className="container mx-auto px-4 pt-4 pb-8">
-      <h1 className="text-2xl md:text-4xl font-bold mb-8 text-text text-center">
+    <div className="container mx-auto px-4 pt-4 pb-8 ">
+      <h1 className="text-3xl md:text-4xl font-bold mb-8 text-text text-center">
         Saved Properties
       </h1>
-      <section>
-        <div className="space-y-7 col-span-4 lg:ml-10 sm:ml-6 ">
-          {userSavedProperties?.map((savedProperty) => (
+      <section className=" grid place-content-center gap-y-7 ">
+        {userSavedProperties?.map((savedProperty) => (
+          <div className="w-full " key={savedProperty?.id}>
             <PropertyCard2 key={savedProperty?.id} property={savedProperty} />
-          ))}
-        </div>
+          </div>
+        ))}
       </section>
     </div>
   );

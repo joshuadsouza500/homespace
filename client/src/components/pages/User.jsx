@@ -16,6 +16,7 @@ import {
   XCircle,
 } from "lucide-react";
 import PropertyUpdate from "../ui/vo/propertyUpdate";
+import AddProperty2 from "../user/AddProperty2";
 
 const menu = [
   { id: 1, name: "Profile", path: "/user", icon: <UserCircleIcon /> },
@@ -206,7 +207,7 @@ const User = () => {
             <Route path="/saved" element={<UserFavourites />} />
             <Route path="/property" element={<UserListings />} />
             <Route path="/property/:propertyId" element={<PropertyUpdate />} />
-            <Route path="/property/create" element={<AddProperty />} />
+            <Route path="/property/create" element={<AddProperty2 />} />
           </Routes>
         </div>
       </div>

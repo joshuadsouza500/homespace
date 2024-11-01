@@ -112,7 +112,7 @@ export default function PropertyUpdate() {
   return (
     <section className="max-w-6xl mx-auto p-4 md:p-6 space-y-8 bg-background">
       <form onSubmit={handleSubmit}>
-        <div className="bg-gray-200 h-56  w-full  text-gray-500 rounded-lg flex flex-col justify-between items-start">
+        <div className="bg-gray-200 h-56 w-full   rounded-lg p-1 flex flex-col justify-between overflow-hidden">
           <div className="space-x-4 flex overflow-x-clip">
             {details?.image.map((url, index) => (
               <div key={index} className="relative">
@@ -142,100 +142,110 @@ export default function PropertyUpdate() {
             handleImageUpload={handleImageUpload}
           />
         </div>
-        <div className="space-y-6">
-          <Input
-            name="title"
-            value={details?.title}
-            onChange={handleChange}
-            placeholder="Property Title"
-            className="text-2xl font-bold w-full"
-          />
-          <div className="flex flex-col md:flex-row md:items-center md:space-x-4 space-y-4 md:space-y-0">
-            <div className="flex items-center flex-grow">
-              <Input
-                name="price"
-                type="number"
-                value={details?.price}
-                onChange={handleChange}
-                placeholder="Price"
-                className="w-full mr-2 text-primary font-bold"
-              />
-              <span className="text-muted-foreground whitespace-nowrap">
-                {details?.type === "Rent" ? "/month" : ""}
-              </span>
-            </div>
-            <Select
-              onValueChange={(value) => handleSelectChange("type", value)}
-              value={details?.type}
-            >
-              <SelectTrigger className="w-full md:w-40">
-                <SelectValue placeholder="Type" />
-              </SelectTrigger>
-              <SelectContent>
-                {propertyTypeOptions.map((option) => (
-                  <SelectItem key={option} value={option}>
-                    {option}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="flex items-center">
-              <Bed className="w-5 h-5 mr-2 text-primary" />
-              <Input
-                name="beds"
-                type="number"
-                value={details?.bedrooms}
-                onChange={handleChange}
-                placeholder="Beds"
-                className="w-full"
-              />
-            </div>
-            <div className="flex items-center">
-              <Bath className="w-5 h-5 mr-2 text-primary" />
-              <Input
-                name="baths"
-                type="number"
-                value={details?.bathrooms}
-                onChange={handleChange}
-                placeholder="Baths"
-                className="w-full"
-              />
-            </div>
-            <div className="flex items-center">
-              <Maximize className="w-5 h-5 mr-2 text-primary" />
-              <Input
-                name="area"
-                type="number"
-                value={details?.area}
-                onChange={handleChange}
-                placeholder="Area (sqft)"
-                className="w-full"
-              />
-            </div>
-          </div>
+        <div className="space-y-6 pt-2 md:pt-4">
           <div>
-            <h2 className="text-xl font-semibold mb-2">Amenities</h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-              {amenitiesList.map(({ label }) => (
-                <div key={label} className="flex items-center space-x-2">
-                  <Checkbox
-                    id={label}
-                    checked={details?.amenities.includes(label)}
-                    onCheckedChange={() => handleAmenityChange(label)}
-                  />
-                  <Label
-                    htmlFor={label}
-                    className="flex items-center cursor-pointer"
-                  >
-                    {label}
-                  </Label>
-                </div>
-              ))}
+            <Label className="" htmlFor="title">
+              Title
+            </Label>
+            <Input
+              name="title"
+              value={details?.title}
+              onChange={handleChange}
+              placeholder="Property Title"
+              className="text-2xl font-bold w-full"
+            />
+          </div>
+          <div className="grid grid-cols-2  gap-4">
+            <div>
+              <Label className="" htmlFor="price">
+                Price
+              </Label>
+              <div className="flex items-center ">
+                <Input
+                  name="price"
+                  type="number"
+                  value={details?.price}
+                  onChange={handleChange}
+                  placeholder="Price"
+                  className="w-full mr-2 text-primary font-bold"
+                />
+                <span className="text-muted-foreground whitespace-nowrap">
+                  {details?.type === "Rent" ? "/month" : ""}
+                </span>
+              </div>
+            </div>
+            <div>
+              <Label className="" htmlFor="type">
+                Type
+              </Label>
+              <Select
+                onValueChange={(value) => handleSelectChange("type", value)}
+                value={details?.type}
+              >
+                <SelectTrigger className="w-full ">
+                  <SelectValue placeholder="Type" />
+                </SelectTrigger>
+                <SelectContent>
+                  {propertyTypeOptions.map((option) => (
+                    <SelectItem key={option} value={option}>
+                      {option}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-3  gap-4">
+            <div>
+              <Label className="ml-6" htmlFor="beds">
+                Bedrooms
+              </Label>
+              <div className="flex items-center">
+                <Bed className="w-5 h-5 mr-2 text-primary" />
+                <Input
+                  name="beds"
+                  type="number"
+                  value={details?.bedrooms}
+                  onChange={handleChange}
+                  placeholder="Beds"
+                  className="w-full"
+                />
+              </div>
+            </div>
+            <div>
+              <Label className="ml-6" htmlFor="baths">
+                Bathrooms
+              </Label>
+              <div className="flex items-center">
+                <Bath className="w-5 h-5 mr-2 text-primary" />
+                <Input
+                  name="baths"
+                  type="number"
+                  value={details?.bathrooms}
+                  onChange={handleChange}
+                  placeholder="Baths"
+                  className="w-full"
+                />
+              </div>
+            </div>
+            <div>
+              <Label className="ml-6" htmlFor="area">
+                Area
+              </Label>
+              <div className="flex items-center">
+                <Maximize className="w-5 h-5 mr-2 text-primary" />
+                <Input
+                  name="area"
+                  type="number"
+                  value={details?.area}
+                  onChange={handleChange}
+                  placeholder="Area (sqft)"
+                  className="w-full"
+                />
+              </div>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-4">
             <div>
               <Label htmlFor="furnishing">Furnishing</Label>
               <Select
@@ -277,6 +287,27 @@ export default function PropertyUpdate() {
               </Select>
             </div>
           </div>
+          <div>
+            <h2 className="text-xl font-semibold mb-2">Amenities</h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+              {amenitiesList.map(({ label }) => (
+                <div key={label} className="flex items-center space-x-2">
+                  <Checkbox
+                    id={label}
+                    checked={details?.amenities.includes(label)}
+                    onCheckedChange={() => handleAmenityChange(label)}
+                  />
+                  <Label
+                    htmlFor={label}
+                    className="flex items-center cursor-pointer"
+                  >
+                    {label}
+                  </Label>
+                </div>
+              ))}
+            </div>
+          </div>
+
           <div>
             <h2 className="text-xl font-semibold mb-2">Description</h2>
             <Textarea

@@ -31,3 +31,18 @@ function App() {
 }
 
 export default App;
+
+{
+  /**
+THINGS TO ADD
+1. Text searching and maybe auto complete for text.
+2. Location map
+3. Fix sizes, bugs, colours
+4.chat
+5. bg colour
+6. Homescreen image
+7.  
+  
+
+  */
+}

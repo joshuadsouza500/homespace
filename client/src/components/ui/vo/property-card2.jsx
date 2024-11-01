@@ -57,12 +57,14 @@ export default function PropertyCard2({ update, className, property }) {
         "max-w-sm sm:max-w-xl md:max-w-3xl mx-1 md:h-64 cursor-pointer hover:shadow-md  ",
         className
       )}
-      onClick={() => {
-        propertyDetails(property?.id);
-      }}
     >
       <div className="flex flex-col sm:flex-row md:h-full">
-        <div className="relative w-full sm:w-2/5 ">
+        <div
+          className="relative w-full sm:w-2/5 "
+          onClick={() => {
+            propertyDetails(property?.id);
+          }}
+        >
           <img
             src={property?.image[0]} // Use the first image from the property data
             alt={property?.title} // Use the title as the alt text for better accessibility
@@ -83,7 +85,11 @@ export default function PropertyCard2({ update, className, property }) {
           </div>
         </div>
         <CardContent className="p-4 sm:w-3/5 flex flex-col justify-between">
-          <div>
+          <div
+            onClick={() => {
+              propertyDetails(property?.id);
+            }}
+          >
             <div className="flex justify-between items-start mb-2">
               <div>
                 <Badge variant="secondary" className="mb-2">
