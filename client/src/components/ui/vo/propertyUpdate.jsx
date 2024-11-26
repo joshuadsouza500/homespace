@@ -34,7 +34,29 @@ const amenitiesList = [
 const furnishingOptions = ["Unfurnished", "Semi-furnished", "Furnished"];
 const utilitiesOptions = ["Inclusive", "Exclusive"];
 const propertyTypeOptions = ["Rent", "Sell"];
-
+const citiesInBahrain = [
+  "A'ali",
+  "Arad",
+  "Budaiya",
+  "Busaiteen",
+  "Duraz",
+  "Gudaibiya",
+  "Hamad Town",
+  "Isa Town",
+  "Juffair",
+  "Manama",
+  "Malkiya",
+  "Muharraq",
+  "Naim",
+  "Riffa",
+  "Salmaniya",
+  "Salmabad",
+  "Sanad",
+  "Sehla",
+  "Sitra",
+  "Tubli",
+  "Zinj",
+];
 //get property id from url and then findpropbyid. and then edit it and dispatch the update function
 export default function PropertyUpdate() {
   const dispatch = useDispatch();
@@ -53,6 +75,7 @@ export default function PropertyUpdate() {
     title: "",
     type: "",
     utilities: "",
+    city: "",
   });
 
   React.useEffect(() => {
@@ -103,6 +126,7 @@ export default function PropertyUpdate() {
     const result = await dispatch(updateProperty(details, propertyId));
     if (result.success) {
       setIsDialogOpen(true); // Show success dialog
+      console.log(result);
     } else {
       console.log(result.message); // Set error state
     }
@@ -245,7 +269,7 @@ export default function PropertyUpdate() {
               </div>
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-3 gap-4">
             <div>
               <Label htmlFor="furnishing">Furnishing</Label>
               <Select
@@ -281,6 +305,26 @@ export default function PropertyUpdate() {
                   {utilitiesOptions.map((option) => (
                     <SelectItem key={option} value={option}>
                       {option}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            <div>
+              <Label className="" htmlFor="city">
+                City
+              </Label>
+              <Select
+                onValueChange={(value) => handleSelectChange("city", value)}
+                value={details?.city}
+              >
+                <SelectTrigger className="w-full ">
+                  <SelectValue placeholder="Select a city" />
+                </SelectTrigger>
+                <SelectContent>
+                  {citiesInBahrain.map((city) => (
+                    <SelectItem key={city} value={city}>
+                      {city}
                     </SelectItem>
                   ))}
                 </SelectContent>

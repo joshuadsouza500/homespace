@@ -16,14 +16,14 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/*" element={<CustomerRoutes />} />
-        {/*  
-        
-         <Navbar />
+        {/*   
+
+        <Navbar />
         <Route path="/" element={<HomePage />} />
         <Route path="/property" element={<Search />} />
         <Route path="/property/:propertyId" element={<PropertyDetails />} />
-         <Footer />
-         */}
+        <Footer />
+*/}
         <Route path="/user/*" element={<User />} />
       </Routes>
     </div>
@@ -33,16 +33,31 @@ function App() {
 export default App;
 
 {
+  /**Today
+   * Change schema to take in governate option and then add that under title and in search and mayybe at night make location addreesss and make new props
+   *
+   *
+   *
+   */
   /**
 THINGS TO ADD
-1. Text searching and maybe auto complete for text.
-2. Location map
+
+2. Location map ..: Instead of location make it Address(steet name or etc) and then cn remove lat and long becuase we can get that from leaflet 
 3. Fix sizes, bugs, colours
-4.chat
-5. bg colour
+Add carousels on each pdpage and on the card
+4. bg colour
+5. Sorting function
 6. Homescreen image
-7.  
+7.  chat
+8. fic currency to bhd
+9.Add the citiesin create property
+
   
 
   */
+  /**
+   * Extras
+   * Chat app
+   * Add a loan/ mortgage calculator for specific property etc.
+   */
 }

@@ -5,27 +5,24 @@ import {
   Bath,
   Maximize,
   Wifi,
-  Car,
   HeartIcon,
   Snowflake,
-  CircleParking,
   Waves,
   DumbbellIcon,
-  HousePlus,
   Fence,
   Cctv,
   Columns3,
   FlameKindling,
   Dog,
   House,
-  BookMarked,
-  Bookmark,
   CarFront,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-
+import { MapContainer, TileLayer } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+import LocationMaker from "@/components/LocationMaker";
 {
   /** <div className="flex flex-col md:flex-row gap-4 h-[500px] ">
         <div className=" relative  bg-orange-200 w-[75%] ">
@@ -149,7 +146,9 @@ export default function PropertyDetails2({ property, handleSave }) {
 
             <div className="flex items-center text-muted-foreground mb-4 pt-1">
               <MapPin className="w-4 h-4 mr-2 text-Primary" />
-              <span>{property?.city}</span>
+              <span className="flex items-center justify-center gap-1">
+                {property?.city}, {property?.location}
+              </span>
             </div>
             <div className="text-2xl font-bold text-Primary mb-4 ">
               ${property?.price}{" "}
@@ -249,19 +248,26 @@ export default function PropertyDetails2({ property, handleSave }) {
               </div>
             </CardContent>
           </Card>
-          <Card className="md:w-[80%] lg:w-full mx-auto">
-            <CardContent className="p-0">
-              <img
-                src="/Map.jpeg"
-                alt="Property location map"
-                className="max-lg:h-60 max-lg:w-full rounded-lg bg-gray-500 aspect-square object-cover"
-              />
-              <div className="flex items-center text-muted-foreground text-sm pl-1 py-1">
-                <MapPin className="size-5 mr-2 text-Primary" />
-                <span>{property?.location}</span>
-              </div>
+          <Card className="md:w-[80%] lg:w-full h-[320px] mx-auto">
+            <CardContent className="p-0 h-full w-full">
+              <MapContainer
+                center={{ lat: 51.505, lng: -0.09 }}
+                zoom={13}
+                scrollWheelZoom={false}
+                className="bg-Bgpurple  z-0 h-[300px] w-full"
+              >
+                <TileLayer
+                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> '
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+                <LocationMaker city={property?.city} />
+              </MapContainer>
             </CardContent>
           </Card>
+          {/** <div className="flex items-center text-muted-foreground text-sm pl-1 py-1">
+            <MapPin className="size-5 mr-2 text-Primary" />
+            <span>{property?.location}</span>
+          </div> */}
         </div>
       </div>
     </div>

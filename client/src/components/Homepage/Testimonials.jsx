@@ -49,9 +49,10 @@ export default function Testimonials() {
 
     return () => clearInterval(timer);
   }, []);
+  //background colour option 1 : bg-[#f7f6fc]
 
   return (
-    <section className="w-full pt-12 pb-28 bg-gradient-to-b from-inherit to-light_gray px-2">
+    <section className="w-full pt-12 pb-28 border-[#e0def7] bg-[#f7f6fc] px-2">
       <div className="container px-2 md:px-4">
         <div className="flex flex-col gap-3 items-center mt-8 mb-12  ">
           <h2 className="text-4xl text-center max-sm:pb-2 font-bold text-[#000929]">

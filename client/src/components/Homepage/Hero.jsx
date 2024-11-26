@@ -20,6 +20,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
+import SearchBar from "../ui/SearchBar";
 
 const Hero = () => {
   const dispatch = useDispatch();
@@ -28,6 +29,7 @@ const Hero = () => {
   const [filters, setFilters] = useState({
     type: searchParams.get("type") || "",
     pty: searchParams.get("pty") || "",
+    city: searchParams.get("city") || "",
   });
   const handleFilterChange = ({ id, value }) => {
     setFilters((prev) => ({ ...prev, [id]: value }));
@@ -50,7 +52,7 @@ const Hero = () => {
 
   return (
     <div className="h-[600px]  md:h-dvh w-full pt-1 md:pt-4 md:pb-10   mx-auto ">
-      <div className="hidden sm:flex h-full  max-w-full sm:bg-[url('/Hero2.png')] object-cover object-center rounded-3xl overflow-clip  flex-col justify-around items-start relative bg-no-repeat ">
+      <div className="hidden sm:flex h-full  max-w-full sm:bg-[url('/Hero2.png')] object-cover object-center rounded-3xl   flex-col justify-around items-start relative bg-no-repeat ">
         <div className="absolute h-full w-full bg-black opacity-5 z-0" />
         <div className="flex flex-col items-start   w-10/12 lg:w-6/12  gap-y-4  mt-10 ml-16">
           <h1 className="text-5xl md:text-6xl lg:text-7xl text-balance font-semibold z-10 font-serif tracking-wide ">
@@ -103,26 +105,21 @@ const Hero = () => {
               </TabsTrigger>
             </TabsList>
           </Tabs>
-          <div className="sm:w-full md:w-[80%] lg:w-8/12 h-24 ml-8 lg:ml-16 rounded-tl-none rounded-xl bg-white/60 backdrop-blur-sm flex justify-between px-10 items-center shadow-sm ">
+          <div className="sm:w-full md:w-[90%] lg:w-8/12 h-24 ml-8 lg:ml-16 rounded-tl-none rounded-xl bg-white/60 backdrop-blur-sm flex justify-between px-10 items-center shadow-sm ">
             <div>
               <Label htmlFor="Location">Location</Label>
-              <Input
-                type="email"
-                id="Location"
-                placeholder="Select your city"
-                className="focus-visible:ring-Bgpurple w-44 lg:w-52"
-              />
+              <SearchBar setFilters={setFilters} />
             </div>
 
             <div className="border-l-2 pl-4">
-              <p>Property Type</p>
+              <Label htmlFor="Location">Property Type</Label>
               <Select
                 id="propertyType"
                 onValueChange={(value) => {
                   handleFilterChange({ id: "pty", value });
                 }}
                 value={filters.pty}
-                className="bg-red-200"
+                className=""
               >
                 <SelectTrigger className="md:w-[200px] w-32  max-md:h-9  ">
                   <SelectValue placeholder="Property type" />
@@ -130,7 +127,10 @@ const Hero = () => {
 
                 <SelectContent>
                   <SelectGroup>
-                    <SelectLabel className="pl-4">Property Type</SelectLabel>
+                    <SelectItem className="font-semibold" value={null}>
+                      {" "}
+                      Property Type
+                    </SelectItem>
                     <SelectItem value="Studio">Studio</SelectItem>
                     <SelectItem value="Apartment">Apartment</SelectItem>
                     <SelectItem value="Villa">Villa</SelectItem>
@@ -152,7 +152,7 @@ const Hero = () => {
         </section>
       </div>
 
-      <div className="bg-[url('/Mobile3.png')] sm:hidden h-full max-w-full   object-cover object-center overflow-clip flex flex-col items-start gap-y-4 justify-start  relative bg-no-repeat ">
+      <div className="bg-[url('/Mobile3.png')] sm:hidden h-full max-w-full   object-cover object-center flex flex-col items-start gap-y-4 justify-start  relative bg-no-repeat ">
         <div className="absolute h-full w-full bg-black opacity-5 z-0" />
         <div className="flex flex-col items-start  gap-y-4 my-8 ">
           <h1 className="text-5xl  md:text-6xl text-center font-semibold z-10 font-serif tracking-wide w-full  text-Bgpurple">

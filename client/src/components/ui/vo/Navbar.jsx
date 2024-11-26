@@ -39,10 +39,16 @@ export default function Navbar() {
       <section className="max-w-6xl 2xl:max-w-7xl flex items-center justify-between mx-auto">
         <div className="flex items-center space-x-6  max-sm:w-full max-sm:justify-center">
           <div
-            className="flex items-center space-x-2 cursor-pointer "
+            className="flex items-center  justify-center space-x-1 cursor-pointer "
             onClick={() => navigate("/")}
           >
-            <HomeIcon strokeWidth={2.5} className="text-Primary " />
+            <img
+              alt="Homespace logo"
+              height={24}
+              width={24}
+              className=""
+              src="/src/assets/Logo.svg"
+            />
             <span className=" md:text-xl font-bold text-Bgpurple">
               HomeSpace
             </span>

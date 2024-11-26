@@ -81,6 +81,7 @@ const updateProperty = async (userId, propertyId, updateData) => {
       title,
       type,
       utilities,
+      city,
     } = updateData;
 
     // Proceed with the update
@@ -98,6 +99,7 @@ const updateProperty = async (userId, propertyId, updateData) => {
         title,
         type,
         utilities,
+        city,
       },
     });
 
@@ -221,7 +223,7 @@ const getPropertyById = async (propertyId, userId) => {
  */
 
 const getAllProperties = async (reqQuery, userId) => {
-  const { mnP, mxP, beds, baths, type, pty, ut, frn, search } = reqQuery;
+  const { mnP, mxP, beds, baths, type, pty, ut, frn, search, city } = reqQuery;
 
   const minPrice = mnP;
   const maxPrice = mxP;
@@ -232,6 +234,7 @@ const getAllProperties = async (reqQuery, userId) => {
   const property_type = pty;
   const utilities = ut;
   const furnishing = frn;
+
   console.log(reqQuery);
   try {
     const filters = [
@@ -244,6 +247,7 @@ const getAllProperties = async (reqQuery, userId) => {
       property_type && { property_type },
       utilities && { utilities },
       furnishing && { furnishing },
+      city && { city },
       search && {
         OR: [
           { title: { contains: search, mode: "insensitive" } },

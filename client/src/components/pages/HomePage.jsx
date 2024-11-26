@@ -5,16 +5,17 @@ import Testimonials from "../Homepage/Testimonials";
 import Features from "../Homepage/Features";
 import Banner from "../Homepage/Banner";
 
+//change h-screen
 const HomePage = () => {
   return (
     <div className=" md:px-6 w-full max-w-6xl 2xl:max-w-7xl mx-auto font-jakarta">
       {" "}
       <Hero />
       <div className="h-32 bg-gray-300 py-2"> COmpany logos</div>
-      <Features />
+      {/**   <Features />
       <Browse />
       <Testimonials />
-      <Banner />
+      <Banner />/** */}
     </div>
   );
 };
