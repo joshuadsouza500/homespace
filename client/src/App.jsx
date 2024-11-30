@@ -1,14 +1,11 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import HomePage from "./components/pages/HomePage";
+
 import CustomerRoutes from "./components/CustomerRoutes";
-import Search from "./components/pages/Search";
-import PropertyDetails from "./components/pages/PropertyDetails";
-import User from "./components/pages/User";
+
 import SignUp from "./components/pages/SignUp";
 import SignIn from "./components/pages/SignIn";
-import Navbar from "./components/ui/vo/Navbar";
-import Footer from "./components/Footer";
+
 function App() {
   return (
     <div className=" w-full ">
