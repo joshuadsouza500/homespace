@@ -58,7 +58,7 @@ const BigProperyCard = ({ property }) => {
             <div className="flex items-center text-muted-foreground text-sm mb-4">
               <MapPin className="h-4 w-4 mr-1 text-Primary flex-shrink-0" />
               <span>
-                {property?.city}, {property?.location}
+                {property?.city}, {property?.governate}
               </span>
             </div>
             <p className="text-muted-foreground w-[90%] text-pretty leading-snug line-clamp-3">

@@ -31,9 +31,11 @@ const amenitiesList = [
   { label: "Swimming Pool" },
 ];
 
-const furnishingOptions = ["Unfurnished", "Semi-furnished", "Furnished"];
+const furnishingOptions = ["Unfurnished", "Semifurnished", "Furnished"];
 const utilitiesOptions = ["Inclusive", "Exclusive"];
 const propertyTypeOptions = ["Rent", "Sell"];
+{
+  /**
 const citiesInBahrain = [
   "A'ali",
   "Arad",
@@ -57,6 +59,16 @@ const citiesInBahrain = [
   "Tubli",
   "Zinj",
 ];
+
+const governates = [
+  { value: "Capital_Governorate", name: "Capital Governorate" },
+  { value: "Northern_Governorate", name: "Northern Governorate" },
+  { value: "Southern_Governorate", name: "Southern Governorate" },
+  { value: "Muharraq_Governorate", name: "Muharraq Governorate" },
+];  
+*/
+}
+
 //get property id from url and then findpropbyid. and then edit it and dispatch the update function
 export default function PropertyUpdate() {
   const dispatch = useDispatch();
@@ -67,15 +79,16 @@ export default function PropertyUpdate() {
     description: "",
     amenities: [""],
     area: "",
-    bathrooms: "",
-    bedrooms: "",
+    bathrooms: null,
+    bedrooms: null,
     furnishing: "",
     image: [""],
     price: "",
     title: "",
     type: "",
     utilities: "",
-    city: "",
+    // city: "",
+    // governate: "",
   });
 
   React.useEffect(() => {
@@ -136,14 +149,14 @@ export default function PropertyUpdate() {
   return (
     <section className="max-w-6xl mx-auto p-4 md:p-6 space-y-8 bg-background">
       <form onSubmit={handleSubmit}>
-        <div className="bg-gray-200 h-56 w-full   rounded-lg p-1 flex flex-col justify-between overflow-hidden">
-          <div className="space-x-4 flex overflow-x-clip">
+        <div className="bg-gray-50 h-56 pb-1 rounded-lg p-1 flex flex-col justify-between overflow-hidden border-2 border-dashed border-gray-300 ">
+          <div className="space-x-4  flex overflow-x-clip ">
             {details?.image.map((url, index) => (
               <div key={index} className="relative">
                 <img
                   src={url}
                   alt={`Uploaded ${index + 1}`}
-                  className="h-40 w-40 object-cover rounded-sm"
+                  className="size-28 md:size-40 object-cover rounded-sm"
                 />
                 <button
                   type="button"
@@ -166,9 +179,9 @@ export default function PropertyUpdate() {
             handleImageUpload={handleImageUpload}
           />
         </div>
-        <div className="space-y-6 pt-2 md:pt-4">
+        <div className="space-y-4 xl:space-y-6 pt-2 md:pt-4">
           <div>
-            <Label className="" htmlFor="title">
+            <Label className="font-semibold font-jakarta" htmlFor="title">
               Title
             </Label>
             <Input
@@ -176,12 +189,12 @@ export default function PropertyUpdate() {
               value={details?.title}
               onChange={handleChange}
               placeholder="Property Title"
-              className="text-2xl font-bold w-full"
+              className="text-xl md:text-2xl font-semibold w-full"
             />
           </div>
           <div className="grid grid-cols-2  gap-4">
-            <div>
-              <Label className="" htmlFor="price">
+            <div className="space-y-1">
+              <Label className="font-semibold font-jakarta" htmlFor="price">
                 Price
               </Label>
               <div className="flex items-center ">
@@ -191,15 +204,15 @@ export default function PropertyUpdate() {
                   value={details?.price}
                   onChange={handleChange}
                   placeholder="Price"
-                  className="w-full mr-2 text-primary font-bold"
+                  className="w-full mr-2 text-text font-bold"
                 />
-                <span className="text-muted-foreground whitespace-nowrap">
+                <span className="max-md:text-sm text-muted-foreground whitespace-nowrap">
                   {details?.type === "Rent" ? "/month" : ""}
                 </span>
               </div>
             </div>
-            <div>
-              <Label className="" htmlFor="type">
+            <div className="space-y-1">
+              <Label className="font-jakarta font-semibold" htmlFor="type">
                 Type
               </Label>
               <Select
@@ -220,12 +233,12 @@ export default function PropertyUpdate() {
             </div>
           </div>
           <div className="grid grid-cols-3  gap-4">
-            <div>
-              <Label className="ml-6" htmlFor="beds">
+            <div className="space-y-1">
+              <Label className="md:ml-6 font-semibold" htmlFor="beds">
                 Bedrooms
               </Label>
               <div className="flex items-center">
-                <Bed className="w-5 h-5 mr-2 text-primary" />
+                <Bed className="hidden md:block size-5 mr-2 text-text" />
                 <Input
                   name="beds"
                   type="number"
@@ -236,12 +249,12 @@ export default function PropertyUpdate() {
                 />
               </div>
             </div>
-            <div>
-              <Label className="ml-6" htmlFor="baths">
+            <div className="space-y-1">
+              <Label className="md:ml-6 font-semibold" htmlFor="baths">
                 Bathrooms
               </Label>
               <div className="flex items-center">
-                <Bath className="w-5 h-5 mr-2 text-primary" />
+                <Bath className="hidden md:block size-5 mr-2 text-text" />
                 <Input
                   name="baths"
                   type="number"
@@ -252,12 +265,12 @@ export default function PropertyUpdate() {
                 />
               </div>
             </div>
-            <div>
-              <Label className="ml-6" htmlFor="area">
+            <div className="space-y-1">
+              <Label className="md:ml-6 font-semibold" htmlFor="area">
                 Area
               </Label>
               <div className="flex items-center">
-                <Maximize className="w-5 h-5 mr-2 text-primary" />
+                <Maximize className="hidden md:block size-5 mr-2 text-text" />
                 <Input
                   name="area"
                   type="number"
@@ -270,8 +283,10 @@ export default function PropertyUpdate() {
             </div>
           </div>
           <div className="grid grid-cols-3 gap-4">
-            <div>
-              <Label htmlFor="furnishing">Furnishing</Label>
+            <div className="space-y-1">
+              <Label htmlFor="furnishing" className=" font-semibold ">
+                Furnishing
+              </Label>
               <Select
                 onValueChange={(value) =>
                   handleSelectChange("furnishing", value)
@@ -290,8 +305,10 @@ export default function PropertyUpdate() {
                 </SelectContent>
               </Select>
             </div>
-            <div>
-              <Label htmlFor="utilities">Utilities</Label>
+            <div className="space-y-1">
+              <Label className=" font-semibold " htmlFor="utilities">
+                Utilities
+              </Label>
               <Select
                 onValueChange={(value) =>
                   handleSelectChange("utilities", value)
@@ -310,8 +327,9 @@ export default function PropertyUpdate() {
                 </SelectContent>
               </Select>
             </div>
-            <div>
-              <Label className="" htmlFor="city">
+            {/** 
+             * <div>
+              <Label className="font-medium font-jakarta" htmlFor="city">
                 City
               </Label>
               <Select
@@ -330,9 +348,32 @@ export default function PropertyUpdate() {
                 </SelectContent>
               </Select>
             </div>
+
+           <div>
+              <Label className="font-medium font-jakarta" htmlFor="governate">
+                Governorate
+              </Label>
+              <Select
+                onValueChange={(value) =>
+                  handleSelectChange("governate", value)
+                }
+                value={details?.governate}
+              >
+                <SelectTrigger className="w-full ">
+                  <SelectValue placeholder="Select a governorate" />
+                </SelectTrigger>
+                <SelectContent>
+                  {governates.map((item) => (
+                    <SelectItem key={item.value} value={item.value}>
+                      {item.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div> */}
           </div>
           <div>
-            <h2 className="text-xl font-semibold mb-2">Amenities</h2>
+            <h2 className=" font-semibold mb-2">Amenities</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
               {amenitiesList.map(({ label }) => (
                 <div key={label} className="flex items-center space-x-2">
@@ -353,19 +394,24 @@ export default function PropertyUpdate() {
           </div>
 
           <div>
-            <h2 className="text-xl font-semibold mb-2">Description</h2>
+            <h2 className="font-semibold mb-2">Description</h2>
             <Textarea
               name="description"
               value={details?.description}
               onChange={handleChange}
               placeholder="Property description..."
-              rows={10}
+              rows={6}
               className="w-full"
             />
           </div>
-          <Button type="submit" className="w-full md:w-auto">
-            Save Changes
-          </Button>
+          <div className="flex items-center justify-center md:pt-2">
+            <Button
+              type="submit"
+              className=" bg-Bgpurple w-32 md:w-36 hover:bg-indigo-800"
+            >
+              Save Changes
+            </Button>
+          </div>
         </div>
       </form>{" "}
       <UpdateSuccessDialog

@@ -29,10 +29,9 @@ model Property {
   title           String
   description     String
   price           Float
-  location        String
+  address        String?
   city            String
-  longitude       Float
-  latitude        Float
+  governate         Governate
   image           String[]
   bedrooms        Int
   bathrooms       Int
@@ -92,4 +91,10 @@ enum Furnishing {
   Unfurnished
   Semifurnished
   Furnished
+}
+enum Governate {
+  Capital_Governorate
+  Northern_Governorate
+  Southern_Governorate 
+  Muharraq_Governorate
 }

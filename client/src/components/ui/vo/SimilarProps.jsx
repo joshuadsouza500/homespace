@@ -46,7 +46,7 @@ export default function SimilarProps({ className, property }) {
             {property?.type} {/* Display the property type (Rent/Sale) */}
           </Badge>
           <div className="absolute bottom-2 left-[38%] flex space-x-1">
-            {[1, 2, 3, 4, 5].map((dot) => (
+            {property?.image.map((dot) => (
               <div
                 key={dot}
                 className="w-2 h-2 rounded-full bg-white opacity-60"
@@ -76,7 +76,7 @@ export default function SimilarProps({ className, property }) {
             <div className="flex items-center text-muted-foreground text-sm mb-4">
               <MapPin className="h-4 w-4 mr-1 text-Primary flex-shrink-0" />
               <span>
-                {property?.city}, {property?.location}
+                {property?.city}, {property?.governate.replace("_", " ")}
               </span>{" "}
               {/* Use city and location */}
             </div>

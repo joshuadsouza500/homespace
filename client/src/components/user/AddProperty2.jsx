@@ -1,5 +1,16 @@
 import { useState } from "react";
-import { CheckCircleIcon, CheckIcon, DollarSign, Home } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  CheckCircleIcon,
+  CheckIcon,
+  Currency,
+  DollarSign,
+  Home,
+  MoveLeftIcon,
+  PlusCircleIcon,
+  Upload,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -30,17 +41,21 @@ const amenities = [
   "Security System",
   "Fireplace",
 ];
-
+const governates = [
+  { value: "Capital_Governorate", name: "Capital Governorate" },
+  { value: "Northern_Governorate", name: "Northern Governorate" },
+  { value: "Southern_Governorate", name: "Southern Governorate" },
+  { value: "Muharraq_Governorate", name: "Muharraq Governorate" },
+];
 export default function AddProperty2() {
   const [currentStep, setCurrentStep] = useState(1); // Step indicator
   const [formData, setFormData] = useState({
     title: "",
     description: "",
     price: "",
-    location: "",
+    address: "",
     city: "",
-    longitude: "",
-    latitude: "",
+    governate: "",
     image: [],
     bedrooms: "",
     bathrooms: "",
@@ -104,7 +119,7 @@ export default function AddProperty2() {
           className={`size-8 flex items-center justify-center font-bold   rounded-full text-gray-800   ${
             currentStep === 1
               ? " bg-gray-200 ring-1 ring-blue-500"
-              : "bg-blue-500 "
+              : "bg-blue-600 "
           }`}
           onClick={goToPreviousStep}
         >
@@ -128,10 +143,13 @@ export default function AddProperty2() {
         </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-8 mx-1  max-w-5xl">
+      <form
+        onSubmit={handleSubmit}
+        className="space-y-8 mx-1  max-w-5xl xl:max-w-6xl "
+      >
         {currentStep === 1 && (
-          <div className="space-y-4">
-            <div className="bg-gray-200 h-56 w-full   rounded-lg p-1 flex flex-col justify-between overflow-hidden">
+          <div className="space-y-4 xl:space-y-8">
+            <div className="bg-gray-50 h-56    rounded-lg p-1 flex flex-col justify-between overflow-hidden border-2 border-dashed border-gray-300">
               <div className="space-x-4 flex">
                 {formData.image.map((url, index) => (
                   <div key={index} className="relative">
@@ -162,76 +180,23 @@ export default function AddProperty2() {
               />
             </div>
             <div>
-              <Label htmlFor="title">Title</Label>
+              <Label className="font-medium font-jakarta" htmlFor="title">
+                Title
+              </Label>
               <Input
                 id="title"
                 name="title"
+                placeholder="Enter Property title"
                 value={formData.title}
                 onChange={handleInputChange}
                 required
               />
             </div>
-
-            <div>
-              <Label htmlFor="location">Location</Label>
-              <Textarea
-                id="location"
-                name="location"
-                value={formData.location}
-                onChange={handleInputChange}
-                required
-              />
-            </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              <div>
-                <Label htmlFor="city">City</Label>
-                <Input
-                  id="city"
-                  name="city"
-                  value={formData.city}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>{" "}
-              <div>
-                <Label htmlFor="latitude">Latitude</Label>
-                <Input
-                  id="latitude"
-                  name="latitude"
-                  type="number"
-                  step="any"
-                  value={formData.latitude}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>
-              <div>
-                <Label htmlFor="longitude">Longitude</Label>
-                <Input
-                  id="longitude"
-                  name="longitude"
-                  type="number"
-                  step="any"
-                  value={formData.longitude}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>
-            </div>
-
-            <div className="flex items-center justify-center pt-6">
-              <Button onClick={goToNextStep} className="w-32 bg-Bgpurple">
-                Next
-              </Button>
-            </div>
-          </div>
-        )}
-
-        {currentStep === 2 && (
-          <div className="space-y-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 items-center">
               <div className="flex-1">
-                <Label htmlFor="type">To Rent or Sell</Label>
+                <Label className="font-medium font-jakarta" htmlFor="type">
+                  Rent or Sell
+                </Label>
                 <Select
                   name="type"
                   value={formData.type}
@@ -248,8 +213,78 @@ export default function AddProperty2() {
                   </SelectContent>
                 </Select>
               </div>
-              <div className="">
-                <Label htmlFor="propertyType">Property Type</Label>
+              <div className="space-y-1">
+                <Label className="font-medium font-jakarta" htmlFor="city">
+                  City
+                </Label>
+                <Input
+                  id="city"
+                  name="city"
+                  placeholder="Enter City"
+                  value={formData.city}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>{" "}
+              <div className="space-y-1">
+                <Label className="font-medium font-jakarta" htmlFor="governate">
+                  Governorate
+                </Label>
+                <Select
+                  onValueChange={(value) =>
+                    setFormData((prev) => ({ ...prev, governate: value }))
+                  }
+                  value={formData.governate}
+                >
+                  <SelectTrigger className="w-full ">
+                    <SelectValue placeholder="Select a governorate" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {governates.map((item) => (
+                      <SelectItem key={item.value} value={item.value}>
+                        {item.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+            <div className="space-y-1">
+              <Label className="font-medium font-jakarta" htmlFor="address">
+                Address
+              </Label>
+              <Textarea
+                id="address"
+                name="address"
+                placeholder="Road number , Block number"
+                value={formData.address}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+
+            <div className="flex items-center justify-center pt-6">
+              <Button
+                onClick={goToNextStep}
+                className="w-32 md:w-44 bg-Bgpurple gap-x-1 hover:bg-indigo-800"
+              >
+                Next
+                <ArrowRight className="size-4 md:size-5 " />
+              </Button>
+            </div>
+          </div>
+        )}
+
+        {currentStep === 2 && (
+          <div className="space-y-4 xl:space-y-6 2xl:space-y-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 items-center">
+              <div className="space-y-1">
+                <Label
+                  className="font-medium font-jakarta"
+                  htmlFor="propertyType"
+                >
+                  Property Type
+                </Label>
                 <Select
                   name="propertyType"
                   value={formData.property_type}
@@ -269,43 +304,64 @@ export default function AddProperty2() {
                   </SelectContent>
                 </Select>
               </div>
-              <div>
-                <Label htmlFor="price">Price</Label>
+              <div className="space-y-1">
+                <Label className="font-medium font-jakarta" htmlFor="price">
+                  Price
+                </Label>
                 <div className="relative">
-                  <DollarSign className="absolute left-3 top-1/2 transform -translate-y-1/2" />
                   <Input
                     id="price"
                     name="price"
                     type="number"
+                    placeholder="Enter Price"
                     value={formData.price}
                     onChange={handleInputChange}
-                    className="pl-10"
                     required
                   />
                 </div>
               </div>
+
+              <div className=" h-full md:ml-2 flex flex-col max-md:gap-y-2  md:justify-around  ">
+                <Label className="font-medium font-jakarta">Utilities</Label>
+                <RadioGroup
+                  name="Utilities"
+                  value={formData.utilities}
+                  onValueChange={(value) =>
+                    setFormData((prev) => ({ ...prev, utilities: value }))
+                  }
+                  className="flex space-x-4"
+                >
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="Exclusive" id="Exclusive" />
+                    <Label
+                      className="font-medium font-jakarta"
+                      htmlFor="Exclusive"
+                    >
+                      Exclusive
+                    </Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="Inclusive" id="Inclusive" />
+                    <Label
+                      className="font-medium font-jakarta"
+                      htmlFor="Inclusive"
+                    >
+                      Inclusive
+                    </Label>
+                  </div>
+                </RadioGroup>
+              </div>
             </div>
             {/* bedsand bath, furniture and utilities*/}
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6  ">
-              <div>
-                <Label htmlFor="area">Area (sq ft)</Label>
-                <Input
-                  id="area"
-                  name="area"
-                  type="number"
-                  value={formData.area}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>
-              <div className="max-md:flex flex-col">
-                <Label className="pb-1">Beds and Baths</Label>
-                <Bed_Bath onSelectionChange={handleBedBathChange} />
-              </div>
-
-              <div>
-                <Label htmlFor="furnishing">Furnishing</Label>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6  ">
+              <div className="space-y-1">
+                <Label
+                  className="font-medium font-jakarta"
+                  htmlFor="furnishing"
+                >
+                  Furnishing
+                </Label>
                 <Select
                   name="furnishing"
                   value={formData.furnishing}
@@ -325,42 +381,51 @@ export default function AddProperty2() {
                   </SelectContent>
                 </Select>
               </div>
+              <div className="flex flex-col  justify-between pt-1 max-md:gap-y-2  ">
+                <Label className="font-medium font-jakarta ">
+                  Beds and Baths
+                </Label>
+                <Bed_Bath
+                  onSelectionChange={handleBedBathChange}
+                  className={"w-full md:w-full "}
+                />
+              </div>
 
-              <div className=" flex flex-col justify-center gap-y-2">
-                <Label>Utilities</Label>
-                <RadioGroup
-                  name="Utilities"
-                  value={formData.utilities}
-                  onValueChange={(value) =>
-                    setFormData((prev) => ({ ...prev, utilities: value }))
-                  }
-                  className="flex space-x-4"
-                >
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="Exclusive" id="Exclusive" />
-                    <Label htmlFor="Exclusive">Exclusive</Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="Inclusive" id="Inclusive" />
-                    <Label htmlFor="Inclusive">Inclusive</Label>
-                  </div>
-                </RadioGroup>
+              <div className="space-y-1">
+                <Label className="font-medium font-jakarta" htmlFor="area">
+                  Area (sq ft)
+                </Label>
+                <Input
+                  id="area"
+                  name="area"
+                  placeholder="Enter Area"
+                  type="number"
+                  value={formData.area}
+                  onChange={handleInputChange}
+                  required
+                />
               </div>
             </div>
 
-            <div>
-              <Label htmlFor="description">Description</Label>
+            <div className="space-y-1">
+              <Label
+                className="font-medium font-jakarta "
+                htmlFor="description"
+              >
+                Description
+              </Label>
               <Textarea
                 id="description"
                 name="description"
+                placeholder="Description about the property"
                 value={formData.description}
                 onChange={handleInputChange}
                 required
               />
             </div>
             <div>
-              <Label>Amenities</Label>
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-2">
+              <Label className="font-medium font-jakarta">Amenities</Label>
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-2 md:mt-4">
                 {amenities.map((amenity) => (
                   <div key={amenity} className="flex items-center space-x-2">
                     <Checkbox
@@ -368,21 +433,29 @@ export default function AddProperty2() {
                       checked={formData.amenities.includes(amenity)}
                       onCheckedChange={() => handleAmenityChange(amenity)}
                     />
-                    <Label htmlFor={amenity}>{amenity}</Label>
+                    <Label
+                      className="font-medium font-jakarta"
+                      htmlFor={amenity}
+                    >
+                      {amenity}
+                    </Label>
                   </div>
                 ))}
               </div>
             </div>
-            <div className="flex justify-center max-md:gap-x-4 md:justify-between  pt-6 pb-4">
+            <div className="flex justify-center gap-x-4   pt-6 pb-4 font-medium">
               <Button
                 onClick={goToPreviousStep}
-                className="border border-Bgpurple bg-white text-Bgpurple hover:bg-Bgpurple hover:text-white w-24"
+                className="gap-1 border border-Bgpurple bg-white text-Bgpurple hover:bg-Bgpurple hover:text-white w-32 md:w-44 transition-colors duration-500 ease-in-out"
               >
+                <ArrowLeft className="size-4 md:size-5 " />
                 Back
               </Button>
-              <Button type="submit" className="bg-Bgpurple">
-                <Home className="mr-2" />
-                Submit
+              <Button
+                type="submit"
+                className="bg-Bgpurple w-32 md:w-44 hover:bg-indigo-800 "
+              >
+                Add Property
               </Button>
             </div>
           </div>

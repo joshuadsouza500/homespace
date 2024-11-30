@@ -7,6 +7,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { cn } from "@/lib/utils";
 
 const bedroomOptions = ["1", "2", "3", "4", "5+"];
 const bathroomOptions = ["1", "2", "3", "4+"];
@@ -15,6 +16,7 @@ export default function Bed_Bath({
   onSelectionChange,
   defaultBaths,
   defaultBeds,
+  className,
 }) {
   const [isOpen, setIsOpen] = React.useState(false);
   const [selectedBedrooms, setSelectedBedrooms] = React.useState();
@@ -42,7 +44,10 @@ export default function Bed_Bath({
       <PopoverTrigger asChild>
         <Button
           variant="outline"
-          className=" justify-between md:w-[200px] w-36 max-md:h-9"
+          className={cn(
+            " justify-between md:w-[200px] w-36 max-md:h-9",
+            className
+          )}
         >
           {getButtonText()}
           {isOpen ? (

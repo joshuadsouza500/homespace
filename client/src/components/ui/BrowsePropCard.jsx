@@ -70,7 +70,7 @@ const BrowsePropCard = ({ property }) => {
         <p className="flex items-center gap-1 text-sm font-medium tracking-wide text-[#4d5461e1] ">
           <MapPin className="h-4 w-4 mr-1 text-Primary flex-shrink-0" />
           <span>
-            {property?.city}, {property?.location}
+            {property?.city}, {property?.address}
           </span>{" "}
         </p>
         <div className="flex justify-around items-center px-2 border-t pt-4 pb-3 bottom-1 absolute w-full left-0 right-0 ">

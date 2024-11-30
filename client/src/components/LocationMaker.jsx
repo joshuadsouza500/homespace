@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Marker, Popup, useMap } from "react-leaflet";
-import * as ELG from "esri-leaflet-geocoder";
+
 {
   /**
     
@@ -36,7 +36,7 @@ setMaxBounds:Sets the max bounds of the map, restricting the area within which t
   }, [city, map]);*/
 }
 
-const LocationMaker = ({ city, image, location, price }) => {
+const LocationMaker = ({ city, image, address, price }) => {
   const map = useMap();
   const [position, setPosition] = useState([26.0667, 50.5577]);
   const bahrainBounds = [
@@ -70,14 +70,10 @@ const LocationMaker = ({ city, image, location, price }) => {
     <Marker position={position}>
       <Popup className="p-2 rounded-lg" closeOnClick={true}>
         <div className="bg-white flex flex-col w-[100px] rounded-md overflow-hidden shadow-md">
-          <img
-            src={image}
-            alt={location}
-            className="w-full h-12 object-cover"
-          />
+          <img src={image} alt={address} className="w-full h-12 object-cover" />
           <div className="pt-1 pb-2 px-1 space-y-[2px] flex flex-col items-start">
             <span className="line-clamp-1 text-xs font-semibold text-text">
-              {city},{location}
+              {city},{address}
             </span>
             <span className="text-sm font-medium text-Primary">
               {price} BHD

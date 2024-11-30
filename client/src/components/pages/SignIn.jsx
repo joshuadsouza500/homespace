@@ -43,9 +43,9 @@ export default function SignIn() {
     <div className="flex min-h-screen">
       <div className="hidden w-1/2 bg-gray-100  lg:block">
         <img
-          src="/Signup.png"
+          src="/HouseF.jpeg"
           alt="Real Estate"
-          className="h-full w-full object-contain"
+          className=" h-screen w-full object-cover"
         />
       </div>
       <div className="flex w-full items-center justify-center lg:w-1/2">
@@ -56,13 +56,13 @@ export default function SignIn() {
               Enter your credentials to access your account
             </p>
           </div>
-          <form className="space-y-4" onSubmit={handleSubmit}>
+          <form className="space-y-4 " onSubmit={handleSubmit}>
             {auth.error?.status === 500 && (
               <h1 className=" font-semibold text-red-600 py-1">
                 {auth.error?.data.error}!
               </h1>
             )}
-            <div className="space-y-2">
+            <div className="space-y-1">
               <Label htmlFor="email">Email</Label>
               <Input
                 id="email"
@@ -73,7 +73,7 @@ export default function SignIn() {
                 type="email"
               />
             </div>
-            <div className="space-y-2">
+            <div className="space-y-1 pb-2">
               <Label htmlFor="password">Password</Label>
               <Input
                 id="password"
@@ -84,7 +84,10 @@ export default function SignIn() {
                 onChange={handleChange}
               />
             </div>
-            <Button className="w-full bg-Bgpurple" type="submit">
+            <Button
+              className="w-full bg-Bgpurple hover:bg-indigo-800 transition-colors duration-500 ease-in-out"
+              type="submit"
+            >
               Sign In
             </Button>
           </form>

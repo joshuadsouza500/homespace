@@ -146,7 +146,7 @@ export default function PropertyDetails2({ property, handleSave }) {
             <div className="flex items-center text-muted-foreground mb-4 pt-1">
               <MapPin className="w-4 h-4 mr-2 text-Primary" />
               <span className="flex items-center justify-center gap-1">
-                {property?.city}, {property?.location}
+                {property?.city}, {property?.governate.replace("_", " ")}
               </span>
             </div>
             <div className="text-2xl font-bold text-Primary mb-4 ">
@@ -262,7 +262,7 @@ export default function PropertyDetails2({ property, handleSave }) {
                 <LocationMaker
                   city={property?.city}
                   image={property?.image[0]}
-                  location={property?.location}
+                  address={property?.address}
                   price={property?.price}
                 />
               </MapContainer>
@@ -270,7 +270,7 @@ export default function PropertyDetails2({ property, handleSave }) {
           </Card>
           {/** <div className="flex items-center text-muted-foreground text-sm pl-1 py-1">
             <MapPin className="size-5 mr-2 text-Primary" />
-            <span>{property?.location}</span>
+            <span>{property?.address}</span>
           </div> */}
         </div>
       </div>

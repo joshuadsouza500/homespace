@@ -4,7 +4,7 @@ const createProperty = async (userId, reqData) => {
   const {
     title,
     description,
-    location,
+    address,
     city,
     image,
     type,
@@ -13,25 +13,23 @@ const createProperty = async (userId, reqData) => {
     furnishing,
     amenities,
     price,
-    longitude,
-    latitude,
+    governate,
     bedrooms,
     bathrooms,
     area,
   } = reqData;
 
   try {
-    console.log("prop reqdata", reqData);
+    //console.log("prop reqdata", reqData);
     const imagesArray = Array.isArray(image) ? image : [image]; // Convert to array
     const newProperty = await prisma.property.create({
       data: {
         title,
         description,
         price: parseFloat(price),
-        location,
+        address,
         city,
-        longitude: parseFloat(longitude),
-        latitude: parseFloat(latitude),
+        governate,
         image: imagesArray, //useimageArray here after you configue cloudinary
         bedrooms: parseInt(bedrooms),
         bathrooms: parseInt(bathrooms),
@@ -81,7 +79,9 @@ const updateProperty = async (userId, propertyId, updateData) => {
       title,
       type,
       utilities,
-      city,
+      //  city,
+      // address,
+      //  governate,
     } = updateData;
 
     // Proceed with the update
@@ -99,7 +99,9 @@ const updateProperty = async (userId, propertyId, updateData) => {
         title,
         type,
         utilities,
-        city,
+        //  city,
+        // address,
+        // governate,
       },
     });
 
@@ -222,19 +224,19 @@ const getPropertyById = async (propertyId, userId) => {
 };
  */
 
+//add search using givernate here
 const getAllProperties = async (reqQuery, userId) => {
-  const { mnP, mxP, beds, baths, type, pty, ut, frn, search, city, srt } =
+  const { mnP, mxP, beds, baths, type, pty, ut, frn, search, city, srt, gov } =
     reqQuery;
   let SORT = "";
   const minPrice = mnP;
   const maxPrice = mxP;
-
   const bedrooms = beds;
   const bathrooms = baths;
-
   const property_type = pty;
   const utilities = ut;
   const furnishing = frn;
+  const governate = gov;
 
   console.log(reqQuery);
   try {
@@ -248,6 +250,7 @@ const getAllProperties = async (reqQuery, userId) => {
       property_type && { property_type },
       utilities && { utilities },
       furnishing && { furnishing },
+      governate && { governate },
       city && { city },
       search && {
         OR: [

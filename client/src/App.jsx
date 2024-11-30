@@ -5,6 +5,7 @@ import CustomerRoutes from "./components/CustomerRoutes";
 
 import SignUp from "./components/pages/SignUp";
 import SignIn from "./components/pages/SignIn";
+import User from "./components/pages/User";
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/*" element={<CustomerRoutes />} />
         {/*   
-
+ 
         <Navbar />
         <Route path="/" element={<HomePage />} />
         <Route path="/property" element={<Search />} />
@@ -33,15 +34,13 @@ export default App;
   /**Today
    * Homescreen image
    *
-  /**Change schema to take in governate option and then addp that under title and in search
+  /**
 THINGS TO ADD
 
-*. Location map ..: Instead of location make it Address(steet name or etc) and then cn remove lat and long becuase we can get that from leaflet 
-
+*. Location map ..: Instead of location make it Address(steet name or etc)
+*Add scroll to top when changing pages
 *Add loading something every time api is called
 *fix search bar in property search
-*.Add the cities and governate in create/update property and remove lat and long
-
 *. bg colour
 *. Fix sizes, bugs, colours
 

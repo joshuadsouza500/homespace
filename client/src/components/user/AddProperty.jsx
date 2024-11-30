@@ -37,10 +37,9 @@ export default function AddProperty() {
     title: "",
     description: "",
     price: "",
-    location: "",
+    address: "",
     city: "",
-    longitude: "",
-    latitude: "",
+    governate: "",
     //Array.isArray(formData.image) ? formData.image : [formData.image], // Force to array
     image: [],
     bedrooms: "",
@@ -175,7 +174,7 @@ export default function AddProperty() {
             </div>
           </div>
 
-          {/* New fields: City, Latitude, Longitude, Area */}
+          {/* New fields: City, governate, */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <div>
               <Label htmlFor="city">City</Label>
@@ -188,29 +187,17 @@ export default function AddProperty() {
               />
             </div>
             <div>
-              <Label htmlFor="latitude">Latitude</Label>
+              <Label htmlFor="governate">Governate</Label>
               <Input
-                id="latitude"
-                name="latitude"
-                type="number"
-                step="any"
-                value={formData.latitude}
+                id="governate"
+                name="governate"
+                type="text"
+                value={formData.governate}
                 onChange={handleInputChange}
                 required
               />
             </div>
-            <div>
-              <Label htmlFor="longitude">Longitude</Label>
-              <Input
-                id="longitude"
-                name="longitude"
-                type="number"
-                step="any"
-                value={formData.longitude}
-                onChange={handleInputChange}
-                required
-              />
-            </div>
+
             <div>
               <Label htmlFor="area">Area (sq ft)</Label>
               <Input
@@ -294,11 +281,11 @@ export default function AddProperty() {
           </div>
 
           <div>
-            <Label htmlFor="location">Location</Label>
+            <Label htmlFor="address">Address</Label>
             <Textarea
-              id="location"
-              name="location"
-              value={formData.location}
+              id="address"
+              name="address"
+              value={formData.address}
               onChange={handleInputChange}
               required
             />

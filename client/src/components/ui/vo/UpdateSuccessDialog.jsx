@@ -27,7 +27,10 @@ export function UpdateSuccessDialog({ isOpen, setIsOpen, propertyId }) {
           <Button variant="outline" onClick={() => navigate(-1)}>
             Go Back
           </Button>
-          <Button onClick={() => navigate(`/property/${propertyId}`)}>
+          <Button
+            className="bg-Bgpurple"
+            onClick={() => navigate(`/property/${propertyId}`)}
+          >
             View Property
           </Button>
         </AlertDialogFooter>

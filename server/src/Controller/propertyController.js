@@ -47,7 +47,7 @@ const getPropertyById = async (req, res) => {
     }
 
     const property = await propertyService.getPropertyById(propertyId, userId);
-    console.log("property control :", property);
+    //  console.log("property control :", property);
     if (!property) {
       return res.status(404).send({ message: "Property not found" });
     }

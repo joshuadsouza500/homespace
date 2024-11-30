@@ -117,11 +117,18 @@ const User = () => {
     >
       <div className="px-3 py-4 flex justify-between items-center">
         <h1
-          className={`font-bold cursor-pointer ${
+          className={`font-bold flex justify-between gap-x-1 items-center cursor-pointer ${
             expanded ? "text-xl sm:text-2xl" : "hidden"
           }`}
           onClick={() => navigate("/")}
         >
+          <img
+            alt="Homespace logo"
+            height={20}
+            width={20}
+            className=""
+            src="/src/assets/Logo.svg"
+          />
           HomeSpace
         </h1>
         <button
