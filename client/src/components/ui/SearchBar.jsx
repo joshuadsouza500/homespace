@@ -101,7 +101,10 @@ const SearchBar = ({ setFilters }) => {
       </div>
       <div className=" lg:w-56  absolute z-20 ">
         {isOpen && suggestions.length > 0 && (
-          <ul className=" border border-gray-300 lg:w-56 " ref={suggestionRef}>
+          <ul
+            className=" border bg-white border-gray-300 lg:w-52 rounded-t-sm mt-1 "
+            ref={suggestionRef}
+          >
             <ScrollArea className="h-[200px]">
               {suggestions.map((suggestion) => (
                 <button

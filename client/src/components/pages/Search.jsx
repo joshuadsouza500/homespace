@@ -2,7 +2,7 @@ import PropertySearch from "../PropertySearch";
 
 import PropertyCard2 from "../ui/vo/property-card2";
 import BigProperyCard from "../ui/vo/Big-propery-card";
-import Navbar from "../ui/vo/Navbar";
+
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getAllProperties } from "@/store/property/action";
@@ -26,15 +26,38 @@ const Search = () => {
     <div className="font-jakarta px-2  md:px-6 max-w-6xl 2xl:max-w-7xl mx-auto">
       <PropertySearch />
       <section className="bg-gradient-to-b from-white to-bg-light_gray h-full mx-auto  md:space-y-7 space-y-2 pb-10 lg:pb-16">
-        {/*<SmallPropertyCard />*/}
-        <BigProperyCard />
-        <section className=" grid bg- lg:grid-cols-5 ">
-          <div className="space-y-7 col-span-4 md:pl-6 mx-auto px-1 ">
-            {Property?.properties?.map((property) => (
-              <PropertyCard2 key={property?.id} property={property} />
-            ))}
-          </div>
-        </section>
+        {Property?.properties?.length > 0 && (
+          <>
+            {(() => {
+              const randomIndex = Math.floor(
+                Math.random() * Property.properties.length
+              );
+              const randomProperty = Property.properties[randomIndex];
+
+              // Filter out the random property from the original array
+              const remainingProperties = Property.properties.filter(
+                (property) => property.id !== randomProperty.id
+              );
+
+              return (
+                <>
+                  <BigProperyCard
+                    key={randomProperty?.id}
+                    property={randomProperty}
+                  />
+
+                  <section className="grid lg:grid-cols-5">
+                    <div className="space-y-7 col-span-4 md:pl-6 mx-auto px-1">
+                      {remainingProperties.map((property) => (
+                        <PropertyCard2 key={property?.id} property={property} />
+                      ))}
+                    </div>
+                  </section>
+                </>
+              );
+            })()}
+          </>
+        )}
       </section>
     </div>
   );

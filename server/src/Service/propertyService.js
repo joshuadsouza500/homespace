@@ -223,8 +223,9 @@ const getPropertyById = async (propertyId, userId) => {
  */
 
 const getAllProperties = async (reqQuery, userId) => {
-  const { mnP, mxP, beds, baths, type, pty, ut, frn, search, city } = reqQuery;
-
+  const { mnP, mxP, beds, baths, type, pty, ut, frn, search, city, srt } =
+    reqQuery;
+  let SORT = "";
   const minPrice = mnP;
   const maxPrice = mxP;
 
@@ -264,6 +265,16 @@ const getAllProperties = async (reqQuery, userId) => {
     */
 
     //Prisma throws errors if a value is undefined
+    if (srt) {
+      if (srt === "low") {
+        SORT = { price: "asc" };
+      } else if (srt === "high") {
+        SORT = { price: "desc" };
+      } else if (srt === "new") {
+        SORT = { createdAt: "desc" }; // Sort by createdAt in descending order
+      }
+    }
+
     const properties = await prisma.property.findMany({
       where: {
         //ANd mean all of these conditions must be met
@@ -272,6 +283,7 @@ const getAllProperties = async (reqQuery, userId) => {
       include: {
         user: true, // Include related user details
       },
+      orderBy: SORT || undefined,
     });
     let savedIds = new Set();
 

@@ -23,6 +23,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { MapContainer, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import LocationMaker from "@/components/LocationMaker";
+import PropertyGallery from "./PropertyGallery";
 {
   /** <div className="flex flex-col md:flex-row gap-4 h-[500px] ">
         <div className=" relative  bg-orange-200 w-[75%] ">
@@ -73,45 +74,43 @@ export default function PropertyDetails2({ property, handleSave }) {
   return (
     <div className="container  mx-auto px-1 md:px-3 pt-2 md:pt-4 pb-8  ">
       {/**images */}
-      {property?.image && (
-        <div className="w-full grid lg:grid-cols-5 gap-5">
-          {/* Main Image (First Image in Array) */}
-          <div className="col-span-4 md:aspect-video">
-            <img
-              src={property?.image[0] || "https://via.placeholder.com/800x400"}
-              alt="Property main"
-              className="rounded-md object-cover object-center w-full h-full"
-            />
-          </div>
+      {property?.image && <PropertyGallery images={property?.image} />}
 
-          {/* Sidebar Images (Remaining Images) */}
-          <div className="col-span-1 lg:flex flex-col gap-3 hidden items-center">
-            {property?.image.slice(1, 3).map((url, index) => (
-              <div key={index}>
-                <img
-                  src={url}
-                  alt={`Property img ${index + 2}`}
-                  className="rounded-sm object-cover object-center aspect-square"
-                />
-              </div>
-            ))}
-
-            {/* "View All" Overlay (Shown if more than 3 images) */}
-            {property?.image.length > 3 && (
-              <div className="relative">
-                <div className="bg-black opacity-70 h-full w-full absolute flex justify-center items-center">
-                  <h6 className="text-white">View All</h6>
-                </div>
-                <img
-                  src={property?.image[2] || "/HomeCard3.png"}
-                  alt="Property img 3"
-                  className="rounded-sm object-cover object-center aspect-square"
-                />
-              </div>
-            )}
-          </div>
+      {/**  <div className="w-full grid lg:grid-cols-5 gap-5">
+        <div className="col-span-4 md:aspect-video">
+          <img
+            src={property?.image[0] || "https://via.placeholder.com/800x400"}
+            alt="Property main"
+            className="rounded-md object-cover object-center w-full h-full"
+          />
         </div>
-      )}
+
+        <div className="col-span-1 lg:flex flex-col gap-3 hidden items-center">
+          {property?.image.slice(1, 3).map((url, index) => (
+            <div key={index}>
+              <img
+                src={url}
+                alt={`Property img ${index + 2}`}
+                className="rounded-sm object-cover object-center aspect-square"
+              />
+            </div>
+          ))}
+
+          {property?.image.length > 3 && (
+            <div className="relative">
+              <div className="bg-black opacity-70 h-full w-full absolute flex justify-center items-center">
+                <h6 className="text-white">View All</h6>
+              </div>
+              <img
+                src={property?.image[2] || "/HomeCard3.png"}
+                alt="Property img 3"
+                className="rounded-sm object-cover object-center aspect-square"
+              />
+            </div>
+          )}
+        </div>
+      </div>
+ */}
       <div className="flex flex-col lg:flex-row gap-8 pt-4  md:pt-6  ">
         {/* Left column - Property details */}
         <div className="flex-1 pl-[2px] lg:pl-1">
@@ -260,7 +259,12 @@ export default function PropertyDetails2({ property, handleSave }) {
                   attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> '
                   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
-                <LocationMaker city={property?.city} />
+                <LocationMaker
+                  city={property?.city}
+                  image={property?.image[0]}
+                  location={property?.location}
+                  price={property?.price}
+                />
               </MapContainer>
             </CardContent>
           </Card>

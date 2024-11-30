@@ -4,6 +4,7 @@ import Browse from "../Homepage/Browse";
 import Testimonials from "../Homepage/Testimonials";
 import Features from "../Homepage/Features";
 import Banner from "../Homepage/Banner";
+import Slider from "../Homepage/Slider";
 
 //change h-screen
 const HomePage = () => {
@@ -11,11 +12,11 @@ const HomePage = () => {
     <div className=" md:px-6 w-full max-w-6xl 2xl:max-w-7xl mx-auto font-jakarta">
       {" "}
       <Hero />
-      <div className="h-32 bg-gray-300 py-2"> COmpany logos</div>
-      {/**   <Features />
+      <Slider />
       <Browse />
+      {/***<Features />* 
       <Testimonials />
-      <Banner />/** */}
+      <Banner />*/}
     </div>
   );
 };

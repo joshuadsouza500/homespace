@@ -13,18 +13,18 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 /***/
-const BigProperyCard = () => {
+const BigProperyCard = ({ property }) => {
   return (
     <Card className="hidden md:block max-w-md sm:max-w-2xl md:max-w-5xl mx-1 cursor-pointer hover:shadow-m h-full">
       <div className="flex flex-col gap-1 sm:flex-row">
         <div className="relative w-full sm:w-2/5">
           <img
-            src="https://www.wilsonhomes.com.au/sites/default/files/styles/blog_hero_banner/public/My%20project%20-%202023-06-20T095818.329%20%281%29_0.jpg?itok=UbtVbhT0"
-            alt="Red house"
-            className="w-full h-[260px] sm:h-[350px] object-fill rounded-t-lg sm:rounded-l-lg sm:rounded-tr-none object-center "
+            src={property?.image[0]}
+            alt={property?.title}
+            className="w-full h-[260px] sm:h-[350px] object-cover rounded-t-lg sm:rounded-l-lg sm:rounded-tr-none object-center "
           />
           <Badge className="absolute top-2 left-2 bg-green-500 text-white">
-            For Sale
+            {property?.type}
           </Badge>
 
           <div className="absolute bottom-2 left-[45%] flex space-x-1">
@@ -41,9 +41,11 @@ const BigProperyCard = () => {
             <div className="flex justify-between items-start mb-2 relative">
               <div>
                 <Badge variant="secondary" className="mb-2">
-                  Villa
+                  {property?.property_type}
                 </Badge>
-                <h2 className="text-2xl font-bold text-Primary">24,000 BHD</h2>
+                <h2 className="text-2xl font-bold text-Primary">
+                  {property?.price} BHD
+                </h2>
                 <h2 className="text-lg font-semibold text-[#000929] pl-1">
                   LakeField Av.
                 </h2>
@@ -55,32 +57,32 @@ const BigProperyCard = () => {
             </div>
             <div className="flex items-center text-muted-foreground text-sm mb-4">
               <MapPin className="h-4 w-4 mr-1 text-Primary flex-shrink-0" />
-              <span>Al Juffair, Capital Governorate</span>
+              <span>
+                {property?.city}, {property?.location}
+              </span>
             </div>
-            <p className="text-muted-foreground w-[90%] text-pretty leading-tight">
-              {" "}
-              A three bedroom end-terrace home situated on Barns Road, Cowley
-              centre within close proximity to public transport services into
-              Oxford city centre.{" "}
+            <p className="text-muted-foreground w-[90%] text-pretty leading-snug line-clamp-3">
+              {property?.description}
             </p>
             <div className="flex justify-start gap-2 text-sm text-muted-foreground mb-4 pl-1 absolute bottom-0">
               <div className="flex items-center border-r-2 pr-2">
                 <Bed className="h-4 w-4 mr-1 text-Primary" />
-                <span>4</span>
+                <span>{property?.bedrooms}</span>
               </div>
               <div className="flex items-center border-r-2 pr-2">
                 <Bath className="h-4 w-4 mr-1 text-Primary" />
-                <span>5</span>
+                <span>{property?.bathrooms} </span>
               </div>
               <div className="flex items-center  pr-2">
                 <Maximize className="h-4 w-4 mr-1 text-Primary" />
-                <span>600 sqm</span>
+                <span>{property?.area} sqm</span>
               </div>
             </div>
           </div>
           <div className="flex justify-between items-center mt-auto pt-4 border-t">
             <span className="text-xs text-muted-foreground">
-              Listed 1 day ago
+              Listed {new Date(property?.createdAt).toLocaleDateString()}{" "}
+              {/* Display listing date */}
             </span>
             <div className="flex space-x-2">
               <Button variant="outline" size="sm" className="text-primary">

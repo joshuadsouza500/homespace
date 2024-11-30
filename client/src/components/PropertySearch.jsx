@@ -52,12 +52,14 @@ export default function PropertySearch() {
     baths: searchParams.get("baths") || "",
     frn: searchParams.get("frn") || "",
     ut: searchParams.get("ut") || "",
+    srt: searchParams.get("srt") || "",
   });
 
   //, you can use a variable as the key name if you wrap it in square brackets
   const handleFilterChange = ({ id, value }) => {
     setFilters((prev) => ({ ...prev, [id]: value }));
   };
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFilters((prev) => ({ ...prev, [name]: value }));
@@ -130,6 +132,9 @@ export default function PropertySearch() {
     setFilters({});
     dispatch(getAllProperties());
   };
+  useEffect(() => {
+    applyFilters();
+  }, [filters.srt]);
 
   return (
     <div className="w-full   border-t ">
@@ -286,7 +291,12 @@ export default function PropertySearch() {
             Properties for sale in Bahrain
           </h1>
         </div>
-        <Select>
+        <Select
+          onValueChange={(value) => {
+            handleFilterChange({ id: "srt", value });
+          }}
+          value={filters.srt}
+        >
           <SelectTrigger className="w-24  md:w-32 text-xs max-sm:h-9 ">
             <SelectValue placeholder="Featured" />
           </SelectTrigger>
@@ -295,9 +305,9 @@ export default function PropertySearch() {
               <SelectLabel value="featured" className="pl-6">
                 Featured
               </SelectLabel>
-              <SelectItem value="newest">Newest</SelectItem>
-              <SelectItem value="price-low">Price: Low to High</SelectItem>
-              <SelectItem value="price-high">Price: High to Low</SelectItem>
+              <SelectItem value="new">Newest</SelectItem>
+              <SelectItem value="low">Price: Low to High</SelectItem>
+              <SelectItem value="high">Price: High to Low</SelectItem>
             </SelectGroup>
           </SelectContent>
         </Select>

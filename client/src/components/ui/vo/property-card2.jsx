@@ -30,10 +30,22 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { deleteProperty } from "@/store/property/action";
+import { useEffect, useState } from "react";
 
 export default function PropertyCard2({ update, className, property }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % property.image.length);
+    }, 5000); // Change image every 3 seconds
+
+    return () => clearInterval(interval);
+  }, [property.image]);
+
   const handleClick = (propertyId) => {
     navigate(`/user/property/${propertyId}`);
   };
@@ -60,26 +72,28 @@ export default function PropertyCard2({ update, className, property }) {
     >
       <div className="flex flex-col sm:flex-row md:h-full">
         <div
-          className="relative w-full sm:w-2/5 "
+          className="relative w-full sm:w-2/5  overflow-hidden rounded-t-lg sm:rounded-l-lg sm:rounded-tr-none"
           onClick={() => {
             propertyDetails(property?.id);
           }}
         >
           <img
-            src={property?.image[0]} // Use the first image from the property data
+            src={property?.image[currentIndex]} // Use the first image from the property data
             alt={property?.title} // Use the title as the alt text for better accessibility
             width={400}
             height={300}
-            className="w-full h-[200px] sm:h-full object-cover rounded-t-lg sm:rounded-l-lg sm:rounded-tr-none"
+            className="w-full  transition-transform duration-300 hover:scale-[1.02] h-[200px] sm:h-full object-cover rounded-t-lg sm:rounded-l-lg sm:rounded-tr-none"
           />
           <Badge className="absolute top-2 left-2 bg-green-500 text-white">
             {property?.type} {/* Display the property type (Rent/Sale) */}
           </Badge>
           <div className="absolute bottom-2 left-[38%] flex space-x-1">
-            {[1, 2, 3, 4, 5].map((dot) => (
+            {[1, 2, 3].map((dot, index) => (
               <div
                 key={dot}
-                className="w-2 h-2 rounded-full bg-white opacity-60"
+                className={`w-2 h-2 rounded-full ${
+                  index === currentIndex ? "bg-white" : "bg-white/60"
+                }`}
               />
             ))}
           </div>

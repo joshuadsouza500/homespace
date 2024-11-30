@@ -34,23 +34,20 @@ export default App;
 
 {
   /**Today
-   * Change schema to take in governate option and then add that under title and in search and mayybe at night make location addreesss and make new props
+   * Homescreen image
    *
-   *
-   *
-   */
-  /**
+  /**Change schema to take in governate option and then addp that under title and in search
 THINGS TO ADD
 
-2. Location map ..: Instead of location make it Address(steet name or etc) and then cn remove lat and long becuase we can get that from leaflet 
-3. Fix sizes, bugs, colours
-Add carousels on each pdpage and on the card
-4. bg colour
-5. Sorting function
-6. Homescreen image
-7.  chat
-8. fic currency to bhd
-9.Add the citiesin create property
+*. Location map ..: Instead of location make it Address(steet name or etc) and then cn remove lat and long becuase we can get that from leaflet 
+
+*Add loading something every time api is called
+*fix search bar in property search
+*.Add the cities and governate in create/update property and remove lat and long
+
+*. bg colour
+*. Fix sizes, bugs, colours
+
 
   
 
@@ -59,5 +56,6 @@ Add carousels on each pdpage and on the card
    * Extras
    * Chat app
    * Add a loan/ mortgage calculator for specific property etc.
+   * when clicking marker on map displays info about prop like image, address and price
    */
 }
