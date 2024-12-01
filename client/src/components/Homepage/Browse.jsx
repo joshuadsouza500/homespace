@@ -38,9 +38,9 @@ const Browse = () => {
   }, [searchParams, dispatch]);
 
   return (
-    <div className="h-full  bg-gradient-to-b from-[#f7f6fc] to-white pt-28 pb-8 font-jakarta">
+    <div className="h-full  bg-gradient-to-b from-[#fcfbfd] to-white pt-6 md:pt-16 pb-8 font-jakarta">
       <div className="flex flex-col gap-3 items-center justify-center">
-        <h1 className="md:hidden">MAke it horizontal scroll</h1>
+        <h1 className="md:hidden">Make it horizontal scroll</h1>
         <h2 className="text-4xl font-bold text-[#000929]">
           Featured Properties
         </h2>
@@ -57,7 +57,7 @@ const Browse = () => {
           <TabsList className="bg-light_gray h-12 w-44 md:w-56    shadow-sm ring-2  ring-[#E0DEF7]">
             <TabsTrigger
               value="Rent"
-              className="w-24 md:w-28 flex items-center gap-1 text-base data-[state=active]:text-Primary data-[state=active]:border border-bborder font-bold  data-[state=active]:shadow-sm shadow-Primary"
+              className="w-20 md:w-28 flex items-center gap-1 text-base data-[state=active]:text-Primary data-[state=active]:border border-bborder font-bold  data-[state=active]:shadow-sm shadow-Primary"
             >
               <KeyRoundIcon
                 strokeWidth={2.5}
@@ -77,7 +77,12 @@ const Browse = () => {
             </TabsTrigger>
           </TabsList>
         </Tabs>
-        <section className=" grid    md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10 lg:gap-x-10 pt-12 pb-4 ">
+        <section className="w-full px-10 grid-flow-col overflow-y-auto md:hidden grid   gap-x-8 gap-y-10  pt-12 pb-4 ">
+          {Property?.properties?.slice(0, 4).map((property) => (
+            <BrowsePropCard key={property.id} property={property} />
+          ))}
+        </section>
+        <section className=" hidden md:grid    grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10 lg:gap-x-10 pt-12 pb-4 ">
           {Property?.properties?.slice(0, 6).map((property) => (
             <BrowsePropCard key={property.id} property={property} />
           ))}

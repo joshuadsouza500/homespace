@@ -14,14 +14,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/*" element={<CustomerRoutes />} />
-        {/*   
- 
-        <Navbar />
-        <Route path="/" element={<HomePage />} />
-        <Route path="/property" element={<Search />} />
-        <Route path="/property/:propertyId" element={<PropertyDetails />} />
-        <Footer />
-*/}
+
         <Route path="/user/*" element={<User />} />
       </Routes>
     </div>
@@ -31,21 +24,17 @@ function App() {
 export default App;
 
 {
-  /**Today
-   * Homescreen image
-   *
+  /** THINGS TO ADD
+   * Fix rent and buy buttons on navbar ✔
+   * Make browse properties section horizontal scroll for mobile
+   * Add scroll to top when changing pages
+   * Add loading something every time api is called
+   * fix search bar in hero , property search
+   * Fix bg colour
+   * Property search search bar and options fix sizes
+   * User naviagtions and user dasboard 
   /**
-THINGS TO ADD
 
-*. Location map ..: Instead of location make it Address(steet name or etc)
-*Add scroll to top when changing pages
-*Add loading something every time api is called
-*fix search bar in property search
-*. bg colour
-*. Fix sizes, bugs, colours
-
-
-  
 
   */
   /**

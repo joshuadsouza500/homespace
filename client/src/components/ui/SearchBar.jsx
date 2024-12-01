@@ -2,6 +2,7 @@ import { SearchIcon } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
 import { Input } from "./input";
 import { ScrollArea } from "./scroll-area";
+import { cn } from "@/lib/utils";
 
 const citiesInBahrain = [
   "A'ali",
@@ -31,7 +32,7 @@ const citiesInBahrain = [
   "Northern Governorate",
 ];
 
-const SearchBar = ({ setFilters }) => {
+const SearchBar = ({ setFilters, className }) => {
   const [InputValue, setInputValue] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [isOpen, setIsopen] = useState(false);
@@ -86,23 +87,26 @@ const SearchBar = ({ setFilters }) => {
   return (
     <div
       ref={searchBarRef}
-      className="relative   lg:w-56   max-w-sm space-x-2 rounded-lg border border-gray-300 bg-gray-50 dark:bg-gray-900 px-2 py-1"
+      className={cn(
+        "relative   md:w-56   max-w-sm space-x-2 rounded-lg border border-gray-300 bg-white/90 dark:bg-gray-900 px-2 py-1",
+        className
+      )}
     >
-      <div className="flex items-center justify-center gap-x-1">
+      <div className="flex items-center justify-center gap-x-1 bg-white/90  focus-visible:ring-1">
         {" "}
-        <SearchIcon className="h-4 w-4" />
         <Input
           type="search"
           placeholder="City or Governate"
-          className="w-full border-0 h-8 font-semibold"
+          className="w-full border-0 h-8 font-semibold focus-visible:ring-0"
           onChange={handleSuggestions}
           value={InputValue}
         />
+        <SearchIcon className="size-5 text-Primary mr-1" />
       </div>
       <div className=" lg:w-56  absolute z-20 ">
         {isOpen && suggestions.length > 0 && (
           <ul
-            className=" border bg-white border-gray-300 lg:w-52 rounded-t-sm mt-1 "
+            className=" -ml-3 border bg-white border-gray-300 lg:w-[90%] rounded-t-sm mt-1 "
             ref={suggestionRef}
           >
             <ScrollArea className="h-[200px]">

@@ -44,7 +44,7 @@ const BigProperyCard = ({ property }) => {
                   {property?.property_type}
                 </Badge>
                 <h2 className="text-2xl font-bold text-Primary">
-                  {property?.price} BHD
+                  {property?.price.toLocaleString()} BHD
                 </h2>
                 <h2 className="text-lg font-semibold text-[#000929] pl-1">
                   LakeField Av.

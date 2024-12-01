@@ -110,7 +110,7 @@ export default function PropertyCard2({ update, className, property }) {
                   {property?.property_type} {/* Use property's property_type */}
                 </Badge>
                 <h2 className="text-2xl font-bold text-Bgpurple">
-                  {property?.price} BHD
+                  {property?.price.toLocaleString()} BHD
                 </h2>
               </div>
               <Button

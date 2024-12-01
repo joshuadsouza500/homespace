@@ -9,7 +9,7 @@ import { logout } from "@/store/auth/action";
 
 //Get user.. if user exists isSigned is true and then pass logout and user to dropdown
 export default function Navbar() {
-  const [activeTab, setActiveTab] = useState("");
+  const [activeTab, setActiveTab] = useState("rent");
   const [isSigned, setIsSigned] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -35,9 +35,9 @@ export default function Navbar() {
   };
 
   return (
-    <nav className=" py-2 px-1  bg-white shadow-b-sm border-b sticky top-0 z-30 w-full ">
+    <nav className=" pt-4 lg:pt-5 pb-2 lg:pb-4 px-4      md:px-6 xl:px-2 w-full ">
       <section className="max-w-6xl 2xl:max-w-7xl flex items-center justify-between mx-auto">
-        <div className="flex items-center space-x-6  max-sm:w-full max-sm:justify-center">
+        <div className="flex items-center space-x-6  max-sm:w-full ">
           <div
             className="flex items-center  justify-center space-x-1 cursor-pointer "
             onClick={() => navigate("/")}
@@ -46,39 +46,45 @@ export default function Navbar() {
               alt="Homespace logo"
               height={24}
               width={24}
-              className=""
+              className="max-md:size-5 "
               src="/src/assets/Logo.svg"
             />
-            <span className=" md:text-xl font-bold text-Bgpurple">
+            <span className=" md:text-xl pt-1 font-bold  text-Bgpurple">
               HomeSpace
             </span>
           </div>
-          <div className="hidden md:flex space-x-2 pl-2">
+          <div className="hidden md:flex space-x-1 pl-2">
             <Button
               variant={activeTab === "rent" ? "secondary" : "ghost"}
-              onClick={() => setActiveTab("rent")}
-              className={`rounded-b-none   border-[#E0DEF7] w-20 font-medium hover:text-Primary ${
+              onClick={() => {
+                setActiveTab("rent");
+                navigate("/property?type=Rent");
+              }}
+              className={`  w-20 font-medium border-[#E0DEF7] hover:text-Primary ${
                 activeTab === "rent"
-                  ? "bg-purple-100 border-b text-Primary font-bold"
-                  : "text-gray-600"
+                  ? "bg-purple-100 border text-Primary font-bold"
+                  : "text-black/70  "
               }`}
             >
               Rent
             </Button>
             <Button
-              variant={activeTab === "buy" ? "secondary" : "ghost"}
-              onClick={() => setActiveTab("buy")}
-              className={`rounded-b-none   border-[#E0DEF7] w-20 font-medium hover:text-Primary ${
-                activeTab === "buy"
-                  ? " bg-purple-100 border-b text-Primary font-bold"
-                  : "text-gray-600"
+              variant={activeTab === "sell" ? "secondary" : "ghost"}
+              onClick={() => {
+                setActiveTab("sell");
+                navigate("/property?type=Sell");
+              }}
+              className={`   border-[#E0DEF7] w-20 font-medium hover:text-Primary ${
+                activeTab === "sell"
+                  ? " bg-purple-100 border text-Primary font-bold"
+                  : "text-black/70  "
               }`}
             >
-              Buy
+              Sell
             </Button>
           </div>
         </div>
-        <div className=" lg:mr-2 flex items-center space-x-2">
+        <div className="  lg:mr-2 flex items-center space-x-2 lg:space-x-3">
           <Link to="/user/property/create">
             <Button
               variant="outline"
@@ -94,7 +100,7 @@ export default function Navbar() {
           {isSigned === true ? (
             <UserDropdown handleLogout={handleLogout} user={auth.user} />
           ) : (
-            <Button className="bg-Primary w-28 text-white font-semibold tracking-wide hover:bg-purple-700 ">
+            <Button className="bg-Primary w-20 md:w-28 text-white font-semibold tracking-wide hover:bg-purple-700 ">
               <Link to={"/signup"}>Sign up</Link>
             </Button>
           )}

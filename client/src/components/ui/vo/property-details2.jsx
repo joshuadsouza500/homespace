@@ -150,7 +150,7 @@ export default function PropertyDetails2({ property, handleSave }) {
               </span>
             </div>
             <div className="text-2xl font-bold text-Primary mb-4 ">
-              ${property?.price}{" "}
+              ${property?.price.toLocaleString()}{" "}
               <span className="text-muted-foreground font-medium">/month</span>
             </div>
 
@@ -263,7 +263,7 @@ export default function PropertyDetails2({ property, handleSave }) {
                   city={property?.city}
                   image={property?.image[0]}
                   address={property?.address}
-                  price={property?.price}
+                  price={property?.price.toLocaleString()}
                 />
               </MapContainer>
             </CardContent>

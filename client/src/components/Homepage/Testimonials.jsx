@@ -11,28 +11,27 @@ const testimonials = [
     avatar: "https://cdn-icons-png.flaticon.com/128/10643/10643275.png",
     role: "Home Buyer",
     quote:
-      "Thanks to this website, I found my dream home in just a few weeks! The process was smooth and the agents were incredibly helpful.",
+      "Thanks to HomeSpace, I found my dream home in just a few weeks! The process was smooth and the agents were incredibly helpful.",
   },
   {
     name: "Michael Chen",
     avatar: "https://cdn-icons-png.flaticon.com/128/10643/10643273.png",
     role: "Property Seller",
-    quote:
-      "I was able to sell my property quickly and at a great price. The marketing tools provided were top-notch!",
+    quote: "I was able to sell my property quickly and at a great price!",
   },
   {
     name: "Emily Rodriguez",
     avatar: "https://cdn-icons-png.flaticon.com/128/10643/10643269.png",
     role: "Home Buyer",
     quote:
-      "As a first-time homebuyer, I was nervous about the process. This platform made everything easy to understand and manage.",
+      "As a first-time homebuyer, I was nervous about the process. This platform made everything easy to understand.",
   },
   {
     name: "David Thompson",
     avatar: "https://cdn-icons-png.flaticon.com/128/10643/10643283.png",
     role: "Property Seller",
     quote:
-      "The exposure my property got through this website was amazing. I received multiple offers within days!",
+      "The exposure my property got through HomeSpace was amazing. I received multiple offers within days!",
   },
 ];
 
@@ -52,13 +51,13 @@ export default function Testimonials() {
   //background colour option 1 : bg-[#f7f6fc]
 
   return (
-    <section className="w-full pt-12 pb-28 border-[#e0def7] bg-[#f7f6fc] px-2">
+    <section className="w-full pt-4 md:pt-12 pb-20 md:pb-28 border-[#e0def7] bg-[#f7f6fc] px-2">
       <div className="container px-2 md:px-4">
         <div className="flex flex-col gap-3 items-center mt-8 mb-12  ">
-          <h2 className="text-4xl text-center max-sm:pb-2 font-bold text-[#000929]">
+          <h2 className="text-3xl md:text-4xl text-center pb-1  font-bold text-text">
             What Our Clients Say
           </h2>
-          <p className=" max-sm:text-sm w-[90%]  md:w-[35%] text-center text-[#4d5461] pb-3">
+          <p className=" max-sm:text-sm w-[90%] tracking-wide md:w-[35%] text-center text-[#4d5461] pb-3">
             Hear from happy buyers and sellers {"who've"} achieved their real
             estate goals with us.
           </p>
@@ -66,7 +65,7 @@ export default function Testimonials() {
         <div className="relative max-w-2xl mx-auto">
           <Card className="bg-white border-[#e0def7] shadow-md">
             <CardContent className="p-4 md:p-6">
-              <QuoteIcon className="size-6 md:size-8 text-[#e0def7] mb-4 mx-auto " />
+              <QuoteIcon className="size-5 md:size-8 text-[#e0def7] mb-4 mx-auto " />
               <p className="text-[#4d5461]  mb-4 text-center text-pretty max-md:tracking-wide text-base md:text-lg">
                 {testimonials[currentIndex].quote}
               </p>
@@ -78,10 +77,10 @@ export default function Testimonials() {
                   />
                 </Avatar>
                 <div>
-                  <p className="font-semibold text-[#000929]">
+                  <p className="font-semibold text-text">
                     {testimonials[currentIndex].name}
                   </p>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-black/60">
                     {testimonials[currentIndex].role}
                   </p>
                 </div>
@@ -89,14 +88,14 @@ export default function Testimonials() {
             </CardContent>
           </Card>
         </div>
-        <div className="flex justify-center mt-3">
+        <div className="flex justify-center mt-4">
           {testimonials.map((_, index) => (
             <Button
               key={index}
               variant="ghost"
               size="sm"
               className={`w-2 h-2 rounded-full mx-1 p-0 ${
-                index === currentIndex ? "bg-[#000929]" : "bg-gray-300"
+                index === currentIndex ? "bg-text" : "bg-gray-300"
               }`}
               onClick={() => setCurrentIndex(index)}
             >

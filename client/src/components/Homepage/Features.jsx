@@ -1,10 +1,8 @@
 import {
   House,
-  HouseIcon,
   HousePlusIcon,
   IdCardIcon,
   MapPinHouseIcon,
-  ReceiptIcon,
 } from "lucide-react";
 import { Button } from "../ui/button";
 import {
@@ -34,7 +32,7 @@ const features = [
     icon: <IdCardIcon strokeWidth={2.1} className="text-text " />,
   },
   {
-    title: "INterest rates / help them buy",
+    title: " help them buy" /**Help find an agent */,
     description:
       "Get a virtual tour, and schedule visits before you rent or buy any properties. You get overall control.",
     icon: <MapPinHouseIcon strokeWidth={2.1} className="text-text " />,
@@ -43,14 +41,14 @@ const features = [
 //
 export default function Main() {
   return (
-    <div className="max-sm:px-2 w-full h-auto relative   grid lg:grid-cols-5  items-stretch   font-jakarta bg-gradient-to-b from-white to-[#f7f6fc] pt-10">
+    <div className="max-sm:px-2 w-full h-auto relative   grid lg:grid-cols-5  items-stretch   font-jakarta bg-gradient-to-b from-white to-[#f7f6fc5e] pt-10">
       <div className="col-span-3  flex items-center py-2 justify-center md:hidden">
         <h2 className="text-4xl font-bold text-text">What we Offer</h2>
       </div>
 
-      {/* Left Side: Card with image */}
+      {/* Left Side: Card with image  f7f6fc*/}
 
-      <div className="hidden col-span-2  lg:flex   flex-col max-w-[400px] h-[480px] rounded-lg overflow-hidden border border-[#e0def7] bg-[#f7f6fc] relative md:hidden shadow-md shadow-[#f7f6fc]">
+      <div className="hidden col-span-2  lg:flex   flex-col max-w-[400px] h-[480px] rounded-lg overflow-hidden border border-[#e0def7] bg-[#fbfbfe] relative md:hidden shadow-md shadow-[#f7f6fc]">
         <div className="flex flex-col gap-4 items-start relative z-10 mt-8 ml-10 mr-2 w-[80%]">
           <h1 className="text-3xl font-bold text-text ">
             The new way to find your new home
@@ -105,14 +103,14 @@ export default function Main() {
               <AccordionTrigger className=" text-lg   font-bold ">
                 <span className=" flex items-center gap-x-2 text-text ">
                   {" "}
-                  <span className=" p-[5px] bg-[#e0def7] border  rounded-full">
+                  <span className=" p-[6px] bg-[#e0def7] border  rounded-full">
                     {" "}
                     {content.icon}
                   </span>
                   {content.title}
                 </span>
               </AccordionTrigger>
-              <AccordionContent className="text-xs sm:text-sm font-bold text-[#4d5461] ml-8 mr-3 text-pretty">
+              <AccordionContent className="text-xs sm:text-sm font-medum text-black/60 ml-10 mr-4 text-pretty">
                 {content.description}
               </AccordionContent>
             </AccordionItem>

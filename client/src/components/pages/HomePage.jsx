@@ -9,14 +9,15 @@ import Slider from "../Homepage/Slider";
 //change h-screen
 const HomePage = () => {
   return (
-    <div className=" md:px-6 w-full max-w-6xl 2xl:max-w-7xl mx-auto font-jakarta">
+    <div className=" md:px-6 xl:px-2 w-full max-w-6xl 2xl:max-w-7xl mx-auto font-jakarta">
       {" "}
       <Hero />
       <Slider />
       <Browse />
-      {/***<Features />* 
+      {/****/}
+      <Features />
       <Testimonials />
-      <Banner />*/}
+      <Banner />
     </div>
   );
 };
