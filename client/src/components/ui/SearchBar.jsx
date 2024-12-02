@@ -1,4 +1,4 @@
-import { SearchIcon } from "lucide-react";
+import { Search, SearchIcon } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
 import { Input } from "./input";
 import { ScrollArea } from "./scroll-area";
@@ -26,13 +26,13 @@ const citiesInBahrain = [
   "Sitra",
   "Tubli",
   "Zinj",
-  " Capital_Governorate",
-  "Southern_Governorate",
-  "Muharraq_Governorate",
-  "Northern_Governorate",
+  // " Capital_Governorate",
+  // "Southern_Governorate",
+  // "Muharraq_Governorate",
+  // "Northern_Governorate",
 ];
 
-const SearchBar = ({ setFilters, className }) => {
+const SearchBar = ({ setFilters, className, applyFilters }) => {
   const [InputValue, setInputValue] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [isOpen, setIsopen] = useState(false);
@@ -92,21 +92,27 @@ const SearchBar = ({ setFilters, className }) => {
         className
       )}
     >
-      <div className="flex items-center justify-center gap-x-1 bg-white/90  focus-visible:ring-1">
+      <div className="flex items-center justify-center gap-x-1 bg-white/90  focus-visible:ring-1 relative">
         {" "}
         <Input
           type="search"
           placeholder="City or Governate"
-          className="w-full border-0 h-8 font-semibold focus-visible:ring-0"
+          className=" w-full border-0 h-8 font-semibold focus-visible:ring-0"
           onChange={handleSuggestions}
           value={InputValue}
         />
-        <SearchIcon className="size-5 text-Primary mr-1" />
+        <button
+          className="absolute hover:bg-indigo-700 right-0 top-1/2 transition-colors duration-300  -translate-y-1/2 p-1 rounded-md bg-Primary text-white"
+          aria-label="Search"
+          onClick={applyFilters}
+        >
+          <Search className="size-5" />
+        </button>
       </div>
-      <div className=" lg:w-56  absolute z-20 ">
+      <div className="w-[88%] lg:w-56  absolute z-20 ">
         {isOpen && suggestions.length > 0 && (
           <ul
-            className=" -ml-3 border bg-white border-gray-300 md:w-[95%] xl:w-[100%] rounded-b-sm mt-1 "
+            className=" -ml-3 border bg-white border-gray-300 md:w-[95%] xl:w-[100%] rounded-b-sm mt-[6px] md:mt-1 "
             ref={suggestionRef}
           >
             <ScrollArea className="max-h-[200px] pb-2">

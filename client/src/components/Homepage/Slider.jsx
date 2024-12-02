@@ -1,6 +1,6 @@
 const Slider = () => {
   return (
-    <section className="py-10 space-y-4 md:space-y-6">
+    <section className=" py-10 space-y-4 md:space-y-6 ">
       <div>
         <h3 className="text-center font-semibold max-sm:w-[70%] text-text mx-auto md:text-xl ">
           Trusted by some of the leading companies in the region

@@ -25,12 +25,13 @@ export default App;
 
 {
   /** THINGS TO ADD
-   * Add scroll to top when changing pages
    * Add loading something every time api is called
-   * Fix bg colour
    * User naviagtions and user dasboard 
-   * Make browse properties section horizontal scroll for mobile
    * Have to filter for givernate and cities
+   *
+   * 
+   * Make browse properties section horizontal scroll for mobile
+   * Fix bg colour
    * Remove rent sell frmom navbar (maybe change and add home, search, etc)
   /**
 
@@ -40,13 +41,13 @@ export default App;
    * EXTRAS
    * Chat app
    * Add a loan/ mortgage calculator for specific property etc.
-   * when clicking marker on map displays info about prop like image, address and price
    * Prop validation
-   * Add animation for smooth tranasisiton when images are carsousel
-   * add a bit of blue to the sides of the logo slider
-   *
-   *
+   * Add animation for smooth transition when images are carsousel
+   * add a bit of blur to the sides of the logo slider
+   *Add number animations for mobile hero
+   * Features section complete the text and maybe change it (CHeck SS and saved maybe change the image)
    *
    * Optimizes sizes maybe dont use fixed sizes
+   * Pass a variable to the carousel change and ,aybe pass it the index value so each card will change images at different times
    */
 }

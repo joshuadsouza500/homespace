@@ -29,17 +29,15 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { deleteUser, updateUserProfile } from "@/store/user/action";
 import { getUserProfile } from "@/store/auth/action";
-import { useNavigate } from "react-router-dom";
+
 import UploadWidget from "../ui/UploadWidget";
 
-export default function UserProfile() {
+export default function UserProfile({ auth, user }) {
   const [isEditing, setIsEditing] = useState(false);
 
-  const auth = useSelector((store) => store.auth);
-  const user = auth.user;
   const dispatch = useDispatch();
   const jwt = localStorage.getItem("jwt");
-  const navigate = useNavigate();
+
   useEffect(() => {
     if (jwt) {
       dispatch(getUserProfile(jwt));
@@ -54,8 +52,7 @@ export default function UserProfile() {
   const handleInputChange = (e) => {
     setEditedUser({ ...editedUser, [e.target.name]: e.target.value });
   };
-  console.log(user);
-  console.log("Dsf", editedUser);
+
   const handleUpdate = () => {
     // Here you would typically send the updated user data to your backend
     const { name, mobile, email, role, company, avatar } = editedUser;
@@ -81,14 +78,14 @@ export default function UserProfile() {
   };
   //console.log("jj", jwt);
   return (
-    <div className="container mx-auto px-4 lg:px-16 pt-4 pb-8">
+    <div className="container mx-auto px-4 lg:px-16 pt-4 pb-8 font-jakarta">
       <h1 className="text-3xl font-bold mb-8 text-text text-center">
         User Profile
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 border-2 rounded-md py-2 items-center  ">
         <div className="md:col-span-1   flex flex-col pb-1 max-sm:border-b items-center justify-center">
           <div className="flex flex-col  items-center ">
-            <Avatar className="ring rounded-full size-48 mb-2 md:mb-4">
+            <Avatar className="ring-1 ring-text rounded-full size-48 mb-2 md:mb-4">
               <AvatarImage src={editedUser?.avatar} alt={editedUser?.name} />
               <AvatarFallback>
                 {editedUser?.name.slice(0, 2).toUpperCase()}
@@ -108,7 +105,7 @@ export default function UserProfile() {
             ) : (
               <Button
                 onClick={() => setIsEditing(true)}
-                className="w-full mt-4"
+                className="bg-Bgpurple w-36 md:w-48 mb-2 hover:bg-indigo-800 mt-4"
               >
                 <Edit className="size-4 mr-2" />
                 Edit Profile
@@ -116,11 +113,13 @@ export default function UserProfile() {
             )}
           </div>
         </div>
-        <div className="md:col-span-2 space-y-4 border-l-2 pl-3 ">
-          <div className="space-y-1">
-            <Label htmlFor="name">Name</Label>
-            <div className="flex items-center">
-              <User className="w-4 h-4 mr-2 text-muted-foreground" />
+        <div className="md:col-span-2 space-y-1 border-l-2 pl-3 ">
+          <div>
+            <Label htmlFor="name" className="font-semibold">
+              Name
+            </Label>
+            <div className="flex items-center pb-1">
+              <User className="size-4 mr-2 text-text" />
               {isEditing ? (
                 <Input
                   id="name"
@@ -132,10 +131,12 @@ export default function UserProfile() {
                 <span>{user?.name}</span>
               )}
             </div>
-            <div className="space-y-1">
-              <Label htmlFor="mobile">Mobile</Label>
+            <div>
+              <Label htmlFor="mobile" className="font-semibold">
+                Mobile
+              </Label>
               <div className="flex items-center">
-                <Phone className="w-4 h-4 mr-2 text-muted-foreground" />
+                <Phone className="size-4 mr-2 text-text" />
                 {isEditing ? (
                   <Input
                     id="mobile"
@@ -149,10 +150,12 @@ export default function UserProfile() {
               </div>
             </div>
           </div>
-          <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
+          <div className="pb-1">
+            <Label htmlFor="email" className="font-semibold">
+              Email
+            </Label>
             <div className="flex items-center">
-              <Mail className="w-4 h-4 mr-2 text-muted-foreground" />
+              <Mail className="size-4 mr-2 text-text" />
               {isEditing ? (
                 <Input
                   id="email"
@@ -167,10 +170,12 @@ export default function UserProfile() {
             </div>
           </div>
           <span>
-            <div className="space-y-1">
-              <Label htmlFor="role">Role</Label>
+            <div>
+              <Label htmlFor="role" className="font-semibold">
+                Role
+              </Label>
               <div className="flex items-center">
-                <Users className="w-4 h-4 mr-2 text-muted-foreground" />
+                <Users className="size-4 mr-2 text-text" />
                 {isEditing ? (
                   <select
                     id="role"
@@ -196,9 +201,11 @@ export default function UserProfile() {
               <div className="flex items-start">
                 {isEditing && editedUser?.role === "AGENT" ? (
                   <div className="flex flex-col space-y-2">
-                    <Label htmlFor="company">Company</Label>
+                    <Label htmlFor="company" className="font-semibold">
+                      Company
+                    </Label>
                     <span className="flex">
-                      <MapPin className="w-4 h-4 mr-2 mt-1 text-muted-foreground" />
+                      <MapPin className="size-4 mr-2 mt-1 text-text" />
                       <Textarea
                         id="company"
                         name="company"
@@ -210,12 +217,16 @@ export default function UserProfile() {
                   </div>
                 ) : (
                   user?.role === "AGENT" && (
-                    <div className="flex flex-col space-y-2">
-                      <Label htmlFor="company">Company</Label>
-                      <span className="flex">
-                        <MapPin className="w-4 h-4 mr-2 mt-1 text-muted-foreground" />
+                    <div className="flex flex-col ">
+                      <Label htmlFor="company" className="font-semibold">
+                        Company
+                      </Label>
+                      <span className="flex items-center  pb-2">
+                        <MapPin className="size-4 mr-2 mt-1 text-text" />
 
-                        <span>{user?.company}</span>
+                        <h4 className="font-semibold text-text text-lg">
+                          {user?.company}
+                        </h4>
                       </span>
                     </div>
                   )
@@ -225,12 +236,19 @@ export default function UserProfile() {
           </span>
 
           {isEditing && (
-            <div className="flex space-x-2">
-              <Button onClick={handleUpdate}>
-                <Save className="w-4 h-4 mr-2" />
-                Save Changes
+            <div className="flex space-x-2 pt-3 pb-1 ">
+              <Button
+                onClick={handleUpdate}
+                className="bg-text hover:bg-indigo-800 md:w-36"
+              >
+                <Save className="size-4 mr-2" />
+                Save Profile
               </Button>
-              <Button variant="outline" onClick={() => setIsEditing(false)}>
+              <Button
+                variant="outline"
+                className="md:w-36 border-text"
+                onClick={() => setIsEditing(false)}
+              >
                 Cancel
               </Button>
             </div>
@@ -241,8 +259,8 @@ export default function UserProfile() {
               <AlertDialog>
                 <AlertDialogTrigger asChild>
                   <Button variant="destructive">
-                    <Trash2 className="w-4 h-4 mr-2" />
-                    Delete Account
+                    <Trash2 className="size-4 mr-2" />
+                    Delete User
                   </Button>
                 </AlertDialogTrigger>
                 <AlertDialogContent>

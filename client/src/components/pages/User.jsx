@@ -17,13 +17,15 @@ import {
 } from "lucide-react";
 import PropertyUpdate from "../ui/vo/propertyUpdate";
 import AddProperty2 from "../user/AddProperty2";
+import { useSelector } from "react-redux";
+import UserDropdown from "../ui/UserDropdown";
 
 const menu = [
   { id: 1, name: "Profile", path: "/user", icon: <UserCircleIcon /> },
-  { id: 2, name: "Favourites", path: "saved", icon: <HeartIcon /> },
+  { id: 2, name: "Saved Properties", path: "saved", icon: <HeartIcon /> },
   {
     id: 3,
-    name: "My Listings",
+    name: "My Properties",
     path: "property",
     icon: <HomeIcon />,
   },
@@ -188,13 +190,14 @@ const User = () => {
       </nav>
     </div>
   );
-
+  const auth = useSelector((store) => store.auth);
+  const user = auth.user;
   return (
     <div className="flex font-poppins bg-background h-dvh">
       {/*Sidebar */}
       {Sidebar}
       <div className="flex-1 flex flex-col relative z-0 w-full overflow-y-scroll overflow-x-clip">
-        <header className="bg-white shadow py-2 pl-2 pr-4 flex sticky top-0 justify-between items-center z-10 ">
+        <header className="bg-white shadow py-2 pl-2 pr-4 flex sticky top-0 justify-between md:justify-end md:pr-10 items-center z-10 ">
           <button
             onClick={toggleSidebar}
             className="lg:hidden  hover:bg-gray-100  text-slate-800  rounded-full p-2 "
@@ -202,15 +205,13 @@ const User = () => {
             <MenuIcon className="w-6 h-6 " />
           </button>
 
-          <button className="size-10 mr-2 md:mr-4 ring ring-transparent hover:ring-inherit rounded-full bg-Primary ml-auto text-white text-xl font-medium">
-            A
-          </button>
+          <UserDropdown user={auth.user} />
         </header>
 
         {/*Routes */}
         <div>
           <Routes>
-            <Route path="/" element={<UserProfile />} />
+            <Route path="/" element={<UserProfile auth={auth} user={user} />} />
             <Route path="/saved" element={<UserFavourites />} />
             <Route path="/property" element={<UserListings />} />
             <Route path="/property/:propertyId" element={<PropertyUpdate />} />

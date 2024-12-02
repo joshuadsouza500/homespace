@@ -98,7 +98,7 @@ const MobileHero = ({
               handleFilterChange({ id: "type", value });
             }}
           >
-            <TabsList className="bg-light_gray h-10 w-40   shadow-sm ring-0 rounded-b-none ring-[#E0DEF7]">
+            <TabsList className="bg-white/90 h-10 w-40   shadow-sm ring-0 rounded-b-none ring-[#E0DEF7]">
               <TabsTrigger
                 value="Rent"
                 className="w-20 flex items-center gap-1 text-base data-[state=active]:text-Primary data-[state=active]:border border-bborder font-bold  data-[state=active]:shadow-sm shadow-Primary"
@@ -121,17 +121,11 @@ const MobileHero = ({
               </TabsTrigger>
             </TabsList>
           </Tabs>
-          <Input
-            type="text"
-            placeholder="Search properties in your city"
-            className="h-12 sm:h-14 pl-4 pr-12 text-lg bg-white rounded-lg shadow-sm"
+          <SearchBar
+            setFilters={setFilters}
+            className={" max-w-lg h-11 rounded-tl-none border-t-none"}
+            applyFilters={applyFilters}
           />
-          <button
-            className="absolute hover:bg-indigo-700 right-7 sm:right-24 top-1/2 mt-[2px]  -translate-y-2/2 p-2 rounded-lg bg-Primary text-white"
-            aria-label="Search"
-          >
-            <Search className="size-5" />
-          </button>
         </div>
 
         {/* Stats */}
@@ -202,10 +196,10 @@ const LargeHero = ({
               handleFilterChange({ id: "type", value });
             }}
           >
-            <TabsList className="bg-light_gray h-12 w-52 border-b  shadow-sm ring-0 rounded-b-none ring-[#E0DEF7]">
+            <TabsList className="bg-white/60 h-12 w-52 border-b gap-x-[2px]  shadow-sm ring-0 rounded-b-none ring-[#E0DEF7]">
               <TabsTrigger
                 value="Rent"
-                className="w-20 flex items-center gap-1 text-base data-[state=active]:text-Primary data-[state=active]:border border-bborder font-bold  data-[state=active]:shadow-sm shadow-Primary"
+                className="w-24 flex items-center gap-1 text-base data-[state=active]:text-Primary data-[state=active]:border border-bborder font-bold  data-[state=active]:shadow-sm shadow-Primary"
               >
                 <KeyRoundIcon
                   strokeWidth={2.5}
@@ -215,7 +209,7 @@ const LargeHero = ({
               </TabsTrigger>
               <TabsTrigger
                 value="Sell"
-                className="w-20 flex items-center gap-1 text-base data-[state=active]:text-Primary data-[state=active]:border border-bborder font-bold"
+                className="w-24 flex items-center gap-1 text-base data-[state=active]:text-Primary data-[state=active]:border border-bborder font-bold"
               >
                 <BanknoteIcon
                   strokeWidth={2.5}
@@ -228,7 +222,11 @@ const LargeHero = ({
           <div className="w-[90%] lg:w-8/12 h-24 ml-8 lg:ml-12 rounded-tl-none rounded-xl bg-white/60 backdrop-blur-sm flex justify-between pl-4 pr-6 items-center shadow-sm ">
             <div className=" w-[90%] border-r mr-1">
               <Label htmlFor="Location">Location</Label>
-              <SearchBar setFilters={setFilters} className={"md:w-[95%]"} />
+              <SearchBar
+                setFilters={setFilters}
+                className={"md:w-[95%]"}
+                applyFilters={applyFilters}
+              />
             </div>
 
             <div className="w-full pl-3">

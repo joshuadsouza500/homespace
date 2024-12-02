@@ -32,6 +32,7 @@ import {
 
 export const updateUserProfile = (userDetails) => async (dispatch) => {
   dispatch({ type: UPDATE_USER_PROFILE_REQUEST });
+
   try {
     const response = await api.put(`/api/user/profile`, userDetails);
 

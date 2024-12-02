@@ -19,10 +19,13 @@ const UserDropdown = ({ handleLogout, user }) => {
             src={user?.avatar}
           />
         ) : (
-          <h1>{user.name[0].toUpperCase()}</h1>
+          <h1>{user?.name[0].toUpperCase()}</h1>
         )}
       </DropdownMenuTrigger>
-      <DropdownMenuContent side="bottom" className="w-40 pb-4">
+      <DropdownMenuContent
+        side="bottom"
+        className="w-40 mr-1 text-text font-medium font-jakarta"
+      >
         <DropdownMenuItem
           className="text-base "
           onClick={() => navigate("/user")}
@@ -31,12 +34,15 @@ const UserDropdown = ({ handleLogout, user }) => {
         </DropdownMenuItem>
         <DropdownMenuItem
           className="text-base "
-          onClick={() => navigate("/user")}
+          onClick={() => navigate("/user/property")}
         >
           My Properties
         </DropdownMenuItem>
 
-        <DropdownMenuItem className="text-base ">
+        <DropdownMenuItem
+          className="text-base "
+          onClick={() => navigate("/user/saved")}
+        >
           Saved Properties
         </DropdownMenuItem>
         <DropdownMenuSeparator />

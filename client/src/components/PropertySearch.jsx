@@ -9,14 +9,7 @@ import {
   SelectLabel,
   SelectGroup,
 } from "@/components/ui/select";
-import {
-  ChevronDown,
-  ChevronRight,
-  FilterIcon,
-  Search,
-  SearchIcon,
-  Settings,
-} from "lucide-react";
+import { ChevronDown, ChevronRight } from "lucide-react";
 import {
   Popover,
   PopoverContent,
