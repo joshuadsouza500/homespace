@@ -111,7 +111,7 @@ export const getAllProperties = (reqQuery) => async (dispatch) => {
   } = reqQuery;
   const params = URLSearchParams **/
   }
-  console.log("reqQuery", reqQuery);
+  //console.log("Action reqQuery:", reqQuery);
   try {
     const response = await api.get(`/api/property?${reqQuery}`);
     const properties = response.data;

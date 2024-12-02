@@ -42,13 +42,13 @@ const Hero = () => {
       if (value) params.set(key, value);
     });
     const updatedUrlParams = params.toString();
+
     setSearchParams(params);
 
     navigate(`/property?${params}`);
+
     dispatch(getAllProperties(updatedUrlParams));
   };
-
-  console.log(filters);
 
   return (
     <>

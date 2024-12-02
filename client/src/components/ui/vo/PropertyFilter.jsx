@@ -38,11 +38,8 @@ export default function PropertyFilter({
 
   return (
     <Popover open={isOpen} onOpenChange={setIsOpen}>
-      <PopoverTrigger asChild>
-        <Button
-          variant="outline"
-          className="max-md:h-9 w-32 md:w-[200px] justify-between"
-        >
+      <PopoverTrigger asChild className="hidden md:flex">
+        <Button variant="outline" className=" w-32 md:w-48 justify-between ">
           {getButtonText()}
           {isOpen ? (
             <ChevronUp className="ml-2 h-4 w-4" />
@@ -51,7 +48,7 @@ export default function PropertyFilter({
           )}
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[300px] p-0">
+      <PopoverContent className="w-[300px] p-0 hidden md:flex">
         <div className="p-4">
           <h3 className="font-semibold mb-2">Furnishing</h3>
           <div className="flex flex-wrap gap-2 mb-4">

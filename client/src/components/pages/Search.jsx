@@ -18,9 +18,12 @@ const Search = () => {
 
   useEffect(() => {
     const updatedUrlParams = params.toString();
-    dispatch(getAllProperties(updatedUrlParams));
-    console.log("updatedUrlParams", updatedUrlParams);
-  }, [location.search, dispatch]);
+
+    if (updatedUrlParams) {
+      //  dispatch(getAllProperties(updatedUrlParams));
+      console.log("Updated URL Params:", updatedUrlParams);
+    }
+  }, [dispatch]);
 
   return (
     <div className="font-jakarta px-2  md:px-6 max-w-6xl 2xl:max-w-7xl mx-auto">

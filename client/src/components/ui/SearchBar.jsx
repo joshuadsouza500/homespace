@@ -26,10 +26,10 @@ const citiesInBahrain = [
   "Sitra",
   "Tubli",
   "Zinj",
-  "Capital Governorate",
-  "Southern Governorate",
-  "Muharraq Governorate",
-  "Northern Governorate",
+  " Capital_Governorate",
+  "Southern_Governorate",
+  "Muharraq_Governorate",
+  "Northern_Governorate",
 ];
 
 const SearchBar = ({ setFilters, className }) => {
@@ -42,7 +42,7 @@ const SearchBar = ({ setFilters, className }) => {
   const handleSuggestions = (e) => {
     const cityValue = e.target.value;
     setInputValue(cityValue);
-    console.log(cityValue);
+
     if (cityValue) {
       setIsopen(true);
       const newSuggestions = citiesInBahrain.filter((city) =>
@@ -106,14 +106,14 @@ const SearchBar = ({ setFilters, className }) => {
       <div className=" lg:w-56  absolute z-20 ">
         {isOpen && suggestions.length > 0 && (
           <ul
-            className=" -ml-3 border bg-white border-gray-300 lg:w-[90%] rounded-t-sm mt-1 "
+            className=" -ml-3 border bg-white border-gray-300 md:w-[95%] xl:w-[100%] rounded-b-sm mt-1 "
             ref={suggestionRef}
           >
-            <ScrollArea className="h-[200px]">
+            <ScrollArea className="max-h-[200px] pb-2">
               {suggestions.map((suggestion) => (
                 <button
                   key={suggestion}
-                  className="w-full px-4 py-2 text-left hover:bg-gray-100 focus:bg-gray-100 focus:outline-none"
+                  className="max-lg:text-sm w-full px-4 font-medium py-2 text-left hover:bg-gray-100 focus:bg-gray-100 focus:outline-none"
                   onClick={() => handleSuggestionClick(suggestion)}
                 >
                   {suggestion}

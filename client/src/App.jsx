@@ -25,22 +25,28 @@ export default App;
 
 {
   /** THINGS TO ADD
-   * Fix rent and buy buttons on navbar ✔
-   * Make browse properties section horizontal scroll for mobile
    * Add scroll to top when changing pages
    * Add loading something every time api is called
-   * fix search bar in hero , property search
    * Fix bg colour
-   * Property search search bar and options fix sizes
    * User naviagtions and user dasboard 
+   * Make browse properties section horizontal scroll for mobile
+   * Have to filter for givernate and cities
+   * Remove rent sell frmom navbar (maybe change and add home, search, etc)
   /**
 
 
   */
   /**
-   * Extras
+   * EXTRAS
    * Chat app
    * Add a loan/ mortgage calculator for specific property etc.
    * when clicking marker on map displays info about prop like image, address and price
+   * Prop validation
+   * Add animation for smooth tranasisiton when images are carsousel
+   * add a bit of blue to the sides of the logo slider
+   *
+   *
+   *
+   * Optimizes sizes maybe dont use fixed sizes
    */
 }

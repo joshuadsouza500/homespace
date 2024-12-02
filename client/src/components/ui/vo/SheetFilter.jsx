@@ -46,12 +46,9 @@ const SheetFilter = ({
   return (
     <Sheet open={isFilterOpen} onOpenChange={setIsFilterOpen}>
       <SheetTrigger asChild>
-        <Button
-          variant="outline"
-          className="whitespace-nowrap  md:w-28 lg:w-36"
-        >
-          <SlidersHorizontal className="size-4" />
-          <span className="max-md:hidden ml-2">Filters</span>
+        <Button variant="outline" className="whitespace-nowrap  ">
+          <SlidersHorizontal className="size-4 text-text" />
+          {/** <span className="max-md:hidden ml-2">Filters</span> */}
         </Button>
       </SheetTrigger>
 

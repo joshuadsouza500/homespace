@@ -238,7 +238,7 @@ const getAllProperties = async (reqQuery, userId) => {
   const furnishing = frn;
   const governate = gov;
 
-  console.log(reqQuery);
+  console.log("reqQuery.city", city);
   try {
     const filters = [
       //minPrice && is used to make sure that there is a value

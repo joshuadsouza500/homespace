@@ -30,6 +30,7 @@ import { getAllProperties } from "@/store/property/action";
 import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import SheetFilter from "./ui/vo/SheetFilter";
+import SearchBar from "./ui/SearchBar";
 
 export default function PropertySearch() {
   const dispatch = useDispatch();
@@ -46,6 +47,7 @@ export default function PropertySearch() {
   const [filters, setFilters] = useState({
     type: searchParams.get("type") || "",
     pty: searchParams.get("pty") || "",
+    city: searchParams.get("city") || "",
     mnP: searchParams.get("mnP") || "",
     mxP: searchParams.get("mxP") || "",
     beds: searchParams.get("beds") || "",
@@ -134,44 +136,19 @@ export default function PropertySearch() {
   };
   useEffect(() => {
     applyFilters();
-  }, [filters.srt]);
+  }, [filters.srt, filters.type]);
 
   return (
     <div className="w-full   border-t ">
-      <div className="flex flex-col max-lg:gap-y-1 items-center py-2  lg:py-4  mx-auto border-b  lg:px-6  grid-cols-3 ">
-        <section className="w-full lg:w-[95%] lg:pl-4  flex  justify-start  mx-auto   py-1 md:py-2 gap-x-1   ">
-          <div className="relative w-[65%] lg:w-[75%] ">
-            <SearchIcon className="absolute left-2 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-            <Input
-              className="pl-8 "
-              placeholder="City, community or building"
+      <div className="hidden xl:flex flex-col  items-center py-3  mx-auto border-b  px-2   ">
+        {/**Xl screens+ */}
+        <section className="w-full  flex  justify-start  mx-auto  py-2 gap-x-2  ">
+          <div className="relative w-[30%] 2xl:w-[35%] ">
+            <SearchBar
+              setFilters={setFilters}
+              className={"md:w-full max-w-full"}
             />
           </div>
-          <Button
-            className="bg-Bgpurple max-md:w-[20%] md:w-[15%]  text-white  lg:hidden"
-            onClick={applyFilters}
-          >
-            Find
-          </Button>
-          <div className="filter-component">
-            {/* SheetFilter Component */}
-            <SheetFilter
-              isFilterOpen={isFilterOpen}
-              setIsFilterOpen={setIsFilterOpen}
-              filters={filters}
-              handleFilterChange={handleFilterChange}
-              handleInputChange={handleInputChange}
-              onSelectionChange={onSelectionChange}
-              applyFilters={applyFilters}
-              clearFilters={clearFilters}
-            />
-
-            {/* Trigger Button (Optional) */}
-          </div>
-        </section>
-
-        <div className="  flex gap-x-1 w-full  lg:col-span-2 py-2  max-sm:overflow-x-scroll">
-          {/*Rent & Sell*/}
           <Select
             id="type"
             name="type"
@@ -180,10 +157,10 @@ export default function PropertySearch() {
               handleFilterChange({ id: "type", value });
             }}
           >
-            <SelectTrigger className="w-24 max-md:h-9 md:w-[100px]">
+            <SelectTrigger className="w-24 max-md:h-9 xl:w-[90px]">
               <SelectValue placeholder="Rent" />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="xl:min-w-[7rem]">
               <SelectItem value="Rent">Rent</SelectItem>
               <SelectItem value="Sell">Sell</SelectItem>
             </SelectContent>
@@ -195,15 +172,14 @@ export default function PropertySearch() {
               handleFilterChange({ id: "pty", value });
             }}
             value={filters.pty}
-            className="bg-red-200"
           >
-            <SelectTrigger className="md:w-[200px] w-32  max-md:h-9  ">
+            <SelectTrigger className="md:w-48 xl:w-40 w-32  max-md:h-9  ">
               <SelectValue placeholder="Property type" />
             </SelectTrigger>
 
-            <SelectContent>
+            <SelectContent className="pb-2 ">
               <SelectGroup>
-                <SelectLabel className="pl-4">Property Type</SelectLabel>
+                <SelectLabel className="pl-6">Property Type</SelectLabel>
                 <SelectItem value="Studio">Studio</SelectItem>
                 <SelectItem value="Apartment">Apartment</SelectItem>
                 <SelectItem value="Villa">Villa</SelectItem>
@@ -219,10 +195,10 @@ export default function PropertySearch() {
             defaultBaths={filters.baths}
           />
           {/*Price */}
-          <Popover className=" md:w-40">
+          <Popover className=" md:w-40 xl:w-32">
             <PopoverTrigger asChild>
               <Button
-                className="max-md:h-9 w-24 md:w-36 justify-between"
+                className="max-md:h-9 w-24 md:w-32 justify-between"
                 variant="outline"
               >
                 Price
@@ -266,21 +242,174 @@ export default function PropertySearch() {
               </div>
             </PopoverContent>
           </Popover>
-          {/*More FIlters*/}
+
+          <Button
+            className="bg-Bgpurple max-md:w-28 md:w-32   text-white  transition-colors duration-500 ease-in-out hover:bg-indigo-800"
+            onClick={applyFilters}
+          >
+            Find
+          </Button>
+          <SheetFilter
+            isFilterOpen={isFilterOpen}
+            setIsFilterOpen={setIsFilterOpen}
+            filters={filters}
+            handleFilterChange={handleFilterChange}
+            handleInputChange={handleInputChange}
+            onSelectionChange={onSelectionChange}
+            applyFilters={applyFilters}
+            clearFilters={clearFilters}
+          />
+          <div className="filter-component md:hidden ">
+            {/* SheetFilter Component */}
+            <SheetFilter
+              isFilterOpen={isFilterOpen}
+              setIsFilterOpen={setIsFilterOpen}
+              filters={filters}
+              handleFilterChange={handleFilterChange}
+              handleInputChange={handleInputChange}
+              onSelectionChange={onSelectionChange}
+              applyFilters={applyFilters}
+              clearFilters={clearFilters}
+            />
+
+            {/* Trigger Button (Optional) */}
+          </div>
+        </section>
+      </div>
+      {/**xs-lg screens */}
+      <div className=" xl:hidden flex flex-col max-lg:gap-y-1 items-center py-2  lg:py-4  mx-auto border-b  lg:px-2  grid-cols-3 ">
+        <section className="w-full  flex  justify-start  mx-auto   pt-1 md:py-2 gap-x-2  ">
+          <div className="relative w-[65%] md:w-[75%]  ">
+            <SearchBar
+              setFilters={setFilters}
+              className={"md:w-full max-w-full"}
+            />
+          </div>
+          <Button
+            className="bg-Bgpurple max-md:w-[20%] md:w-32  text-white  "
+            onClick={applyFilters}
+          >
+            Find
+          </Button>
+          <div className="filter-component">
+            <SheetFilter
+              isFilterOpen={isFilterOpen}
+              setIsFilterOpen={setIsFilterOpen}
+              filters={filters}
+              handleFilterChange={handleFilterChange}
+              handleInputChange={handleInputChange}
+              onSelectionChange={onSelectionChange}
+              applyFilters={applyFilters}
+              clearFilters={clearFilters}
+            />
+          </div>
+        </section>
+
+        <div className=" flex gap-x-2 w-full  lg:col-span-2 py-2  max-sm:overflow-x-scroll">
+          <Select
+            id="type"
+            name="type"
+            value={filters.type}
+            onValueChange={(value) => {
+              handleFilterChange({ id: "type", value });
+            }}
+          >
+            <SelectTrigger className="w-28 max-md:h-9 md:w-[100px]">
+              <SelectValue placeholder="Rent" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="Rent">Rent</SelectItem>
+              <SelectItem value="Sell">Sell</SelectItem>
+            </SelectContent>
+          </Select>
+
+          <Select
+            id="propertyType"
+            onValueChange={(value) => {
+              handleFilterChange({ id: "pty", value });
+            }}
+            value={filters.pty}
+          >
+            <SelectTrigger className="md:w-[200px] w-36  max-md:h-9  ">
+              <SelectValue placeholder="Property type" />
+            </SelectTrigger>
+
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel className="pl-4">Property Type</SelectLabel>
+                <SelectItem value="Studio">Studio</SelectItem>
+                <SelectItem value="Apartment">Apartment</SelectItem>
+                <SelectItem value="Villa">Villa</SelectItem>
+                <SelectItem value="Condo">Condo</SelectItem>
+                <SelectItem value="Penthouse">Penthouse</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+
+          <Bed_Bath
+            onSelectionChange={onSelectionChange}
+            defaultBeds={filters.beds}
+            defaultBaths={filters.baths}
+          />
+
+          <Popover className=" md:w-40">
+            <PopoverTrigger asChild>
+              <Button
+                className="max-md:h-9 w-28 md:w-36 justify-between"
+                variant="outline"
+              >
+                Price
+                <ChevronDown className="ml-2 h-4 w-4" />
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-80">
+              <div className="grid gap-4">
+                <p className="text-sm text-muted-foreground">
+                  Set min price and max price
+                </p>
+
+                <div className="grid gap-2">
+                  <div className="grid grid-cols-3 items-center gap-4">
+                    <Label htmlFor="mnP">Min. Price</Label>
+                    <Input
+                      id="mnP"
+                      type="number"
+                      name="mnP"
+                      value={`${filters.mnP || "800"}`}
+                      onChange={(e) => {
+                        handleInputChange(e);
+                      }}
+                      className="col-span-2 h-8"
+                    />
+                  </div>
+                  <div className="grid grid-cols-3 items-center gap-4">
+                    <Label htmlFor="mxP">Max. Price</Label>
+                    <Input
+                      id="mxP"
+                      type="number"
+                      name="mxP"
+                      value={`${searchParams.mxP || "200000"}`}
+                      className="col-span-2 h-8"
+                      onChange={(e) => {
+                        handleInputChange(e);
+                      }}
+                    />
+                  </div>
+                </div>
+              </div>
+            </PopoverContent>
+          </Popover>
+
           <PropertyFilter
             onSelectionChange={onSelectionChange}
             defaultFrn={filters.frn}
             defaultUt={filters.ut}
           />
-          <Button
-            className="bg-Bgpurple  w-32 hover:bg-text text-white hidden lg:block ml-1 "
-            onClick={applyFilters}
-          >
-            Find
-          </Button>
         </div>
       </div>
-      <div className="flex justify-between items-end  max-w-6xl mx-auto max-md:mx-2 pb-4 md:pb-6 sm:pt-1">
+
+      {/****Property for sale  */}
+      <div className="flex justify-between items-end  max-w-6xl mx-auto max-md:mx-2 md:px-2 pb-4 md:pb-5  pt-2">
         <div>
           <p className="flex items-center text-xs font-light">
             Home
