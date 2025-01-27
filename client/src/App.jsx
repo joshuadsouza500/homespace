@@ -33,6 +33,7 @@ export default App;
    * Make browse properties section horizontal scroll for mobile
    * Fix bg colour
    * Remove rent sell frmom navbar (maybe change and add home, search, etc)
+   * Add FAQ section under each Property details page faq about company or general questions.
   /**
 
 
