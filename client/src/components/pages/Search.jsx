@@ -9,7 +9,7 @@ const Search = () => {
   const Property = useSelector((store) => store.property);
 
   return (
-    <div className="font-jakarta px-2  md:px-6 max-w-6xl 2xl:max-w-7xl mx-auto">
+    <div className="font-jakarta px-2  md:px-6 max-w-6xl xl:max-w-7xl mx-auto">
       <PropertySearch />
       <section className="bg-gradient-to-b from-white to-bg-light_gray h-full mx-auto  md:space-y-7 space-y-2 pb-10 lg:pb-16">
         {Property?.properties?.length > 0 && (

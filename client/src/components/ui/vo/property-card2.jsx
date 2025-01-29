@@ -9,7 +9,6 @@ import {
   Phone,
   Mail,
   Edit,
-  Trash,
   Trash2Icon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -98,7 +97,7 @@ export default function PropertyCard2({ update, className, property }) {
             ))}
           </div>
         </div>
-        <CardContent className="p-4 sm:w-3/5 flex flex-col justify-between">
+        <CardContent className="px-4 py-2 sm:w-3/5 flex flex-col justify-between ">
           <div
             onClick={() => {
               propertyDetails(property?.id);
@@ -121,8 +120,8 @@ export default function PropertyCard2({ update, className, property }) {
                 <MoreVertical className="h-4 w-4" />
               </Button>
             </div>
-            <div className="flex items-center text-muted-foreground text-sm mb-4">
-              <MapPin className="h-4 w-4 mr-1 text-Primary flex-shrink-0" />
+            <div className="flex items-center text-muted-foreground text-sm mb-4 xl:pt-2">
+              <MapPin className="h-4 w-4 mr-1.5 text-Primary flex-shrink-0" />
               <span>
                 {property?.city}, {property?.governate.replace("_", " ")}
               </span>{" "}
@@ -130,22 +129,22 @@ export default function PropertyCard2({ update, className, property }) {
             </div>
             <div className="flex justify-start gap-2 text-sm text-muted-foreground mb-4 pl-1">
               <div className="flex items-center border-r-2 pr-2">
-                <Bed className="h-4 w-4 mr-1 text-Primary" />
+                <Bed className="h-4 w-4 mr-1.5 text-Primary" />
                 <span>{property?.bedrooms}</span>{" "}
                 {/* Use the number of bedrooms */}
               </div>
               <div className="flex items-center border-r-2 pr-2">
-                <Bath className="h-4 w-4 mr-1 text-Primary" />
+                <Bath className="h-4 w-4 mr-1.5 text-Primary" />
                 <span>{property?.bathrooms}</span>{" "}
                 {/* Use the number of bathrooms */}
               </div>
               <div className="flex items-center pr-2">
-                <Maximize className="h-4 w-4 mr-1 text-Primary" />
+                <Maximize className="h-4 w-4 mr-1.5 text-Primary" />
                 <span>{property?.area} sqm</span> {/* Use the area */}
               </div>
             </div>
           </div>
-          <div className="flex justify-between items-center mt-auto pt-4 border-t">
+          <div className="flex justify-between items-center mt-auto pt-2 border-t ">
             <span className="text-xs font-light text-muted-foreground">
               Listed {new Date(property?.createdAt).toLocaleDateString()}{" "}
               {/* Display listing date */}
@@ -197,7 +196,7 @@ export default function PropertyCard2({ update, className, property }) {
                 </AlertDialog>
               </div>
             ) : (
-              <div className="flex space-x-2 items-center">
+              <div className="flex space-x-2 items-center ">
                 <Button variant="outline" size="sm" className="text-primary">
                   <Phone className="h-4 w-4 mr-2" />
                   Call

@@ -1,6 +1,5 @@
 import PropertyDetails2 from "../ui/vo/property-details2";
-import PropertyDetails1 from "../ui/vo/property-details1";
-import Navbar from "../ui/vo/Navbar";
+
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import {

@@ -115,7 +115,7 @@ export default function PropertyDetails2({ property, handleSave }) {
         {/* Left column - Property details */}
         <div className="flex-1 pl-[2px] lg:pl-1">
           <div className="mb-4 md:mb-8">
-            <div className="flex   md:w-[60%] items-center justify-start pb-2 md:pb-4 gap-x-2 text-text font-medium">
+            <div className="flex   md:w-[60%] items-center justify-start pb-2 md:pb-4 gap-x-4 text-text font-medium   ">
               <div className="  flex items-center pl-1  border-r pr-3">
                 <Bed className="size-5 mr-2 text-Primary" />
                 <span className="   ">{property?.bedrooms} Bed</span>

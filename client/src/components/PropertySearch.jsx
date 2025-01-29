@@ -402,7 +402,7 @@ export default function PropertySearch() {
       </div>
 
       {/****Property for sale  */}
-      <div className="flex justify-between items-end  max-w-6xl mx-auto max-md:mx-2 md:px-2 pb-4 md:pb-5  pt-2">
+      <div className="flex  justify-between items-end  max-w-6xl xl:max-w-7xl mx-auto max-md:mx-2 md:px-2 pb-4 md:pb-5 2xl:pb-8  pt-2">
         <div>
           <p className="flex items-center text-xs font-light">
             Home
