@@ -109,13 +109,14 @@ const User = () => {
 
   const Sidebar = (
     <div
-      className={`bg-Bgpurple text-white h-dvh z-10 ${
-        isOpen
-          ? "translate-x-0 bg-Blue absolute top-0 left-0"
-          : "-translate-x-full max-lg:hidden"
-      } 
-      ${expanded ? "w-56 md:w-60" : "w-20 md:w-20"}    
-      lg:translate-x-0 transition-transform duration-300 ease-in-out`}
+      className={`bg-Bgpurple text-white h-dvh z-10 fixed top-0 left-0 transition-all duration-300 ease-in-out
+        ${
+          isOpen
+            ? "translate-x-0 bg-Blue"
+            : "-translate-x-full lg:translate-x-0"
+        } 
+        ${expanded ? "w-56 md:w-60" : "w-20 md:w-20"}
+      `}
     >
       <div className="px-3 py-4 flex justify-between items-center">
         <h1

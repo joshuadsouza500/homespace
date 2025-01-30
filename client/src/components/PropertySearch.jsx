@@ -407,7 +407,7 @@ export default function PropertySearch() {
           <p className="flex items-center text-xs font-light">
             Home
             <ChevronRight className="size-4" />
-            properties for sale
+            Properties for sale
           </p>
           <h1 className="text-lg md:text-2xl font-bold pt-2 md:pt-4">
             Properties for sale in Bahrain
