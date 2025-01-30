@@ -26,7 +26,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { deleteUser, updateUserProfile } from "@/store/user/action";
 import { getUserProfile } from "@/store/auth/action";
 
@@ -82,7 +82,7 @@ export default function UserProfile({ auth, user }) {
       <h1 className="text-3xl font-bold mb-8 text-text text-center">
         User Profile
       </h1>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 border-2 rounded-md py-2 items-center  ">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 border-2 rounded-md py-2 items-center  mx-auto bg-purple-50">
         <div className="md:col-span-1   flex flex-col pb-1 max-sm:border-b items-center justify-center">
           <div className="flex flex-col  items-center ">
             <Avatar className="ring-1 ring-text rounded-full size-48 mb-2 md:mb-4">
