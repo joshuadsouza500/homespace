@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { HomeIcon, PlusIcon } from "lucide-react";
+import { PlusIcon } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import UserDropdown from "../UserDropdown";
 import { useDispatch, useSelector } from "react-redux";

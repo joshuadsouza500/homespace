@@ -3,7 +3,7 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import UserProfile from "../user/UserProfile";
 import UserFavourites from "../user/UserFavourites";
 import UserListings from "../user/UserListings";
-import AddProperty from "../user/AddProperty";
+
 import {
   ArrowLeftCircle,
   ArrowLeftFromLineIcon,

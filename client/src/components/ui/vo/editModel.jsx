@@ -12,16 +12,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
-import {
-  Edit,
-  Trash2Icon,
-  MapPin,
-  Bed,
-  Bath,
-  Maximize,
-  Wifi,
-  Car,
-} from "lucide-react";
+import { Edit, Trash2Icon, MapPin, Bed, Bath, Maximize } from "lucide-react";
 import {
   AlertDialog,
   AlertDialogAction,
