@@ -20,7 +20,7 @@ router.get("/profile/chat/:id?", verifyToken, userController.getOrCreateChat);
 router.post("/profile/chat", verifyToken, userController.getOrCreateChat);
 router.delete("/profile/chat/:Id", verifyToken, userController.deleteChat);
 
-router.get(
+router.post(
   "/profile/chat/:id?/message",
   verifyToken,
   userController.addMessage

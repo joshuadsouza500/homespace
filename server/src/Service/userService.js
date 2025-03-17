@@ -271,6 +271,7 @@ const deleteChat = async (userId, chatId) => {
   }
 };
 
+// Adding a new message to a chat
 const addMessage = async (userId, chatId, message) => {
   try {
     const chat = await prisma.chat.findFirst({
