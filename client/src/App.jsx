@@ -27,20 +27,20 @@ export default App;
   /** THINGS TO ADD
    * Add loading something every time api is called
    * User naviagtions and user dasboard 
-   * Have to filter for givernate and cities
+   * Have to filter for governate and cities
    *
    * 
    * Make browse properties section horizontal scroll for mobile
    * Fix bg colour
-   * Remove rent sell frmom navbar (maybe change and add home, search, etc)
+   * Remove rent sell from navbar (maybe change and add home, search, etc)
    * Add FAQ section under each Property details page faq about company or general questions.
+   * Add live chat with property owner
   /**
 
 
   */
   /**
    * EXTRAS
-   * Chat app
    * Add a loan/ mortgage calculator for specific property etc.
    * Prop validation
    * Add animation for smooth transition when images are carsousel
@@ -49,6 +49,6 @@ export default App;
    * Features section complete the text and maybe change it (CHeck SS and saved maybe change the image)
    *
    * Optimizes sizes maybe dont use fixed sizes
-   * Pass a variable to the carousel change and ,aybe pass it the index value so each card will change images at different times
+   * Pass a variable to the carousel change and maybe pass it the index value so each card will change images at different times
    */
 }
