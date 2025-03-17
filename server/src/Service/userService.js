@@ -270,6 +270,77 @@ const deleteChat = async (userId, chatId) => {
     throw new Error(error.message);
   }
 };
+
+const addMessage = async (userId, chatId, message) => {
+  try {
+    const chat = await prisma.chat.findFirst({
+      where: {
+        id: chatId,
+        participantsIds: {
+          has: userId,
+        },
+      },
+    });
+    if (!chat) {
+      throw new Error("Chat not found ");
+    }
+    const newMessage = await prisma.message.create({
+      data: {
+        chatId,
+        senderId: userId,
+        content: message,
+      },
+    });
+    return newMessage;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+const deleteMessage = async (userId, chatId, messageId) => {
+  try {
+    // Find the chat to ensure the user is a participant
+    const chat = await prisma.chat.findFirst({
+      where: {
+        id: chatId,
+        participantsIds: {
+          has: userId, // Make sure the user is part of the chat
+        },
+      },
+    });
+
+    if (!chat) {
+      throw new Error("Chat not found or user is not a participant.");
+    }
+    // Find the message to delete
+    const message = await prisma.message.findUnique({
+      where: {
+        id: messageId,
+      },
+    });
+    if (!message) {
+      throw new Error("Message not found.");
+    }
+    if (message.chatId !== chatId) {
+      throw new Error("Message does not belong to the specified chat.");
+    }
+    // Optionally, you can also check if the user is the sender of the message to allow them to delete their own message
+    if (message.senderId !== userId) {
+      throw new Error("User can only delete their own messages.");
+    }
+    // Delete the message
+    await prisma.message.delete({
+      where: {
+        id: messageId,
+      },
+    });
+
+    return { message: "Message deleted successfully." };
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
 export default {
   createUser,
   updateUser,
@@ -284,4 +355,6 @@ export default {
   getUserChatById,
   addChat,
   deleteChat,
+  addMessage,
+  deleteMessage,
 };

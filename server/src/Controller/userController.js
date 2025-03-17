@@ -146,6 +146,29 @@ const deleteChat = async (req, res) => {
   }
 };
 
+const addMessage = async (req, res) => {
+  const userId = req.user.id;
+  const chatId = req.params.id;
+  const message = req.body.message;
+  try {
+    const newMessage = await userService.addMessage(userId, chatId, message);
+    return res.status(200).send(newMessage);
+  } catch (error) {
+    res.status(500).send({ message: "Failed to add message!" });
+  }
+};
+const deleteMessage = async (req, res) => {
+  const userId = req.user.id;
+  const chatId = req.params.id;
+  const messageId = req.body.messageId;
+  try {
+    const message = await userService.addMessage(userId, chatId, messageId);
+    return res.status(200).send(message);
+  } catch (error) {
+    res.status(500).send({ message: "Failed to delete message!" });
+  }
+};
+
 export default {
   getAllUser,
   getUserProfile,
@@ -156,4 +179,6 @@ export default {
   getUserChats,
   getOrCreateChat,
   deleteChat,
+  addMessage,
+  deleteMessage,
 };

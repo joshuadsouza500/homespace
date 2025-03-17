@@ -17,6 +17,17 @@ router.get(
 router.get("/profile/property", verifyToken, userController.getUserProperties);
 router.get("/profile/chat", verifyToken, userController.getUserChats);
 router.get("/profile/chat/:id?", verifyToken, userController.getOrCreateChat);
-router.post("/profile/chat", chatController.getOrCreateChat);
-router.delete("/api/chats/:chatId", chatController.deleteChat);
+router.post("/profile/chat", verifyToken, userController.getOrCreateChat);
+router.delete("/profile/chat/:Id", verifyToken, userController.deleteChat);
+
+router.get(
+  "/profile/chat/:id?/message",
+  verifyToken,
+  userController.addMessage
+);
+router.delete(
+  "/profile/chat/:id?/message",
+  verifyToken,
+  userController.deleteMessage
+);
 export default router;
