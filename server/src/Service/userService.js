@@ -180,6 +180,10 @@ const getUserProperties = async (userId) => {
     throw new Error(error.message);
   }
 };
+
+// Get users chats
+// Get users chat by id
+
 export default {
   createUser,
   updateUser,

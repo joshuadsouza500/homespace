@@ -76,6 +76,9 @@ const getUserProperties = async (req, res) => {
     res.status(500).send({ message: "Failed to get user's properties!" });
   }
 };
+// Get users chats
+const getUserChats = 0;
+const getChat = 0; // get specific chat
 
 export default {
   getAllUser,

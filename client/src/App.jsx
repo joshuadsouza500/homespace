@@ -29,12 +29,13 @@ export default App;
    * User naviagtions and user dasboard 
    * Have to filter for governate and cities
    *
-   * 
    * Make browse properties section horizontal scroll for mobile
    * Fix bg colour
    * Remove rent sell from navbar (maybe change and add home, search, etc)
    * Add FAQ section under each Property details page faq about company or general questions.
    * Add live chat with property owner
+   * Pagination to property search
+   * Add box to property search (Recent searches, popular searches , saved)
   /**
 
 
@@ -50,5 +51,9 @@ export default App;
    *
    * Optimizes sizes maybe dont use fixed sizes
    * Pass a variable to the carousel change and maybe pass it the index value so each card will change images at different times
+   *
+   *
+   * Testing.
+   * Maybe integrate CI CD
    */
 }
