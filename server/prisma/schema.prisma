@@ -21,7 +21,7 @@ model User {
   company         String?
   properties      Property[]
   savedProperties SavedProperty[]
-  chats           Chat[] @relation(fields: [chatIds], references: [id]) //TOhave many to many relation in mongodb we need to add id to the model and then add the relation to the other model
+  chats           Chat[] @relation(fields: [chatIds], references: [id]) //To have many to many relation in mongodb we need to add id to the model and then add the relation to the other model
   chatIds String[] @db.ObjectId // This field stores the IDs of the chats that the user is part of
   createdAt       DateTime        @default(now())
 }

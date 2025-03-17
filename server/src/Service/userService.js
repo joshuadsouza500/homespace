@@ -180,10 +180,96 @@ const getUserProperties = async (userId) => {
     throw new Error(error.message);
   }
 };
-
+//✅ Use "has" when filtering a scalar list (ids) (e.g., String[], Int[]) to check if a specific value exists in the array. and use some when filtering lists like chat[]
 // Get users chats
+const getUserChats = async (userId) => {
+  try {
+    const userChats = await prisma.chat.findMany({
+      where: {
+        participantsIds: {
+          //✅Filters chats where the user is a participant
+          has: userId,
+        },
+      },
+      include: {
+        participants: true, //Fetches user details of chat participants
+        messages: {
+          take: 1, // Fetch the latest message if needed
+          orderBy: { createdAt: "desc" },
+        },
+      },
+    });
+    console.log("user's chats: ", userChats);
+    if (!userChats) {
+      throw new Error("No chats found for this user ");
+    }
+    return userChats;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
 // Get users chat by id
+const getUserChatById = async (userId, chatId) => {
+  try {
+    const chat = await prisma.chat.findFirst({
+      where: {
+        id: chatId,
+        participantsIds: {
+          has: userId,
+        },
+      },
+      include: {
+        participants: true,
+        messages: {
+          orderBy: { createdAt: "desc" }, // Get latest messages first
+        },
+      },
+    });
+    console.log("chat: ", chat);
+    if (!chat) {
+      throw new Error("No chats found ");
+    }
+    return chat;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+const addChat = async (userId, propertyListerId) => {
+  try {
+    const userChat = await prisma.chat.create({
+      data: {
+        participantsIds: [userId, propertyListerId],
+      },
+    });
+    return userChat;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
 
+const deleteChat = async (userId, chatId) => {
+  try {
+    const chat = await prisma.chat.findFirst({
+      where: {
+        id: chatId,
+        participantsIds: {
+          has: userId,
+        },
+      },
+    });
+    if (!chat) {
+      throw new Error("Chat not found ");
+    }
+    await prisma.chat.delete({
+      where: {
+        id: chatId,
+      },
+    });
+    return { message: `Chat with id ${chatId} has been successfully deleted.` };
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
 export default {
   createUser,
   updateUser,
@@ -194,4 +280,8 @@ export default {
   getUserProfileFromToken,
   getUserSavedProperties,
   getUserProperties,
+  getUserChats,
+  getUserChatById,
+  addChat,
+  deleteChat,
 };

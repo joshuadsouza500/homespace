@@ -77,15 +77,83 @@ const getUserProperties = async (req, res) => {
   }
 };
 // Get users chats
-const getUserChats = 0;
-const getChat = 0; // get specific chat
+const getUserChats = async (req, res) => {
+  const userId = req.user.id;
+  try {
+    const userChats = await userService.getUserChats(userId);
+
+    return res.status(200).send(userChats);
+  } catch (error) {
+    res.status(500).send({ message: "Failed to get user's chats!" });
+  }
+};
+{
+  /**
+// get specific chat
+const getChatById = async (req, res) => {
+  const userId = req.user.id;
+  const chatId = req.params.id;
+  try {
+    const userChat = await userService.getUserChatById(userId, chatId);
+
+    return res.status(200).send(userChat);
+  } catch (error) {
+    res.status(500).send({ message: "Failed to get user's chat!" });
+  }
+};
+
+const addChat = async (req, res) => {
+  const userId = req.user.id;
+  const propertyListerId = req.body.propertyListerId;
+  try {
+    const userChat = await userService.addChat(userId, propertyListerId);
+    return res.status(200).send(userChat);
+  } catch (error) {
+    res.status(500).send({ message: "Failed to create chat!" });
+  }
+};
+ */
+}
+
+const getOrCreateChat = async (req, res) => {
+  const userId = req.user.id;
+  const propertyListerId = req.body.propertyListerId;
+  const chatId = req.params.id;
+
+  try {
+    let userChat;
+    // If chatId is provided, try to fetch the chat by ID
+    if (chatId) {
+      userChat = await userService.getUserChatById(userId, chatId);
+    }
+    // If no chatId is provided or chat does not exist, create a new chat
+    if (!userChat && propertyListerId) {
+      userChat = await userService.addChat(userId, propertyListerId);
+    }
+    return res.status(200).send(userChat);
+  } catch (error) {
+    res.status(500).send({ message: "Failed to get or create chat!" });
+  }
+};
+
+const deleteChat = async (req, res) => {
+  const userId = req.user.id;
+  try {
+    const deletedChat = await userService.deleteChat(userId);
+    return res.status(200).send(deletedChat);
+  } catch (error) {
+    res.status(500).send({ message: "Failed to delete chat!" });
+  }
+};
 
 export default {
   getAllUser,
   getUserProfile,
   updateUserProfile,
-
   deleteUser,
   getUserSavedProperties,
   getUserProperties,
+  getUserChats,
+  getOrCreateChat,
+  deleteChat,
 };
