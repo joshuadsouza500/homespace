@@ -32,7 +32,7 @@ model Chat {
   participantsIds String[] @db.ObjectId
   messages Message[]
   lastMessage   String?
-  unreadCounts  Json      @default("{}") // Stores unread messages per user 
+  unreadCounts  Json      @default("{}") // Stores unread messages per user {user1:0 ,user2:1}
   createdAt DateTime @default(now())
 
 }

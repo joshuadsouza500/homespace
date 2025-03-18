@@ -3,6 +3,7 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import UserProfile from "../user/UserProfile";
 import UserFavourites from "../user/UserFavourites";
 import UserListings from "../user/UserListings";
+import UserChats from "../user/UserChats";
 
 import {
   ArrowLeftCircle,
@@ -11,6 +12,7 @@ import {
   HeartIcon,
   HomeIcon,
   MenuIcon,
+  MessageCircleMore,
   PlusCircleIcon,
   UserCircleIcon,
   XCircle,
@@ -22,15 +24,16 @@ import UserDropdown from "../ui/UserDropdown";
 
 const menu = [
   { id: 1, name: "Profile", path: "/user", icon: <UserCircleIcon /> },
-  { id: 2, name: "Saved Properties", path: "saved", icon: <HeartIcon /> },
+  { id: 2, name: "Chats", path: "chat", icon: <MessageCircleMore /> },
+  { id: 3, name: "Saved Properties", path: "saved", icon: <HeartIcon /> },
   {
-    id: 3,
+    id: 4,
     name: "My Properties",
     path: "property",
     icon: <HomeIcon />,
   },
   {
-    id: 4,
+    id: 5,
     name: "Add Property",
     path: "property/create",
     icon: <PlusCircleIcon />,
@@ -213,6 +216,7 @@ const User = () => {
         <div>
           <Routes>
             <Route path="/" element={<UserProfile auth={auth} user={user} />} />
+            <Route path="/chat" element={<UserChats />} />
             <Route path="/saved" element={<UserFavourites />} />
             <Route path="/property" element={<UserListings />} />
             <Route path="/property/:propertyId" element={<PropertyUpdate />} />

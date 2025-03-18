@@ -229,6 +229,15 @@ const getUserChatById = async (userId, chatId) => {
     if (!chat) {
       throw new Error("No chats found ");
     }
+
+    // Update unreadCounts: Reset unread messages for the current user
+    const updatedUnreadCounts = { ...chat.unreadCounts, [userId]: 0 };
+
+    await prisma.chat.update({
+      where: { id: chatId },
+      data: { unreadCounts: updatedUnreadCounts }, // [userId]: 0, //Overwrites the entire unreadCounts object. so if user2 had unreadcount it would completly remove it, so we need to spread it first then change
+    });
+
     return chat;
   } catch (error) {
     throw new Error(error.message);
@@ -290,6 +299,24 @@ const addMessage = async (userId, chatId, message) => {
         chatId,
         senderId: userId,
         content: message,
+      },
+    });
+    await prisma.chat.update({
+      where: { id: chatId },
+      data: {
+        lastMessage: message,
+        unreadCounts: {
+          set: {
+            ...(chat.unreadCounts || {}), //spread the exisitng unreadcounts
+            [userId]: 0, //reset the senders count to 0
+            ...Object.fromEntries(
+              //Object.fromEntries converts the array of key-value pairs into an object. so [['user2', 1]] into {user2:1}
+              chat.participantsIds
+                .filter((id) => id !== userId) // return [user2]
+                .map((id) => [id, (chat.unreadCounts?.[id] || 0) + 1]) //checks if there’s an existing unread count for that user (using optional chaining ?.). If it exists, it adds 1
+            ),
+          },
+        },
       },
     });
     return newMessage;
