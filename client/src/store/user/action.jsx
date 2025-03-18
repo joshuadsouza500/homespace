@@ -96,3 +96,10 @@ export const getUserSavedProperties = () => async (dispatch) => {
     });
   }
 };
+
+//get users chats
+//get specific chat
+//create chat
+//delete chat
+//add message
+//delete message

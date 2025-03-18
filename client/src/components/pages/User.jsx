@@ -71,7 +71,7 @@ const User = () => {
           HomeSpace
         </h1>
         <button className="hidden lg:block">
-          <ArrowLeftFromLineIcon className="w-6 h-6 " />
+          <ArrowLeftFromLineIcon className="size-5 " />
         </button>
         <button
           onClick={toggleSidebar}
@@ -79,7 +79,7 @@ const User = () => {
             isOpen ? "visible" : "hidden"
           }`}
         >
-          <XCircle className="w-6 h-6 " />
+          <XCircle className="size-5 " />
         </button>
       </div>
       <nav className="  flex flex-col justify-between  sm:pl-1">
@@ -90,7 +90,7 @@ const User = () => {
               className="p-4 hover:bg-Primary/50 flex items-center gap-3 sm:gap-4 font-medium cursor-pointer "
               onClick={() => navigate(item.path)}
             >
-              <button className="w-6 h-6 ">{item.icon}</button>
+              <button className="size-5 ">{item.icon}</button>
               {item.name}
             </li>
           ))}
@@ -100,7 +100,7 @@ const User = () => {
             className="p-4 hover:bg-gray-700 flex items-center gap-2 font-normal  "
             onClick={() => navigate("/")}
           >
-            <button className="w-6 h-6 ">
+            <button className="size-5 ">
               <ArrowLeftCircle />
             </button>
             Logout
@@ -112,13 +112,13 @@ const User = () => {
 
   const Sidebar = (
     <div
-      className={`bg-Bgpurple text-white h-dvh z-10 fixed top-0 left-0 transition-all duration-300 ease-in-out
+      className={`bg-Bgpurple text-white h-dvh w-auto z-10 relative top-0 left-0 transition-all duration-500 ease-in-out 2xl:px-4
         ${
           isOpen
-            ? "translate-x-0 bg-Blue"
+            ? "translate-x-0 bg-Bgpurple"
             : "-translate-x-full lg:translate-x-0"
         } 
-        ${expanded ? "w-56 md:w-60" : "w-20 md:w-20"}
+        ${expanded ? "w-56 md:w-[25%]  max-w-80" : "w-20 md:w-20"}
       `}
     >
       <div className="px-3 py-4 flex justify-between items-center">
@@ -132,19 +132,19 @@ const User = () => {
             alt="Homespace logo"
             height={20}
             width={20}
-            className=""
+            className="mr-1"
             src="/src/assets/Logo.svg"
           />
           HomeSpace
         </h1>
         <button
-          className="hidden lg:block"
+          className="hidden lg:block transition-all duration-300 ease-in-out"
           onClick={() => setExpanded(!expanded)}
         >
           {expanded ? (
-            <ArrowLeftFromLineIcon className="w-6 h-6" />
+            <ArrowLeftFromLineIcon className="size-5" />
           ) : (
-            <ArrowRightFromLineIcon className="w-6 h-6 ml-2" />
+            <ArrowRightFromLineIcon className="size-5 ml-2" />
           )}
         </button>
         <button
@@ -153,42 +153,42 @@ const User = () => {
             isOpen ? "visible" : "hidden"
           }`}
         >
-          <XCircle className="w-6 h-6" />
+          <XCircle className="size-5" />
         </button>
       </div>
       <nav className="flex flex-col justify-between sm:pl-1">
-        <ul>
+        <ul className="space-y-2">
           {menu.map((item) => (
             <li
               key={item.id}
-              className={`hover:bg-Primary/30 mt-1 font-medium cursor-pointer transition-colors duration-200 ${
-                activeItem === item.id ? "bg-Primary/50" : ""
-              } ${
-                expanded
-                  ? "p-4 flex items-center gap-3 sm:gap-4"
-                  : "p-2 pl-3 mr-1"
-              }`}
+              className={`hover:bg-Primary/30  font-medium cursor-pointer transition-colors duration-300 flex items-center  ${
+                activeItem === item.id ? "bg-Primary/50 " : ""
+              } ${expanded ? "p-4  gap-3 sm:gap-4" : " p-2 rounded-full "}`}
               onClick={() => {
                 setActiveItem(item.id); // Set the clicked item as active
                 navigate(item.path);
               }}
             >
               <button className="size-7">{item.icon}</button>
-              <span className={`${expanded ? "block" : "hidden"}`}>
+              <span
+                className={`transition-all duration-500 ease-in-out ${
+                  expanded ? "block" : "hidden"
+                }`}
+              >
                 {item.name}
               </span>
             </li>
           ))}
         </ul>
-        <div className="fixed bottom-2 left-0 right-0 cursor-pointer">
+        <div className="fixed bottom-2 left-0 right-0 cursor-pointer 2xl:px-2">
           <span
-            className="p-4 hover:bg-gray-700 flex items-center gap-2 font-normal"
+            className="p-4 hover:bg-Primary/40 flex items-center gap-2 font-normal"
             onClick={() => navigate("/")}
           >
-            <button className="w-6 h-6">
+            <button className="size-5">
               <ArrowLeftCircle />
             </button>
-            <span className={`${expanded ? "block" : "hidden"}`}>Logout</span>
+            <span className={`${expanded ? "block" : "hidden"}`}>Home</span>
           </span>
         </div>
       </nav>
@@ -197,21 +197,21 @@ const User = () => {
   const auth = useSelector((store) => store.auth);
   const user = auth.user;
   return (
-    <div className="flex font-poppins bg-background h-dvh">
+    <div className="flex font-poppins bg-background h-dvh z-0 justify-center w-screen  ">
       {/*Sidebar */}
       {Sidebar}
-      <div className="flex-1 flex flex-col relative z-0 w-full overflow-y-scroll overflow-x-clip">
+      <div className="w-full   bg-background1 flex- 1 flex flex-col  z-0  overflow-y-scroll overflow-x- clip">
+        {/* {" "}
         <header className="bg-white shadow py-2 pl-2 pr-4 flex sticky top-0 justify-between md:justify-end md:pr-10 items-center z-10 ">
           <button
             onClick={toggleSidebar}
             className="lg:hidden  hover:bg-gray-100  text-slate-800  rounded-full p-2 "
           >
-            <MenuIcon className="w-6 h-6 " />
+            <MenuIcon className="size-5 " />
           </button>
 
           <UserDropdown user={auth.user} />
-        </header>
-
+        </header>*/}
         {/*Routes */}
         <div>
           <Routes>
