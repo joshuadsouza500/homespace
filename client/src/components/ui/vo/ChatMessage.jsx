@@ -1,4 +1,6 @@
 import { cn } from "@/lib/utils";
+import { ChevronDown, ToggleLeftIcon } from "lucide-react";
+import DropDown from "../DropDown";
 
 const ChatMessage = ({ content, timestamp, isReceived, sender }) => {
   return (
@@ -8,7 +10,7 @@ const ChatMessage = ({ content, timestamp, isReceived, sender }) => {
         isReceived ? "flex justify-start" : "flex justify-end"
       )}
     >
-      <div className="max-w-[75%]">
+      <div className="max-w-[75%] 2xl:max-w-[65%]">
         {isReceived && sender && (
           <div className="text-xs font-medium text-Primary mb-1 ml-1 tracking-wide">
             {sender}
@@ -16,11 +18,18 @@ const ChatMessage = ({ content, timestamp, isReceived, sender }) => {
         )}
         <div
           className={cn(
-            "rounded-lg px-3 pt-3 pb-2 shadow-md",
-            isReceived ? "bg-gray-50 text-gray-800" : "bg-Primary text-white"
+            "rounded-lg  px-3 pt-3 pb-2 shadow-md group cursor-pointer",
+            isReceived
+              ? "bg-gray-50 text-gray-800 rounded-bl-none"
+              : "bg-Primary text-white rounded-br-none"
           )}
         >
-          <p className="text-sm">{content}</p>
+          <div className="flex justify-between items-start gap-x-3 pb-1">
+            <p className="text-sm   leading-normal">{content}</p>
+            <div className=" group-hover:opacity-100 opacity-0 transition-opacity duration-200 ease-in-out ">
+              <ChevronDown className="size-4 xl:size-5" />
+            </div>
+          </div>
           <div
             className={cn(
               "text-xs mt-1 ",

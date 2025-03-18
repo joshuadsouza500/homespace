@@ -24,6 +24,7 @@ import { MapContainer, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import LocationMaker from "@/components/LocationMaker";
 import PropertyGallery from "./PropertyGallery";
+import { useNavigate } from "react-router-dom";
 {
   /** <div className="flex flex-col md:flex-row gap-4 h-[500px] ">
         <div className=" relative  bg-orange-200 w-[75%] ">
@@ -70,7 +71,7 @@ export default function PropertyDetails2({ property, handleSave }) {
     ["Fireplace"]: <FlameKindling className="size-5 mr-2 text-Primary" />,
     ["Pet-Friendly"]: <Dog className="size-5 mr-2 text-Primary" />,
   };
-
+  const navigate = useNavigate();
   return (
     <div className="container  mx-auto px-1 md:px-3 pt-2 md:pt-4 pb-8  ">
       {/**images */}
@@ -237,7 +238,14 @@ export default function PropertyDetails2({ property, handleSave }) {
                 </p>
               </div>
               <div className="  gap-x-2 flex  items-center justify-center">
-                <Button className=" bg-blue-500 w-40">Message</Button>
+                <Button
+                  className=" bg-blue-500 w-40"
+                  onClick={() => {
+                    navigate("/user/chat/:id");
+                  }}
+                >
+                  Message
+                </Button>
                 <Button
                   variant="outline"
                   className="w-40 bg-[#01a849] text-white"

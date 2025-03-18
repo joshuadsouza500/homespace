@@ -81,13 +81,13 @@ const ChatView = ({ chat, onClose }) => {
       {/* Messages */}
       <div className="flex-1 overflow-y-auto p-6 bg-[#f7f6fc] gray-50">
         <ChatMessage
-          content="Hi, I saw your listing for the apartment. Is it still available?"
+          content="Hi, I saw your listing for the max-w-[75%]  apartment.   you like to schedule a viewing?  Is it still the available?"
           timestamp="2:20 PM"
           isReceived={false}
         />
 
         <ChatMessage
-          content="Yes, it is still available. Would you like to schedule a viewing?"
+          content="Yes, it is still available. Would you like to schedule a viewing? I would like to schedule a viewing next week I would like to schedule a viewing next week"
           timestamp="3:05 PM"
           isReceived={true}
           sender="Sarah Johnson"

@@ -12,7 +12,8 @@ const mockChats = [
     avatar: "/placeholder.svg",
     initialLetter: "D",
     subtitle: "Real Estate Agency",
-    lastMessage: "I have a question about the property.",
+    lastMessage:
+      "I have a I would like to schedule a viewing next week question about the property.",
     time: "10:30 AM",
     unread: true,
     propertyInfo: {
@@ -37,7 +38,8 @@ const mockChats = [
     avatar: null,
     initialLetter: "A",
     subtitle: "Prospective Buyer",
-    lastMessage: "I would like to schedule a viewing next week",
+    lastMessage:
+      "I would like to schedule a viewing next week I would like to schedule a viewing next week I would like to schedule a viewing next week",
     time: "Yesterday",
     unread: false,
     propertyInfo: {
@@ -62,7 +64,8 @@ const mockChats = [
     avatar: "/placeholder.svg",
     initialLetter: "G",
     subtitle: "Property Management",
-    lastMessage: "We have several new listings that match your criteria...",
+    lastMessage:
+      "We have several new listings that match your criteria.. I would like to schedule a viewing next week.",
     time: "Aug 25",
     unread: false,
     propertyInfo: {
