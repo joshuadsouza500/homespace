@@ -243,11 +243,11 @@ const getUserChatById = async (userId, chatId) => {
     throw new Error(error.message);
   }
 };
-const addChat = async (userId, propertyListerId) => {
+const addChat = async (userId, otherParticipant) => {
   try {
     const userChat = await prisma.chat.create({
       data: {
-        participantsIds: [userId, propertyListerId],
+        participantsIds: [userId, otherParticipant],
       },
     });
     return userChat;

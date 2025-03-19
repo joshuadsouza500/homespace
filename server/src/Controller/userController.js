@@ -104,9 +104,9 @@ const getChatById = async (req, res) => {
 
 const addChat = async (req, res) => {
   const userId = req.user.id;
-  const propertyListerId = req.body.propertyListerId;
+  const otherParticipant = req.body.otherParticipant;
   try {
-    const userChat = await userService.addChat(userId, propertyListerId);
+    const userChat = await userService.addChat(userId, otherParticipant);
     return res.status(200).send(userChat);
   } catch (error) {
     res.status(500).send({ message: "Failed to create chat!" });
@@ -117,21 +117,42 @@ const addChat = async (req, res) => {
 
 const getOrCreateChat = async (req, res) => {
   const userId = req.user.id;
-  const propertyListerId = req.body.propertyListerId;
+  const otherParticipant = req.query.otherParticipant;
   const chatId = req.params.id;
 
   try {
     let userChat;
-    // If chatId is provided, try to fetch the chat by ID
+
+    // If a chatId is provided, try to fetch the chat by ID
     if (chatId) {
       userChat = await userService.getUserChatById(userId, chatId);
     }
-    // If no chatId is provided or chat does not exist, create a new chat
-    if (!userChat && propertyListerId) {
-      userChat = await userService.addChat(userId, propertyListerId);
+
+    // If no chatId is provided or the chat with the provided ID does not exist
+    if (!userChat && otherParticipant) {
+      // Now check if a chat already exists between the user and the other participant
+      userChat = await prisma.chat.findFirst({
+        where: {
+          participantsIds: {
+            has: userId,
+            has: otherParticipant,
+          },
+        },
+        include: {
+          participants: true,
+          messages: true,
+        },
+      });
     }
+
+    // If still no chat found, create a new chat
+    if (!userChat && otherParticipant) {
+      userChat = await userService.addChat(userId, otherParticipant);
+    }
+
     return res.status(200).send(userChat);
   } catch (error) {
+    console.error(error); // Log the actual error for debugging
     res.status(500).send({ message: "Failed to get or create chat!" });
   }
 };

@@ -1,36 +1,43 @@
 import { useEffect, useState } from "react";
-
+import { useParams } from "react-router-dom";
 import ChatSidebar from "../ui/vo/ChatSidebar";
 import ChatView from "../ui/vo/ChatView";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserChats } from "@/store/user/action";
+import { getChatById, getUserChats } from "@/store/user/action";
 
 //Left side displays all chats, last message and unread count.  (Maybe message image)
 //Right side displays the chat top sender profile maybe option to call and maybe on clicking sender profile can see other properties
 
 const UserChats = ({ user }) => {
   const [isMobileViewOpen, setIsMobileViewOpen] = useState(false);
-  const [activeChat, setActiveChat] = useState(null);
 
+  const { chatId } = useParams();
   const dispatch = useDispatch();
   const userChats = useSelector((state) => state.user.userChats);
+  const SelectedChat = useSelector((state) => state.user.selectedChat);
   // Use useEffect to fetch user properties when the component mounts
   useEffect(() => {
     dispatch(getUserChats());
   }, [dispatch]);
 
+  useEffect(() => {
+    if (chatId) {
+      const existingChat = userChats.find((chat) => chat.id === chatId);
+      if (existingChat) {
+        dispatch(getChatById(chatId)); // Optional: If you want to ensure selectedChat is up-to-date
+        // setIsMobileViewOpen(true); // Open mobile chat view
+      }
+    }
+  }, [chatId, userChats, dispatch]);
   const handleCloseChat = () => {
     setIsMobileViewOpen(false);
   };
-  const handleChatSelect = (chatId) => {
-    //dispatch(getChatById(chatId))
-    setActiveChat(chatId);
-    setIsMobileViewOpen(true);
-  };
-  const selectedChat = activeChat
-    ? userChats.find((chat) => chat.id === activeChat) || null
-    : null;
 
+  const handleChatSelect = (chatId) => {
+    dispatch(getChatById(chatId)); // Fetch chat details and update selectedChat
+    setIsMobileViewOpen(true); // Open chat view
+    history.push(`/user/chat/${chatId}`); // Navigate to the selected chat
+  };
   //Get chats dispatch here
   //Get specific chat when it is selected
   return (
@@ -43,7 +50,7 @@ const UserChats = ({ user }) => {
       >
         <ChatSidebar
           chats={userChats}
-          activeChat={activeChat}
+          activeChat={SelectedChat?.id}
           onChatSelect={handleChatSelect}
           userId={user?.id}
         />
@@ -57,7 +64,7 @@ const UserChats = ({ user }) => {
             `}
       >
         <ChatView
-          chat={selectedChat}
+          chat={SelectedChat}
           onClose={handleCloseChat}
           userId={user?.id}
         />
