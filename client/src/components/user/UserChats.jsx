@@ -1,105 +1,51 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import ChatSidebar from "../ui/vo/ChatSidebar";
 import ChatView from "../ui/vo/ChatView";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserChats } from "@/store/user/action";
 
 //Left side displays all chats, last message and unread count.  (Maybe message image)
 //Right side displays the chat top sender profile maybe option to call and maybe on clicking sender profile can see other properties
-const mockChats = [
-  {
-    id: "d",
-    name: "Deccan Real Estate",
-    avatar: "/placeholder.svg",
-    initialLetter: "D",
-    subtitle: "Real Estate Agency",
-    lastMessage:
-      "I have a I would like to schedule a viewing next week question about the property.",
-    time: "10:30 AM",
-    unread: true,
-    propertyInfo: {
-      image: "/placeholder.svg",
-      title: "Newly renovated | Luxury | Balcony | Special Offer",
-      price: "BHD 380",
-    },
-  },
-  {
-    id: "s",
-    name: "Sarah Johnson",
-    avatar: null,
-    initialLetter: "S",
-    subtitle: "",
-    lastMessage: "Is this property still available?",
-    time: "Yesterday",
-    unread: true,
-  },
-  {
-    id: "a",
-    name: "Ahmed Al Sayed",
-    avatar: null,
-    initialLetter: "A",
-    subtitle: "Prospective Buyer",
-    lastMessage:
-      "I would like to schedule a viewing next week I would like to schedule a viewing next week I would like to schedule a viewing next week",
-    time: "Yesterday",
-    unread: false,
-    propertyInfo: {
-      image: "/placeholder.svg",
-      title: "Modern Apartment | City Center | 2BR",
-      price: "BHD 450",
-    },
-  },
-  {
-    id: "m",
-    name: "Michael Smith",
-    avatar: null,
-    initialLetter: "M",
-    subtitle: "",
-    lastMessage: "Thank you for the information.",
-    time: "Monday",
-    unread: false,
-  },
-  {
-    id: "g",
-    name: "Gulf Properties",
-    avatar: "/placeholder.svg",
-    initialLetter: "G",
-    subtitle: "Property Management",
-    lastMessage:
-      "We have several new listings that match your criteria.. I would like to schedule a viewing next week.",
-    time: "Aug 25",
-    unread: false,
-    propertyInfo: {
-      image: "/placeholder.svg",
-      title: "Luxury Villa | Private Pool | 4BR",
-      price: "BHD 1,200",
-    },
-  },
-];
-const UserChats = () => {
+
+const UserChats = ({ user }) => {
   const [isMobileViewOpen, setIsMobileViewOpen] = useState(false);
   const [activeChat, setActiveChat] = useState(null);
+
+  const dispatch = useDispatch();
+  const userChats = useSelector((state) => state.user.userChats);
+  // Use useEffect to fetch user properties when the component mounts
+  useEffect(() => {
+    dispatch(getUserChats());
+  }, [dispatch]);
+
   const handleCloseChat = () => {
     setIsMobileViewOpen(false);
   };
   const handleChatSelect = (chatId) => {
+    //dispatch(getChatById(chatId))
     setActiveChat(chatId);
     setIsMobileViewOpen(true);
   };
   const selectedChat = activeChat
-    ? mockChats.find((chat) => chat.id === activeChat) || null
+    ? userChats.find((chat) => chat.id === activeChat) || null
     : null;
+
+  //Get chats dispatch here
+  //Get specific chat when it is selected
   return (
-    <div className=" flex flex-row max-w-7xl 2xl:max-w-[1640px]  min-h-screen overflow-hidden shadow-md pl-1">
+    <div className=" flex flex-row max-w-7xl 2xl:max-w-[1640px]  min-h-screen overflow-hidden shadow-md pl-0.5">
       <div
         className={`
               ${isMobileViewOpen ? "hidden" : "block"} 
-              md:block w-full md:w-auto
+              md:block w-full md:w-auto 2xl:pr-1 2xl:border
             `}
       >
         <ChatSidebar
-          chats={mockChats}
+          chats={userChats}
           activeChat={activeChat}
           onChatSelect={handleChatSelect}
+          userId={user?.id}
         />
       </div>
 
@@ -110,7 +56,11 @@ const UserChats = () => {
               md:block flex-1
             `}
       >
-        <ChatView chat={selectedChat} onClose={handleCloseChat} />
+        <ChatView
+          chat={selectedChat}
+          onClose={handleCloseChat}
+          userId={user?.id}
+        />
       </div>
     </div>
   );

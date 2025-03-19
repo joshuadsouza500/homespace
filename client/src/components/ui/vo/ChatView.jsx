@@ -10,8 +10,16 @@ import {
 } from "lucide-react";
 import ChatMessage from "./ChatMessage";
 
-const ChatView = ({ chat, onClose }) => {
+const ChatView = ({ chat, onClose, userId }) => {
   const [message, setMessage] = useState("");
+
+  const otherParticipant = chat?.participants?.find(
+    (participant) => participant.id !== userId
+  );
+
+  if (!otherParticipant) {
+    return null; // Return nothing if there is no other participant
+  }
 
   if (!chat) {
     return (
@@ -44,23 +52,18 @@ const ChatView = ({ chat, onClose }) => {
       {/* Header */}
       <div className="p-4 border-b border-gray-200 flex items-center justify-between">
         <div className="flex items-center">
-          {chat.avatar ? (
+          {otherParticipant.avatar ? (
             <img
-              src={chat.avatar}
-              alt={chat.name}
+              src={otherParticipant.avatar}
+              alt={otherParticipant.name}
               className="w-10 h-10 rounded-full object-cover mr-3"
             />
           ) : (
-            <div
-              className="avatar-circle w-10 h-10 mr-3 rounded-full flex items-center justify-center text-white font-semibold"
-              style={{
-                backgroundColor: chat.id === "a" ? "#FF5A5A" : "#7065F0",
-              }}
-            >
-              {chat.initialLetter}
+            <div className="avatar-circle w-10 h-10 mr-3 rounded-full flex items-center justify-center text-white font-semibold bg-Primary">
+              {otherParticipant.name.charAt(0).toUpperCase()}
             </div>
           )}
-          <h2 className="text-lg font-semibold">{chat.name}</h2>
+          <h2 className="text-lg font-semibold">{otherParticipant.name}</h2>
         </div>
         <div className="flex items-center space-x-4">
           <button className="text-gray-500 hover:text-Primary transition-colors">
@@ -71,7 +74,7 @@ const ChatView = ({ chat, onClose }) => {
           </button>
           <button
             onClick={onClose}
-            className="text-gray-500 hover:text-gray-700 transition-colors "
+            className="text-gray-500 hover:text-gray-700 transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
@@ -79,19 +82,19 @@ const ChatView = ({ chat, onClose }) => {
       </div>
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto p-6 bg-[#f7f6fc] gray-50">
-        <ChatMessage
-          content="Hi, I saw your listing for the max-w-[75%]  apartment.   you like to schedule a viewing?  Is it still the available?"
-          timestamp="2:20 PM"
-          isReceived={false}
-        />
-
-        <ChatMessage
-          content="Yes, it is still available. Would you like to schedule a viewing? I would like to schedule a viewing next week I would like to schedule a viewing next week"
-          timestamp="3:05 PM"
-          isReceived={true}
-          sender="Sarah Johnson"
-        />
+      <div className="flex-1 overflow-y-auto p-6 bg-[#f7f6fc]">
+        {chat.messages.map((msg) => (
+          <ChatMessage
+            key={msg.id}
+            content={msg.content}
+            timestamp={new Date(msg.createdAt).toLocaleTimeString([], {
+              hour: "2-digit",
+              minute: "2-digit",
+            })}
+            isReceived={msg.senderId !== userId} // Message is considered received if sender is not the current user
+            sender={msg.senderId === userId ? "You" : otherParticipant.name} // Show either "You" or the other participant's name
+          />
+        ))}
       </div>
 
       {/* Message Input */}
@@ -108,7 +111,7 @@ const ChatView = ({ chat, onClose }) => {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             placeholder="Type a message"
-            className="chat-input = w-full border border-gray-200 rounded-full py-3 px-4 focus:outline-none focus:ring-1 focus:ring-Primary "
+            className="chat-input w-full border border-gray-200 rounded-full py-3 px-4 focus:outline-none focus:ring-1 focus:ring-Primary"
           />
           <button
             type="submit"
@@ -123,12 +126,12 @@ const ChatView = ({ chat, onClose }) => {
 };
 ChatView.propTypes = {
   chat: PropTypes.shape({
-    name: PropTypes.string.isRequired,
+    name: PropTypes.string,
     avatar: PropTypes.string,
-    id: PropTypes.string.isRequired,
+    id: PropTypes.string,
     initialLetter: PropTypes.string,
   }),
-  onClose: PropTypes.func.isRequired,
+  onClose: PropTypes.func,
 };
 
 export default ChatView;

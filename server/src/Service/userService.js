@@ -386,3 +386,9 @@ export default {
   addMessage,
   deleteMessage,
 };
+
+// when a chat is created the roomid is un url. get that to create a socketio room. then enter the chat and pass the data to socket io in the add message f
+
+//When new chat is being cretaed. Create the chat in backend and the id gets passed to front end, then from there send the roomId from frontent socket io to socket io in backeded (roomId). ANd these is used to join room
+
+//We will need to add the addmessgawe funtion inside of socket io as the data, chatId and message will be passed from the front end to the backend. and then we will use the chatId to find the chat and then add the message to the chat. and then send the message to the front end using the emit  . to(chatId)

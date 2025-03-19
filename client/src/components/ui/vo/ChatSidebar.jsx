@@ -2,7 +2,7 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { Search } from "lucide-react";
 
-const ChatSidebar = ({ chats, activeChat, onChatSelect }) => {
+const ChatSidebar = ({ chats, activeChat, onChatSelect, userId }) => {
   //const [filter, setFilter] =
   // (useState < "all") | "unread" | ("important" > "all");
 
@@ -15,28 +15,31 @@ const ChatSidebar = ({ chats, activeChat, onChatSelect }) => {
     <div className="h-full flex flex-col border-r border-gray-200 w-full md:w-96 2xl:w-[440px] bg-white overflow-hidden animate-fade-in ">
       <div className="p-6 border-b border-gray-100">
         <h1 className="text-xl font-bold text-chat-secondary mb-5">INBOX</h1>
-        {/**  <div className="mb-2">
+        {/** */}{" "}
+        <div className="mb-2">
           <p className="text-xs font-medium text-gray-500 uppercase mb-2">
             QUICK FILTERS
           </p>
           <div className="flex space-x-2">
             <button
-              className={cn("chat-filter-button", filter === "all" && "active")}
-              onClick={() => setFilter("all")}
+              className={cn(
+                "chat-filter-button rounded-full text-sm px-4 py-1.5 font-medium transition-all bg-chat-gray text-gray-700 hover:bg-gray-200" //filter === "all" && "active"
+              )}
+              // onClick={() => setFilter("all")}
             >
               All
             </button>
             <button
               className={cn(
-                "chat-filter-button",
-                filter === "unread" && "active"
+                "chat-filter-button rounded-full text-sm px-4 py-1.5 font-medium transition-all"
+                //  filter === "unread" && "active"
               )}
-              onClick={() => setFilter("unread")}
+              //onClick={() => setFilter("unread")}
             >
               Unread Chats
             </button>
           </div>
-        </div> */}
+        </div>
       </div>
 
       <div className="relative mx-4 mt-4">
@@ -50,56 +53,71 @@ const ChatSidebar = ({ chats, activeChat, onChatSelect }) => {
         />
       </div>
 
-      <div className="flex-1 overflow-y-auto  scrollbar-thin scrollbar-thumb-gray-300">
-        {chats.map((chat) => (
-          <div
-            key={chat.id}
-            onClick={() => onChatSelect(chat.id)}
-            className={cn(
-              "py-4 px-3 border-b border-gray-100 hover:bg-gray-50 cursor-pointer transition-all",
-              activeChat === chat.id &&
-                "border-l-4 border-l-Primary bg-[#F1F0FB]"
-            )}
-          >
-            <div className="flex items-start">
-              <div className="flex-shrink-0 mr-3">
-                {chat.avatar ? (
-                  <img
-                    src={chat.avatar}
-                    alt={chat.name}
-                    className="w-10 h-10 rounded-full object-cover"
-                  />
-                ) : (
-                  <div
-                    className="avatar-circle w-10 h-10 bg-Primary rounded-full flex items-center justify-center text-white font-semibold"
-                    style={{
-                      backgroundColor: chat.id === "a" ? "#FF5A5A" : "#7065F0",
-                    }}
-                  >
-                    {chat.initialLetter}
-                  </div>
-                )}
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="flex justify-between items-start">
-                  <h3 className="text-sm font-semibold text-gray-900 truncate">
-                    {chat.name}
-                  </h3>
-                  <div className="flex items-center">
-                    <span className="text-xs text-gray-500">{chat.time}</span>
-                    {chat.unread && (
-                      <span className="ml-1.5 bg-chat-red w-2 h-2 rounded-full"></span>
-                    )}
-                  </div>
+      <div className="flex-1 overflow-y-auto  scrollbar-thin scrollbar-thumb-gray-300 pt-2">
+        {chats.map((chat) => {
+          const otherParticipant = chat.participants?.find(
+            (participant) => participant.id !== userId
+          );
+          if (!otherParticipant) {
+            return null; // If there's no other participant, skip this chat
+          }
+
+          return (
+            <div
+              key={chat.id}
+              onClick={() => onChatSelect(chat.id)}
+              className={cn(
+                "py-4 px-3 border-b border-gray-100 hover:bg-gray-50 cursor-pointer transition-all",
+                activeChat === chat.id &&
+                  "border-l-4 border-l-Primary bg-[#F1F0FB]"
+              )}
+            >
+              <div className="flex items-start">
+                <div className="flex-shrink-0 mr-3">
+                  {otherParticipant.avatar ? (
+                    <img
+                      src={otherParticipant.avatar} // Use the avatar of the other participant
+                      alt={otherParticipant.name} // Use the name of the other participant for alt attribute
+                      className="w-10 h-10 rounded-full object-cover ring-[0.5px] ring-Bgpurple"
+                    />
+                  ) : (
+                    <div className="avatar-circle w-10 h-10 bg-Primary rounded-full flex items-center justify-center text-white font-semibold">
+                      {otherParticipant.name.charAt(0).toUpperCase()}{" "}
+                      {/* Show initial letter */}
+                    </div>
+                  )}
                 </div>
-                <p className="text-xs text-gray-500">{chat.subtitle}</p>
-                <p className="text-xs text-gray-700 mt-1 truncate">
-                  {chat.lastMessage}
-                </p>
+                <div className="flex-1 min-w-0">
+                  <div className="flex justify-between items-start">
+                    <h3 className="text-sm font-semibold text-gray-900 truncate">
+                      {otherParticipant.name}
+                    </h3>
+                    <div className="flex items-center">
+                      <span className="text-xs text-gray-500">
+                        {/* Format the time of the last message */}
+                        {new Date(
+                          chat.messages[0]?.createdAt
+                        ).toLocaleTimeString([], {
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        })}{" "}
+                      </span>
+                      {chat.unreadCounts[otherParticipant.id] > 0 && ( // Check if there are unread messages for this participant
+                        <span className="ml-1.5 bg-chat-red w-2 h-2 rounded-full"></span>
+                      )}
+                    </div>
+                  </div>
+                  <p className="text-xs text-gray-500">
+                    {otherParticipant.role} at {otherParticipant.company}
+                  </p>
+                  <p className="text-xs text-gray-700 mt-1 truncate">
+                    {chat.lastMessage}
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

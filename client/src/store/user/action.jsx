@@ -3,6 +3,9 @@ import {
   DELETE_USER_FAILURE,
   DELETE_USER_REQUEST,
   DELETE_USER_SUCCESS,
+  GET_USER_CHATS_FAILURE,
+  GET_USER_CHATS_REQUEST,
+  GET_USER_CHATS_SUCCESS,
   GET_USER_PROFILE_REQUEST,
   GET_USER_PROPERTIES_FAILURE,
   GET_USER_PROPERTIES_SUCCESS,
@@ -96,6 +99,44 @@ export const getUserSavedProperties = () => async (dispatch) => {
     });
   }
 };
+
+export const getUserChats = () => async (dispatch) => {
+  dispatch({ type: GET_USER_CHATS_REQUEST });
+
+  try {
+    const response = await api.get(`/api/user/profile/chat`);
+    const chats = response.data;
+    console.log("user chats front", chats);
+    dispatch({
+      type: GET_USER_CHATS_SUCCESS,
+      payload: chats,
+    });
+  } catch (error) {
+    dispatch({
+      type: GET_USER_CHATS_FAILURE,
+      payload: error.message,
+    });
+  }
+};
+
+/*  
+export const getChatById = (chatId) => async (dispatch) => {
+  dispatch({ type:  });
+
+  try {
+    const response = await api.get(`/api/user/profile/chat/${chatId}`);
+    const chat = response.data;
+    dispatch({
+      type: ,
+      payload: chat,
+    });
+  } catch (error) {
+    dispatch({
+      type: ,
+      payload: error.message,
+    });
+  }
+};*/
 
 //get users chats
 //get specific chat

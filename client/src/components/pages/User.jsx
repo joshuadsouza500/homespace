@@ -216,7 +216,7 @@ const User = () => {
         <div>
           <Routes>
             <Route path="/" element={<UserProfile auth={auth} user={user} />} />
-            <Route path="/chat" element={<UserChats />} />
+            <Route path="/chat" element={<UserChats user={user} />} />
             <Route path="/saved" element={<UserFavourites />} />
             <Route path="/property" element={<UserListings />} />
             <Route path="/property/:propertyId" element={<PropertyUpdate />} />
