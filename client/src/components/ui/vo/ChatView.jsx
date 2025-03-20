@@ -67,46 +67,46 @@ const ChatView = ({ chat, onClose, userId }) => {
             {otherParticipant.name}
           </h2>
         </div>
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center gap-x-6">
           <button className="text-gray-500 hover:text-Primary transition-colors">
-            <MessageSquareMore className="w-5 h-5" />
+            <MessageSquareMore className="xl:size-6 size-5" />
           </button>
           <button className="text-gray-500 hover:text-Primary transition-colors">
-            <Phone className="w-5 h-5" />
+            <Phone className="xl:size-6 size-5" />
           </button>
           <button
             onClick={onClose}
-            className="text-gray-500 hover:text-gray-700 transition-colors"
+            className="text-gray-500 hover:text-red-700 transition-colors"
           >
-            <X className="w-5 h-5" />
+            <X className="size-6" />
           </button>
         </div>
       </div>
 
       {/* Messages */}
       <div className="flex-1 overflow-y-auto p-6 bg-[#f7f6fc]">
-        {chat.messages.map((msg) => (
-          <ChatMessage
-            key={msg.id}
-            content={msg.content}
-            timestamp={new Date(msg.createdAt).toLocaleTimeString([], {
-              hour: "2-digit",
-              minute: "2-digit",
-            })}
-            isReceived={msg.senderId !== userId} // Message is considered received if sender is not the current user
-            sender={msg.senderId === userId ? "You" : otherParticipant.name} // Show either "You" or the other participant's name
-          />
-        ))}
+        {chat.messages
+          .slice()
+          .reverse()
+          .map((msg) => (
+            <ChatMessage
+              key={msg.id}
+              content={msg.content}
+              timestamp={new Date(msg.createdAt).toLocaleTimeString([], {
+                hour: "2-digit",
+                minute: "2-digit",
+              })}
+              isReceived={msg.senderId !== userId} // Message is considered received if sender is not the current user
+              sender={msg.senderId === userId ? "You" : otherParticipant.name} // Show either "You" or the other participant's name
+            />
+          ))}
       </div>
 
       {/* Message Input */}
       <div className="p-4 border-t border-gray-200">
-        <form onSubmit={handleSubmit} className="flex items-center">
-          <button
-            type="button"
-            className="text-gray-500 hover:text-Primary mr-2"
-          >
-            <Paperclip className="w-5 h-5" />
+        <form onSubmit={handleSubmit} className="flex items-center gap-x-2 ">
+          <button type="button" className="text-gray-500 hover:text-Primary ">
+            <Paperclip className="xl:size-6 size-5" />
           </button>
           <input
             type="text"
@@ -117,9 +117,9 @@ const ChatView = ({ chat, onClose, userId }) => {
           />
           <button
             type="submit"
-            className="bg-Primary text-white p-2.5 rounded-full hover:bg-opacity-90 transition-all"
+            className="bg-Primary text-white p-2.5 2xl:p-3 rounded-full hover:bg-opacity-90 transition-all "
           >
-            <Send className="w-5 h-5" />
+            <Send className="xl:size-6 size-5 " />
           </button>
         </form>
       </div>

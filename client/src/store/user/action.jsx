@@ -134,6 +134,7 @@ export const getChatById = (chatId, otherParticipant) => async (dispatch) => {
       otherParticipant,
     });
     const chat = response.data;
+
     //console.log("getchat y id ", chat);
     dispatch({
       type: GET_CHAT_BY_ID_SUCCESS,
