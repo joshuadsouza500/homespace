@@ -131,7 +131,7 @@ export const getChatById = (chatId, otherParticipant) => async (dispatch) => {
 
   try {
     const response = await api.get(`/api/user/profile/chat/${chatId}`, {
-      params: otherParticipant ? { otherParticipant } : {},
+      otherParticipant,
     });
     const chat = response.data;
     //console.log("getchat y id ", chat);
@@ -149,16 +149,19 @@ export const getChatById = (chatId, otherParticipant) => async (dispatch) => {
 //get specific chat
 export const createChat = (otherParticipant) => async (dispatch) => {
   dispatch({ type: CREATE_CHAT_REQUEST });
-
+  console.log("action", otherParticipant);
   try {
-    const response = await api.post("/api/user/profile/chat", {
-      params: otherParticipant ? { otherParticipant } : {}, // Avoid sending undefined
-    });
+    const response = await api.post(
+      "/api/user/profile/chat",
+      { otherParticipant } // Avoid sending undefined
+    );
     const chat = response.data;
+
     dispatch({
       type: CREATE_CHAT_SUCCESS,
       payload: chat,
     });
+    return chat; //return the chat so that we can navigate to the chat view from the property details page
   } catch (error) {
     dispatch({
       type: CREATE_CHAT_FAILURE,

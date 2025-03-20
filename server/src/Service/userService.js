@@ -199,7 +199,7 @@ const getUserChats = async (userId) => {
         },
       },
     });
-    console.log("user's chats: ", userChats);
+    //console.log("user's chats: ", userChats);
     if (!userChats) {
       throw new Error("No chats found for this user ");
     }
@@ -225,7 +225,7 @@ const getUserChatById = async (userId, chatId) => {
         },
       },
     });
-    console.log("chat: ", chat);
+    // console.log("chat: ", chat);
     if (!chat) {
       throw new Error("No chats found ");
     }
@@ -250,6 +250,7 @@ const addChat = async (userId, otherParticipant) => {
         participantsIds: [userId, otherParticipant],
       },
     });
+    // console.log("service cretae chat", userChat);
     return userChat;
   } catch (error) {
     throw new Error(error.message);

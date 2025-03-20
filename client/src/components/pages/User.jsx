@@ -40,7 +40,7 @@ const menu = [
     icon: <PlusCircleIcon />,
   },
 ];
-
+//Get routebfrom param to setactiveitem
 const User = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [expanded, setExpanded] = useState(true);
@@ -55,61 +55,6 @@ const User = () => {
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
-
-  /*Sidebar  const Sidebar = (
-    <div
-      className={`bg-Bgpurple text-white w-56 md:w-60 h-dvh  z-10   ${
-        isOpen
-          ? "translate-x-0 bg-Blue absolute top-0 left-0"
-          : "-translate-x-full max-lg:hidden "
-      } lg:translate-x-0  transition-transform duration-300 ease-in-out  `}
-    >
-      <div className="px-3 py-4 flex justify-between items-center">
-        <h1
-          className="text-xl sm:text-2xl font-bold cursor-pointer"
-          onClick={() => navigate("/")}
-        >
-          HomeSpace
-        </h1>
-        <button className="hidden lg:block">
-          <ArrowLeftFromLineIcon className="size-5 " />
-        </button>
-        <button
-          onClick={toggleSidebar}
-          className={`hover:bg-gray-700 rounded-full p-1  text-white ${
-            isOpen ? "visible" : "hidden"
-          }`}
-        >
-          <XCircle className="size-5 " />
-        </button>
-      </div>
-      <nav className="  flex flex-col justify-between  sm:pl-1">
-        <ul>
-          {menu.map((item) => (
-            <li
-              key={item.id}
-              className="p-4 hover:bg-Primary/50 flex items-center gap-3 sm:gap-4 font-medium cursor-pointer "
-              onClick={() => navigate(item.path)}
-            >
-              <button className="size-5 ">{item.icon}</button>
-              {item.name}
-            </li>
-          ))}
-        </ul>
-        <div className="fixed bottom-2 left-0 right-0 cursor-pointer">
-          <span
-            className="p-4 hover:bg-gray-700 flex items-center gap-2 font-normal  "
-            onClick={() => navigate("/")}
-          >
-            <button className="size-5 ">
-              <ArrowLeftCircle />
-            </button>
-            Logout
-          </span>
-        </div>
-      </nav>
-    </div>
-  ); */
 
   const Sidebar = (
     <div

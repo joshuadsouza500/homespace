@@ -118,14 +118,12 @@ const addChat = async (req, res) => {
 
 const getOrCreateChat = async (req, res) => {
   const userId = req.user.id;
-  const otherParticipant = req.query.otherParticipant;
-  console.log("userId and therPartic backend", userId, otherParticipant);
+  const otherParticipant = req.body.otherParticipant;
   const chatId = req.params.id;
 
   try {
     let userChat;
-
-    // If a chatId is provided, try to fetch the chat by ID
+    // Icf a chatId is provided, try to fetch the chat by ID
     if (chatId) {
       userChat = await userService.getUserChatById(userId, chatId);
     }
@@ -150,6 +148,7 @@ const getOrCreateChat = async (req, res) => {
     // If still no chat found, create a new chat
     if (!userChat && otherParticipant) {
       userChat = await userService.addChat(userId, otherParticipant);
+      console.log("userchat", userChat);
     }
 
     return res.status(200).send(userChat);

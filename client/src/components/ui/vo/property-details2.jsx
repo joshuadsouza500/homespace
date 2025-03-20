@@ -25,6 +25,8 @@ import "leaflet/dist/leaflet.css";
 import LocationMaker from "@/components/LocationMaker";
 import PropertyGallery from "./PropertyGallery";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { createChat, getChatById } from "@/store/user/action";
 {
   /** <div className="flex flex-col md:flex-row gap-4 h-[500px] ">
         <div className=" relative  bg-orange-200 w-[75%] ">
@@ -59,6 +61,7 @@ import { useNavigate } from "react-router-dom";
 }
 
 export default function PropertyDetails2({ property, handleSave }) {
+  console.log("pp", property);
   const amenityIconMap = {
     ["Air Conditioning"]: <Snowflake className="size-5 mr-2 text-Primary" />,
     ["Parking"]: <CarFront className="size-5 mr-2 text-Primary" />,
@@ -72,6 +75,17 @@ export default function PropertyDetails2({ property, handleSave }) {
     ["Pet-Friendly"]: <Dog className="size-5 mr-2 text-Primary" />,
   };
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleMessage = async (otherParticipant) => {
+    if (otherParticipant) {
+      // Create the chat and get the chat details returned by the action
+      const createdChat = await dispatch(createChat(otherParticipant));
+      const chatId = createdChat.id;
+      navigate(`/user/chat/${chatId}`);
+    }
+  };
+
   return (
     <div className="container  mx-auto px-1 md:px-3 pt-2 md:pt-4 pb-8  ">
       {/**images */}
@@ -241,7 +255,7 @@ export default function PropertyDetails2({ property, handleSave }) {
                 <Button
                   className=" bg-blue-500 w-40"
                   onClick={() => {
-                    navigate("/user/chat/:id");
+                    handleMessage(property?.userId);
                   }}
                 >
                   Message
