@@ -21,6 +21,7 @@ import PropertyUpdate from "../ui/vo/propertyUpdate";
 import AddProperty2 from "../user/AddProperty2";
 import { useSelector } from "react-redux";
 import UserDropdown from "../ui/UserDropdown";
+import ChatView from "../ui/vo/ChatView";
 
 const menu = [
   { id: 1, name: "Profile", path: "/user", icon: <UserCircleIcon /> },
@@ -217,6 +218,7 @@ const User = () => {
           <Routes>
             <Route path="/" element={<UserProfile auth={auth} user={user} />} />
             <Route path="/chat" element={<UserChats user={user} />} />
+            <Route path="/chat/:chatId" element={<UserChats user={user} />} />
             <Route path="/saved" element={<UserFavourites />} />
             <Route path="/property" element={<UserListings />} />
             <Route path="/property/:propertyId" element={<PropertyUpdate />} />

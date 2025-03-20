@@ -266,9 +266,19 @@ const deleteChat = async (userId, chatId) => {
         },
       },
     });
+    console.log("ccc", chat);
     if (!chat) {
       throw new Error("Chat not found ");
     }
+    //Need to delete all messages first before delteing chat
+    //chatId was a foreign key i nthe message so db won't let you delete a chat if there are messages associated with it
+    await prisma.message.deleteMany({
+      where: {
+        chatId: chatId,
+      },
+    });
+
+    console.log(`Deleted messages associated with chat ID: ${chatId}`);
     await prisma.chat.delete({
       where: {
         id: chatId,

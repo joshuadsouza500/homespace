@@ -17,6 +17,7 @@ import {
   GET_USER_SAVED_PROPERTIES_FAILURE,
   GET_USER_SAVED_PROPERTIES_REQUEST,
   GET_USER_SAVED_PROPERTIES_SUCCESS,
+  RESET_SELECTED_CHAT,
   UPDATE_USER_PROFILE_FAILURE,
   UPDATE_USER_PROFILE_REQUEST,
   UPDATE_USER_PROFILE_SUCCESS,
@@ -91,6 +92,12 @@ export const userReducer = (state = initialState, action) => {
         isLoading: false,
         userChats: [...state.userChats, action.payload], // Add new chat to userChats
         selectedChat: action.payload, // Store all chats
+      };
+
+    case RESET_SELECTED_CHAT:
+      return {
+        ...state,
+        selectedChat: null, // Reset selected chat
       };
 
     case UPDATE_USER_PROFILE_FAILURE:

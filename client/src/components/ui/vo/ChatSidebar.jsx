@@ -89,7 +89,7 @@ const ChatSidebar = ({ chats, activeChat, onChatSelect, userId }) => {
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex justify-between items-start">
-                    <h3 className="text-sm font-semibold text-gray-900 truncate">
+                    <h3 className="max-xl:text-sm  font-semibold text-gray-900 truncate capitalize">
                       {otherParticipant.name}
                     </h3>
                     <div className="flex items-center">
@@ -107,9 +107,12 @@ const ChatSidebar = ({ chats, activeChat, onChatSelect, userId }) => {
                       )}
                     </div>
                   </div>
-                  <p className="text-xs text-gray-500">
-                    {otherParticipant.role} at {otherParticipant.company}
-                  </p>
+                  {otherParticipant.role === "Agent" && (
+                    <p className="text-xs text-gray-500">
+                      {otherParticipant.role} at {otherParticipant.company}
+                    </p>
+                  )}
+
                   <p className="text-xs text-gray-700 mt-1 truncate">
                     {chat.lastMessage}
                   </p>

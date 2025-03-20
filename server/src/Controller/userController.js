@@ -1,3 +1,4 @@
+import prisma from "../lib/Prisma.js";
 import propertyService from "../Service/propertyService.js";
 import userService from "../Service/userService.js";
 
@@ -118,6 +119,7 @@ const addChat = async (req, res) => {
 const getOrCreateChat = async (req, res) => {
   const userId = req.user.id;
   const otherParticipant = req.query.otherParticipant;
+  console.log("userId and therPartic backend", userId, otherParticipant);
   const chatId = req.params.id;
 
   try {
@@ -159,8 +161,10 @@ const getOrCreateChat = async (req, res) => {
 
 const deleteChat = async (req, res) => {
   const userId = req.user.id;
+  const chatId = req.params.id;
+
   try {
-    const deletedChat = await userService.deleteChat(userId);
+    const deletedChat = await userService.deleteChat(userId, chatId);
     return res.status(200).send(deletedChat);
   } catch (error) {
     res.status(500).send({ message: "Failed to delete chat!" });

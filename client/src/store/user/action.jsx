@@ -112,7 +112,7 @@ export const getUserChats = () => async (dispatch) => {
   try {
     const response = await api.get(`/api/user/profile/chat`);
     const chats = response.data;
-    console.log("user chats front", chats);
+    // console.log("Action user chats:", chats);
     dispatch({
       type: GET_USER_CHATS_SUCCESS,
       payload: chats,
@@ -131,9 +131,10 @@ export const getChatById = (chatId, otherParticipant) => async (dispatch) => {
 
   try {
     const response = await api.get(`/api/user/profile/chat/${chatId}`, {
-      params: { otherParticipant },
+      params: otherParticipant ? { otherParticipant } : {},
     });
     const chat = response.data;
+    //console.log("getchat y id ", chat);
     dispatch({
       type: GET_CHAT_BY_ID_SUCCESS,
       payload: chat,
@@ -151,7 +152,7 @@ export const createChat = (otherParticipant) => async (dispatch) => {
 
   try {
     const response = await api.post("/api/user/profile/chat", {
-      otherParticipant,
+      params: otherParticipant ? { otherParticipant } : {}, // Avoid sending undefined
     });
     const chat = response.data;
     dispatch({

@@ -46,7 +46,7 @@ const ChatView = ({ chat, onClose, userId }) => {
       setMessage("");
     }
   };
-
+  //console.log("Chat view", chat);
   return (
     <div className="h-full flex-1 flex flex-col bg-white animate-fade-in">
       {/* Header */}
@@ -63,7 +63,9 @@ const ChatView = ({ chat, onClose, userId }) => {
               {otherParticipant.name.charAt(0).toUpperCase()}
             </div>
           )}
-          <h2 className="text-lg font-semibold">{otherParticipant.name}</h2>
+          <h2 className="text-lg font-semibold capitalize">
+            {otherParticipant.name}
+          </h2>
         </div>
         <div className="flex items-center space-x-4">
           <button className="text-gray-500 hover:text-Primary transition-colors">
