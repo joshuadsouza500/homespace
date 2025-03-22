@@ -65,9 +65,9 @@ const ChatView = ({ chat, userId, onClose }) => {
     );
   }
   return (
-    <div className="h-full flex-1 flex flex-col bg-white animate-fade-in">
+    <section className="h-full flex-1 flex flex-col bg-white animate-fade-in relative ">
       {/* Header */}
-      <div className="p-4 border-b border-gray-200 flex items-center justify-between">
+      <nav className="p-4 border-b border-gray-200 flex items-center justify-between fixed top-0 z-10">
         <div className="flex items-center">
           {otherParticipant.avatar ? (
             <img
@@ -98,7 +98,7 @@ const ChatView = ({ chat, userId, onClose }) => {
             <X className="size-6" />
           </button>
         </div>
-      </div>
+      </nav>
 
       {/* Messages */}
       <div className="flex-1 overflow-y-auto p-6 bg-[#f7f6fc]">
@@ -120,7 +120,7 @@ const ChatView = ({ chat, userId, onClose }) => {
       </div>
 
       {/* Message Input */}
-      <div className="p-4 border-t border-gray-200">
+      <div className="p-4 border-t border-gray-200 fixed bottom-0 z-10">
         <div className="flex items-center gap-x-2 ">
           <button type="button" className="text-gray-500 hover:text-Primary ">
             <Paperclip className="xl:size-6 size-5" />
@@ -141,7 +141,7 @@ const ChatView = ({ chat, userId, onClose }) => {
           </button>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 ChatView.propTypes = {

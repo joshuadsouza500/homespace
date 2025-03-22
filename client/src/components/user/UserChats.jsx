@@ -7,6 +7,7 @@ import { getChatById, getUserChats } from "@/store/user/action";
 import { getUserProfile } from "@/store/auth/action";
 import { RESET_SELECTED_CHAT } from "@/store/user/actionType";
 import ChatComponent from "../ui/vo/ChatComponent";
+import { MessageCircle, MessageCircleCode } from "lucide-react";
 
 //Left side displays all chats, last message and unread count.  (Maybe message image)
 //Right side displays the chat top sender profile maybe option to call and maybe on clicking sender profile can see other properties
@@ -52,11 +53,11 @@ const UserChats = ({ user }) => {
   };
 
   return (
-    <div className=" flex flex-row max-w-7xl 2xl:max-w-[1640px]  min-h-screen overflow-hidden shadow-md pl-0.5">
+    <div className=" flex max-w-7xl 2xl:max-w-[1640px]  min-h-screen  shadow-md pl-0.5 ">
       <div
         className={`
               ${isMobileViewOpen ? "hidden" : "block"} 
-              md:block w-full md:w-auto 2xl:pr-1 2xl:border
+              md:block w-full md:w-auto 2xl:pr-1 2xl:border relative
             `}
       >
         <ChatSidebar
@@ -75,19 +76,14 @@ const UserChats = ({ user }) => {
             `}
       >
         {SelectedChat ? (
-          /*  <ChatComponent
-            chat={SelectedChat}
-            userId={user?.id}
-            onClose={handleCloseChat}
-          />  */
           <ChatView
             chat={SelectedChat}
             onClose={handleCloseChat}
             userId={user?.id}
           />
         ) : (
-          <div className="flex-1 flex items-center justify-center text-gray-500">
-            Select a chat to start messaging
+          <div className="flex-1 flex items-center justify-center text-gray-500 ml-5 text-lg xl:text-2xl  h-full  gap-x-2">
+            <MessageCircleCode /> Select a chat to start messaging
           </div>
         )}
       </div>
