@@ -301,6 +301,7 @@ const addMessage = async (userId, chatId, message) => {
           has: userId,
         },
       },
+      select: { participantsIds: true, unreadCounts: true }, // Select only the participantsIds and unreadCounts fields reduces db load
     });
     if (!chat) {
       throw new Error("Chat not found ");
@@ -330,9 +331,11 @@ const addMessage = async (userId, chatId, message) => {
         },
       },
     });
+    console.log("Add message service ", newMessage);
     return newMessage;
   } catch (error) {
-    throw new Error(error.message);
+    console.error("Error in addMessage:", error); // Logs full error stack
+    throw new Error("Failed to send message. Please try again.");
   }
 };
 

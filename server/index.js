@@ -1,10 +1,13 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
+
 import prisma from "./src/lib/Prisma.js";
 import UserRoute from "./src/Routes/UserRoute.js";
 import AuthRoute from "./src/Routes/AuthRoute.js";
 import PropertyRoute from "./src/Routes/PropertyRoute.js";
+import { Server } from "socket.io";
+import userService from "./src/Service/userService.js";
 
 dotenv.config();
 const app = express();
@@ -25,22 +28,50 @@ async function checkDatabaseConnection() {
   }
 }
 
-app.get("/", (req, res) => {
-  return res.status(200).send("Hello World!");
-});
-
-//routes
-
-app.use("/auth", AuthRoute);
-app.use("/api/user", UserRoute);
-app.use("/api/property", PropertyRoute);
+//http.createServer(app); //creates a new https server and says express is used to handle req and res
 
 async function main() {
   await checkDatabaseConnection();
 
-  const PORT = process.env.PORT || 5001;
-  app.listen(PORT, () => {
+  const PORT = process.env.PORT || 5000;
+  const server = app.listen(PORT, () => {
+    //A node http.Server is returned, with this application (which is a Function) as its callback
     console.log(`Server running on port ${PORT}`);
+  });
+  const io = new Server(server, {
+    cors: {
+      origin: ["http://localhost:5173", "http://127.0.0.1:5173"],
+      methods: ["GET", "POST"], //specify method
+    },
+  });
+
+  io.on("connection", (socket) => {
+    console.log("User connected:", socket.id);
+
+    socket.on("joinRoom", (chatId) => {
+      socket.join(chatId);
+      console.log(`Socket ${socket.id} joined room ${chatId}`);
+    });
+
+    socket.on("sendMessage", async ({ userId, chatId, message }) => {
+      console.log("Incoming message");
+      try {
+        const newMessage = await userService.addMessage(
+          userId,
+          chatId,
+          message
+        );
+
+        // Emit the message to all users in the chat room
+        io.to(chatId).emit("receiveMessage", newMessage);
+      } catch (error) {
+        console.error("Error sending message:", error.message);
+      }
+    });
+
+    socket.on("disconnect", () => {
+      console.log(`Socket disconnected: ${socket.id}`);
+    });
   });
 }
 
@@ -51,6 +82,16 @@ main()
   .finally(async () => {
     await prisma.$disconnect();
   });
+
+app.get("/", (req, res) => {
+  return res.status(200).send("Hello World!");
+});
+
+//routes
+
+app.use("/auth", AuthRoute);
+app.use("/api/user", UserRoute);
+app.use("/api/property", PropertyRoute);
 
 {
   /** Function to initialize exisitng users with empty chats array

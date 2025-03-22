@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import PropTypes from "prop-types";
+import React, { useEffect, useState } from "react";
 import {
   MessageSquare,
   Phone,
@@ -11,33 +10,37 @@ import {
 import ChatMessage from "./ChatMessage";
 import { io } from "socket.io-client";
 
-const ChatView = ({ chat, userId, onClose }) => {
+const ChatComponent = ({ chat, userId, onClose }) => {
   const [socket, setSocket] = useState(null);
-  const [message, setMessage] = useState(""); //used for message input
-  const [allMessages, setAllMessages] = useState([]); //Used to store all the messages
+  const [allMessages, setAllMessages] = useState([]);
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
+    // Connect to the server
     const newSocket = io("http://localhost:5000");
     setSocket(newSocket);
+    setAllMessages(chat.messages || []);
+    // Join the room using the chatId
     newSocket.emit("joinRoom", chat.id);
-    if (chat) {
-      setAllMessages(chat.messages || []); // Set initial messages if they exist
-    }
-    // Handle incoming messages
+
+    // Listen for incoming messages
     newSocket.on("receiveMessage", (newMessage) => {
-      setAllMessages((prev) => [newMessage, ...prev]); //Latest messages will be added to the start of array
+      setAllMessages((prev) => [newMessage, ...prev]);
     });
 
+    // Cleanup on unmount
     return () => {
       newSocket.off("receiveMessage");
-      newSocket.disconnect(); // Optionally disconnect
+      newSocket.disconnect();
     };
   }, [chat.id]);
 
   const handleSubmit = () => {
     if (message.trim() && socket) {
+      // Emit the message event with chatId, userId, and message content
       socket.emit("sendMessage", { userId, chatId: chat.id, message });
-      setMessage("");
+      setMessage(""); // Clear input after sending
+      console.log("Sending message:", message, chat.id);
     }
   };
 
@@ -48,9 +51,10 @@ const ChatView = ({ chat, userId, onClose }) => {
   if (!otherParticipant) {
     return null; // Return nothing if there is no other participant
   }
+
   if (!chat) {
     return (
-      <div className="h-full flex-1 flex items-center justify-center bg-gray-50 p-6 animate- fade-in">
+      <div className="h-full flex-1 flex items-center justify-center bg-gray-50 p-6 animate-fade-in">
         <div className="text-center max-w-md">
           <MessageSquare className="w-16 h-16 text-gray-300 mx-auto mb-4" />
           <h2 className="text-xl font-semibold text-gray-800 mb-2">
@@ -64,6 +68,7 @@ const ChatView = ({ chat, userId, onClose }) => {
       </div>
     );
   }
+
   return (
     <div className="h-full flex-1 flex flex-col bg-white animate-fade-in">
       {/* Header */}
@@ -144,14 +149,5 @@ const ChatView = ({ chat, userId, onClose }) => {
     </div>
   );
 };
-ChatView.propTypes = {
-  chat: PropTypes.shape({
-    name: PropTypes.string,
-    avatar: PropTypes.string,
-    id: PropTypes.string,
-    initialLetter: PropTypes.string,
-  }),
-  onClose: PropTypes.func,
-};
 
-export default ChatView;
+export default ChatComponent;

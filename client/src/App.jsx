@@ -35,7 +35,7 @@ export default App;
    * Add FAQ section under each Property details page faq about company or general questions.
    * Add live chat with property owner
    * Pagination to property search
-   * Add box to property search (Recent searches, popular searches , saved)
+   * Add box to property search page (Recent searches, popular searches , saved)
   /**
 
 
@@ -45,15 +45,20 @@ export default App;
    * Add a loan/ mortgage calculator for specific property etc.
    * Prop validation
    * Add animation for smooth transition when images are carsousel
-   * add a bit of blur to the sides of the logo slider
-   *Add number animations for mobile hero
+   * Add a bit of blur to the sides of the logo slider
+   * Add number animations for mobile hero
    * Features section complete the text and maybe change it (CHeck SS and saved maybe change the image)
    *
    * Optimizes sizes maybe dont use fixed sizes
    * Pass a variable to the carousel change and maybe pass it the index value so each card will change images at different times
-   *
+   * Reviwes section check figma design.
+   * Footer design check 22 march ss VM
+   * Myabe add google auth
    *
    * Testing.
    * Maybe integrate CI CD
+   *
+   *
+   * Maybe can  add images in the chat using cloudinary to store images and return link
    */
 }
