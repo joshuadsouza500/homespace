@@ -105,19 +105,26 @@ const ChatView = ({ chat, userId, onClose }) => {
         {allMessages
           .slice()
           .reverse()
-          .map((msg, index) => (
-            <ChatMessage
-              key={index}
-              content={msg.content}
-              timestamp={new Date(msg.createdAt).toLocaleTimeString([], {
-                hour: "2-digit",
-                minute: "2-digit",
-              })}
-              isReceived={msg.senderId !== userId} // Message is considered received if sender is not the current user
-              sender={msg.senderId === userId ? "You" : otherParticipant.name} // Show either "You" or the other participant's name
-              otherParticipant={otherParticipant}
-            />
-          ))}
+          .map((msg, index) => {
+            const isLastFromOther =
+              index === 0 ||
+              (msg?.senderId === otherParticipant.id &&
+                allMessages[allMessages.length - (index + 2)]?.senderId !==
+                  otherParticipant.id);
+            return (
+              <ChatMessage
+                key={index}
+                message={msg}
+                timestamp={new Date(msg.createdAt).toLocaleTimeString([], {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })}
+                isReceived={msg.senderId !== userId}
+                sender={msg.senderId === userId ? "You" : otherParticipant.name}
+                otherParticipant={isLastFromOther ? otherParticipant : null} // Set avatar only for the last message from other participant
+              />
+            );
+          })}
       </div>
 
       {/* Message Input */}

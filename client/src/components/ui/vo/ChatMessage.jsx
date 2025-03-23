@@ -3,36 +3,40 @@ import { ChevronDown, ToggleLeftIcon } from "lucide-react";
 import DropDown from "../DropDown";
 
 const ChatMessage = ({
-  content,
+  message,
   timestamp,
   isReceived,
-  sender,
+
   otherParticipant,
 }) => {
   return (
     <div
       className={cn(
-        "mb-2 ",
-        isReceived ? "flex justify-start " : "flex justify-end"
+        "mb-2  ",
+        isReceived ? "flex justify-start items-end" : "flex justify-end"
       )}
     >
-      {isReceived ? (
+      {isReceived && otherParticipant ? (
         otherParticipant?.avatar ? (
           <img
-            src={otherParticipant.avatar}
-            alt={otherParticipant.name}
-            className="size-8 rounded-full object-cover mr-1"
+            src={otherParticipant?.avatar}
+            alt={otherParticipant?.name}
+            className="size-8 rounded-full object-cover mr-1.5 "
           />
         ) : (
-          <div className="avatar-circle size-8 mr-1 rounded-full flex items-center justify-center text-white font-semibold bg-Primary">
-            {otherParticipant.name.charAt(0).toUpperCase()}
+          <div className="avatar-circle size-8 mr-1.5 rounded-full flex  items-center justify-center text-white font-semibold bg-Primary ">
+            {otherParticipant?.name.charAt(0).toUpperCase()}
           </div>
         )
       ) : (
         ""
       )}
 
-      <div className="max-w-[75%] 2xl:max-w-[65%] ">
+      <div
+        className={`max-w-[75%] 2xl:max-w-[65%] ${
+          isReceived && otherParticipant ? "" : "pl-9"
+        }`}
+      >
         {/* isReceived && sender && (
           <div className="text-xs font-medium text-Primary mb-1 ml-1 tracking-wide">
             {sender}
@@ -47,7 +51,7 @@ const ChatMessage = ({
           )}
         >
           <p className="text-sm 2xl:text-base   leading-normal capitalize-first-letter">
-            {content}
+            {message?.content}
           </p>
 
           <div className="flex flex-col justify-between items-end  gap-y-1 xl:gap-y-2  min-w-[20%]">
