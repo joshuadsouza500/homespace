@@ -62,9 +62,9 @@ const User = () => {
         ${
           isOpen
             ? "translate-x-0 bg-Bgpurple"
-            : "-translate-x-full lg:translate-x-0"
+            : "-translate-x-full lg:translate-x-0 "
         } 
-        ${expanded ? "w-56 md:w-[25%]  max-w-80" : "w-20 md:w-20"}
+        ${expanded ? "w-52 md:w-[25%]  max-w-80" : "w-20 md:w-20"}
       `}
     >
       <div className="px-3 py-4 flex justify-between items-center">
@@ -143,12 +143,12 @@ const User = () => {
   const auth = useSelector((store) => store.auth);
   const user = auth.user;
   return (
-    <div className="flex font-poppins bg-background h-dvh z-0 justify-center w-screen  ">
+    <div className="flex font-poppins bg-background h-dvh z-0 justify-center w-screen  relative">
       {/*Sidebar */}
       {Sidebar}
       <div className="w-full   bg-background1 flex- 1 flex flex-col  z-0  overflow-y-scroll overflow-x- clip">
-        {/* {" "}
-        <header className="bg-white shadow py-2 pl-2 pr-4 flex sticky top-0 justify-between md:justify-end md:pr-10 items-center z-10 ">
+        {/* */}{" "}
+        <header className="bg-white shadow py-2 pl-2 pr-4 flex md:hidden sticky top-0 justify-between md:justify-end md:pr-10 items-center z-10 ">
           <button
             onClick={toggleSidebar}
             className="lg:hidden  hover:bg-gray-100  text-slate-800  rounded-full p-2 "
@@ -157,7 +157,7 @@ const User = () => {
           </button>
 
           <UserDropdown user={auth.user} />
-        </header>*/}
+        </header>
         {/*Routes */}
         <div>
           <Routes>

@@ -316,13 +316,26 @@ const addMessage = async (userId, chatId, message) => {
         content: message,
       },
     });
+
+    // Update unread counts
+    const updatedUnreadCounts = {
+      ...(chat.unreadCounts || {}),
+      [userId]: 0, // Reset the sender's unread count to 0
+    };
+
+    chat.participantsIds.forEach((id) => {
+      if (id !== userId) {
+        updatedUnreadCounts[id] = (chat.unreadCounts?.[id] || 0) + 1; // get the current unread count for the user with id
+      }
+    });
+
     await prisma.chat.update({
       where: { id: chatId },
       data: {
         lastMessage: message,
         lastMessageCreatedAt: newMessage.createdAt,
-        unreadCounts: {
-          set: {
+        unreadCounts: updatedUnreadCounts,
+        /* set: { //HERE EVERYTIME WE UPDATE IT CREATED A NEW SET AND NESTED THE OBJ
             ...(chat.unreadCounts || {}), //spread the exisitng unreadcounts
             [userId]: 0, //reset the senders count to 0
             ...Object.fromEntries(
@@ -331,8 +344,7 @@ const addMessage = async (userId, chatId, message) => {
                 .filter((id) => id !== userId) // return [user2]
                 .map((id) => [id, (chat.unreadCounts?.[id] || 0) + 1]) //checks if there’s an existing unread count for that user (using optional chaining ?.). If it exists, it adds 1
             ),
-          },
-        },
+          },*/
       },
     });
 

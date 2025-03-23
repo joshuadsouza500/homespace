@@ -115,6 +115,7 @@ const ChatView = ({ chat, userId, onClose }) => {
               })}
               isReceived={msg.senderId !== userId} // Message is considered received if sender is not the current user
               sender={msg.senderId === userId ? "You" : otherParticipant.name} // Show either "You" or the other participant's name
+              otherParticipant={otherParticipant}
             />
           ))}
       </div>
@@ -163,4 +164,8 @@ export default ChatView;
  * When a new message is sent have a slight animation to bring it in, the chat view should automatically scroll to show the new message
  *When hovering overmessgae chevron options [copy, delete]
  * When clicking on a chat it shows from the top most(oldest message) . make it show most recent or bottom. And later on add pagination to messages with show more messages
+ *  Maybe add otherparticipants avatar but only for last message they send and not for all messages => CHeck if [0] and [1] is from same sender ?
+ *  Last message make it into date if its yesterday or previous
+ * ✅ In latest message if you sent it make it you:messgae here
+ * ✅ if unreadmessage exist make the last message bold
  */

@@ -61,7 +61,9 @@ const ChatSidebar = ({ chats, activeChat, onChatSelect, userId }) => {
           if (!otherParticipant) {
             return null; // If there's no other participant, skip this chat
           }
-
+          const unreadCount = chat.unreadCounts[userId];
+          const isSender = chat.messages[0]?.senderId === userId;
+          const unreadLastMessage = unreadCount > 0;
           return (
             <div
               key={chat.id}
@@ -78,7 +80,7 @@ const ChatSidebar = ({ chats, activeChat, onChatSelect, userId }) => {
                     <img
                       src={otherParticipant.avatar} // Use the avatar of the other participant
                       alt={otherParticipant.name} // Use the name of the other participant for alt attribute
-                      className="w-10 h-10 rounded-full object-cover ring-[0.5px] ring-Bgpurple"
+                      className="size-10 xl:size-12 rounded-full object-cover ring-[0.5px] ring-Bgpurple"
                     />
                   ) : (
                     <div className="avatar-circle w-10 h-10 bg-Primary rounded-full flex items-center justify-center text-white font-semibold">
@@ -92,8 +94,12 @@ const ChatSidebar = ({ chats, activeChat, onChatSelect, userId }) => {
                     <h3 className="max-xl:text-sm  font-semibold text-gray-900 truncate capitalize">
                       {otherParticipant.name}
                     </h3>
-                    <div className="flex items-center">
-                      <span className="text-xs text-gray-500">
+                    <div className="flex items-center ">
+                      <span
+                        className={`text-xs text-gray-500  ${
+                          activeChat === chat.id && "text-gray-800"
+                        } `}
+                      >
                         {/* Format the time of the last message */}
                         {new Date(
                           chat.messages[0]?.createdAt
@@ -102,9 +108,6 @@ const ChatSidebar = ({ chats, activeChat, onChatSelect, userId }) => {
                           minute: "2-digit",
                         })}{" "}
                       </span>
-                      {chat.unreadCounts[otherParticipant.id] > 0 && ( // Check if there are unread messages for this participant
-                        <span className="ml-1.5 bg-chat-red w-2 h-2 rounded-full"></span>
-                      )}
                     </div>
                   </div>
                   {otherParticipant.role === "Agent" && (
@@ -113,9 +116,21 @@ const ChatSidebar = ({ chats, activeChat, onChatSelect, userId }) => {
                     </p>
                   )}
 
-                  <p className="text-xs text-gray-500 mt-1 truncate pl-1">
-                    {chat.lastMessage}
-                  </p>
+                  <span className="flex items-center justify-between text-xs text-gray-500 mt-1 truncate pl-1">
+                    <span className="flex items-center gap-x-0.5">
+                      {isSender ? "You: " : " "}
+                      <p
+                        className={`capitalize-first-letter ${
+                          unreadLastMessage ? "text-gray-700 font-semibold" : ""
+                        }`}
+                      >
+                        {chat.lastMessage}
+                      </p>
+                    </span>
+                    {unreadCount > 0 && (
+                      <span className=" bg-Primary size-3 rounded-full mr-1"></span>
+                    )}
+                  </span>
                 </div>
               </div>
             </div>
@@ -181,6 +196,6 @@ export default ChatSidebar;
   
   .conversation-item.active {
     @apply border-l-4 border-l-chat-primary bg-chat-gray;
-  }
+  
 } */
 }
