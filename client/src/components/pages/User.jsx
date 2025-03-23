@@ -43,7 +43,7 @@ const menu = [
 //Get routebfrom param to setactiveitem
 const User = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [expanded, setExpanded] = useState(true);
+
   const [activeItem, setActiveItem] = useState(null);
   const navigate = useNavigate();
 
@@ -58,20 +58,15 @@ const User = () => {
 
   const Sidebar = (
     <div
-      className={`bg-Bgpurple text-white h-dvh w-auto z-10 relative top-0 left-0 transition-all duration-500 ease-in-out 2xl:px-4
-        ${
-          isOpen
-            ? "translate-x-0 bg-Bgpurple"
-            : "-translate-x-full lg:translate-x-0 "
-        } 
-        ${expanded ? "w-52 md:w-[25%]  max-w-80" : "w-20 md:w-20"}
-      `}
+      className={`bg-Bgpurple text-white h-dvh z-10 w-52 md:w-[25%] max-w-80 
+      fixed top-0 left-0 transition-transform duration-500 ease-in-out 2xl:px-4
+      ${isOpen ? "translate-x-0" : "-translate-x-full"}
+      lg:relative lg:translate-x-0
+    `}
     >
       <div className="px-3 py-4 flex justify-between items-center">
         <h1
-          className={`font-bold flex justify-between gap-x-1 items-center cursor-pointer ${
-            expanded ? "text-xl sm:text-2xl" : "hidden"
-          }`}
+          className={`font-bold flex justify-between gap-x-1 items-center cursor-pointer  text-xl sm:text-2xl `}
           onClick={() => navigate("/")}
         >
           <img
@@ -83,16 +78,7 @@ const User = () => {
           />
           HomeSpace
         </h1>
-        <button
-          className="hidden lg:block transition-all duration-300 ease-in-out"
-          onClick={() => setExpanded(!expanded)}
-        >
-          {expanded ? (
-            <ArrowLeftFromLineIcon className="size-5" />
-          ) : (
-            <ArrowRightFromLineIcon className="size-5 ml-2" />
-          )}
-        </button>
+
         <button
           onClick={toggleSidebar}
           className={`hover:bg-gray-700 rounded-full p-1 text-white ${
@@ -107,9 +93,9 @@ const User = () => {
           {menu.map((item) => (
             <li
               key={item.id}
-              className={`hover:bg-Primary/30  font-medium cursor-pointer transition-colors duration-300 flex items-center  ${
+              className={`hover:bg-Primary/30  font-medium cursor-pointer transition-colors duration-300 flex items-center p-4  gap-3 sm:gap-4  ${
                 activeItem === item.id ? "bg-Primary/50 " : ""
-              } ${expanded ? "p-4  gap-3 sm:gap-4" : " p-2 rounded-full "}`}
+              } `}
               onClick={() => {
                 setActiveItem(item.id); // Set the clicked item as active
                 navigate(item.path);
@@ -117,9 +103,8 @@ const User = () => {
             >
               <button className="size-7">{item.icon}</button>
               <span
-                className={`transition-all duration-500 ease-in-out ${
-                  expanded ? "block" : "hidden"
-                }`}
+                className={`transition-all block duration-500 ease-in-out 
+                 `}
               >
                 {item.name}
               </span>
@@ -134,7 +119,7 @@ const User = () => {
             <button className="size-5">
               <ArrowLeftCircle />
             </button>
-            <span className={`${expanded ? "block" : "hidden"}`}>Home</span>
+            <span className={`block`}>Home</span>
           </span>
         </div>
       </nav>
@@ -148,7 +133,7 @@ const User = () => {
       {Sidebar}
       <div className="w-full   bg-background1 flex- 1 flex flex-col  z-0  overflow-y-scroll overflow-x- clip">
         {/* */}{" "}
-        <header className="bg-white shadow py-2 pl-2 pr-4 flex md:hidden sticky top-0 justify-between md:justify-end md:pr-10 items-center z-10 ">
+        <header className="bg-white shadow py-2 pl-2 pr-4 flex lg:hidden sticky top-0 justify-between   items-center z-10 ">
           <button
             onClick={toggleSidebar}
             className="lg:hidden  hover:bg-gray-100  text-slate-800  rounded-full p-2 "
