@@ -65,9 +65,9 @@ const ChatView = ({ chat, userId, onClose }) => {
     );
   }
   return (
-    <section className="h-full flex-1 flex flex-col bg-white animate-fade-in relative ">
+    <section className="h-full flex-1 flex flex-col bg-white animate-fade-in  ">
       {/* Header */}
-      <nav className="p-4 border-b border-gray-200 flex items-center justify-between fixed top-0 z-10">
+      <nav className="p-4 border-b border-gray-200 flex items-center justify-between ">
         <div className="flex items-center">
           {otherParticipant.avatar ? (
             <img
@@ -120,7 +120,7 @@ const ChatView = ({ chat, userId, onClose }) => {
       </div>
 
       {/* Message Input */}
-      <div className="p-4 border-t border-gray-200 fixed bottom-0 z-10">
+      <div className="p-4 border-t border-gray-200 ">
         <div className="flex items-center gap-x-2 ">
           <button type="button" className="text-gray-500 hover:text-Primary ">
             <Paperclip className="xl:size-6 size-5" />
@@ -130,7 +130,7 @@ const ChatView = ({ chat, userId, onClose }) => {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             placeholder="Type a message"
-            className="chat-input w-full border border-gray-200 rounded-full py-3 px-4 focus:outline-none focus:ring-1 focus:ring-Primary"
+            className="chat-input w-full border border-gray-200 rounded-full py-3 px-4 focus:outline-none focus:ring-1 focus:ring-Primary flex-1"
           />
           <button
             type="button"
@@ -155,3 +155,12 @@ ChatView.propTypes = {
 };
 
 export default ChatView;
+
+/*
+ * Unreadcounts and show unread messages
+ *Mobile version
+ * when sending new message animate it and show 3 dots for other user
+ * When a new message is sent have a slight animation to bring it in, the chat view should automatically scroll to show the new message
+ *When hovering overmessgae chevron options [copy, delete]
+ * When clicking on a chat it shows from the top most(oldest message) . make it show most recent or bottom. And later on add pagination to messages with show more messages
+ */

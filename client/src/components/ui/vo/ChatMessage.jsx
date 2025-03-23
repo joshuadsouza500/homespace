@@ -6,37 +6,42 @@ const ChatMessage = ({ content, timestamp, isReceived, sender }) => {
   return (
     <div
       className={cn(
-        "mb-4",
+        "mb-2 ",
         isReceived ? "flex justify-start" : "flex justify-end"
       )}
     >
       <div className="max-w-[75%] 2xl:max-w-[65%]">
-        {isReceived && sender && (
+        {/* isReceived && sender && (
           <div className="text-xs font-medium text-Primary mb-1 ml-1 tracking-wide">
             {sender}
           </div>
-        )}
+        )*/}
         <div
           className={cn(
-            "rounded-lg  px-3 pt-3 pb-2 shadow-md group cursor-pointer",
+            "rounded-lg  px-3 pt-2 pb-1 shadow-md group cursor-pointer flex justify-between",
             isReceived
-              ? "bg-gray-50 text-gray-800 rounded-bl-none"
+              ? " bg-background1 text-gray-700 rounded-bl-none border-[0.5px] shadow-sm"
               : "bg-Primary text-white rounded-br-none"
           )}
         >
-          <div className="flex justify-between items-start gap-x-3 pb-1">
-            <p className="text-sm   leading-normal">{content}</p>
+          <p className="text-sm 2xl:text-base   leading-normal">{content}</p>
+
+          <div className="flex flex-col justify-between items-end  gap-y-1 xl:gap-y-2  min-w-[20%]">
             <div className=" group-hover:opacity-100 opacity-0 transition-opacity duration-200 ease-in-out ">
-              <ChevronDown className="size-4 xl:size-5" />
+              <ChevronDown
+                className={`size-4 xl:size-5  ${
+                  isReceived ? "text-gray-500" : "text-gray-200"
+                }`}
+              />
             </div>
-          </div>
-          <div
-            className={cn(
-              "text-xs mt-1 ",
-              isReceived ? "text-gray-500" : "text-gray-200"
-            )}
-          >
-            {timestamp}
+            <div
+              className={cn(
+                "text-xs mt-",
+                isReceived ? "text-gray-500" : "text-gray-200"
+              )}
+            >
+              {timestamp}
+            </div>
           </div>
         </div>
       </div>

@@ -10,11 +10,11 @@ const ChatSidebar = ({ chats, activeChat, onChatSelect, userId }) => {
   //    if (filter === "unread") return chat.unread;
   //   return true;
   //  });
-
+  console.log("CHat sidebar", chats);
   return (
-    <div className="h-full flex flex-col border-r border-gray-200 w-full md:w-80 2xl:w-[440px] bg-white overflow-hidden animate-fade-in fixed top-0 bottom-0  z-10 ">
+    <div className="h-full flex flex-col border-r border-gray-200 w-full md:w-80 2xl:w-[440px] bg-white overflow-hidden animate-fade-in f">
       <div className="p-6 border-b border-gray-100">
-        <h1 className="text-xl font-bold text-chat-secondary mb-5">INBOX</h1>
+        <h1 className="text-xl font-bold text-chat-secondary mb-5">Chats</h1>
         {/** */}{" "}
         <div className="mb-2">
           <p className="text-xs font-medium text-gray-500 uppercase mb-2">
@@ -23,7 +23,7 @@ const ChatSidebar = ({ chats, activeChat, onChatSelect, userId }) => {
           <div className="flex space-x-2">
             <button
               className={cn(
-                "chat-filter-button rounded-full text-sm px-4 py-1.5 font-medium transition-all bg-chat-gray text-gray-700 hover:bg-gray-200" //filter === "all" && "active"
+                "chat-filter-button rounded-full text-sm px-4 py-1.5 font-medium transition-all bg-light_gray chat-gray text-gray-700 hover:bg-gray-200" //filter === "all" && "active"
               )}
               // onClick={() => setFilter("all")}
             >
@@ -31,7 +31,7 @@ const ChatSidebar = ({ chats, activeChat, onChatSelect, userId }) => {
             </button>
             <button
               className={cn(
-                "chat-filter-button rounded-full text-sm px-4 py-1.5 font-medium transition-all"
+                "chat-filter-button rounded-full text-sm px-4 py-1.5 font-medium transition-all bg-light_gray chat-gray text-gray-700 hover:bg-gray-200l"
                 //  filter === "unread" && "active"
               )}
               //onClick={() => setFilter("unread")}
@@ -69,7 +69,7 @@ const ChatSidebar = ({ chats, activeChat, onChatSelect, userId }) => {
               className={cn(
                 "py-4 px-3 border-b border-gray-100 hover:bg-gray-50 cursor-pointer transition-all",
                 activeChat === chat.id &&
-                  "border-l-4 border-l-Primary bg-[#F1F0FB]"
+                  "border-l-[3px] border-l-Primary bg-[#F1F0FB]"
               )}
             >
               <div className="flex items-start">
@@ -113,7 +113,7 @@ const ChatSidebar = ({ chats, activeChat, onChatSelect, userId }) => {
                     </p>
                   )}
 
-                  <p className="text-xs text-gray-700 mt-1 truncate">
+                  <p className="text-xs text-gray-500 mt-1 truncate pl-1">
                     {chat.lastMessage}
                   </p>
                 </div>

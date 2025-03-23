@@ -198,6 +198,9 @@ const getUserChats = async (userId) => {
           orderBy: { createdAt: "desc" },
         },
       },
+      orderBy: {
+        lastMessageCreatedAt: "desc",
+      },
     });
     //console.log("user's chats: ", userChats);
     if (!userChats) {
@@ -267,7 +270,7 @@ const deleteChat = async (userId, chatId) => {
         },
       },
     });
-    console.log("ccc", chat);
+
     if (!chat) {
       throw new Error("Chat not found ");
     }
@@ -317,6 +320,7 @@ const addMessage = async (userId, chatId, message) => {
       where: { id: chatId },
       data: {
         lastMessage: message,
+        lastMessageCreatedAt: newMessage.createdAt,
         unreadCounts: {
           set: {
             ...(chat.unreadCounts || {}), //spread the exisitng unreadcounts
@@ -331,7 +335,7 @@ const addMessage = async (userId, chatId, message) => {
         },
       },
     });
-    console.log("Add message service ", newMessage);
+
     return newMessage;
   } catch (error) {
     console.error("Error in addMessage:", error); // Logs full error stack
