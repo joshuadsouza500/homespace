@@ -90,14 +90,22 @@ const ChatSidebar = ({ chats, activeChat, onChatSelect, userId }) => {
                   )}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="flex justify-between items-start">
-                    <h3 className="max-xl:text-sm  font-semibold text-gray-900 truncate capitalize">
+                  <div className="flex justify-between items-center ">
+                    <h3
+                      className={`max-xl:text-sm font-semibold  text-gray-800 truncate capitalize ${
+                        activeChat === chat.id && "text-gray-900 font-bold"
+                      }`}
+                    >
                       {otherParticipant.name}
                     </h3>
                     <div className="flex items-center ">
                       <span
-                        className={`text-xs text-gray-500  ${
+                        className={`text-xs   ${
                           activeChat === chat.id && "text-gray-800"
+                        } ${
+                          unreadLastMessage
+                            ? "text-Primary font-semibold "
+                            : "text-gray-500"
                         } `}
                       >
                         {/* Format the time of the last message */}
@@ -116,11 +124,11 @@ const ChatSidebar = ({ chats, activeChat, onChatSelect, userId }) => {
                     </p>
                   )}
 
-                  <span className="flex items-center justify-between text-xs text-gray-500 mt-1 truncate pl-1">
+                  <span className="flex items-center justify-between text-xs text-gray-500 mt-1 truncate pl-1 ">
                     <span className="flex items-center gap-x-0.5">
                       {isSender ? "You: " : " "}
                       <p
-                        className={`capitalize-first-letter ${
+                        className={`capitalize-first-letter line-clamp-1 ${
                           unreadLastMessage ? "text-gray-700 font-semibold" : ""
                         }`}
                       >
@@ -128,7 +136,9 @@ const ChatSidebar = ({ chats, activeChat, onChatSelect, userId }) => {
                       </p>
                     </span>
                     {unreadCount > 0 && (
-                      <span className=" bg-Primary size-3 rounded-full mr-1"></span>
+                      <span className=" bg-Primary size-5 text-[10px]  text-white rounded-full mr-1 flex items-center justify-center">
+                        {unreadCount}
+                      </span>
                     )}
                   </span>
                 </div>
@@ -144,7 +154,7 @@ const ChatSidebar = ({ chats, activeChat, onChatSelect, userId }) => {
 export default ChatSidebar;
 
 {
-  /**
+  /** #00A884 : whatsapp green
     @layer components {
   .chat-tab {
     @apply relative text-base font-medium transition-all py-3 border-b-2 border-transparent text-gray-500 hover:text-chat-primary;

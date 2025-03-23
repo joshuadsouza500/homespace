@@ -7,7 +7,7 @@ import { getChatById, getUserChats } from "@/store/user/action";
 import { getUserProfile } from "@/store/auth/action";
 import { RESET_SELECTED_CHAT } from "@/store/user/actionType";
 import ChatComponent from "../ui/vo/ChatComponent";
-import { MessageCircle, MessageCircleCode } from "lucide-react";
+import { MessageCircle, MessageCircleCode, MessageSquare } from "lucide-react";
 
 //Left side displays all chats, last message and unread count.  (Maybe message image)
 //Right side displays the chat top sender profile maybe option to call and maybe on clicking sender profile can see other properties
@@ -82,8 +82,8 @@ const UserChats = ({ user }) => {
             userId={user?.id}
           />
         ) : (
-          <div className="flex-1 flex items-center justify-center text-gray-500 ml-5 text-lg xl:text-2xl  h-full  gap-x-2">
-            <MessageCircleCode /> Select a chat to start messaging
+          <div className="flex-1 flex items-center justify-center text-gray-500 ml-2 capitalize text-lg xl:text-2xl  h-full  gap-x-2">
+            <MessageSquare /> Select a chat to start messaging
           </div>
         )}
       </div>
