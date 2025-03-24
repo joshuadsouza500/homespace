@@ -10,7 +10,8 @@ const ChatSidebar = ({ chats, activeChat, onChatSelect, userId }) => {
   //    if (filter === "unread") return chat.unread;
   //   return true;
   //  });
-  console.log("CHat sidebar", chats);
+  // console.log("CHat sidebar", chats);
+  const [isOnline, setIsOnline] = useState(false);
   return (
     <div className="h-full flex flex-col border-r border-gray-200 w-full md:w-80 2xl:w-[440px] bg-white overflow-hidden animate-fade-in f">
       <div className="p-6 border-b border-gray-100">
@@ -64,6 +65,7 @@ const ChatSidebar = ({ chats, activeChat, onChatSelect, userId }) => {
           const unreadCount = chat.unreadCounts[userId];
           const isSender = chat.messages[0]?.senderId === userId;
           const unreadLastMessage = unreadCount > 0;
+
           return (
             <div
               key={chat.id}
@@ -77,15 +79,24 @@ const ChatSidebar = ({ chats, activeChat, onChatSelect, userId }) => {
               <div className="flex items-start">
                 <div className="flex-shrink-0 mr-3">
                   {otherParticipant.avatar ? (
-                    <img
-                      src={otherParticipant.avatar} // Use the avatar of the other participant
-                      alt={otherParticipant.name} // Use the name of the other participant for alt attribute
-                      className="size-10 xl:size-12 rounded-full object-cover ring-[0.5px] ring-Bgpurple"
-                    />
+                    <div className="relative">
+                      {" "}
+                      <img
+                        src={otherParticipant.avatar} // Use the avatar of the other participant
+                        alt={otherParticipant.name} // Use the name of the other participant for alt attribute
+                        className="size-10 xl:size-12 rounded-full object-cover ring-[0.5px] ring-Bgpurple"
+                      />
+                      {isOnline && (
+                        <span className="bg-[#00A884]  size-[14px] rounded-full absolute z-10 -right-1 bottom-0.5 border-[0.5px]" />
+                      )}
+                    </div>
                   ) : (
-                    <div className="avatar-circle w-10 h-10 bg-Primary rounded-full flex items-center justify-center text-white font-semibold">
-                      {otherParticipant.name.charAt(0).toUpperCase()}{" "}
+                    <div className="avatar-circle w-10 h-10 bg-Primary rounded-full flex items-center justify-center text-white font-semibold relative">
                       {/* Show initial letter */}
+                      {otherParticipant.name.charAt(0).toUpperCase()}{" "}
+                      {isOnline && (
+                        <span className="bg-[#00A884]  size-[14px] rounded-full absolute z-10 -right-1 bottom-0.5 border-[0.5px]" />
+                      )}
                     </div>
                   )}
                 </div>
@@ -108,13 +119,20 @@ const ChatSidebar = ({ chats, activeChat, onChatSelect, userId }) => {
                             : "text-gray-500"
                         } `}
                       >
-                        {/* Format the time of the last message */}
+                        {/* Format the time of the last message// Checks if the last message was sent today? if so displays the time. if not displays the day it was sent */}
                         {new Date(
                           chat.messages[0]?.createdAt
-                        ).toLocaleTimeString([], {
-                          hour: "2-digit",
-                          minute: "2-digit",
-                        })}{" "}
+                        ).toLocaleDateString() ===
+                        new Date().toLocaleDateString()
+                          ? new Date(
+                              chat.messages[0]?.createdAt
+                            ).toLocaleTimeString([], {
+                              hour: "2-digit",
+                              minute: "2-digit",
+                            })
+                          : new Date(
+                              chat.messages[0]?.createdAt
+                            ).toLocaleDateString("en-US", { weekday: "long" })}
                       </span>
                     </div>
                   </div>

@@ -1,6 +1,15 @@
 import { cn } from "@/lib/utils";
 import { ChevronDown, ToggleLeftIcon } from "lucide-react";
 import DropDown from "../DropDown";
+import { useState } from "react";
+
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "../dropdown-menu";
 
 const ChatMessage = ({
   message,
@@ -9,6 +18,10 @@ const ChatMessage = ({
 
   otherParticipant,
 }) => {
+  const [dropDown, setDropDown] = useState(false);
+  const handleDropDown = () => {
+    setDropDown(!dropDown);
+  };
   return (
     <div
       className={cn(
@@ -50,26 +63,41 @@ const ChatMessage = ({
               : "bg-Primary text-white rounded-br-none"
           )}
         >
-          <p className="text-sm 2xl:text-base   leading-normal capitalize-first-letter">
+          <p className="text-sm 2xl:text-base   leading-normal capitalize-first-letter ">
             {message?.content}
           </p>
 
-          <div className="flex flex-col justify-between items-end  gap-y-1 xl:gap-y-2  min-w-[20%]">
-            <div className=" group-hover:opacity-100 opacity-0 transition-opacity duration-200 ease-in-out ">
-              <ChevronDown
-                className={`size-4 xl:size-5  ${
+          <div className="flex flex-col justify-between items-end  gap-y-1 xl:gap-y-2  min-w-[20%] relative z-0  ">
+            <DropdownMenu>
+              <DropdownMenuTrigger
+                className=" group-hover:opacity-100 opacity-0 transition-opacity duration-200 ease-in-out data-[state=open]:opacity-100"
+                onClick={handleDropDown}
+              >
+                <ChevronDown
+                  className={`size-4 xl:size-5  ${
+                    isReceived ? "text-gray-500" : "text-gray-200"
+                  }`}
+                />
+              </DropdownMenuTrigger>
+              <div
+                className={cn(
+                  "text-xs ",
                   isReceived ? "text-gray-500" : "text-gray-200"
-                }`}
-              />
-            </div>
-            <div
-              className={cn(
-                "text-xs mt-",
-                isReceived ? "text-gray-500" : "text-gray-200"
+                )}
+              >
+                {timestamp}
+              </div>
+              {dropDown && (
+                <DropdownMenuContent
+                  side="bottom"
+                  className="w-12 mr-12 bg-white/95 "
+                >
+                  <DropdownMenuItem value="Copy">Copy</DropdownMenuItem>
+                  <DropdownMenuSeparator className="w-[95%] mx-auto" />
+                  <DropdownMenuItem value="Delete">Delete</DropdownMenuItem>
+                </DropdownMenuContent>
               )}
-            >
-              {timestamp}
-            </div>
+            </DropdownMenu>
           </div>
         </div>
       </div>

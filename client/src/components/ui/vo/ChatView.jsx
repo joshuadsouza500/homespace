@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import {
   MessageSquare,
@@ -15,7 +15,7 @@ const ChatView = ({ chat, userId, onClose }) => {
   const [socket, setSocket] = useState(null);
   const [message, setMessage] = useState(""); //used for message input
   const [allMessages, setAllMessages] = useState([]); //Used to store all the messages
-
+  const endOfMessagesRef = useRef(null);
   useEffect(() => {
     const newSocket = io("http://localhost:5000");
     setSocket(newSocket);
@@ -41,6 +41,20 @@ const ChatView = ({ chat, userId, onClose }) => {
     }
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      // Check if the pressed key is "Enter"
+      e.preventDefault(); // Prevent the default action (form submission)
+      handleSubmit();
+    }
+  };
+
+  useEffect(() => {
+    if (endOfMessagesRef.current) {
+      endOfMessagesRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [allMessages]); // Effect will run every time messages change
+
   const otherParticipant = chat?.participants?.find(
     (participant) => participant.id !== userId
   );
@@ -48,6 +62,7 @@ const ChatView = ({ chat, userId, onClose }) => {
   if (!otherParticipant) {
     return null; // Return nothing if there is no other participant
   }
+
   if (!chat) {
     return (
       <div className="h-full flex-1 flex items-center justify-center bg-gray-50 p-6 animate- fade-in">
@@ -125,6 +140,8 @@ const ChatView = ({ chat, userId, onClose }) => {
               />
             );
           })}
+        <div ref={endOfMessagesRef} />{" "}
+        {/*PLaced at the bottom of messages list so it can scroll into view to the bottom most text */}
       </div>
 
       {/* Message Input */}
@@ -137,6 +154,7 @@ const ChatView = ({ chat, userId, onClose }) => {
             type="text"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
+            onKeyDown={handleKeyDown} // Add the key down event handler
             placeholder="Type a message"
             className="chat-input w-full border border-gray-200 rounded-full py-3 px-4 focus:outline-none focus:ring-1 focus:ring-Primary flex-1"
           />
@@ -165,14 +183,16 @@ ChatView.propTypes = {
 export default ChatView;
 
 /*
- * Unreadcounts and show unread messages
- *Mobile version
- * when sending new message animate it and show 3 dots for other user
- * When a new message is sent have a slight animation to bring it in, the chat view should automatically scroll to show the new message
- *When hovering overmessgae chevron options [copy, delete]
- * When clicking on a chat it shows from the top most(oldest message) . make it show most recent or bottom. And later on add pagination to messages with show more messages
- *  Maybe add otherparticipants avatar but only for last message they send and not for all messages => CHeck if [0] and [1] is from same sender ?
- *  Last message make it into date if its yesterday or previous
+ 
+ *    CREATE Mobile version
+ *    check if the otherparticipant is online and if so 
+ *    when typing when they type so animate it and show 3 dots for other user
+ * ✅ When a new message is sent have a slight animation to bring it in, the chat view should automatically scroll to show the new message
+ * ✅ When clicking on a chat  make it show most recent or bottom. And later on add pagination to messages with show more messages
+ * ✅ Last message make it into date if its yesterday or previous
+ * ✅ When hovering overmessgae chevron options [copy, delete]
+ * ✅ SEND MESSAGE ON ENTER
+ * ✅ Maybe add otherparticipants avatar but only for last message they send and not for all messages => CHeck if [0] and [1] is from same sender ?
  * ✅ In latest message if you sent it make it you:messgae here
  * ✅ if unreadmessage exist make the last message bold
  */

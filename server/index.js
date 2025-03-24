@@ -54,7 +54,6 @@ async function main() {
     });
 
     socket.on("sendMessage", async ({ userId, chatId, message }) => {
-      console.log("Incoming message");
       try {
         const newMessage = await userService.addMessage(
           userId,
