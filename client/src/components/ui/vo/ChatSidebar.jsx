@@ -14,17 +14,19 @@ const ChatSidebar = ({ chats, activeChat, onChatSelect, userId }) => {
   const [isOnline, setIsOnline] = useState(false);
   return (
     <div className="h-full flex flex-col border-r border-gray-200 w-full md:w-80 2xl:w-[440px] bg-white overflow-hidden animate-fade-in f">
-      <div className="p-6 border-b border-gray-100">
-        <h1 className="text-xl font-bold text-chat-secondary mb-5">Chats</h1>
-        {/** */}{" "}
+      <div className="p-4 border-b border-gray-100 ">
+        <h1 className="text-2xl font-bold text-chat-secondary mb-2 md:mb-3">
+          Chats
+        </h1>
+        {/** {" "}
         <div className="mb-2">
           <p className="text-xs font-medium text-gray-500 uppercase mb-2">
-            QUICK FILTERS
+            Quick FILTERS
           </p>
           <div className="flex space-x-2">
             <button
               className={cn(
-                "chat-filter-button rounded-full text-sm px-4 py-1.5 font-medium transition-all bg-light_gray chat-gray text-gray-700 hover:bg-gray-200" //filter === "all" && "active"
+                "chat-filter-button rounded-full text-sm px-5 py-1.5 font-medium transition-all bg-light_gray chat-gray text-gray-700 hover:bg-gray-200" //filter === "all" && "active"
               )}
               // onClick={() => setFilter("all")}
             >
@@ -40,7 +42,7 @@ const ChatSidebar = ({ chats, activeChat, onChatSelect, userId }) => {
               Unread Chats
             </button>
           </div>
-        </div>
+        </div>*/}
       </div>
 
       <div className="relative mx-4 mt-4">
@@ -49,12 +51,12 @@ const ChatSidebar = ({ chats, activeChat, onChatSelect, userId }) => {
         </div>
         <input
           type="text"
-          placeholder="Search conversations..."
-          className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-chat-primary"
+          placeholder="Search chats..."
+          className="w-full pl-10 rounded-full pr-4 py-2.5 border border-gray-200 text-base focus:outline-none focus:ring-1 focus:ring-primary/20 text-muted-foreground  bg-secondary/50"
         />
       </div>
 
-      <div className="flex-1 overflow-y-auto  scrollbar-thin scrollbar-thumb-gray-300 pt-2">
+      <div className="flex-1 overflow-y-auto  scrollbar-thin scrollbar-thumb-gray-300 pt-3">
         {chats.map((chat) => {
           const otherParticipant = chat.participants?.find(
             (participant) => participant.id !== userId
@@ -84,14 +86,14 @@ const ChatSidebar = ({ chats, activeChat, onChatSelect, userId }) => {
                       <img
                         src={otherParticipant.avatar} // Use the avatar of the other participant
                         alt={otherParticipant.name} // Use the name of the other participant for alt attribute
-                        className="size-10 xl:size-12 rounded-full object-cover ring-[0.5px] ring-Bgpurple"
+                        className="size-12 xl:size-12 rounded-full object-cover ring-[0.5px] ring-Bgpurple"
                       />
                       {isOnline && (
                         <span className="bg-[#00A884]  size-[14px] rounded-full absolute z-10 -right-1 bottom-0.5 border-[0.5px]" />
                       )}
                     </div>
                   ) : (
-                    <div className="avatar-circle w-10 h-10 bg-Primary rounded-full flex items-center justify-center text-white font-semibold relative">
+                    <div className="avatar-circle size-12 bg-Primary rounded-full flex items-center justify-center text-white font-semibold relative">
                       {/* Show initial letter */}
                       {otherParticipant.name.charAt(0).toUpperCase()}{" "}
                       {isOnline && (
@@ -136,18 +138,15 @@ const ChatSidebar = ({ chats, activeChat, onChatSelect, userId }) => {
                       </span>
                     </div>
                   </div>
-                  {otherParticipant.role === "Agent" && (
-                    <p className="text-xs text-gray-500">
-                      {otherParticipant.role} at {otherParticipant.company}
-                    </p>
-                  )}
 
                   <span className="flex items-center justify-between text-xs text-gray-500 mt-1 truncate pl-1 ">
                     <span className="flex items-center gap-x-0.5">
                       {isSender ? "You: " : " "}
                       <p
                         className={`capitalize-first-letter line-clamp-1 ${
-                          unreadLastMessage ? "text-gray-700 font-semibold" : ""
+                          unreadLastMessage
+                            ? "text-gray-700 font-semibold"
+                            : "text-muted-foreground"
                         }`}
                       >
                         {chat.lastMessage}

@@ -48,9 +48,9 @@ async function main() {
   io.on("connection", (socket) => {
     console.log("User connected:", socket.id);
 
-    socket.on("joinRoom", (chatId) => {
+    socket.on("joinRoom", (chatId, userId) => {
       socket.join(chatId);
-      console.log(`Socket ${socket.id} joined room ${chatId}`);
+      console.log(`${userId} with Socket ${socket.id} joined room ${chatId}`);
     });
 
     socket.on("sendMessage", async ({ userId, chatId, message }) => {

@@ -15,6 +15,7 @@ import {
   MessageCircleMore,
   PlusCircleIcon,
   UserCircleIcon,
+  X,
   XCircle,
 } from "lucide-react";
 import PropertyUpdate from "../ui/vo/propertyUpdate";
@@ -58,26 +59,27 @@ const User = () => {
 
   const Sidebar = (
     <div
-      className={`bg-Bgpurple text-white h-dvh z-10 w-52 md:w-[25%] max-w-80 
+      className={`bg-Bgpurple text-white h-dvh z-10 w-56 md:w-[25%] max-w-80 
       fixed top-0 left-0 transition-transform duration-500 ease-in-out 2xl:px-4
       ${isOpen ? "translate-x-0" : "-translate-x-full"}
       lg:relative lg:translate-x-0
     `}
     >
-      <div className="px-3 py-4 flex justify-between items-center">
-        <h1
-          className={`font-bold flex justify-between gap-x-1 items-center cursor-pointer  text-xl sm:text-2xl `}
+      <div className="px-2 py-4 flex justify-between items-center  ">
+        <div
+          className={`font-bold flex justify-between gap-x-1 items-center  cursor-pointer  text-xl sm:text-2xl `}
           onClick={() => navigate("/")}
         >
           <img
             alt="Homespace logo"
             height={20}
             width={20}
-            className="mr-1"
+            className="mr-1 -mt-0.5"
             src="/src/assets/Logo.svg"
           />
-          HomeSpace
-        </h1>
+
+          <h2 className=" text"> HomeSpace</h2>
+        </div>
 
         <button
           onClick={toggleSidebar}
@@ -85,15 +87,15 @@ const User = () => {
             isOpen ? "visible" : "hidden"
           }`}
         >
-          <XCircle className="size-5" />
+          <X className="size-6" />
         </button>
       </div>
-      <nav className="flex flex-col justify-between sm:pl-1">
-        <ul className="space-y-2">
+      <nav className="flex flex-col justify-between sm:pl-1 max-md:mt-2">
+        <ul className="space-y-1 md:space-y-2">
           {menu.map((item) => (
             <li
               key={item.id}
-              className={`hover:bg-Primary/30  font-medium cursor-pointer transition-colors duration-300 flex items-center p-4  gap-3 sm:gap-4  ${
+              className={`hover:bg-Primary/30 rounded-md  font-medium cursor-pointer transition-colo flex items-center p-3 md:p-4  gap-3 sm:gap-4  ${
                 activeItem === item.id ? "bg-Primary/50 " : ""
               } `}
               onClick={() => {
@@ -168,3 +170,12 @@ const User = () => {
 };
 
 export default User;
+
+/* TODO 
+* FIx user profile section, make box look better 
+* Make saved properties and my properties section look better
+* Center add new property
+* Have some kind of validation and required input not just allow to click next without filling in the form
+*
+
+*/

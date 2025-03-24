@@ -12,14 +12,21 @@ import ChatMessage from "./ChatMessage";
 import { io } from "socket.io-client";
 
 const ChatView = ({ chat, userId, onClose }) => {
-  const [socket, setSocket] = useState(null);
+  const [socket, setSocket] = useState();
   const [message, setMessage] = useState(""); //used for message input
   const [allMessages, setAllMessages] = useState([]); //Used to store all the messages
+  const [isOnline, setIsOnline] = useState(false);
+
   const endOfMessagesRef = useRef(null);
+
+  const otherParticipant = chat?.participants?.find(
+    (participant) => participant.id !== userId
+  );
+
   useEffect(() => {
     const newSocket = io("http://localhost:5000");
     setSocket(newSocket);
-    newSocket.emit("joinRoom", chat.id);
+    newSocket.emit("joinRoom", chat.id, userId);
     if (chat) {
       setAllMessages(chat.messages || []); // Set initial messages if they exist
     }
@@ -27,9 +34,11 @@ const ChatView = ({ chat, userId, onClose }) => {
     newSocket.on("receiveMessage", (newMessage) => {
       setAllMessages((prev) => [newMessage, ...prev]); //Latest messages will be added to the start of array
     });
+    // Listen for status changes in this chat
 
     return () => {
       newSocket.off("receiveMessage");
+
       newSocket.disconnect(); // Optionally disconnect
     };
   }, [chat.id]);
@@ -55,10 +64,6 @@ const ChatView = ({ chat, userId, onClose }) => {
     }
   }, [allMessages]); // Effect will run every time messages change
 
-  const otherParticipant = chat?.participants?.find(
-    (participant) => participant.id !== userId
-  );
-
   if (!otherParticipant) {
     return null; // Return nothing if there is no other participant
   }
@@ -80,9 +85,9 @@ const ChatView = ({ chat, userId, onClose }) => {
     );
   }
   return (
-    <section className="h-full flex-1 flex flex-col bg-white animate-fade-in  ">
+    <section className="h-full flex-1 flex flex-col bg-white animate-fade-in   ">
       {/* Header */}
-      <nav className="p-4 border-b border-gray-200 flex items-center justify-between ">
+      <nav className="p-3 md:p-4 border-b border-gray-200 flex items-center justify-between shadow-sm ">
         <div className="flex items-center">
           {otherParticipant.avatar ? (
             <img
@@ -95,9 +100,19 @@ const ChatView = ({ chat, userId, onClose }) => {
               {otherParticipant.name.charAt(0).toUpperCase()}
             </div>
           )}
-          <h2 className="text-lg font-semibold capitalize">
-            {otherParticipant.name}
-          </h2>
+          <div className="flex flex-col ">
+            <h2 className="text-lg font-semibold capitalize">
+              {otherParticipant.name}
+            </h2>
+            {isOnline === "online" ? (
+              <div className="flex items-center justify-start pl-0.5 pt-0.5 gap-x-1 text-xs text-muted-foreground">
+                <span className="bg-[#00A884]  size-[10px]  rounded-full " />
+                <p className="leading-none">Online</p>
+              </div>
+            ) : (
+              ""
+            )}
+          </div>
         </div>
         <div className="flex items-center gap-x-6">
           <button className="text-gray-500 hover:text-Primary transition-colors">
@@ -108,7 +123,7 @@ const ChatView = ({ chat, userId, onClose }) => {
           </button>
           <button
             onClick={onClose}
-            className="text-gray-500 hover:text-red-700 transition-colors"
+            className="text-gray-500 hover:bg-gray-600/10 hover:text-red-400 rounded-full transition-colors p-0.5"
           >
             <X className="size-6" />
           </button>
@@ -183,16 +198,7 @@ ChatView.propTypes = {
 export default ChatView;
 
 /*
- 
- *    CREATE Mobile version
- *    check if the otherparticipant is online and if so 
- *    when typing when they type so animate it and show 3 dots for other user
- * ✅ When a new message is sent have a slight animation to bring it in, the chat view should automatically scroll to show the new message
- * ✅ When clicking on a chat  make it show most recent or bottom. And later on add pagination to messages with show more messages
- * ✅ Last message make it into date if its yesterday or previous
- * ✅ When hovering overmessgae chevron options [copy, delete]
- * ✅ SEND MESSAGE ON ENTER
- * ✅ Maybe add otherparticipants avatar but only for last message they send and not for all messages => CHeck if [0] and [1] is from same sender ?
- * ✅ In latest message if you sent it make it you:messgae here
- * ✅ if unreadmessage exist make the last message bold
+ *  check if the otherparticipant is online
+ *  when typing when they type so animate it and show 3 dots for other user
+ *  now when we are chatting if new message arrive and i see it in chat when i refresh it appears as unreadchat
  */

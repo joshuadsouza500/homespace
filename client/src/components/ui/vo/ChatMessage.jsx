@@ -34,7 +34,7 @@ const ChatMessage = ({
           <img
             src={otherParticipant?.avatar}
             alt={otherParticipant?.name}
-            className="size-8 rounded-full object-cover mr-1.5 "
+            className="size-8 rounded-full object-cover mr-1.5 bg-white"
           />
         ) : (
           <div className="avatar-circle size-8 mr-1.5 rounded-full flex  items-center justify-center text-white font-semibold bg-Primary ">

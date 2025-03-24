@@ -44,6 +44,7 @@ const UserChats = ({ user }) => {
   }, [chatId, userChats, dispatch]);
   const handleCloseChat = () => {
     setIsMobileViewOpen(false);
+    navigate(`/user/chat/`, { replace: true });
   };
 
   const handleChatSelect = (chatId) => {
@@ -72,7 +73,7 @@ const UserChats = ({ user }) => {
       <div
         className={`
               ${isMobileViewOpen ? "block" : "hidden"} 
-              md:block flex-1
+              md:block flex-1 max-md:pt-16
             `}
       >
         {SelectedChat ? (
