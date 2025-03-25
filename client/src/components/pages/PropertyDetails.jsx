@@ -30,7 +30,7 @@ const PropertyDetails = () => {
       console.error("Error saving property:", error);
     }
   };
-  console.log(Property);
+
   return (
     <div className=" px-2 md:px-6 w-full max-w-6xl 2xl:max-w-7xl  font-jakarta bg-gradient-b from-white to-light_gray mx-auto">
       <PropertyDetails2 property={Property?.property} handleSave={handleSave} />

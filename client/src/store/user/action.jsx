@@ -1,8 +1,17 @@
 import { api } from "@/config/apiConfig";
 import {
+  CREATE_CHAT_FAILURE,
+  CREATE_CHAT_REQUEST,
+  CREATE_CHAT_SUCCESS,
   DELETE_USER_FAILURE,
   DELETE_USER_REQUEST,
   DELETE_USER_SUCCESS,
+  GET_CHAT_BY_ID_FAILURE,
+  GET_CHAT_BY_ID_REQUEST,
+  GET_CHAT_BY_ID_SUCCESS,
+  GET_USER_CHATS_FAILURE,
+  GET_USER_CHATS_REQUEST,
+  GET_USER_CHATS_SUCCESS,
   GET_USER_PROFILE_REQUEST,
   GET_USER_PROPERTIES_FAILURE,
   GET_USER_PROPERTIES_SUCCESS,
@@ -96,3 +105,73 @@ export const getUserSavedProperties = () => async (dispatch) => {
     });
   }
 };
+
+export const getUserChats = () => async (dispatch) => {
+  dispatch({ type: GET_USER_CHATS_REQUEST });
+
+  try {
+    const response = await api.get(`/api/user/profile/chat`);
+    const chats = response.data;
+    // console.log("Action user chats:", chats);
+    dispatch({
+      type: GET_USER_CHATS_SUCCESS,
+      payload: chats,
+    });
+  } catch (error) {
+    dispatch({
+      type: GET_USER_CHATS_FAILURE,
+      payload: error.message,
+    });
+  }
+};
+
+/* //get users chats */
+export const getChatById = (chatId, otherParticipant) => async (dispatch) => {
+  dispatch({ type: GET_CHAT_BY_ID_REQUEST });
+
+  try {
+    const response = await api.get(`/api/user/profile/chat/${chatId}`, {
+      otherParticipant,
+    });
+    const chat = response.data;
+
+    //console.log("getchat y id ", chat);
+    dispatch({
+      type: GET_CHAT_BY_ID_SUCCESS,
+      payload: chat,
+    });
+  } catch (error) {
+    dispatch({
+      type: GET_CHAT_BY_ID_FAILURE,
+      payload: error.message,
+    });
+  }
+};
+//get specific chat
+export const createChat = (otherParticipant) => async (dispatch) => {
+  dispatch({ type: CREATE_CHAT_REQUEST });
+  console.log("action", otherParticipant);
+  try {
+    const response = await api.post(
+      "/api/user/profile/chat",
+      { otherParticipant } // Avoid sending undefined
+    );
+    const chat = response.data;
+
+    dispatch({
+      type: CREATE_CHAT_SUCCESS,
+      payload: chat,
+    });
+    return chat; //return the chat so that we can navigate to the chat view from the property details page
+  } catch (error) {
+    dispatch({
+      type: CREATE_CHAT_FAILURE,
+      payload: error.message,
+    });
+  }
+};
+
+//create chat
+//delete chat
+//add message
+//delete message

@@ -14,6 +14,9 @@
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
+.capitalize-first-letter::first-letter {
+  text-transform: uppercase;
+}
 
 @keyframes logo-spin {
   from {

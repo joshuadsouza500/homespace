@@ -75,15 +75,15 @@ const BrowsePropCard = ({ property }) => {
         </p>
         <div className="flex justify-around items-center px-1 md:px-2 border-t pt-4 pb-3 bottom-1 absolute w-full left-0 right-0 ">
           <span className="flex items-center gap-1 text-xs font-semibold text-[#4d5461]">
-            <BedDoubleIcon className="size-4 text-Primary" />
+            <BedDoubleIcon className="size-4 text-gray-800" />
             {property?.bedrooms} Beds
           </span>
           <span className="tracking-wide flex items-center gap-1 text-xs font-semibold text-[#4d5461]">
-            <BathIcon className="size-4 text-Primary" />
+            <BathIcon className="size-4 text-gray-800" />
             {property?.bathrooms} Baths
           </span>
           <span className="flex items-center gap-1 text-xs font-semibold text-[#4d5461]">
-            <ScanIcon className="size-4 text-Primary" />
+            <ScanIcon className="size-4 text-gray-800" />
             {property?.area} sqm<sup>2</sup>
           </span>
         </div>

@@ -108,7 +108,7 @@ export default function AddProperty2() {
   const goToPreviousStep = () => setCurrentStep((prev) => prev - 1);
 
   return (
-    <div className="container mx-auto px-2 md:px-6 pt-2 pb-8">
+    <div className="container mx-auto px-2 md:px-6 pt-2 lg:pt-6 pb-8">
       <h1 className="text-3xl text-text md:text-4xl font-bold mb-2 md:mb-4 text-center">
         Add New Property
       </h1>
@@ -145,7 +145,7 @@ export default function AddProperty2() {
 
       <form
         onSubmit={handleSubmit}
-        className="space-y-8 mx-1  max-w-5xl xl:max-w-6xl "
+        className=" mx-auto   max-w-5xl xl:max-w-6xl  backdrop-blur-md bg-white/70 dark:bg-black/40  border-black/5 dark:border-white/10 shadow-lg p-4 lg:p-8 rounded-lg"
       >
         {currentStep === 1 && (
           <div className="space-y-4 xl:space-y-8">
@@ -266,17 +266,17 @@ export default function AddProperty2() {
             <div className="flex items-center justify-center pt-6">
               <Button
                 onClick={goToNextStep}
-                className="w-32 md:w-44 bg-Bgpurple gap-x-1 hover:bg-indigo-800"
+                className="w-32 md:w-44 bg-Bgpurple gap-x-1 hover:bg-indigo-800 group"
               >
                 Next
-                <ArrowRight className="size-4 md:size-5 " />
+                <ArrowRight className="size-4 md:size-5 group-hover:translate-x-1 transition-transform duration-200 ease-in-out" />
               </Button>
             </div>
           </div>
         )}
 
         {currentStep === 2 && (
-          <div className="space-y-4 xl:space-y-6 2xl:space-y-8">
+          <div className="space-y-4 xl:space-y-8">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 items-center">
               <div className="space-y-1">
                 <Label
@@ -446,14 +446,14 @@ export default function AddProperty2() {
             <div className="flex justify-center gap-x-4   pt-6 pb-4 font-medium">
               <Button
                 onClick={goToPreviousStep}
-                className="gap-1 border border-Bgpurple bg-white text-Bgpurple hover:bg-Bgpurple hover:text-white w-32 md:w-44 transition-colors duration-500 ease-in-out"
+                className="gap-1 border border-Bgpurple bg-white duration-200 text-Bgpurple hover:bg-Bgpurple/90 hover:text-white w-32 md:w-36 transition-colors  ease-in-out group"
               >
-                <ArrowLeft className="size-4 md:size-5 " />
+                <ArrowLeft className="size-4 md:size-5 group-hover:-translate-x-1 transition-transform duration-200 ease-in-out" />
                 Back
               </Button>
               <Button
                 type="submit"
-                className="bg-Bgpurple w-32 md:w-44 hover:bg-indigo-800 "
+                className="bg-Bgpurple w-32 md:w-40 hover:bg-indigo-800 duration-150"
               >
                 Add Property
               </Button>

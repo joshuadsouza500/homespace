@@ -34,6 +34,12 @@ const UserDropdown = ({ handleLogout, user }) => {
         </DropdownMenuItem>
         <DropdownMenuItem
           className="text-base "
+          onClick={() => navigate("/user/chat")}
+        >
+          Chats
+        </DropdownMenuItem>
+        <DropdownMenuItem
+          className="text-base "
           onClick={() => navigate("/user/property")}
         >
           My Properties

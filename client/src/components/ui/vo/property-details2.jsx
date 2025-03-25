@@ -24,6 +24,9 @@ import { MapContainer, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import LocationMaker from "@/components/LocationMaker";
 import PropertyGallery from "./PropertyGallery";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { createChat, getChatById } from "@/store/user/action";
 {
   /** <div className="flex flex-col md:flex-row gap-4 h-[500px] ">
         <div className=" relative  bg-orange-200 w-[75%] ">
@@ -58,6 +61,7 @@ import PropertyGallery from "./PropertyGallery";
 }
 
 export default function PropertyDetails2({ property, handleSave }) {
+  console.log("pp", property);
   const amenityIconMap = {
     ["Air Conditioning"]: <Snowflake className="size-5 mr-2 text-Primary" />,
     ["Parking"]: <CarFront className="size-5 mr-2 text-Primary" />,
@@ -69,6 +73,17 @@ export default function PropertyDetails2({ property, handleSave }) {
     ["Security System"]: <Cctv className="size-5 mr-2 text-Primary" />,
     ["Fireplace"]: <FlameKindling className="size-5 mr-2 text-Primary" />,
     ["Pet-Friendly"]: <Dog className="size-5 mr-2 text-Primary" />,
+  };
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleMessage = async (otherParticipant) => {
+    if (otherParticipant) {
+      // Create the chat and get the chat details returned by the action
+      const createdChat = await dispatch(createChat(otherParticipant));
+      const chatId = createdChat.id;
+      navigate(`/user/chat/${chatId}`);
+    }
   };
 
   return (
@@ -237,7 +252,14 @@ export default function PropertyDetails2({ property, handleSave }) {
                 </p>
               </div>
               <div className="  gap-x-2 flex  items-center justify-center">
-                <Button className=" bg-blue-500 w-40">Message</Button>
+                <Button
+                  className=" bg-blue-500 w-40"
+                  onClick={() => {
+                    handleMessage(property?.userId);
+                  }}
+                >
+                  Message
+                </Button>
                 <Button
                   variant="outline"
                   className="w-40 bg-[#01a849] text-white"

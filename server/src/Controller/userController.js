@@ -1,3 +1,4 @@
+import prisma from "../lib/Prisma.js";
 import propertyService from "../Service/propertyService.js";
 import userService from "../Service/userService.js";
 
@@ -76,13 +77,132 @@ const getUserProperties = async (req, res) => {
     res.status(500).send({ message: "Failed to get user's properties!" });
   }
 };
+// Get users chats
+const getUserChats = async (req, res) => {
+  const userId = req.user.id;
+  try {
+    const userChats = await userService.getUserChats(userId);
+
+    return res.status(200).send(userChats);
+  } catch (error) {
+    res.status(500).send({ message: "Failed to get user's chats!" });
+  }
+};
+{
+  /**
+// get specific chat
+const getChatById = async (req, res) => {
+  const userId = req.user.id;
+  const chatId = req.params.id;
+  try {
+    const userChat = await userService.getUserChatById(userId, chatId);
+
+    return res.status(200).send(userChat);
+  } catch (error) {
+    res.status(500).send({ message: "Failed to get user's chat!" });
+  }
+};
+
+const addChat = async (req, res) => {
+  const userId = req.user.id;
+  const otherParticipant = req.body.otherParticipant;
+  try {
+    const userChat = await userService.addChat(userId, otherParticipant);
+    return res.status(200).send(userChat);
+  } catch (error) {
+    res.status(500).send({ message: "Failed to create chat!" });
+  }
+};
+ */
+}
+
+const getOrCreateChat = async (req, res) => {
+  const userId = req.user.id;
+  const otherParticipant = req.body.otherParticipant;
+  const chatId = req.params.id;
+
+  try {
+    let userChat;
+    // Icf a chatId is provided, try to fetch the chat by ID
+    if (chatId) {
+      userChat = await userService.getUserChatById(userId, chatId);
+    }
+
+    // If no chatId is provided or the chat with the provided ID does not exist
+    if (!userChat && otherParticipant) {
+      // Now check if a chat already exists between the user and the other participant
+      userChat = await prisma.chat.findFirst({
+        where: {
+          participantsIds: {
+            has: userId,
+            has: otherParticipant,
+          },
+        },
+        include: {
+          participants: true,
+          messages: true,
+        },
+      });
+    }
+
+    // If still no chat found, create a new chat
+    if (!userChat && otherParticipant) {
+      userChat = await userService.addChat(userId, otherParticipant);
+      console.log("userchat", userChat);
+    }
+
+    return res.status(200).send(userChat);
+  } catch (error) {
+    console.error(error); // Log the actual error for debugging
+    res.status(500).send({ message: "Failed to get or create chat!" });
+  }
+};
+
+const deleteChat = async (req, res) => {
+  const userId = req.user.id;
+  const chatId = req.params.id;
+
+  try {
+    const deletedChat = await userService.deleteChat(userId, chatId);
+    return res.status(200).send(deletedChat);
+  } catch (error) {
+    res.status(500).send({ message: "Failed to delete chat!" });
+  }
+};
+
+const addMessage = async (req, res) => {
+  const userId = req.user.id;
+  const chatId = req.params.id;
+  const message = req.body.message;
+  try {
+    const newMessage = await userService.addMessage(userId, chatId, message);
+    return res.status(200).send(newMessage);
+  } catch (error) {
+    res.status(500).send({ message: "Failed to add message!" });
+  }
+};
+const deleteMessage = async (req, res) => {
+  const userId = req.user.id;
+  const chatId = req.params.id;
+  const messageId = req.body.messageId;
+  try {
+    const message = await userService.addMessage(userId, chatId, messageId);
+    return res.status(200).send(message);
+  } catch (error) {
+    res.status(500).send({ message: "Failed to delete message!" });
+  }
+};
 
 export default {
   getAllUser,
   getUserProfile,
   updateUserProfile,
-
   deleteUser,
   getUserSavedProperties,
   getUserProperties,
+  getUserChats,
+  getOrCreateChat,
+  deleteChat,
+  addMessage,
+  deleteMessage,
 };
