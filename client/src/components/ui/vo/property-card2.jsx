@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import {
-  Heart,
   MoreVertical,
   Bed,
   Bath,
@@ -9,7 +8,8 @@ import {
   Phone,
   Mail,
   Edit,
-  Trash2Icon,
+  Trash2,
+  Bookmark,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -150,25 +150,24 @@ export default function PropertyCard2({ update, className, property }) {
               {/* Display listing date */}
             </span>
             {update ? (
-              <div className="flex space-x-2 items-center ">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="w-24 h-10 font-medium bg-Bgpurple hover:bg-Bgpurple/85 text-white hover:text-white"
+              <div className="flex space-x-4 items-center ">
+                <button
+                  className="text-Bgpurple  hover:text-Primary  flex items-center gap-1 md:gap-2 max-sm:text-sm"
                   onClick={() => {
                     handleClick(property?.id); // Use the actual property ID
                   }}
                 >
-                  <Edit className="h-4 w-4 mr-2" />
+                  <Edit className="h-4 w-4 " />
                   Edit
-                </Button>
+                </button>
+
                 {/* Delete button */}
                 <AlertDialog>
                   <AlertDialogTrigger asChild>
-                    <Button variant="destructive" className="w-24 font-medium">
-                      <Trash2Icon className="w-4 h-4 mr-2" />
+                    <button className="text-red-600 hover:text-red-800 flex items-center gap-1 md:gap-2 max-sm:text-sm">
+                      <Trash2 className="size-4 " />
                       Delete
-                    </Button>
+                    </button>
                   </AlertDialogTrigger>
                   <AlertDialogContent>
                     <AlertDialogHeader>
@@ -197,12 +196,12 @@ export default function PropertyCard2({ update, className, property }) {
               </div>
             ) : (
               <div className="flex space-x-2 items-center ">
-                <Button variant="outline" size="sm" className="text-primary">
-                  <Phone className="h-4 w-4 mr-2" />
+                <Button variant="outline" size="sm" className="text-primary ">
+                  <Phone className="h-4 w-4 mr-1" />
                   Call
                 </Button>
                 <Button variant="outline" size="sm" className="text-primary">
-                  <Mail className="h-4 w-4 mr-2" />
+                  <Mail className="h-4 w-4  mr-1" />
                   Email
                 </Button>
                 <Button
@@ -210,8 +209,8 @@ export default function PropertyCard2({ update, className, property }) {
                   size="icon"
                   className={`text-primary `}
                 >
-                  <Heart
-                    className={`size-4 ${
+                  <Bookmark
+                    className={`size-4 lg:size-5 text-Primary/50  ${
                       property?.isSaved ? "fill-Primary" : "bg-white"
                     }`}
                   />

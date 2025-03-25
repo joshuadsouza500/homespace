@@ -6,13 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getChatById, getUserChats } from "@/store/user/action";
 import { getUserProfile } from "@/store/auth/action";
 import { RESET_SELECTED_CHAT } from "@/store/user/actionType";
-import ChatComponent from "../ui/vo/ChatComponent";
-import {
-  MessageCircle,
-  MessageCircleCode,
-  MessageSquare,
-  SearchIcon,
-} from "lucide-react";
+
+import { SearchIcon } from "lucide-react";
 
 //Left side displays all chats, last message and unread count.  (Maybe message image)
 //Right side displays the chat top sender profile maybe option to call and maybe on clicking sender profile can see other properties

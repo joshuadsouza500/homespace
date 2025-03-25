@@ -5,6 +5,7 @@ import { getUserProperties } from "@/store/user/action";
 import UserPropertyDisplay from "../ui/vo/UserPropertyDisplay";
 import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
+import { useNavigate } from "react-router-dom";
 
 const UserListings = () => {
   const dispatch = useDispatch();
@@ -13,6 +14,7 @@ const UserListings = () => {
   useEffect(() => {
     dispatch(getUserProperties());
   }, [dispatch]);
+  const navigate = useNavigate();
   // console.log("client prop", userProperties);
   return (
     <div className="container mx-auto px-4 lg:px-8 pt-4 lg:pt-6 pb-8  bg-estate-50">
@@ -24,7 +26,12 @@ const UserListings = () => {
         <h1 className="text-3xl md:text-3xl 2xl:text-4xl   font-bold text-estate-800 dark:text-white ">
           My Properties
         </h1>
-        <Button className="max-md:h-9 bg-Primary  text-white font-medium tracking-wide hover:bg-purple-700 ">
+        <Button
+          className="max-md:h-9 bg-Primary  text-white font-medium tracking-wide hover:bg-purple-700 "
+          onClick={() => {
+            navigate("/user/property/create");
+          }}
+        >
           + Add New Property
         </Button>
       </div>
@@ -66,11 +73,11 @@ const UserListings = () => {
         {/* Check if there are properties and map through them */}
         {userProperties && userProperties.length > 0 ? (
           userProperties.map((property) => (
-            <UserPropertyDisplay
+            <PropertyCard2
               key={property.id}
               update={true}
               property={property}
-              className="hover:shadow-none"
+              className="md:max-w-2xl mx-1 md:h-64 2xl:g-64   backdrop-blur-md bg-white/70 dark:bg-black/40  border-black/5 dark:border-white/10 border"
             />
           ))
         ) : (
