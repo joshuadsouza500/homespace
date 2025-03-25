@@ -49,6 +49,8 @@ export default App;
    * Add number animations for mobile hero
    * Features section complete the text and maybe change it (CHeck SS and saved maybe change the image)
    *
+   * Add a Booking section in property details page and then add a calendar to the user profile
+   * Add property status in my propperties (active, inactive)
    * Optimizes sizes maybe dont use fixed sizes
    * Pass a variable to the carousel change and maybe pass it the index value so each card will change images at different times
    * Reviwes section check figma design.

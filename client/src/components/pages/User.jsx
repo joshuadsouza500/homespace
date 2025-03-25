@@ -7,8 +7,6 @@ import UserChats from "../user/UserChats";
 
 import {
   ArrowLeftCircle,
-  ArrowLeftFromLineIcon,
-  ArrowRightFromLineIcon,
   HeartIcon,
   HomeIcon,
   MenuIcon,
@@ -16,13 +14,11 @@ import {
   PlusCircleIcon,
   UserCircleIcon,
   X,
-  XCircle,
 } from "lucide-react";
 import PropertyUpdate from "../ui/vo/propertyUpdate";
 import AddProperty2 from "../user/AddProperty2";
 import { useSelector } from "react-redux";
 import UserDropdown from "../ui/UserDropdown";
-import ChatView from "../ui/vo/ChatView";
 
 const menu = [
   { id: 1, name: "Profile", path: "/user", icon: <UserCircleIcon /> },
@@ -47,12 +43,9 @@ const User = () => {
 
   const [activeItem, setActiveItem] = useState(null);
   const navigate = useNavigate();
+  const auth = useSelector((store) => store.auth);
+  const user = auth.user;
 
-  {
-    /***/
-  }
-
-  // console.log("uservv", user);
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
@@ -127,14 +120,13 @@ const User = () => {
       </nav>
     </div>
   );
-  const auth = useSelector((store) => store.auth);
-  const user = auth.user;
+
   return (
     <div className="flex font-poppins bg-background h-dvh z-0 justify-center w-screen  relative">
       {/*Sidebar */}
       {Sidebar}
       <div className="w-full   bg-background1 flex- 1 flex flex-col  z-0  overflow-y-scroll overflow-x- clip">
-        {/* */}{" "}
+        {/*Nav Bar */}{" "}
         <header className="bg-white shadow py-2 pl-2 pr-4 flex lg:hidden sticky top-0 justify-between   items-center z-10 ">
           <button
             onClick={toggleSidebar}
