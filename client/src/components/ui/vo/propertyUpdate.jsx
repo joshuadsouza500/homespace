@@ -13,7 +13,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getPropertyById, updateProperty } from "@/store/property/action";
 import { UpdateSuccessDialog } from "./UpdateSuccessDialog";
@@ -34,6 +34,7 @@ const amenitiesList = [
 const furnishingOptions = ["Unfurnished", "Semifurnished", "Furnished"];
 const utilitiesOptions = ["Inclusive", "Exclusive"];
 const propertyTypeOptions = ["Rent", "Sell"];
+
 {
   /**
 const citiesInBahrain = [
@@ -90,7 +91,7 @@ export default function PropertyUpdate() {
     // city: "",
     // governate: "",
   });
-
+  const navigate = useNavigate();
   React.useEffect(() => {
     if (propertyId) {
       dispatch(getPropertyById(propertyId));
@@ -145,11 +146,13 @@ export default function PropertyUpdate() {
     }
   };
 
-  console.log(details);
   return (
-    <section className="max-w-6xl mx-auto p-4 md:p-6 space-y-8 bg-background">
-      <form onSubmit={handleSubmit}>
-        <div className="bg-gray-50 h-56 pb-1 rounded-lg p-1 flex flex-col justify-between overflow-hidden border-2 border-dashed border-gray-300 ">
+    <section className="max-w-6xl mx-auto px-4 lg:px-6 space-y-8  pt-2 lg:pt-6 pb-8">
+      <form
+        onSubmit={handleSubmit}
+        className="backdrop-blur-md bg-white/70 dark:bg-black/40  border-black/5 dark:border-white/10 shadow-lg px-5 py-4 rounded-lg"
+      >
+        <div className="bg-gray-50 h-56 pb-1 rounded-lg p-1 flex flex-col justify-between overflow-hidden border-2 border-dashed border-gray-300  ">
           <div className="space-x-4  flex overflow-x-clip ">
             {details?.image.map((url, index) => (
               <div key={index} className="relative">
@@ -189,7 +192,7 @@ export default function PropertyUpdate() {
               value={details?.title}
               onChange={handleChange}
               placeholder="Property Title"
-              className="text-xl md:text-2xl font-semibold w-full"
+              className="text-xl md:text-2xl font-medium w-full"
             />
           </div>
           <div className="grid grid-cols-2  gap-4">
@@ -404,7 +407,16 @@ export default function PropertyUpdate() {
               className="w-full"
             />
           </div>
-          <div className="flex items-center justify-center md:pt-2">
+          <div className="flex items-center justify-center md:pt-2 gap-x-3">
+            <Button
+              variant="outline"
+              className="  border-Bgpurple w-32  hover:bg-indigo-600 hover:text-white "
+              onClick={() => {
+                navigate("/user/property");
+              }}
+            >
+              Go Back
+            </Button>
             <Button
               type="submit"
               className=" bg-Bgpurple w-32 md:w-36 hover:bg-indigo-800"

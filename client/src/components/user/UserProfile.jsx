@@ -8,7 +8,6 @@ import {
   Edit,
   Save,
   Phone,
-  Users,
   Calendar,
   Home,
 } from "lucide-react";
@@ -74,7 +73,7 @@ const appointments = [
     status: "completed",
   },
 ];
-export default function UserProfile({ auth, user }) {
+export default function UserProfile({ user }) {
   const [isEditing, setIsEditing] = useState(false);
 
   const dispatch = useDispatch();
@@ -120,14 +119,14 @@ export default function UserProfile({ auth, user }) {
   };
   //console.log("jj", user);
   return (
-    <section className="container mx-auto px-4 lg:px-8 pt-4 pb-8 font-jakarta bg-estate-50">
+    <section className="container mx-auto px-4 lg:px-8 pt-4 lg:pt-8 pb-8 font-jakarta bg-estate-50">
       <h1 className="text-2xl xl:text-3xl 2xl:text-4xl   font-bold text-estate-800 dark:text-white mb-6 xl:mb-10 lg:text-center">
         My Profile
       </h1>
-      <section className="grid grid-rows-1  gap-6 xl:gap-10 2xl:mx-20 cursor-pointer">
+      <section className="grid grid-rows-1  gap-6 xl:gap-8 2xl:mx-20 cursor-pointer">
         {/* User Profile section */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 border rounded-md  max-md:items-center    w-full backdrop-blur-md bg-white/70 dark:bg-black/40  border-black/5 dark:border-white/10 shadow-lg md:divide-x-2 pt-4 pb-6 h-fit">
-          <div className="  flex flex-col pb-1 items-center justify-center  md:pt-4 ">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6  rounded-md  max-md:items-center    w-full  h-fit max-w-6xl mx-auto">
+          <div className="  flex flex-col  items-center justify-center  md:pt-4  bg-white/80 dark:bg-black/40  border border-black/10 dark:border-white/10 shadow rounded-lg pt-4 lg:pt-6 pb-6 ">
             <Avatar className="ring-1 ring-text rounded-full size-48 mb-2 md:mb-4">
               <AvatarImage src={editedUser?.avatar} alt={editedUser?.name} />
               <AvatarFallback>
@@ -154,13 +153,13 @@ export default function UserProfile({ auth, user }) {
             ) : null}
           </div>
           {/*Personal Info */}
-          <div className="md:col-span-2 space-y-2 xl:space-y-4  px-3 lg:px-6   ">
-            <div className="flex items-center justify-between mb-2 pb-2 border-b ">
-              <h3 className="text-lg font-semibold text-estate-800 dark:text-white">
+          <div className="md:col-span-2 space-y-2 xl:space-y-4  px-3 lg:px-6    bg-white/80 dark:bg-black/40  border border-black/10 dark:border-white/10 shadow  rounded-lg pt-4 lg:pt-6 pb-6 ">
+            <div className="flex items-center justify-between mb-2 pb-2  ">
+              <h3 className="text-lg font-medium xl:text-xl text-estate-800 dark:text-white">
                 Personal Information
               </h3>
               {/* Edit and delete user */}
-              <div className="flex items-center gap-x-6">
+              <div className="flex flex-row-reverse  items-center gap-x-6">
                 {" "}
                 <AlertDialog>
                   <AlertDialogTrigger asChild>
@@ -389,7 +388,7 @@ export default function UserProfile({ auth, user }) {
           </div>
         </div>
         {/* New Appointments Section */}
-        <div className="grid grid-cols-1 xl:grid-cols-2 w-full gap-6 ">
+        <div className="grid grid-cols-1 xl:grid-cols-2 w-full gap-6 max-w-6xl mx-auto">
           {" "}
           <Card className="shadow-sm ">
             <CardHeader className="pb-3">
@@ -451,7 +450,7 @@ export default function UserProfile({ auth, user }) {
               </div>
             </CardContent>
           </Card>
-          <Card className="shadow-sm">
+          <Card className="shadow-sm ">
             <CardHeader className="pb-3">
               <div className="flex items-center justify-between">
                 <CardTitle className="text-lg font-semibold text-estate-800 dark:text-white">

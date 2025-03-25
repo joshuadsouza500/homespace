@@ -85,7 +85,7 @@ const ChatView = ({ chat, userId, onClose }) => {
     );
   }
   return (
-    <section className="h-full flex-1 flex flex-col bg-white animate-fade-in   ">
+    <section className="h-full flex-1 flex flex-col bg-white animate-fade-in   rounded-lg shadow-xl backdrop-blur-md border-gray-100 border-[0.5px]">
       {/* Header */}
       <nav className="p-3 md:p-4 border-b border-gray-200 flex items-center justify-between shadow-sm ">
         <div className="flex items-center">
@@ -131,7 +131,7 @@ const ChatView = ({ chat, userId, onClose }) => {
       </nav>
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto p-6 bg-[#f7f6fc]">
+      <div className="flex-1 overflow-y-auto p-6 bg-estate-50 [#f7f6fc]">
         {allMessages
           .slice()
           .reverse()
@@ -160,7 +160,7 @@ const ChatView = ({ chat, userId, onClose }) => {
       </div>
 
       {/* Message Input */}
-      <div className="p-4 border-t border-gray-200 ">
+      <div className="p-4 border-t border-gray-100 shadow ">
         <div className="flex items-center gap-x-2 ">
           <button type="button" className="text-gray-500 hover:text-Primary ">
             <Paperclip className="xl:size-6 size-5" />

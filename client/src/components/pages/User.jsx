@@ -7,6 +7,7 @@ import UserChats from "../user/UserChats";
 
 import {
   ArrowLeftCircle,
+  Bookmark,
   HeartIcon,
   HomeIcon,
   MenuIcon,
@@ -23,7 +24,7 @@ import UserDropdown from "../ui/UserDropdown";
 const menu = [
   { id: 1, name: "Profile", path: "/user", icon: <UserCircleIcon /> },
   { id: 2, name: "Chats", path: "chat", icon: <MessageCircleMore /> },
-  { id: 3, name: "Saved Properties", path: "saved", icon: <HeartIcon /> },
+  { id: 3, name: "Saved Properties", path: "saved", icon: <Bookmark /> },
   {
     id: 4,
     name: "My Properties",
@@ -52,7 +53,7 @@ const User = () => {
 
   const Sidebar = (
     <div
-      className={`bg-Bgpurple text-white h-dvh z-10 w-56 md:w-[25%] max-w-80 
+      className={`bg-Bgpurple text-white shadow-lg backdrop-blur-md h-dvh z-10 w-56 md:w-[25%] max-w-80 
       fixed top-0 left-0 transition-transform duration-500 ease-in-out 2xl:px-4
       ${isOpen ? "translate-x-0" : "-translate-x-full"}
       lg:relative lg:translate-x-0
@@ -89,7 +90,9 @@ const User = () => {
             <li
               key={item.id}
               className={`hover:bg-Primary/30 rounded-md  font-medium cursor-pointer transition-colo flex items-center p-3 md:p-4  gap-3 sm:gap-4  ${
-                activeItem === item.id ? "bg-Primary/50 " : ""
+                activeItem === item.id
+                  ? "bg-Primary/50 border-l-4 border-Primary "
+                  : ""
               } `}
               onClick={() => {
                 setActiveItem(item.id); // Set the clicked item as active
@@ -125,7 +128,7 @@ const User = () => {
     <div className="flex font-poppins bg-background h-dvh z-0 justify-center w-screen  relative">
       {/*Sidebar */}
       {Sidebar}
-      <div className="w-full   bg-background1 flex- 1 flex flex-col  z-0  overflow-y-scroll overflow-x- clip">
+      <div className="w-full   bg-estate-50 flex- 1 flex flex-col  z-0  overflow-y-scroll overflow-x- clip">
         {/*Nav Bar */}{" "}
         <header className="bg-white shadow py-2 pl-2 pr-4 flex lg:hidden sticky top-0 justify-between   items-center z-10 ">
           <button

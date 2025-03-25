@@ -7,7 +7,12 @@ import { getChatById, getUserChats } from "@/store/user/action";
 import { getUserProfile } from "@/store/auth/action";
 import { RESET_SELECTED_CHAT } from "@/store/user/actionType";
 import ChatComponent from "../ui/vo/ChatComponent";
-import { MessageCircle, MessageCircleCode, MessageSquare } from "lucide-react";
+import {
+  MessageCircle,
+  MessageCircleCode,
+  MessageSquare,
+  SearchIcon,
+} from "lucide-react";
 
 //Left side displays all chats, last message and unread count.  (Maybe message image)
 //Right side displays the chat top sender profile maybe option to call and maybe on clicking sender profile can see other properties
@@ -54,11 +59,11 @@ const UserChats = ({ user }) => {
   };
 
   return (
-    <div className=" flex max-w-7xl 2xl:max-w-[1640px]  h-screen  shadow-md pl- 0.5 ">
+    <div className=" flex max-w-7xl 2xl:max-w-[1640px]  h-screen  shadow-md pl- 0.5 bg-estate-50">
       <div
         className={`
               ${isMobileViewOpen ? "hidden" : "block"} 
-              md:block w-full md:w-auto 2xl:pr-1 2xl:border 
+              md:block w-full md:w-auto  
             `}
       >
         <ChatSidebar
@@ -73,7 +78,7 @@ const UserChats = ({ user }) => {
       <div
         className={`
               ${isMobileViewOpen ? "block" : "hidden"} 
-              md:block flex-1 max-md:pt-16
+              md:block flex-1 max-md:pt-14 m-2 
             `}
       >
         {SelectedChat ? (
@@ -83,8 +88,18 @@ const UserChats = ({ user }) => {
             userId={user?.id}
           />
         ) : (
-          <div className="flex-1 flex items-center justify-center text-gray-500 ml-2 capitalize text-lg xl:text-2xl  h-full  gap-x-2">
-            <MessageSquare /> Select a chat to start messaging
+          <div className="flex-1 flex items-center justify-center text-gray-500  bg-white mx-2  capitalize shadow-lg  h-full  rounded-lg">
+            <div className="text-center">
+              <div className="mb-4 h-16 w-16 rounded-full bg-azure-100 dark:bg-azure-900/30 flex items-center justify-center mx-auto">
+                <SearchIcon className="h-8 w-8 text-Primary dark:text-azure-400" />
+              </div>
+              <h3 className="text-xl font-medium text-estate-800 dark:text-white mb-2">
+                No chat selected
+              </h3>
+              <p className="text-estate-500 dark:text-estate-400 max-w-md tracking-wide">
+                Select a conversation from the list to view messages
+              </p>
+            </div>
           </div>
         )}
       </div>
