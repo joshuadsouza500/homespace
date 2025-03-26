@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from "react-redux";
 import PropertyCard2 from "../ui/vo/property-card2";
 import { useEffect } from "react";
 import { getUserSavedProperties } from "@/store/user/action";
-import UserPropertyDisplay from "../ui/vo/UserPropertyDisplay";
 
 const UserFavourites = () => {
   const dispatch = useDispatch();
@@ -28,10 +27,7 @@ const UserFavourites = () => {
       </div>
       <section className=" grid  xl:grid-cols-2 gap-x-6 gap-y-7 place-content-center ">
         {userSavedProperties?.map((savedProperty) => (
-          <UserPropertyDisplay
-            key={savedProperty?.id}
-            property={savedProperty}
-          />
+          <PropertyCard2 key={savedProperty?.id} property={savedProperty} />
         ))}
       </section>
     </div>

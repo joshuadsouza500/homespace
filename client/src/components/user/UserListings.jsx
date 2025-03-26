@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from "react-redux";
 import PropertyCard2 from "../ui/vo/property-card2";
 import { useEffect } from "react";
 import { getUserProperties } from "@/store/user/action";
-import UserPropertyDisplay from "../ui/vo/UserPropertyDisplay";
 import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
 import { useNavigate } from "react-router-dom";

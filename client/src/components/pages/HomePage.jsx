@@ -5,6 +5,7 @@ import Testimonials from "../Homepage/Testimonials";
 import Features from "../Homepage/Features";
 import Banner from "../Homepage/Banner";
 import Slider from "../Homepage/Slider";
+import HowItWorks from "../Homepage/HowItWorks";
 
 //change h-screen
 const HomePage = () => {
@@ -14,7 +15,7 @@ const HomePage = () => {
       <Hero />
       <Slider />
       <Browse />
-      {/****/}
+      <HowItWorks />
       <Features />
       <Testimonials />
       <Banner />

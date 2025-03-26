@@ -41,7 +41,7 @@ const Browse = () => {
     <div className="h-full  bg-gradient-to-b from-[#fcfbfd] to-white pt-6 md:pt-16 pb-8 font-jakarta">
       <div className="flex flex-col gap-3 items-center justify-center">
         <h1 className="md:hidden">Make it horizontal scroll</h1>
-        <h2 className="text-4xl font-bold text-[#000929]">
+        <h2 className="text-4xl 2xl:text-5xl font-bold text-[#000929]">
           Featured Properties
         </h2>
         <p className=" max-sm:text-sm  text-pretty text-[#4d5461] pb-3">

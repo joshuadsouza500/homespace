@@ -14,8 +14,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/*" element={<CustomerRoutes />} />
-
-        <Route path="/user/*" element={<User />} />
+        {/*  <Route path="/user/*" element={<User />} />  */}
       </Routes>
     </div>
   );

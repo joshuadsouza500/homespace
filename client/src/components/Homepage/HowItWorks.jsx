@@ -1,0 +1,101 @@
+import { Handshake, KeyRoundIcon, Search, User } from "lucide-react";
+import { useState } from "react";
+import { Button } from "../ui/button";
+
+const steps = [
+  {
+    id: 1,
+    title: "Search Properties",
+    desc: "Browse our extensive collection of properties filtered by your preferences.",
+    icon: <Search />,
+  },
+
+  {
+    id: 2,
+    title: "Meet Realtor",
+    desc: "Browse our extensive collection of properties filtered by your preferences.",
+    icon: <User />,
+  },
+  {
+    id: 3,
+    title: "Make an Offer",
+    desc: "Browse our extensive collection of properties filtered by your preferences.",
+    icon: <Handshake />,
+  },
+  {
+    id: 4,
+    title: "Take the Keys",
+    desc: "Browse our extensive collection of properties filtered by your preferences.",
+    icon: <KeyRoundIcon />,
+  },
+];
+const HowItWorks = () => {
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+
+  return (
+    <section className="py-16 md:py-24 px-4 bg-estate-50">
+      <div className="max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
+          <div className="space-y-3 ">
+            <h2 className="text-4xl font-bold text-[#000929] max-md:text-center">
+              How it works?
+            </h2>
+            <p className=" max-sm:text-sm  text-pretty text-muted-foreground max-md:text-center tracking-wide pb-8 max-w-lg">
+              Find your dream home in just a few simple steps.
+            </p>
+
+            <div className="space-y-4 relative ">
+              {steps.map((step) => (
+                <div
+                  key={step.id}
+                  className={`p-4 cursor-pointer rounded-l-md rounded-xl border border-gray-100 relative transition-all duration-300 hover:shadow-lg group flex items-start justify-between gap-x-5 hover:border-l-4  hover:border-l-Primary ${
+                    step.id === 1 && hoveredIndex !== null && hoveredIndex !== 1 //CHecks if something else is hovered
+                      ? "bg-white/70"
+                      : step.id === 1
+                      ? "bg-white shadow-lg  border-l-4 border-l-Primary  "
+                      : "bg-white/70 hover:bg-white"
+                  }`}
+                  onMouseEnter={() => setHoveredIndex(step.id)}
+                  onMouseLeave={() => setHoveredIndex(null)}
+                >
+                  <div className="card-icon flex items-center justify-center aspect-square size-11  rounded-md   bg-Primary/20 text-Bgpurple transition-all duration-300   group-hover:text-Primary mt-1 ">
+                    {step.icon}
+                  </div>
+                  <div className="">
+                    {" "}
+                    <h3 className="text-xl font-semibold mb-1 text-real-dark">
+                      {step.title}
+                    </h3>
+                    <p className="max-md:tracking-wide text-muted-foreground text-xs md:text-sm w-[90%] md:w-[85%]">
+                      {step.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="pt-10 flex justify-center md:justify-start">
+              <Button className="px-5  h-11 hover:scale-[.98] bg-Bgpurple rounded-lg hover:bg-Bgpurple/80 text-white text-sm tracking-wide ">
+                Learn More
+              </Button>
+            </div>
+          </div>
+
+          <div
+            className="relative h-fit w-full min-h-[350px] max-h-[450px] md:max-h-[550px] rounded-2xl overflow-hidden opacity -0 animate-fade-in"
+            style={{ animationDelay: "400ms" }}
+          >
+            <img
+              src="/signin.png"
+              alt="Real estate professional holding a house model"
+              className="w-full h-full object-cover object-center rounded-2xl shadow-xl "
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default HowItWorks;
