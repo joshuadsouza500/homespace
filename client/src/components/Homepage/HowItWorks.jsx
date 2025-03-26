@@ -35,12 +35,12 @@ const HowItWorks = () => {
   return (
     <section className="py-16 md:py-24 px-4 bg-estate-50">
       <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 xl:gap-20 items-center">
           <div className="space-y-3 ">
-            <h2 className="text-4xl font-bold text-[#000929] max-md:text-center">
+            <h2 className="text-4xl font-bold text-[#000929] max-lg:text-center">
               How it works?
             </h2>
-            <p className=" max-sm:text-sm  text-pretty text-muted-foreground max-md:text-center tracking-wide pb-8 max-w-lg">
+            <p className=" max-sm:text-sm  text-pretty text-muted-foreground max-lg:text-center tracking-wide pb-8 ">
               Find your dream home in just a few simple steps.
             </p>
 
@@ -48,7 +48,7 @@ const HowItWorks = () => {
               {steps.map((step) => (
                 <div
                   key={step.id}
-                  className={`p-4 cursor-pointer rounded-l-md rounded-xl border border-gray-100 relative transition-all duration-300 hover:shadow-lg group flex items-start justify-between gap-x-5 hover:border-l-4  hover:border-l-Primary ${
+                  className={`p-4 cursor-pointer rounded-l-md rounded-xl border border-gray-100 relative transition-all duration-300 hover:shadow-lg group flex items-start justify-between gap-x-5 hover:border-l-4  hover:border-l-Primary md:w-[70%] lg:w-full  max-lg:mx-auto ${
                     step.id === 1 && hoveredIndex !== null && hoveredIndex !== 1 //CHecks if something else is hovered
                       ? "bg-white/70"
                       : step.id === 1
@@ -74,19 +74,16 @@ const HowItWorks = () => {
               ))}
             </div>
 
-            <div className="pt-10 flex justify-center md:justify-start">
+            <div className="pt-10 flex justify-center">
               <Button className="px-5  h-11 hover:scale-[.98] bg-Bgpurple rounded-lg hover:bg-Bgpurple/80 text-white text-sm tracking-wide ">
                 Learn More
               </Button>
             </div>
           </div>
 
-          <div
-            className="relative h-fit w-full min-h-[350px] max-h-[450px] md:max-h-[550px] rounded-2xl overflow-hidden opacity -0 animate-fade-in"
-            style={{ animationDelay: "400ms" }}
-          >
+          <div className="relative h-fit w-full min-h-[350px] max-h-[450px] md:max-h-[550px] rounded-2xl overflow-hidden opacity -0 animate-fade-in">
             <img
-              src="/signin.png"
+              src="/Howitworks.png"
               alt="Real estate professional holding a house model"
               className="w-full h-full object-cover object-center rounded-2xl shadow-xl "
             />
