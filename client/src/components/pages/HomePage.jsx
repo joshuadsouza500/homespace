@@ -11,7 +11,6 @@ import HowItWorks from "../Homepage/HowItWorks";
 const HomePage = () => {
   return (
     <div className=" md:px-6 xl:px-2 w-full max-w-6xl 2xl:max-w-7xl mx-auto font-jakarta">
-      {" "}
       <Hero />
       <Slider />
       <Browse />
