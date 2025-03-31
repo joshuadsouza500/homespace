@@ -3,8 +3,11 @@ import { Mail, Phone, MapPin, MapPinHouseIcon } from "lucide-react";
 export default function Footer() {
   //text-[#4d5461]
   return (
-    <footer className="text-white border-t py-8 bg-text ">
-      <div className="container mx-auto px-4">
+    <footer className="text-white border-t py-8  bg-text ">
+      <div
+        className="container mx-auto px-4 w-full h-auto bg-no-repeat"
+        //  style={{ backgroundImage: "url(/footer-bg.jpg)" }}
+      >
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           <div className="col-span-1 md:col-span-2 ">
             <a href="/" className="flex items-center mb-4">

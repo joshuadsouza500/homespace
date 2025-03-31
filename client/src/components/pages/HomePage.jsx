@@ -3,7 +3,7 @@ import Browse from "../Homepage/Browse";
 
 import Testimonials from "../Homepage/Testimonials";
 import Features from "../Homepage/Features";
-import Banner from "../Homepage/Banner";
+
 import Slider from "../Homepage/Slider";
 import HowItWorks from "../Homepage/HowItWorks";
 
@@ -17,7 +17,6 @@ const HomePage = () => {
       <HowItWorks />
       <Features />
       <Testimonials />
-      <Banner />
     </div>
   );
 };

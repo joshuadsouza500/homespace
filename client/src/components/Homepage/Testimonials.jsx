@@ -1,43 +1,43 @@
 import { useEffect, useState } from "react";
 
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Quote, QuoteIcon, Star, TriangleAlert } from "lucide-react";
-import { Avatar, AvatarImage } from "../ui/avatar";
+import { Quote, Star } from "lucide-react";
+
 import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
 
 const testimonials = [
   {
-    name: "Sarah Johnson",
-    avatar: "https://cdn-icons-png.flaticon.com/128/10643/10643275.png",
+    name: "Sarah Wang",
+    avatar: "/people/PersonF.svg",
     role: "Home Buyer",
     quote:
-      "Thanks to HomeSpace, I found my dream home in just a few weeks! The process was smooth and the agents were incredibly helpful. sell my property quickly.",
+      "Thanks to HomeSpace, I found my dream home in just a few weeks! The process was smooth and the agents were incredibly helpful.",
   },
   {
-    name: "Michael Chen",
-    avatar: "https://cdn-icons-png.flaticon.com/128/10643/10643273.png",
+    name: "Rami Houssain",
+    avatar:
+      "https://img.freepik.com/free-photo/close-up-bearded-tired-man_176420-18785.jpg?ga=GA1.1.232563297.1691509462&semt=ais_hybrid",
     role: "Property Seller",
     quote:
       "I was able to sell my property quickly and at a great price! sell my property quickly and at a great price",
   },
   {
     name: "Mark Anderson",
-    avatar: "https://cdn-icons-png.flaticon.com/128/10643/10643283.png",
+    avatar: "/people/PersonB.svg",
     role: "Property Seller",
     quote:
       "The exposure my property got through HomeSpace was amazing. I received multiple offers within days!sell my property quickly ",
   },
   {
-    name: "Emily Rodriguez",
-    avatar: "https://cdn-icons-png.flaticon.com/128/10643/10643269.png",
+    name: "Sara Rodriguez",
+    avatar: "/people/PersonH.svg",
     role: "Home Buyer",
     quote:
       "As a first-time homebuyer, I was nervous about the process. This platform made everything easy to understand !!",
   },
   {
     name: "David Thompson",
-    avatar: "https://cdn-icons-png.flaticon.com/128/10643/10643283.png",
+    avatar:
+      "https://img.freepik.com/free-photo/worldface-british-guy-white-background_53876-14467.jpg?ga=GA1.1.232563297.1691509462&semt=ais_hybrid",
     role: "Property Seller",
     quote:
       "The exposure my property got through HomeSpace was amazing. I received multiple offers within days! sold my property quickly and at a great price",
@@ -112,14 +112,9 @@ export default function Testimonials() {
                       className={`flex gap-x-2 items-center justify-center pt-4 ${
                         currentIndex === index ? "opacity-100" : "opacity-0"
                       }`}
-                    >
-                      <Star className="size-3 fill-white" />
-                      <Star className="size-3 fill-white" />
-                      <Star className="size-3 fill-white" />
-                      <Star className="size-3 fill-white" />
-                    </span>
+                    ></span>
                     <span
-                      className={`  absolute left-[45%] right-[50%] -bottom-4  z-10 w-0 h-0 border-l-[18px] border-r-[18px] border-b-[24px] border-transparent rotate-180 border-b-Primary ${
+                      className={`  absolute left-[46%] right-[50%] -bottom-4  z-10 w-0 h-0 border-l-[16px] border-r-[16px] border-b-[18px] border-transparent rotate-180 border-b-Primary ${
                         currentIndex === index ? "opacity-100" : "opacity-0"
                       }`}
                     ></span>
@@ -135,7 +130,7 @@ export default function Testimonials() {
                   >
                     <img
                       src={testimonial.avatar}
-                      className="rounded-full size-14"
+                      className="rounded-full size-12 bg-white border border-border object-cover"
                     />
                     <h3 className=" text-sm pt-1">{testimonial.name}</h3>
                     <p className="opacity-90 text-xs pt-0.5 text-gray-600">
