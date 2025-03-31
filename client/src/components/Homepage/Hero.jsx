@@ -75,7 +75,7 @@ const MobileHero = ({
   handleFilterChange,
 }) => {
   return (
-    <div className=" md:hidden h-auto  bg-[#E0DEF7] mt-1   pt-8 sm:pt-10 rounded-2xl mx-4 ">
+    <div className=" md:hidden h-auto  bg-[#E0DEF7]/40 mt-1   pt-8 sm:pt-10 rounded-2xl mx-4 ">
       <div className="space-y-6 ">
         {/* Main Content  */}
         <div className="space-y-4 px-4 pb-2 sm:pr-20">
@@ -164,8 +164,8 @@ const LargeHero = ({
   handleFilterChange,
 }) => {
   return (
-    <div className=" hidden md:block h-auto   w-full mt-2    mx-auto rounded-3xl   ">
-      <div className="flex h-full  max-w-full bg-[url('/Hero2.png')] object-cover object-center  rounded-3xl   flex-col justify-around items-start relative bg-no-repeat pt-2 pb-16 2xl:pb-20">
+    <div className=" hidden md:block h-auto   w-full mt-2    mx-auto rounded-3xl   pb-16">
+      <div className="flex max-2xl:max-h-[600px] 2xl:min-h-[600px]  min-h-[500px]  max-w-full bg-[url('/Hero2.png')] object-cover object-center  rounded-3xl   flex-col justify-around items-start relative bg-no-repeat pt-2 pb-16 2xl:pb-20">
         <div className="absolute h-auto w-full bg-black opacity-5 z-0 rounded-3xl" />
         <div className="flex flex-col items-start   w-9/12 lg:w-6/12  gap-y-4 2xl:gap-y-6 pb-2  mt-10 ml-6 lg:ml-12">
           <h1 className="text-6xl lg:text-7xl text-balance font-semibold z-10 font-serif tracking-wide ">
@@ -186,12 +186,12 @@ const LargeHero = ({
           </p>
         </div>
 
-        <section className="z-10 h-auto w-full  mt-8 xl:mt-10 max-lg:ml-1">
+        <section className="z-10 h-auto w-full    mt -8 xl:mt -10 max- lg:ml-1  absolute bottom-10  bg-red-300">
           {" "}
           <Tabs
             id="type"
             value={filters?.type}
-            className=" z-10  ml-8 lg:ml-12 "
+            className=" z-10  ml-2 -8 lg:m l-12 left-[16%] absolute   tranform  bottom-0"
             onValueChange={(value) => {
               handleFilterChange({ id: "type", value });
             }}
@@ -219,7 +219,7 @@ const LargeHero = ({
               </TabsTrigger>
             </TabsList>
           </Tabs>
-          <div className="w-[90%] lg:w-8/12 h-24 ml-8 lg:ml-12 rounded-tl-none rounded-xl bg-white/60 backdrop-blur-sm flex justify-between pl-4 pr-6 items-center shadow-sm ">
+          <div className="w-[90%] lg:w-8/12 h-24 m l-8 lg:m l-12 rounded-tl-none rounded-xl bg-blue-300 white/60 backdrop-blur-sm flex justify-between pl-4 pr-6 items-center shadow-sm  tranform left-1/2 absolute -translate-x-1/2 -top- 5">
             <div className=" w-[90%] border-r mr-1">
               <Label htmlFor="Location">Location</Label>
               <SearchBar

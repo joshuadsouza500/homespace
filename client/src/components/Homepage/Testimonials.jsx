@@ -18,21 +18,21 @@ const testimonials = [
       "https://img.freepik.com/free-photo/close-up-bearded-tired-man_176420-18785.jpg?ga=GA1.1.232563297.1691509462&semt=ais_hybrid",
     role: "Property Seller",
     quote:
-      "I was able to sell my property quickly and at a great price! sell my property quickly and at a great price",
+      "I was able to sell my property quickly and at a great price! sold my property quickly and at a great price",
   },
   {
     name: "Mark Anderson",
     avatar: "/people/PersonB.svg",
     role: "Property Seller",
     quote:
-      "The exposure my property got through HomeSpace was amazing. I received multiple offers within days!sell my property quickly ",
+      "The exposure my property got through HomeSpace was amazing. I received multiple offers within days! ",
   },
   {
     name: "Sara Rodriguez",
     avatar: "/people/PersonH.svg",
     role: "Home Buyer",
     quote:
-      "As a first-time homebuyer, I was nervous about the process. This platform made everything easy to understand !!",
+      "As a first-time homebuyer, I was nervous about the process. This platform made everything easy to understand !",
   },
   {
     name: "David Thompson",
@@ -40,7 +40,7 @@ const testimonials = [
       "https://img.freepik.com/free-photo/worldface-british-guy-white-background_53876-14467.jpg?ga=GA1.1.232563297.1691509462&semt=ais_hybrid",
     role: "Property Seller",
     quote:
-      "The exposure my property got through HomeSpace was amazing. I received multiple offers within days! sold my property quickly and at a great price",
+      "The exposure my property got through HomeSpace was amazing. I received multiple offers within days. Highly recommend!",
   },
 ];
 
@@ -95,7 +95,7 @@ export default function Testimonials() {
               {testimonials.map((testimonial, index) => (
                 <CarouselItem
                   key={index}
-                  className=" relative basis-1/2 md:basis-1/3    overflow -hidden group mt-1"
+                  className=" relative basis-[75%] md:basis-1/3    overflow -hidden group mt-1"
                 >
                   <div
                     className={` px-10 py-8 mb-8 rounded-lg text-center relative tracking-wide  ${
@@ -112,7 +112,12 @@ export default function Testimonials() {
                       className={`flex gap-x-2 items-center justify-center pt-4 ${
                         currentIndex === index ? "opacity-100" : "opacity-0"
                       }`}
-                    ></span>
+                    >
+                      <Star className="size-3 fill-white" />
+                      <Star className="size-3 fill-white" />
+                      <Star className="size-3 fill-white" />
+                      <Star className="size-3 fill-white" />
+                    </span>
                     <span
                       className={`  absolute left-[46%] right-[50%] -bottom-4  z-10 w-0 h-0 border-l-[16px] border-r-[16px] border-b-[18px] border-transparent rotate-180 border-b-Primary ${
                         currentIndex === index ? "opacity-100" : "opacity-0"
