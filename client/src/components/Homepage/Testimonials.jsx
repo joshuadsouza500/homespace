@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Quote, QuoteIcon, Star } from "lucide-react";
+import { Quote, QuoteIcon, Star, TriangleAlert } from "lucide-react";
 import { Avatar, AvatarImage } from "../ui/avatar";
 import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
 
@@ -26,21 +26,21 @@ const testimonials = [
     avatar: "https://cdn-icons-png.flaticon.com/128/10643/10643283.png",
     role: "Property Seller",
     quote:
-      "The exposure my property got through HomeSpace was amazing. I received multiple offers within days!sell my property quickly and at a great price",
+      "The exposure my property got through HomeSpace was amazing. I received multiple offers within days!sell my property quickly ",
   },
   {
     name: "Emily Rodriguez",
     avatar: "https://cdn-icons-png.flaticon.com/128/10643/10643269.png",
     role: "Home Buyer",
     quote:
-      "As a first-time homebuyer, I was nervous about the process. This platform made everything easy to understand. sell my property quickly and at a great price",
+      "As a first-time homebuyer, I was nervous about the process. This platform made everything easy to understand !!",
   },
   {
     name: "David Thompson",
     avatar: "https://cdn-icons-png.flaticon.com/128/10643/10643283.png",
     role: "Property Seller",
     quote:
-      "The exposure my property got through HomeSpace was amazing. I received multiple offers within days!sell my property quickly and at a great price",
+      "The exposure my property got through HomeSpace was amazing. I received multiple offers within days! sold my property quickly and at a great price",
   },
 ];
 
@@ -71,7 +71,7 @@ export default function Testimonials() {
   //background colour option 1 : bg-[#f7f6fc]
 
   return (
-    <section className="w-full pt-4 md:pt-12 pb-20 md:pb-28 border-[#e0def7] bg- [#f7f6fc] px-2">
+    <section className="w-full pt-4 md:pt-16 pb-20 md:pb-28 border-[#e0def7] bg- [#f7f6fc] px-2">
       <div className="container px-2 md:px-4">
         <div className="flex flex-col gap-3 items-center mt-8 mb-12  ">
           <h2 className="text-3xl md:text-4xl text-center pb-1  font-bold text-text">
@@ -89,7 +89,7 @@ export default function Testimonials() {
               loop: true,
             }}
             setApi={setApi}
-            className="w-full "
+            className="w-full cursor-pointer"
           >
             <CarouselContent className="flex gap-x-4">
               {testimonials.map((testimonial, index) => (
@@ -98,10 +98,10 @@ export default function Testimonials() {
                   className=" relative basis-1/2 md:basis-1/3    overflow -hidden group mt-1"
                 >
                   <div
-                    className={` px-10 py-8 mb-4 rounded-lg text-center relative  ${
+                    className={` px-10 py-8 mb-8 rounded-lg text-center relative tracking-wide  ${
                       currentIndex === index
                         ? "bg-Primary scale-105 text-white shadow-lg "
-                        : "opacity-50 scale-95 text-black"
+                        : "opacity-40 scale-95 text-black"
                     }`}
                   >
                     <Quote className="size-7 fill-black text-black/0 opacity-20 rotate-180 fixed left-3 top-7" />
@@ -118,7 +118,14 @@ export default function Testimonials() {
                       <Star className="size-3 fill-white" />
                       <Star className="size-3 fill-white" />
                     </span>
+                    <span
+                      className={`  absolute left-[45%] right-[50%] -bottom-4  z-10 w-0 h-0 border-l-[18px] border-r-[18px] border-b-[24px] border-transparent rotate-180 border-b-Primary ${
+                        currentIndex === index ? "opacity-100" : "opacity-0"
+                      }`}
+                    ></span>
                   </div>
+                  {/* Triangle  */}
+
                   <div
                     className={` w-full font-semibold  flex items-center justify-center flex-col text-Bgpurple ${
                       currentIndex === index

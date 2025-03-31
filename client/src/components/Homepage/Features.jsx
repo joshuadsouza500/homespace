@@ -3,6 +3,8 @@ import {
   HousePlusIcon,
   IdCardIcon,
   MapPinHouseIcon,
+  Star,
+  StarHalf,
 } from "lucide-react";
 import { Button } from "../ui/button";
 import {
@@ -44,13 +46,26 @@ export default function Main() {
     <div className="max-sm:px-2 w-full h-auto relative grid grid-cols-1 lg:grid-cols-2 gap-6 place-items-start justify-items-center  pt-10">
       {/* Left Side: Card with image  f7f6fc*/}
 
-      <div className="relative h-fit w-full min-h-[350px] max-h-[550px] max-w-[550px] rounded-2xl overflow-hidden  hidden  lg:flex ">
+      <div className="relative h-fit w-full min-h-[350px] max-h-[550px] max-w-[550px] rounded-2xl hidden  lg:flex ">
         <img
           src="/Features.png"
           alt="Real estate professional holding a house model"
-          className="w-full h-full object-cover object-center rounded-2xl shadow-xl "
+          className="w-full h-auto object-cover object-center rounded-2xl shadow-xl "
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl" />
+        <div className="absolute -bottom-5 bg-white rounded-xl shadow-lg py-1.5 w-40  -right-8 z-10 backdrop-blur-sm">
+          <span className="flex flex-col gap-y-1 text-center">
+            <h5 className="text-3xl font-medium ">4.6</h5>
+            <span className="flex pt-0.5 gap-x-1 text-Primary items-center justify-center ">
+              <Star className="size-[14px] fill-Primary  " />
+              <Star className="size-[14px] fill-Primary  " />
+              <Star className="size-[14px] fill-Primary  " />
+              <Star className="size-[14px] fill-Primary  " />
+              <StarHalf className="size-[14px] fill-Primary   " />
+            </span>
+            <p className="text-sm text-gray-700">500+ Reviews</p>
+          </span>
+        </div>
       </div>
 
       {/*   */}
@@ -84,7 +99,7 @@ export default function Main() {
                     {content.title}
                   </span>
                 </AccordionTrigger>
-                <AccordionContent className="text-sm text-pretty tracking-wider leading-tight text-muted-foreground  ml-16 font-medium  mr-4 max-w-sm 2xl:max-w-md  ">
+                <AccordionContent className="text-sm text-pretty tracking-wider leading-snug text-muted-foreground  ml-16 font-normal  mr-4 max-w-sm 2xl:max-w-md  ">
                   {content.description}
                 </AccordionContent>
               </AccordionItem>
