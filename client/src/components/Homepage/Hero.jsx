@@ -16,7 +16,6 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
@@ -27,7 +26,7 @@ const Hero = () => {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const [filters, setFilters] = useState({
-    type: searchParams.get("type") || "",
+    type: searchParams.get("type") || "Rent",
     pty: searchParams.get("pty") || "",
     city: searchParams.get("city") || "",
   });
@@ -75,61 +74,23 @@ const MobileHero = ({
   handleFilterChange,
 }) => {
   return (
-    <div className=" lg:hidden h-auto  bg-[#E0DEF7]/40 mt-1   pt-8 sm:pt-10 rounded-2xl mx-4 ">
-      <div className="space-y-6 ">
-        {/* Main Content  */}
-        <div className="space-y-4 px-4 pb-2 sm:pr-20">
-          <h1 className="text-balance text-5xl font-semibold z-10 font-serif tracking-wide ">
-            Home Hunting Simplified
-          </h1>
-          <p className=" leading-snug sm:text-lg font-medium text-black/70">
-            Discover a hasstle-free way to find residences that best suit your
-            needs and lifestyle.
-          </p>
-        </div>
-
-        {/* Search Bar */}
-        <div className="relative px-4 sm:pr-20">
-          <Tabs
-            id="type"
-            value={filters?.type}
-            className=" ml-[2px] "
-            onValueChange={(value) => {
-              handleFilterChange({ id: "type", value });
-            }}
-          >
-            <TabsList className="bg-white/90 h-10 w-40   shadow-sm ring-0 rounded-b-none ring-[#E0DEF7]">
-              <TabsTrigger
-                value="Rent"
-                className="w-20 flex items-center gap-1 text-base data-[state=active]:text-Primary data-[state=active]:border border-bborder font-bold  data-[state=active]:shadow-sm shadow-Primary"
-              >
-                <KeyRoundIcon
-                  strokeWidth={2.5}
-                  className="size-4  text-Primary "
-                />
-                Rent
-              </TabsTrigger>
-              <TabsTrigger
-                value="Sell"
-                className="w-20 flex items-center gap-1 text-base data-[state=active]:text-Primary data-[state=active]:border border-bborder font-bold"
-              >
-                <BanknoteIcon
-                  strokeWidth={2.5}
-                  className="size-5 text-Primary"
-                />
-                Sell
-              </TabsTrigger>
-            </TabsList>
-          </Tabs>
-          <SearchBar
-            setFilters={setFilters}
-            className={" max-w-lg h-11 rounded-tl-none border-t-none"}
-            applyFilters={applyFilters}
-          />
-        </div>
+    <div className="lg:hidden min-h-[450px] sm:min-h-[500px] h-auto [400px] bg-[#E0DEF7]/40 mt-1 pt-10 rounded-2xl mx-3  relative mb-16">
+      {/* Background Image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center -z-10 rounded-2xl"
+        style={{ backgroundImage: "url(/signin.png)" }}
+      />
+      <div className="h-full w-full bg-black/5 -z-0 absolute inset-0 rounded-2xl" />
+      <div className="gap-y-2 sm:gap-y-4 px-4 pb-1 flex flex-col items-center justify-center leading-tight relative z-10 ">
+        <h1 className="text-balance text-4xl sm:text-5xl  text-center font-semibold z-10 font-serif tracking-wide  sm:w-2/3">
+          Home Hunting Simplified
+        </h1>
+        <p className=" text-center font-medium text-black/70 w-5/6 sm:w-3/6">
+          Discover a hasstle-free way to Buy , Sell or Rent your properties.
+        </p>
 
         {/* Stats */}
-        <div className="grid grid-cols-3 gap-4 py-4 px-3 sm:pr-20">
+        <div className="grid grid-cols-3 sm:w-[60%] gap-4 py-2 px-3">
           <div className="text-center">
             <div className="text-3xl font-bold text-text">200+</div>
             <div className="text-sm text-black/60">Properties</div>
@@ -140,17 +101,72 @@ const MobileHero = ({
           </div>
           <div className="text-center">
             <div className="text-3xl font-bold text-text">100+</div>
-            <div className="text-sm text-slate-600">Good reviews</div>
+            <div className="text-sm text-slate-600">Reviews</div>
           </div>
         </div>
+      </div>
+      {/* Search Bar */}
 
-        {/* Building Image */}
-        <div className="relative h-60 sm:h-80 z-10  w-full overflow-hidden rounded-xl ">
-          <img
-            src="/Hero4.webp"
-            alt="Modern apartment building"
-            className="object-cover   w-full h-fit"
+      <div className="absolute -bottom-20 left-1/2 transform -translate-x-1/2 z-10 p-4 bg-white rounded-md w-[90%]  sm:w-[80%] md:w-[75%] shadow-xl">
+        <Tabs
+          id="type"
+          value={filters?.type}
+          className=" bg-rounded-b-none"
+          onValueChange={(value) => {
+            handleFilterChange({ id: "type", value });
+          }}
+        >
+          <TabsList className="bg-muted white/90 h-12  ring-0  ring-[#E0DEF7] mb-2 w-full grid grid-cols-2">
+            <TabsTrigger
+              value="Rent"
+              className="w-auto text-base data-[state=active]:text-Primary data-[state=active]:border border-bborder font-semibold  "
+            >
+              Rent
+            </TabsTrigger>
+            <TabsTrigger
+              value="Sell"
+              className="w-auto  text-base data-[state=active]:text-Primary data-[state=active]:border border-bborder font-semibold"
+            >
+              Buy
+            </TabsTrigger>
+          </TabsList>
+        </Tabs>
+        <div className="md:grid grid-cols-2 space-y-2  ">
+          <SearchBar
+            setFilters={setFilters}
+            className={"max-w-lg h-12  rounded-tl-none border-t-none"}
+            applyFilters={applyFilters}
           />
+
+          <Select
+            id="propertyType"
+            onValueChange={(value) => {
+              handleFilterChange({ id: "pty", value });
+            }}
+            value={filters?.pty}
+          >
+            <SelectTrigger className="w-full text-muted-foreground  border  h-10  focus-visible:ring-[0.5px] ">
+              <SelectValue placeholder="Property type" />
+            </SelectTrigger>
+
+            <SelectContent>
+              <SelectGroup>
+                <SelectItem value="Studio">Studio</SelectItem>
+                <SelectItem value="Apartment">Apartment</SelectItem>
+                <SelectItem value="Villa">Villa</SelectItem>
+                <SelectItem value="Condo">Condo</SelectItem>
+                <SelectItem value="Penthouse">Penthouse</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+        </div>
+        <div className="mt-4 flex font-medium text-white justify-center ">
+          <Button
+            className="bg-Primary   w-[90%]   hover:bg-indigo-700 tracking-wide"
+            onClick={applyFilters}
+          >
+            Find Properties
+          </Button>
         </div>
       </div>
     </div>
@@ -165,9 +181,9 @@ const LargeHero = ({
 }) => {
   return (
     <div className=" hidden lg:block h-auto   w-full mt-1    mx-auto rounded-t-3xl   pb-16 bg-estate-50">
-      <div className="flex max-2xl:max-h-[600px] 2xl:min-h-[600px]  min-h-[550px]  max-w-full bg-[url('/Hero2.png')] object-cover object-center  rounded-3xl   flex-col justify-center    items-start relative bg-no-repeat ">
+      <div className="flex max-2xl:max-h-[600px] 2xl:min-h-[600px]  min-h-[550px]  max-w-full bg-[url('/Hero2.png')] object-cover object-center  rounded-3xl   flex-col justify-start    items-start relative bg-no-repeat ">
         <div className="absolute h-auto w-full bg-black opacity-5 z-0 rounded-3xl" />
-        <div className="flex flex-col items-start lg:w-6/12  gap-y-4 2xl:gap-y-6 pb-2   lg:ml-12 ">
+        <div className="flex flex-col items-start lg:w-6/12  gap-y-2  pb-2   lg:ml-12 mt-20">
           <h1 className=" lg:text-7xl text-balance font-semibold z-10 font-serif tracking-wide ">
             Home Hunting{" "}
             <span className=" pt-2 flex items-center  gap-2">
@@ -184,14 +200,28 @@ const LargeHero = ({
             Discover a hasstle-free way to find residences that best suit your
             needs and lifestyle.
           </p>
+          <div className="grid grid-cols-3 gap-4 py-4 px-1 ">
+            <div className="text-center">
+              <div className="text-3xl font-bold text-text">200+</div>
+              <div className="text-sm text-black/60">Properties</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-text">10K+</div>
+              <div className="text-sm text-slate-600">Customers</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-text">100+</div>
+              <div className="text-sm text-slate-600">Positive reviews</div>
+            </div>
+          </div>
         </div>
 
-        <section className="z-10 h-auto w-full    mt -8 xl:mt -10 max- lg:ml-1  absolute bottom-10  ">
+        <section className="z-10 h-auto w-full    absolute bottom-12  ">
           {" "}
           <Tabs
             id="type"
             value={filters?.type}
-            className=" z-10  ml-2 -8 lg:m l-12 left-[16%] absolute   tranform  -bottom-1"
+            className="ml-2 lg:left-[6.7%] xl:left-[16%] absolute   tranform  bottom-0"
             onValueChange={(value) => {
               handleFilterChange({ id: "type", value });
             }}
@@ -258,9 +288,9 @@ const LargeHero = ({
                 </SelectContent>
               </Select>
             </div>
-            <div className="mt-4">
+            <div className="mt-2">
               <Button
-                className="bg-Primary font-medium text-white w-32 hover:bg-indigo-700"
+                className="bg-Primary font-medium text-white px-6 w -32 hover:bg-indigo-700"
                 onClick={applyFilters}
               >
                 Find Properties
@@ -311,7 +341,7 @@ const LargeHero = ({
           <div className="xs:w-[95%] sm:w-[70%] w-full h-14  rounded-tl-none rounded-xl bg-light_gray/80 backdrop-blur-sm flex justify-start  px-4 items-end shadow-sm text-sm py-2 ">
             <div className=" bg-white flex rounded-l-md ">
               <Input
-                type="email"
+                type="text"
                 id="Location"
                 placeholder="Select your city"
                 className=" xs:w-64 w-72 sm:w-80 mr-[2px] border-none focus-visible:ring-Bgpurple rounded-l-md "
@@ -320,8 +350,6 @@ const LargeHero = ({
                 <Search className="size-5" />
               </Button>
             </div>
-
-            <div className=""></div>
           </div>
         </section>
       </div>

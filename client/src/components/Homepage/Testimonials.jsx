@@ -162,9 +162,9 @@ export default function Testimonials() {
             ))}
           </div>
         </div>
-        <div className="w-full flex justify-center pt-4">
+        <div className="w-full flex justify-center pt-10 lg:pt-16">
           <Link to="/property">
-            <Button className="flex  h-11 bg-Bgpurple rounded-lg hover:bg-Bgpurple/80 text-white text-sm tracking-wide font-semibold">
+            <Button className="flex px-8 h-11 bg-Bgpurple rounded-lg hover:bg-Bgpurple/80 text-white text-sm tracking-wide font-semibold">
               View All
             </Button>
           </Link>

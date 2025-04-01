@@ -1,9 +1,8 @@
-import { ChevronDown, MapPin, Search, SearchIcon } from "lucide-react";
-import React, { useEffect, useRef, useState } from "react";
+import { MapPin } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import { Input } from "./input";
 import { ScrollArea } from "./scroll-area";
 import { cn } from "@/lib/utils";
-import { Label } from "./label";
 
 const citiesInBahrain = [
   "A'ali",
@@ -51,7 +50,7 @@ const SearchBar = ({ setFilters, className, applyFilters }) => {
       );
       setSuggestions(newSuggestions);
     } else {
-      setSuggestions([]);
+      setSuggestions();
       setIsopen(false);
       // Clear suggestions if input is empty
     }
@@ -89,7 +88,7 @@ const SearchBar = ({ setFilters, className, applyFilters }) => {
     <div
       ref={searchBarRef}
       className={cn(
-        "relative    md:w-56  max-w-sm  rounded-lg   white/10 dark:bg-gray-900  py-1 ",
+        "relative     max-w-sm  rounded-lg   white/10 dark:bg-gray-900  py-1 ",
         className
       )}
     >
@@ -97,7 +96,7 @@ const SearchBar = ({ setFilters, className, applyFilters }) => {
         <Input
           type="name"
           placeholder="Select Your City"
-          className=" w-full border-0 h-9 font-normal focus-visible:ring-[0.5px] bg-white/10 px-2 capitalize"
+          className=" w-full lg:border-0 h-10 lg:h-9 font-normal focus-visible:ring-[0.5px] lg:bg-white/10 px-2 capitalize"
           onChange={handleSuggestions}
           onFocus={() => {
             setIsopen(true); // Open suggestions when the input is focused
@@ -105,13 +104,13 @@ const SearchBar = ({ setFilters, className, applyFilters }) => {
           value={InputValue}
         />
 
-        <MapPin className="size-5 absolute right-1 top-1/2  -translate-y-1/2   text-muted-foreground" />
+        <MapPin className="size-5 absolute right-2 lg:right-1 top-1/2  -translate-y-1/2   text-muted-foreground" />
       </div>
-      <div className="w-[88%] lg:w-full  absolute z-20 ">
+      <div className="w-full  absolute z-20 ">
         {isOpen &&
           suggestions.length > 0 && ( //
             <ul
-              className=" -ml- 3 border bg-white border-gray-300 md:w-[95%] xl:w-[100%] rounded-sm mt-[6px] md:mt-0.5 "
+              className=" border bg-white border-gray-300 md:w-[95%] xl:w-[100%] rounded-sm mt-[2px] md:mt-0.5 "
               ref={suggestionRef}
             >
               <ScrollArea className="max-h-[200px] pb-2 ">
