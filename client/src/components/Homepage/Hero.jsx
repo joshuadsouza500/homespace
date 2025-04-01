@@ -131,13 +131,12 @@ const MobileHero = ({
             </TabsTrigger>
           </TabsList>
         </Tabs>
-        <div className="md:grid grid-cols-2 space-y-2  ">
+        <div className="md:grid grid-cols-2 space-y-2 md:space-y-1  md:gap-x-2    justify-start">
           <SearchBar
             setFilters={setFilters}
             className={"max-w-lg h-12  rounded-tl-none border-t-none"}
             applyFilters={applyFilters}
-          />
-
+          />{" "}
           <Select
             id="propertyType"
             onValueChange={(value) => {
@@ -226,7 +225,7 @@ const LargeHero = ({
               handleFilterChange({ id: "type", value });
             }}
           >
-            <TabsList className="bg-white/60 h-12 w-52 border-b gap-x-[2px]  shadow-sm ring-0 rounded-b-none ring-[#E0DEF7]">
+            <TabsList className="bg-white/60 h-14 w-52 border-[0.5px] border-bborder gap-x-[2px]  shadow-sm ring-0 rounded-b-none ring-[#E0DEF7]">
               <TabsTrigger
                 value="Rent"
                 className="w-24 flex items-center gap-1 text-base data-[state=active]:text-Primary data-[state=active]:border border-bborder font-bold  data-[state=active]:shadow-sm shadow-Primary"
@@ -249,7 +248,7 @@ const LargeHero = ({
               </TabsTrigger>
             </TabsList>
           </Tabs>
-          <div className="w-[85%] xl:w-8/12 h-24 m l-8 lg:m l-12 rounded-tl-none rounded-xl bg-white/60  flex justify-between pl-4 pr-6 items-center shadow-xl backdrop-blur-md tranform left-1/2 absolute -translate-x-1/2 -top- 5">
+          <div className="w-[85%] xl:w-8/12 h-24   rounded-tl-none rounded-xl bg-white/60  flex justify-between pl-4 pr-6 items-center shadow-xl backdrop-blur-md tranform left-1/2 absolute -translate-x-1/2 border-[0.5px] border-bborder">
             <div className=" w-[90%] border-r mr-1 ">
               <Label className="pl-1.5" htmlFor="Location">
                 Location
@@ -261,7 +260,7 @@ const LargeHero = ({
               />
             </div>
 
-            <div className="w-full pl-3  ">
+            <div className="w-full pl-3   space-y-0.5">
               <Label className="pl-1 " htmlFor="Location">
                 Property Type
               </Label>

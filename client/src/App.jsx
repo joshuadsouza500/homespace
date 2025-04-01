@@ -45,7 +45,7 @@ export default App;
    * Add animation for smooth transition when images are carsousel
    * Add a bit of blur to the sides of the logo slider
    * Add number animations for mobile hero
-   * Features section complete the text and maybe change it (CHeck SS and saved maybe change the image)
+   *
    *
    * Add a Booking section in property details page and then add a calendar to the user profile
    * Add property status in my propperties (active, inactive)
