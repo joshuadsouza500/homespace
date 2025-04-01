@@ -75,7 +75,7 @@ const MobileHero = ({
   handleFilterChange,
 }) => {
   return (
-    <div className=" md:hidden h-auto  bg-[#E0DEF7]/40 mt-1   pt-8 sm:pt-10 rounded-2xl mx-4 ">
+    <div className=" lg:hidden h-auto  bg-[#E0DEF7]/40 mt-1   pt-8 sm:pt-10 rounded-2xl mx-4 ">
       <div className="space-y-6 ">
         {/* Main Content  */}
         <div className="space-y-4 px-4 pb-2 sm:pr-20">
@@ -164,11 +164,11 @@ const LargeHero = ({
   handleFilterChange,
 }) => {
   return (
-    <div className=" hidden md:block h-auto   w-full mt-2    mx-auto rounded-3xl   pb-16">
-      <div className="flex max-2xl:max-h-[600px] 2xl:min-h-[600px]  min-h-[500px]  max-w-full bg-[url('/Hero2.png')] object-cover object-center  rounded-3xl   flex-col justify-around items-start relative bg-no-repeat pt-2 pb-16 2xl:pb-20">
+    <div className=" hidden lg:block h-auto   w-full mt-1    mx-auto rounded-t-3xl   pb-16 bg-estate-50">
+      <div className="flex max-2xl:max-h-[600px] 2xl:min-h-[600px]  min-h-[550px]  max-w-full bg-[url('/Hero2.png')] object-cover object-center  rounded-3xl   flex-col justify-center    items-start relative bg-no-repeat ">
         <div className="absolute h-auto w-full bg-black opacity-5 z-0 rounded-3xl" />
-        <div className="flex flex-col items-start   w-9/12 lg:w-6/12  gap-y-4 2xl:gap-y-6 pb-2  mt-10 ml-6 lg:ml-12">
-          <h1 className="text-6xl lg:text-7xl text-balance font-semibold z-10 font-serif tracking-wide ">
+        <div className="flex flex-col items-start lg:w-6/12  gap-y-4 2xl:gap-y-6 pb-2   lg:ml-12 ">
+          <h1 className=" lg:text-7xl text-balance font-semibold z-10 font-serif tracking-wide ">
             Home Hunting{" "}
             <span className=" pt-2 flex items-center  gap-2">
               <img
@@ -180,18 +180,18 @@ const LargeHero = ({
             </span>{" "}
           </h1>
 
-          <p className="w-10/12 ml-2  font-medium text-black/60 text-lg">
+          <p className="w-10/12 ml-2  font-medium text-black/60 text-lg ">
             Discover a hasstle-free way to find residences that best suit your
             needs and lifestyle.
           </p>
         </div>
 
-        <section className="z-10 h-auto w-full    mt -8 xl:mt -10 max- lg:ml-1  absolute bottom-10  bg-red-300">
+        <section className="z-10 h-auto w-full    mt -8 xl:mt -10 max- lg:ml-1  absolute bottom-10  ">
           {" "}
           <Tabs
             id="type"
             value={filters?.type}
-            className=" z-10  ml-2 -8 lg:m l-12 left-[16%] absolute   tranform  bottom-0"
+            className=" z-10  ml-2 -8 lg:m l-12 left-[16%] absolute   tranform  -bottom-1"
             onValueChange={(value) => {
               handleFilterChange({ id: "type", value });
             }}
@@ -219,9 +219,11 @@ const LargeHero = ({
               </TabsTrigger>
             </TabsList>
           </Tabs>
-          <div className="w-[90%] lg:w-8/12 h-24 m l-8 lg:m l-12 rounded-tl-none rounded-xl bg-blue-300 white/60 backdrop-blur-sm flex justify-between pl-4 pr-6 items-center shadow-sm  tranform left-1/2 absolute -translate-x-1/2 -top- 5">
-            <div className=" w-[90%] border-r mr-1">
-              <Label htmlFor="Location">Location</Label>
+          <div className="w-[85%] xl:w-8/12 h-24 m l-8 lg:m l-12 rounded-tl-none rounded-xl bg-white/60  flex justify-between pl-4 pr-6 items-center shadow-xl backdrop-blur-md tranform left-1/2 absolute -translate-x-1/2 -top- 5">
+            <div className=" w-[90%] border-r mr-1 ">
+              <Label className="pl-1.5" htmlFor="Location">
+                Location
+              </Label>
               <SearchBar
                 setFilters={setFilters}
                 className={"md:w-[95%]"}
@@ -229,26 +231,24 @@ const LargeHero = ({
               />
             </div>
 
-            <div className="w-full pl-3">
-              <Label htmlFor="Location">Property Type</Label>
+            <div className="w-full pl-3  ">
+              <Label className="pl-1 " htmlFor="Location">
+                Property Type
+              </Label>
               <Select
                 id="propertyType"
                 onValueChange={(value) => {
                   handleFilterChange({ id: "pty", value });
                 }}
                 value={filters?.pty}
-                className=""
+                className=" focus-visible:ring-[0.5px]"
               >
-                <SelectTrigger className="w-[90%]   ">
+                <SelectTrigger className="w-[90%] text-muted-foreground    border-none bg-white/10 h-9  font-normal focus-visible:ring-[0.5px] py-1   px-2">
                   <SelectValue placeholder="Property type" />
                 </SelectTrigger>
 
                 <SelectContent>
                   <SelectGroup>
-                    <SelectItem className="font-semibold" value={null}>
-                      {" "}
-                      Property Type
-                    </SelectItem>
                     <SelectItem value="Studio">Studio</SelectItem>
                     <SelectItem value="Apartment">Apartment</SelectItem>
                     <SelectItem value="Villa">Villa</SelectItem>
@@ -260,7 +260,7 @@ const LargeHero = ({
             </div>
             <div className="mt-4">
               <Button
-                className="bg-Primary font-semibold w-32 hover:bg-indigo-700"
+                className="bg-Primary font-medium text-white w-32 hover:bg-indigo-700"
                 onClick={applyFilters}
               >
                 Find Properties

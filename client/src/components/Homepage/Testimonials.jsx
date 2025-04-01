@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { Quote, Star } from "lucide-react";
 
 import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
+import { Button } from "../ui/button";
+import { Link } from "react-router-dom";
 
 const testimonials = [
   {
@@ -160,6 +162,13 @@ export default function Testimonials() {
             ))}
           </div>
         </div>
+        <div className="w-full flex justify-center pt-4">
+          <Link to="/property">
+            <Button className="flex  h-11 bg-Bgpurple rounded-lg hover:bg-Bgpurple/80 text-white text-sm tracking-wide font-semibold">
+              View All
+            </Button>
+          </Link>
+        </div>{" "}
       </div>
     </section>
   );

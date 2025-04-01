@@ -1,8 +1,9 @@
-import { Search, SearchIcon } from "lucide-react";
+import { ChevronDown, MapPin, Search, SearchIcon } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
 import { Input } from "./input";
 import { ScrollArea } from "./scroll-area";
 import { cn } from "@/lib/utils";
+import { Label } from "./label";
 
 const citiesInBahrain = [
   "A'ali",
@@ -88,46 +89,44 @@ const SearchBar = ({ setFilters, className, applyFilters }) => {
     <div
       ref={searchBarRef}
       className={cn(
-        "relative   md:w-56   max-w-sm space-x-2 rounded-lg border border-gray-300 bg-white/90 dark:bg-gray-900 px-2 py-1",
+        "relative    md:w-56  max-w-sm  rounded-lg   white/10 dark:bg-gray-900  py-1 ",
         className
       )}
     >
-      <div className="flex items-center justify-center gap-x-1 bg-white/90  focus-visible:ring-1 relative">
-        {" "}
+      <div className="flex items-center justify-center gap-x-1 bg-white/10   relative ">
         <Input
-          type="search"
-          placeholder="City or Governate"
-          className=" w-full border-0 h-8 font-semibold focus-visible:ring-0"
+          type="name"
+          placeholder="Select Your City"
+          className=" w-full border-0 h-9 font-normal focus-visible:ring-[0.5px] bg-white/10 px-2 capitalize"
           onChange={handleSuggestions}
+          onFocus={() => {
+            setIsopen(true); // Open suggestions when the input is focused
+          }}
           value={InputValue}
         />
-        <button
-          className="absolute hover:bg-indigo-700 right-0 top-1/2 transition-colors duration-300  -translate-y-1/2 p-1 rounded-md bg-Primary text-white"
-          aria-label="Search"
-          onClick={applyFilters}
-        >
-          <Search className="size-5" />
-        </button>
+
+        <MapPin className="size-5 absolute right-1 top-1/2  -translate-y-1/2   text-muted-foreground" />
       </div>
-      <div className="w-[88%] lg:w-56  absolute z-20 ">
-        {isOpen && suggestions.length > 0 && (
-          <ul
-            className=" -ml-3 border bg-white border-gray-300 md:w-[95%] xl:w-[100%] rounded-b-sm mt-[6px] md:mt-1 "
-            ref={suggestionRef}
-          >
-            <ScrollArea className="max-h-[200px] pb-2">
-              {suggestions.map((suggestion) => (
-                <button
-                  key={suggestion}
-                  className="max-lg:text-sm w-full px-4 font-medium py-2 text-left hover:bg-gray-100 focus:bg-gray-100 focus:outline-none"
-                  onClick={() => handleSuggestionClick(suggestion)}
-                >
-                  {suggestion}
-                </button>
-              ))}
-            </ScrollArea>
-          </ul>
-        )}
+      <div className="w-[88%] lg:w-full  absolute z-20 ">
+        {isOpen &&
+          suggestions.length > 0 && ( //
+            <ul
+              className=" -ml- 3 border bg-white border-gray-300 md:w-[95%] xl:w-[100%] rounded-sm mt-[6px] md:mt-0.5 "
+              ref={suggestionRef}
+            >
+              <ScrollArea className="max-h-[200px] pb-2 ">
+                {suggestions.map((suggestion) => (
+                  <button
+                    key={suggestion}
+                    className="text-sm w-full px-4 font-medium py-2 text-left hover:bg-gray-100 focus:bg-gray-100 focus:outline-none"
+                    onClick={() => handleSuggestionClick(suggestion)}
+                  >
+                    {suggestion}
+                  </button>
+                ))}
+              </ScrollArea>
+            </ul>
+          )}
       </div>
     </div>
   );
