@@ -405,14 +405,14 @@ export default function PropertySearch() {
       </div>
 
       {/****Property for sale  */}
-      <div className="flex  justify-between items-end  max-w-6xl xl:max-w-7xl mx-auto max-md:mx-2 md:px-2 pb-4 md:pb-5 2xl:pb-8  pt-2">
+      <div className="flex  justify-between items-end  max-w-6xl xl:max-w-7xl mx-auto max-md:mx-2 md:px-2 pb-4 md:pb-5 2xl:pb-8  pt-2 ">
         <div>
           <p className="flex items-center text-xs font-light">
             Home
             <ChevronRight className="size-4" />
             Properties for sale
           </p>
-          <h1 className="text-lg md:text-2xl font-bold pt-2 md:pt-4">
+          <h1 className="text-lg sm:text-xl md:text-2xl font-bold pt-2 md:pt-4">
             Properties for sale in Bahrain
           </h1>
         </div>
@@ -422,12 +422,12 @@ export default function PropertySearch() {
           }}
           value={filters.srt}
         >
-          <SelectTrigger className="w-24  md:w-32 text-xs max-sm:h-9 ">
-            <SelectValue placeholder="Featured" />
+          <SelectTrigger className="w-28  md:w-32 text-xs max-sm:h-9 ">
+            <SelectValue placeholder="Sort" className="text-semibold" />
           </SelectTrigger>
-          <SelectContent className="w-28 md:w-36">
+          <SelectContent className="w-28 md:w-36 ">
             <SelectGroup>
-              <SelectLabel value="featured" className="pl-6">
+              <SelectLabel value="featured" className="pl-6 ">
                 Featured
               </SelectLabel>
               <SelectItem value="new">Newest</SelectItem>

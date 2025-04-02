@@ -1,13 +1,13 @@
 import {
-  Heart,
   MoreVertical,
   Bed,
   Bath,
   Maximize,
   MapPin,
   Phone,
-  Mail,
   Sparkles,
+  MessageCircle,
+  Bookmark,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -37,64 +37,66 @@ const BigProperyCard = ({ property }) => {
           </div>
         </div>
         <CardContent className="p-4 sm:w-3/5 flex flex-col justify-between ">
-          <div className="relative max-sm:h-72 h-full ">
-            <div className="flex justify-between items-start mb-2 relative">
-              <div>
-                <Badge variant="secondary" className="mb-2">
+          <div className="relative  h-full ">
+            <div className="flex justify-between items-start mb- relative">
+              <div className="space-y-1 mb-4">
+                <Badge variant="secondary" className=" px-4 tracking-wide">
                   {property?.property_type}
                 </Badge>
-                <h2 className="text-2xl font-bold text-Primary">
+                <h2 className="text-2xl font-bold text-Primary pt-1">
                   {property?.price.toLocaleString()} BHD
                 </h2>
-                <h2 className="text-lg font-semibold text-[#000929] pl-1">
-                  LakeField Av.
+                <h2 className="text-lg lg:text-2xl font-semibold text-text  line-clamp-1">
+                  {property?.title}
                 </h2>
+                <div className="flex items-center text-muted-foreground text-sm pt-1">
+                  <MapPin className="size-4 mr-1 text-Primary flex-shrink-0" />
+                  <span>
+                    {property?.city}, {property?.governate.replace("_", " ")}
+                  </span>
+                </div>
               </div>
+              {/* Popular */}
               <span className="px-3 py-2 absolute  right-0 bg-Primary text-white font-bold text-xs rounded-lg shadow-sm flex gap-1 items-center">
                 <Sparkles className="size-4 fill-white" />
                 Popular this week
               </span>
             </div>
-            <div className="flex items-center text-muted-foreground text-sm mb-4">
-              <MapPin className="h-4 w-4 mr-1 text-Primary flex-shrink-0" />
-              <span>
-                {property?.city}, {property?.governate.replace("_", " ")}
-              </span>
-            </div>
-            <p className="text-muted-foreground w-[90%] text-pretty leading-snug line-clamp-3">
+
+            <p className="text-muted-foreground w-[90%] text-pretty tracking-wide leading-snug line-clamp-3  mt-1">
               {property?.description}
             </p>
-            <div className="flex justify-start gap-2 text-sm text-muted-foreground mb-4 pl-1 absolute bottom-0">
+            <div className="flex justify-start gap-2 lg:gap-3 text-sm text-muted-foreground mb-4 pl-1 absolute bottom-0">
               <div className="flex items-center border-r-2 pr-2">
-                <Bed className="h-4 w-4 mr-1 text-Primary" />
+                <Bed className="size-4 mr-1 text-Primary" />
                 <span>{property?.bedrooms}</span>
               </div>
               <div className="flex items-center border-r-2 pr-2">
-                <Bath className="h-4 w-4 mr-1 text-Primary" />
+                <Bath className="size-4 mr-1 text-Primary" />
                 <span>{property?.bathrooms} </span>
               </div>
               <div className="flex items-center  pr-2">
-                <Maximize className="h-4 w-4 mr-1 text-Primary" />
+                <Maximize className="size-4 mr-1 text-Primary" />
                 <span>{property?.area} sqm</span>
               </div>
             </div>
           </div>
-          <div className="flex justify-between items-center mt-auto pt-4 border-t">
+          <div className="flex justify-between items-center mt-auto pt-2 border-t">
             <span className="text-xs text-muted-foreground">
-              Listed {new Date(property?.createdAt).toLocaleDateString()}{" "}
+              Listed on {new Date(property?.createdAt).toLocaleDateString()}{" "}
               {/* Display listing date */}
             </span>
-            <div className="flex space-x-2">
+            <div className="flex space-x-2 items-center">
               <Button variant="outline" size="sm" className="text-primary">
                 <Phone className="h-4 w-4 mr-2" />
                 Call
               </Button>
               <Button variant="outline" size="sm" className="text-primary">
-                <Mail className="h-4 w-4 mr-2" />
-                Email
+                <MessageCircle className="h-4 w-4 mr-2" />
+                Message
               </Button>
-              <Button variant="outline" size="icon" className="text-primary">
-                <Heart className="h-4 w-4" />
+              <Button variant="outline" size="sm" className="text-primary">
+                <Bookmark className="h-5 w-4" />
               </Button>
               <Button
                 variant="ghost"

@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Sheet,
   SheetClose,
@@ -12,10 +11,8 @@ import { SlidersHorizontal } from "lucide-react";
 import { Button } from "../button";
 import { Label } from "@radix-ui/react-dropdown-menu";
 import { Input } from "../input"; // Assuming you have an Input component
-import Bed_Bath from "../Bed&Bath";
-
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"; // ShadCN Tabs
-import PropertyFilter from "./PropertyFilter";
+
 import {
   Select,
   SelectContent,
