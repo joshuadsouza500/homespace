@@ -73,13 +73,13 @@ export default function Testimonials() {
   //background colour option 1 : bg-[#f7f6fc]
 
   return (
-    <section className="w-full pt-4 md:pt-16 pb-20 md:pb-28 border-[#e0def7] bg- [#f7f6fc] px-2">
+    <section className="w-full pt-12 md:pt-16 pb-20 md:pb-28 border-[#e0def7] bg- [#f7f6fc] px-2">
       <div className="container px-2 md:px-4">
         <div className="flex flex-col gap-3 items-center mt-8 mb-12  ">
           <h2 className="text-3xl md:text-4xl text-center pb-1  font-bold text-text">
             What Our Clients Say
           </h2>
-          <p className=" max-sm:text-sm w-[90%] tracking-wide md:w-[35%] text-center text-[#4d5461] pb-3">
+          <p className=" max-sm:text-sm w-[90%] tracking-wide md:w-[50%] lg:w-[35%] text-center text-[#4d5461] pb-3">
             Hear from happy buyers and sellers {"who've"} achieved their real
             estate goals with us.
           </p>
@@ -97,7 +97,7 @@ export default function Testimonials() {
               {testimonials.map((testimonial, index) => (
                 <CarouselItem
                   key={index}
-                  className=" relative basis-[75%] md:basis-1/3    overflow -hidden group mt-1"
+                  className=" relative basis-[75%] md:basis-1/2 lg:basis-1/3    overflow -hidden group mt-1"
                 >
                   <div
                     className={` px-10 py-8 mb-8 rounded-lg text-center relative tracking-wide  ${
@@ -148,7 +148,7 @@ export default function Testimonials() {
               ))}
             </CarouselContent>
           </Carousel>
-          <div className="pt-4 lg:pt-8  flex items-center gap-3 justify-center  ">
+          <div className="pt-6 md:pt-8  flex items-center gap-3 justify-center  ">
             {testimonials.map((testimonial, index) => (
               <button
                 key={testimonial.id}
@@ -164,7 +164,7 @@ export default function Testimonials() {
         </div>
         <div className="w-full flex justify-center pt-10 lg:pt-16">
           <Link to="/property">
-            <Button className="flex px-8 h-11 bg-Bgpurple rounded-lg hover:bg-Bgpurple/80 text-white text-sm tracking-wide font-semibold">
+            <Button className="flex px-8 h-11 bg-indigo-700 rounded-lg hover:bg-Primary text-white text-sm tracking-wide font-semibold">
               View All
             </Button>
           </Link>

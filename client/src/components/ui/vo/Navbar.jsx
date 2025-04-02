@@ -100,11 +100,11 @@ export default function Navbar() {
             </li>
           </ul>
         </div>
-        <div className="  lg:mr-2 flex items-center space-x-2 lg:space-x-3">
+        <div className="  lg:mr-1 flex items-center space-x-2 lg:space-x-3">
           <Link to="/user/property/create">
             <Button
               variant="outline"
-              className="max-sm:hidden font-semibold border-Primary text-Primary  hover:text-Primary w-28 text-xs "
+              className="max-sm:hidden  font-semibold border-Primary text-Primary  hover:text-Primary w-32 text-sm  max-md:h-9"
             >
               Add Property
               <PlusIcon
@@ -116,7 +116,7 @@ export default function Navbar() {
           {isSigned === true ? (
             <UserDropdown handleLogout={handleLogout} user={auth.user} />
           ) : (
-            <Button className="bg-Primary w-28 h-9 text-white font-semibold tracking-wide hover:bg-purple-700 ">
+            <Button className="bg-Primary w-28 max-md:h-9 text-white font-semibold tracking-wide hover:bg-purple-700 ">
               <Link to={"/signup"}>Sign up</Link>
             </Button>
           )}

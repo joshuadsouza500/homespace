@@ -40,7 +40,6 @@ const Browse = () => {
   return (
     <div className="h-full  bg-gradient-to-b from-[#fcfbfd] to-white pt-6 md:pt-16 pb-8 font-jakarta">
       <div className="flex flex-col gap-3 items-center justify-center">
-        <h1 className="md:hidden">Make it horizontal scroll</h1>
         <h2 className="text-4xl 2xl:text-5xl font-bold text-[#000929]">
           Featured Properties
         </h2>
@@ -57,27 +56,20 @@ const Browse = () => {
           <TabsList className="bg-light_gray h-12 w-44 md:w-56    shadow-sm ring-2  ring-[#E0DEF7]">
             <TabsTrigger
               value="Rent"
-              className="w-20 md:w-28 flex items-center gap-1 text-base data-[state=active]:text-Primary data-[state=active]:border border-bborder font-bold  data-[state=active]:shadow-sm shadow-Primary"
+              className="w-20 md:w-28  text-base data-[state=active]:text-Primary data-[state=active]:border border-bborder font-bold  data-[state=active]:shadow-sm shadow-Primary"
             >
-              <KeyRoundIcon
-                strokeWidth={2.5}
-                className="max-sm:hidden size-4 text-Primary   "
-              />
-              For Rent
+              Rent
             </TabsTrigger>
             <TabsTrigger
               value="Sell"
               className="w-20 md:w-28 flex items-center gap-1 text-base data-[state=active]:text-Primary data-[state=active]:border border-bborder font-bold"
             >
-              <BanknoteIcon
-                strokeWidth={2.5}
-                className="max-sm:hidden size-5 text-Primary"
-              />
-              To Sell
+              Buy
             </TabsTrigger>
           </TabsList>
         </Tabs>
-        <section className="w-full px-10 grid-flow-col overflow-y-auto md:hidden grid   gap-x-8 gap-y-10  pt-12 pb-4 ">
+        <section className="mobileBrowse w-full px-10  md:hidden   pt-12 pb-4  grid-flow-col overflow-y-auto grid   gap-x-8 gap-y-10 ">
+          {" "}
           {Property?.properties?.slice(0, 4).map((property) => (
             <BrowsePropCard key={property.id} property={property} />
           ))}
@@ -89,8 +81,8 @@ const Browse = () => {
         </section>
         <div className="w-full flex justify-center pt-4">
           <Link to="/property">
-            <Button className="flex  h-11 bg-Bgpurple rounded-lg hover:bg-Bgpurple/80 text-white text-sm tracking-wide font-semibold">
-              Browse All Properties
+            <Button className="flex  h-11 bg-indigo-700 px-6  rounded-lg hover:bg-Primary Bgpurple/80 text-white text-sm tracking-wide font-semibold hover:shadow-lg">
+              Browse Properties
             </Button>
           </Link>
         </div>

@@ -1,11 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  BathIcon,
-  BedDoubleIcon,
-  HeartIcon,
-  MapPin,
-  ScanIcon,
-} from "lucide-react";
+import { BathIcon, BedDoubleIcon, MapPin, ScanIcon } from "lucide-react";
 import { Badge } from "../ui/badge";
 import Popular from "../ui/vo/Popular";
 
@@ -20,7 +14,7 @@ const BrowsePropCard = ({ property }) => {
   return (
     <div
       key={property?.id}
-      className="md:h-[370px] h-[390px] w-[320px] md:w-[290px] rounded-lg border bg-white relative cursor-pointer group  hover:shadow-lg"
+      className="md:h-[370px] h-[390px] w-[320px] md:w-[290px] rounded-lg border-[0.5px] bg-white relative cursor-pointer group  hover:shadow-lg transition-all duration-300 ease-in-out"
     >
       <div className="overflow-hidden w-full h-48 md:h-44 rounded-t-lg    relative ">
         <img
@@ -28,29 +22,23 @@ const BrowsePropCard = ({ property }) => {
           alt={property?.title}
           className="object-cover object-center bg-no-repeat  h-full w-full rounded-t-lg group-hover:scale-105  transition-transform duration-500 ease-in-out "
         />
-        {/*property?.popular != "" && (
-        /* 
-        make an svg for new
-        <span className="px-3 py-2 absolute top-3 left-0 bg-Primary text-white font-bold text-xs rounded-r-lg shadow-sm flex gap-1 items-center">
-          <Sparkles className="size-4 fill-white" />
-          {property?.popular}
-        </span>
-        <Popular className=" absolute mt-2 -ml-2" />
-     ** )**/}
 
         <div className="absolute bottom-2 left-[38%] flex space-x-1 ">
           {property?.image.map((dot, index) => (
             <div
               key={dot}
               className={`w-2 h-2 rounded-full ${
-                index === currentIndex ? "bg-white" : "bg-white/60"
+                index === currentIndex ? "bg-white" : "bg- white/60"
               }`}
             />
           ))}
         </div>
       </div>
       <div className="ml-3 mr-2 pt-2   pb-2 ">
-        <Badge variant="secondary" className="bg-light_gray md:pb-1">
+        <Badge
+          variant="secondary"
+          className="bg-estate-200 light_gray py-0.5 tracking-wide"
+        >
           {property?.property_type}
         </Badge>
         <div className="flex justify-between items-center py-1">
