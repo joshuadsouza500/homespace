@@ -136,6 +136,7 @@ const MobileHero = ({
               setFilters={setFilters}
               className={"max-w-lg h-12  rounded-tl-none border-t-none"}
               applyFilters={applyFilters}
+              isHero={true}
             />{" "}
             <Select
               id="propertyType"
@@ -257,8 +258,9 @@ const LargeHero = ({
                 </Label>
                 <SearchBar
                   setFilters={setFilters}
-                  className={"md:w-[95%]"}
+                  className={"md:w-[95%] py-1"}
                   applyFilters={applyFilters}
+                  isHero={true}
                 />
               </div>
 

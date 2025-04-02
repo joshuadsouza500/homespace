@@ -26,9 +26,7 @@ export default App;
   /** THINGS TO ADD
    * Add loading something every time api is called
    * User naviagtions and user dasboard 
-   * Remove rent sell from navbar (maybe change and add home, search, etc)
    * Remove sell from selection and make it buy (Rent | Buy)
-   * Make browse properties section horizontal scroll for mobile
    * Have to filter for governate and cities
    * Fix bg colour
    * Add FAQ section under each Property details page faq about company or general questions.

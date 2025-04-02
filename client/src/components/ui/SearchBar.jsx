@@ -32,7 +32,7 @@ const citiesInBahrain = [
   // "Northern_Governorate",
 ];
 
-const SearchBar = ({ setFilters, className, applyFilters }) => {
+const SearchBar = ({ setFilters, className, applyFilters, isHero }) => {
   const [InputValue, setInputValue] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [isOpen, setIsopen] = useState(false);
@@ -84,19 +84,22 @@ const SearchBar = ({ setFilters, className, applyFilters }) => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [searchBarRef, suggestionRef]);
+
   return (
     <div
       ref={searchBarRef}
       className={cn(
-        "relative     max-w-sm  rounded-lg   white/10 dark:bg-gray-900  py-1 ",
+        "relative max-w-sm  rounded-lg  dark:bg-gray-900   ",
         className
       )}
     >
-      <div className="flex items-center justify-center gap-x-1 bg-white/10   relative ">
+      <div className="flex items-center justify-center gap-x-1 bg-white/5   relative ">
         <Input
           type="name"
           placeholder="Select Your City"
-          className=" w-full lg:border-0 h-10 lg:h-9 font-normal focus-visible:ring-[0.5px] lg:bg-white/10 px-2 capitalize"
+          className={`w-full  h-10  font-normal focus-visible:ring-[0.5px]  px-2 capitalize ${
+            isHero ? "lg:bg-white/10 lg:h-9 lg:border-0" : ""
+          }`}
           onChange={handleSuggestions}
           onFocus={() => {
             setIsopen(true); // Open suggestions when the input is focused

@@ -35,8 +35,8 @@ export default function Navbar() {
   };
 
   return (
-    <nav className=" pt-4 lg:pt-5 pb-2 lg:pb-4 px-2      md:px-4  w-full ">
-      <section className="max-w-6xl xl:max-w-7xl 2xl:max-w-[1440px] flex items-center justify-between mx-auto">
+    <nav className=" pt-4 lg:pt-5 pb-2 lg:pb-4 px-2      md:px-4  w-full  border-b">
+      <section className="max-w-6xl xl:max-w-7xl 2xl:max-w-[1440px] flex  pb-2 items-center justify-between mx-auto ">
         <div className="flex items-center space-x-6  max-sm: w-full ">
           <div
             className="flex items-center  justify-center space-x-1 cursor-pointer "

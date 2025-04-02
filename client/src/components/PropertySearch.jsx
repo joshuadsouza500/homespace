@@ -132,14 +132,17 @@ export default function PropertySearch() {
   }, [filters.srt, filters.type]);
 
   return (
-    <div className="w-full   border-t ">
-      <div className="hidden xl:flex flex-col  items-center py-3  mx-auto border-b  px-2   ">
-        {/**Xl screens+ */}
-        <section className="w-full  flex  justify-start  mx-auto  py-2 gap-x-2  ">
+    <div className="w-full  ">
+      {/**Xl screens+ */}
+      <div className="hidden xl:flex flex-col  items-center py-3  mx-auto border-b  px-2  ">
+        <section className="w-full  flex  justify-start px-2  mx-auto  py-2 gap-x-2  ">
           <div className="relative w-[30%] 2xl:w-[35%] ">
             <SearchBar
               setFilters={setFilters}
-              className={"md:w-full max-w-full"}
+              isHero={false}
+              className={
+                "md:w-full max-w-full bg-white bo rder focus-visible:border-0"
+              }
             />
           </div>
           <Select
@@ -150,7 +153,7 @@ export default function PropertySearch() {
               handleFilterChange({ id: "type", value });
             }}
           >
-            <SelectTrigger className="w-24 max-md:h-9 xl:w-[90px]">
+            <SelectTrigger className="w-24 max-md:h-9 xl:w-36">
               <SelectValue placeholder="Rent" />
             </SelectTrigger>
             <SelectContent className="xl:min-w-[7rem]">
@@ -166,7 +169,7 @@ export default function PropertySearch() {
             }}
             value={filters.pty}
           >
-            <SelectTrigger className="md:w-48 xl:w-40 w-32  max-md:h-9  ">
+            <SelectTrigger className=" w-32 md:w-48 xl:w-40  max-md:h-9  ">
               <SelectValue placeholder="Property type" />
             </SelectTrigger>
 
@@ -188,10 +191,10 @@ export default function PropertySearch() {
             defaultBaths={filters.baths}
           />
           {/*Price */}
-          <Popover className=" md:w-40 xl:w-32">
+          <Popover className=" md:w-40 xl:w-36 ">
             <PopoverTrigger asChild>
               <Button
-                className="max-md:h-9 w-24 md:w-32 justify-between"
+                className="max-md:h-9 w-24 md:w-32 xl:w-36 justify-between"
                 variant="outline"
               >
                 Price
@@ -298,7 +301,7 @@ export default function PropertySearch() {
           </div>
         </section>
 
-        <div className=" flex gap-x-2 w-full  lg:col-span-2 py-2  max-sm:overflow-x-scroll">
+        <div className=" flex gap-x-2 w-full  lg:col-span-2 py-2  max-sm:overflow-x-scroll searchScroll">
           <Select
             id="type"
             name="type"
