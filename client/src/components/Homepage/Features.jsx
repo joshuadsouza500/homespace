@@ -43,70 +43,71 @@ const features = [
 //
 export default function Main() {
   return (
-    <div className="max-sm:px-2 w-full h-auto relative grid grid-cols-1 lg:grid-cols-2 gap-6 place-items-start justify-items-center  pt-10">
-      {/* Left Side: Card with image  f7f6fc*/}
+    <div className=" h-auto   py-10 bg-estate-50">
+      <div className="px-2 md:px-6  w-full  max-w-5xl lg:max-w-6xl  xl:max-w-7xl  2xl:max-w-8xl mx-auto relative grid grid-cols-1 lg:grid-cols-2 gap-6 place-items-start justify-items-center">
+        {/* Left Side: Card with image  f7f6fc*/}
 
-      <div className="relative h-fit w-full min-h-[350px] max-h-[550px] max-w-[550px] rounded-2xl hidden  lg:flex ">
-        <img
-          src="/Features.png"
-          alt="Real estate professional holding a house model"
-          className="w-full h-auto object-cover object-center rounded-2xl shadow-xl "
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl" />
-        <div className="absolute -bottom-5 bg-white rounded-xl shadow-lg py-1.5 w-40  -right-8 z-10 backdrop-blur-sm">
-          <span className="flex flex-col gap-y-1 text-center">
-            <h5 className="text-3xl font-medium ">4.6</h5>
-            <span className="flex pt-0.5 gap-x-1 text-Primary items-center justify-center ">
-              <Star className="size-[14px] fill-Primary  " />
-              <Star className="size-[14px] fill-Primary  " />
-              <Star className="size-[14px] fill-Primary  " />
-              <Star className="size-[14px] fill-Primary  " />
-              <StarHalf className="size-[14px] fill-Primary   " />
+        <div className="relative h-fit w-full min-h-[350px] max-h-[550px] max-w-[550px] rounded-2xl hidden  lg:flex ">
+          <img
+            src="/Features.png"
+            alt="Real estate professional holding a house model"
+            className="w-full h-auto object-cover object-center rounded-2xl shadow-xl "
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl" />
+          <div className="absolute -bottom-5 bg-white rounded-xl shadow-lg py-1.5 w-40  -right-8 z-10 backdrop-blur-sm">
+            <span className="flex flex-col gap-y-1 text-center">
+              <h5 className="text-3xl font-medium ">4.6</h5>
+              <span className="flex pt-0.5 gap-x-1 text-Primary items-center justify-center ">
+                <Star className="size-[14px] fill-Primary  " />
+                <Star className="size-[14px] fill-Primary  " />
+                <Star className="size-[14px] fill-Primary  " />
+                <Star className="size-[14px] fill-Primary  " />
+                <StarHalf className="size-[14px] fill-Primary   " />
+              </span>
+              <p className="text-sm text-gray-700">500+ Reviews</p>
             </span>
-            <p className="text-sm text-gray-700">500+ Reviews</p>
-          </span>
+          </div>
         </div>
-      </div>
 
-      {/*   */}
-      {/* Right Side: Features */}
-      <section className="lg:mt-6">
-        <h2 className="text-4xl font-bold text-[#000929] max-md:text-center pb-2">
-          Why Choose Us
-        </h2>
-        <p className="pl-1 max-sm:text-sm  text-pretty text-muted-foreground max-md:text-center tracking-wide pb-4 max-w-lg">
-          Find your dream home in just a few simple steps.
-        </p>
-        <div className=" w-[95%] min-w-[30rem] 2xl:min-w-[36rem] mx-auto ">
-          <Accordion
-            type="single"
-            collapsible
-            className="max-sm:w-[90%] mx-auto w-full"
-          >
-            {features.map((content) => (
-              <AccordionItem
-                value={`item-${content.title}`}
-                key={content.title}
-                className=" border-b-Primary/15 py-3  "
-              >
-                <AccordionTrigger className="py-2 text-xl xl:text-2xl font-semibold text-real-dark  ">
-                  <span className=" flex items-center gap-x-4 text-text ">
-                    {" "}
-                    <span className=" flex items-center justify-center aspect-square size-11  rounded-md   bg-Primary/20 text-Bgpurple ">
+        {/* Right Side: Features */}
+        <section className="lg:mt-6">
+          <h2 className="text-4xl font-bold text-[#000929] max-md:text-center pb-2">
+            Why Choose Us
+          </h2>
+          <p className="pl-1 max-sm:text-sm  text-pretty text-muted-foreground max-md:text-center tracking-wide pb-4 max-w-lg">
+            Find your dream home in just a few simple steps.
+          </p>
+          <div className=" w-[95%] min-w-[30rem] 2xl:min-w-[36rem] mx-auto ">
+            <Accordion
+              type="single"
+              collapsible
+              className="max-sm:w-[90%] mx-auto w-full"
+            >
+              {features.map((content) => (
+                <AccordionItem
+                  value={`item-${content.title}`}
+                  key={content.title}
+                  className=" border-b-Primary/15 py-3  "
+                >
+                  <AccordionTrigger className="py-2 text-xl xl:text-2xl font-semibold text-real-dark  ">
+                    <span className=" flex items-center gap-x-4 text-text ">
                       {" "}
-                      {content.icon}
+                      <span className=" flex items-center justify-center aspect-square size-11  rounded-md   bg-Primary/20 text-Bgpurple ">
+                        {" "}
+                        {content.icon}
+                      </span>
+                      {content.title}
                     </span>
-                    {content.title}
-                  </span>
-                </AccordionTrigger>
-                <AccordionContent className="text-sm text-pretty tracking-wider leading-snug text-muted-foreground  ml-16 font-normal  mr-4 max-w-sm 2xl:max-w-md  ">
-                  {content.description}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </div>
-      </section>
+                  </AccordionTrigger>
+                  <AccordionContent className="text-sm text-pretty tracking-wider leading-snug text-muted-foreground  ml-16 font-normal  mr-4 max-w-sm 2xl:max-w-md  ">
+                    {content.description}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+        </section>
+      </div>
     </div>
   );
 }
