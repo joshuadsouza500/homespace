@@ -5,6 +5,8 @@ import BigProperyCard from "../ui/vo/Big-propery-card";
 
 import { useSelector } from "react-redux";
 import { Bookmark, Clock, SearchCheck } from "lucide-react";
+import { Button } from "../ui/button";
+import { Link } from "react-router-dom";
 
 const Search = () => {
   const Property = useSelector((store) => store.property);
@@ -48,7 +50,12 @@ const Search = () => {
                       </div>
                       {/* Popular Seaches box */}{" "}
                       {/* Right now its mt-72 but after adding pagination making it self-center */}
-                      <div className="items-start justify-center bg-white backdrop-blur-lg shadow-xl border-[0.5px] rounded-md max-w-72 max-h-[290px] col-span-1 p-3  flex flex-col gap-y-3 cursor-pointer transition-all duration-300 mt-72 self- center">
+                      {/* Only display it if there are multiple properties displayed */}
+                      <div
+                        className={`items-start justify-center bg-white backdrop-blur-lg shadow-xl border-[0.5px] rounded-md max-w-72 max-h-[275px] col-span-1 p-3  flex flex-col gap-y-4 cursor-pointer transition-all duration-300 mt-72 self- center ${
+                          Property?.properties?.length > 2 ? "block" : "hidden"
+                        }`}
+                      >
                         {" "}
                         <span>
                           {" "}
@@ -56,7 +63,7 @@ const Search = () => {
                             <SearchCheck className="mr-2.5 text-Primary" />{" "}
                             Popular Searches
                           </h2>
-                          <ul className="mt-3 ml-8 space-y-2 text-gray-700  ">
+                          <ul className="mt-2 ml-8 space-y-2 text-gray-600  text-sm">
                             <li className="hover:text-Primary">
                               2 Bedroom Apartment in Hamad Town
                             </li>
@@ -68,10 +75,15 @@ const Search = () => {
                             </li>
                           </ul>
                         </span>
-                        <h2 className="text-xl font-semibold text-text flex items-center hover:text-Primary">
-                          <Bookmark className="mr-2.5 text-Primary " /> Saved
-                          Properties
-                        </h2>
+                        <button className="text-xl font-semibold text-text  hover:text-Primary">
+                          <Link
+                            to="/user/property/saved"
+                            className="flex items-center"
+                          >
+                            <Bookmark className="mr-2.5 text-Primary " /> Saved
+                            Properties
+                          </Link>
+                        </button>
                         <h2 className="text-xl font-semibold text-text flex items-center hover:text-Primary">
                           <Clock className="mr-2.5 text-Primary" /> Recent
                           Searches
@@ -88,7 +100,7 @@ const Search = () => {
                 <h1 className="text-2xl md:text-3xl font-bold text-estate-100">
                   Oops! Something went wrong.
                 </h1>
-                <p className="mt-4 text-gray-100">{`We couldn't load this page. Please try again later.`}</p>
+                <p className="mt-4 text-gray-100">{`We couldn't find the properties you were looking for .`}</p>
                 <button className="mt-6 px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
                   Try Again
                 </button>
@@ -107,6 +119,7 @@ export default Search;
 1.
 2.Fix the selecting and unselecting of type and proptype,
 3.Make sure state values for search remain after refresh (get values from urlparam)
+4.Onces a city has been selected after removing it it still remains in the query
 
   */
 }

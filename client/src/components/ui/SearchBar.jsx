@@ -95,7 +95,7 @@ const SearchBar = ({ setFilters, className, applyFilters, isHero }) => {
     >
       <div className="flex items-center justify-center gap-x-1 bg-white/5   relative ">
         <Input
-          type="name"
+          type="text"
           placeholder="Select Your City"
           className={`w-full  h-10  font-normal focus-visible:ring-[0.5px]  px-2 capitalize ${
             isHero ? "lg:bg-white/10 lg:h-9 lg:border-0" : ""
@@ -111,7 +111,7 @@ const SearchBar = ({ setFilters, className, applyFilters, isHero }) => {
       </div>
       <div className="w-full  absolute z-20 ">
         {isOpen &&
-          suggestions.length > 0 && ( //
+          suggestions?.length > 0 && ( //
             <ul
               className=" border bg-white border-gray-300 md:w-[95%] xl:w-[100%] rounded-sm mt-[2px] md:mt-0.5 "
               ref={suggestionRef}

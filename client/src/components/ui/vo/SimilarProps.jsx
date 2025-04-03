@@ -8,6 +8,7 @@ import {
   MapPin,
   Phone,
   Mail,
+  Bookmark,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -97,9 +98,9 @@ export default function SimilarProps({ className, property }) {
               </div>
             </div>
           </div>
-          <div className="flex justify-between items-center mt-auto pt-4 border-t">
+          <div className="flex justify-between items-center mt-auto pt-2 border-t gap-x-2">
             <span className="text-xs font-light text-muted-foreground">
-              Listed {new Date(property?.createdAt).toLocaleDateString()}{" "}
+              Listed on {new Date(property?.createdAt).toLocaleDateString()}{" "}
               {/* Display listing date */}
             </span>
 
@@ -112,8 +113,8 @@ export default function SimilarProps({ className, property }) {
                 <Mail className="h-4 w-4 mr-2" />
                 Email
               </Button>
-              <Button variant="outline" size="icon" className={`text-primary `}>
-                <Heart
+              <Button variant="outline" size="sm" className={`text-primary `}>
+                <Bookmark
                   className={`size-4 ${
                     property?.isSaved ? "fill-Primary" : "bg-white"
                   }`}

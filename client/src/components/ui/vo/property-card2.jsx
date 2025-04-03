@@ -65,7 +65,7 @@ export default function PropertyCard2({ update, className, property }) {
   return (
     <Card
       className={cn(
-        "max-w-sm sm:max-w-xl md:max-w-3xl mx-1 md:h-64 2xl:h-72 cursor-pointer hover:shadow-md  ",
+        "max-w-sm sm:max-w-xl md:max-w-3xl mx-1 md:h-64 lg:h-[275px]  2xl:h-72 cursor-pointer hover:shadow-md  ",
         className
       )}
     >
@@ -105,7 +105,10 @@ export default function PropertyCard2({ update, className, property }) {
           >
             <div className="flex justify-between items-start mb-2">
               <div>
-                <Badge variant="secondary" className="mb-2">
+                <Badge
+                  variant="secondary"
+                  className="mb-2 px-4 py-0.5 bg-estate-200 tracking-wide"
+                >
                   {property?.property_type} {/* Use property's property_type */}
                 </Badge>
                 <h2 className="text-2xl font-bold text-Bgpurple">
@@ -204,14 +207,10 @@ export default function PropertyCard2({ update, className, property }) {
                   <Mail className="h-4 w-4  mr-1" />
                   Email
                 </Button>
-                <Button
-                  variant="outline"
-                  size="icon"
-                  className={`text-primary `}
-                >
+                <Button variant="outline" size="sm" className={`text-text `}>
                   <Bookmark
                     className={`size-4 lg:size-5 text-Primary/50  ${
-                      property?.isSaved ? "fill-Primary" : "bg-white"
+                      property?.isSaved ? "fill-Primary" : "text-gray-700"
                     }`}
                   />
                 </Button>

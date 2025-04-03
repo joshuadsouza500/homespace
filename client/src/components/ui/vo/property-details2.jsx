@@ -16,6 +16,7 @@ import {
   Dog,
   House,
   CarFront,
+  Bookmark,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -148,8 +149,8 @@ export default function PropertyDetails2({ property, handleSave }) {
               <h1 className="text-2xl sm:text-3xl font-bold mb-1 text-text leading-snug ">
                 {property?.title}
               </h1>
-              <HeartIcon
-                className={`hidden md:block p-2 rounded-full text-Primary size-11 hover:scale-95 cursor-pointer ${
+              <Bookmark
+                className={`hidden md:block p-2 rounded-full ring-[0.2px] ring-bborder shadow-sm text-Primary size-11 hover:scale-95 cursor-pointer ${
                   property?.isSaved ? "fill-Primary" : "bg-white"
                 }`}
                 onClick={() => {
@@ -218,14 +219,14 @@ export default function PropertyDetails2({ property, handleSave }) {
         </div>
 
         {/* Right column - Agent details and Map */}
-        <div className="lg:w-1/3 space-y-6 lg:sticky lg:top-6 lg:self-start">
-          <Card className="cursor-pointer md:w-[80%] lg:w-full mx-auto">
-            <CardContent className="p-5 ">
-              <div className="flex items-center  gap-3 -ml-2 mb-4 justify-center ">
+        <div className="max-md:w-[90%] max-md:mx-auto md:flex gap-x-4 lg:flex-col max-md:space-y-6 lg:space-y-6 lg:sticky lg:top-6 lg:self-start items-start ">
+          <Card className="cursor-pointer md:h-64 lg:h-auto md:w-auto lg:w-full mx-auto ">
+            <CardContent className="p-7 ">
+              <div className="flex items-center  gap-3 -ml-2 mb-4 justify-center">
                 <img
                   src={property?.user?.avatar}
                   alt="Agent profile"
-                  className="rounded-full size-16  ring-1"
+                  className="rounded-full size-14  ring-1 ring-bborder"
                 />
                 <div>
                   <h3 className="font-semibold text-text">
@@ -239,9 +240,9 @@ export default function PropertyDetails2({ property, handleSave }) {
                 </div>
               </div>
 
-              <div className="mb-6">
+              <div className="mb-6 ">
                 {property?.user?.role === "AGENT" ? (
-                  <div className="flex items-center text-sm justify-center gap-1 text-muted-foreground mb-1">
+                  <div className="flex items-center text-sm justify-center gap-1 text-muted-foreground mb-1.5">
                     <MapPin className="w-4 h-4  text-Primary" />
                     <span>{property?.user?.company}</span>
                   </div>
@@ -253,29 +254,26 @@ export default function PropertyDetails2({ property, handleSave }) {
               </div>
               <div className="  gap-x-2 flex  items-center justify-center">
                 <Button
-                  className=" bg-blue-500 w-40"
+                  className=" bg-indigo-600 w-40 hover:bg-Primary"
                   onClick={() => {
                     handleMessage(property?.userId);
                   }}
                 >
                   Message
                 </Button>
-                <Button
-                  variant="outline"
-                  className="w-40 bg-[#01a849] text-white"
-                >
+                <Button className="w-40 bg-[#01a849] hover:bg-green-700 text-white">
                   Call
                 </Button>
               </div>
             </CardContent>
           </Card>
-          <Card className="md:w-[80%] lg:w-full h-[320px] mx-auto">
-            <CardContent className="p-0 h-full w-full">
+          <Card className="md:w-[80%]  lg:w-full  lg:h-[310px] mx-auto bg-white">
+            <CardContent className="p-0.5 h-full w-full">
               <MapContainer
                 center={{ lat: 51.505, lng: -0.09 }}
                 zoom={13}
                 scrollWheelZoom={false}
-                className="bg-Bgpurple  z-0 h-[300px] w-full"
+                className="bg-Bgpurple  z-0 h-[300px] w-full "
               >
                 <TileLayer
                   attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> '

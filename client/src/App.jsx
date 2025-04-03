@@ -24,39 +24,36 @@ export default App;
 
 {
   /** THINGS TO ADD
-   * Add loading something every time api is called
-   * User naviagtions and user dasboard 
+   * Add loading screen every time api is called
+   * Fix navbar li items  
    * Remove sell from selection and make it buy (Rent | Buy)
    * Have to filter for governate and cities
    * Fix bg colour
    * Add FAQ section under each Property details page faq about company or general questions.
    * Pagination to property search
-   * Add box to property search page (Recent searches, popular searches , saved)
+   * FIgure out way to search for popular searches or recent searches
+   * Fix state issue in search (clearining city when removed) & after refresh re running the search by fiiltering properties based on the saved state
   /**
 
 
   */
   /**
    * EXTRAS
-   * Add a loan/ mortgage calculator for specific property etc.
+   * Add number animations for mobile hero
    * Prop validation
    * Add animation for smooth transition when images are carsousel
    * Add a bit of blur to the sides of the logo slider
-   * Add number animations for mobile hero
-   *
+   * Add a loan/ mortgage calculator for specific property etc.
    *
    * Add a Booking section in property details page and then add a calendar to the user profile
    * Add property status in my propperties (active, inactive)
    * Optimizes sizes maybe dont use fixed sizes
    * Pass a variable to the carousel change and maybe pass it the index value so each card will change images at different times
-   * Reviwes section check figma design.
    * Footer design check 22 march ss VM
-   * Myabe add google auth
+   * Add google auth
    *
    * Testing.
    * Maybe integrate CI CD
-   *
-   *
    * Maybe can  add images in the chat using cloudinary to store images and return link
    */
 }
