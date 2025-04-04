@@ -4,8 +4,8 @@ import PropertyCard2 from "../ui/vo/property-card2";
 import BigProperyCard from "../ui/vo/Big-propery-card";
 
 import { useSelector } from "react-redux";
-import { Bookmark, Clock, SearchCheck } from "lucide-react";
-import { Button } from "../ui/button";
+import { Bookmark, Clock, MapPinCheck, SearchCheck } from "lucide-react";
+
 import { Link } from "react-router-dom";
 
 const Search = () => {
@@ -40,7 +40,7 @@ const Search = () => {
                     </div>
 
                     <section className="grid lg:grid-cols-4  max-w-6xl mx-auto 2xl:max-w-7xl">
-                      <div className="space-y-7 col-span-3 md:pl-2  max-lg:mx-auto px-1  ">
+                      <div className="space-y-7 col-span-3 md:pl-2 2xl:pl-6  max-lg:mx-auto px-1  ">
                         {remainingProperties.map((property) => (
                           <PropertyCard2
                             key={property?.id}
@@ -52,20 +52,20 @@ const Search = () => {
                       {/* Right now its mt-72 but after adding pagination making it self-center */}
                       {/* Only display it if there are multiple properties displayed */}
                       <div
-                        className={`items-start justify-center bg-white backdrop-blur-lg shadow-xl border-[0.5px] rounded-md max-w-72 max-h-[275px] col-span-1 p-3  flex flex-col gap-y-4 cursor-pointer transition-all duration-300 mt-72 self- center ${
+                        className={`items-start justify-center bg-white backdrop-blur-lg shadow-xl border-[0.5px] rounded-md max-w-72 max-h-72  col-span-1 p-3  flex flex-col gap-y-4 cursor-pointer transition-all duration-300 mt-72 self- center ${
                           Property?.properties?.length > 2 ? "block" : "hidden"
                         }`}
                       >
                         {" "}
                         <span>
                           {" "}
-                          <h2 className="text-xl font-semibold text-text flex items-center">
+                          <h2 className="text-lg font-semibold text-text flex items-center">
                             <SearchCheck className="mr-2.5 text-Primary" />{" "}
                             Popular Searches
                           </h2>
                           <ul className="mt-2 ml-8 space-y-2 text-gray-600  text-sm">
                             <li className="hover:text-Primary">
-                              2 Bedroom Apartment in Hamad Town
+                              Apartments in Hamad Town
                             </li>
                             <li className="hover:text-Primary">
                               Studio in Jufffair
@@ -75,7 +75,22 @@ const Search = () => {
                             </li>
                           </ul>
                         </span>
-                        <button className="text-xl font-semibold text-text  hover:text-Primary">
+                        <span>
+                          {" "}
+                          <h2 className="text-lg font-semibold text-text flex items-center hover:text-Primary">
+                            <MapPinCheck className="mr-2.5 text-Primary" />{" "}
+                            Nearby Areas
+                          </h2>
+                          <ul className="mt-2 ml-8 space-y-2 text-gray-600  text-sm">
+                            <li className="hover:text-Primary">
+                              Apartments for rent in Manama
+                            </li>
+                            <li className="hover:text-Primary">
+                              Villas for sale in Seef
+                            </li>
+                          </ul>
+                        </span>
+                        <button className="text-lg font-semibold text-text  hover:text-Primary">
                           <Link
                             to="/user/property/saved"
                             className="flex items-center"
@@ -84,10 +99,6 @@ const Search = () => {
                             Properties
                           </Link>
                         </button>
-                        <h2 className="text-xl font-semibold text-text flex items-center hover:text-Primary">
-                          <Clock className="mr-2.5 text-Primary" /> Recent
-                          Searches
-                        </h2>
                       </div>
                     </section>
                   </>

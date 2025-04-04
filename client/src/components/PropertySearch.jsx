@@ -134,9 +134,9 @@ export default function PropertySearch() {
   return (
     <div className="w-full  ">
       {/**Xl screens+ */}
-      <div className="hidden xl:flex flex-col  items-center py-3  mx-auto border-b  px-2  ">
+      <div className="hidden xl:flex flex-col  items-center py-3  mx-auto border-b  px-1 ">
         <section className="w-full  flex  justify-start px-2  mx-auto  py-2 gap-x-2  ">
-          <div className="relative w-[30%] 2xl:w-[35%] ">
+          <div className="relative w-[30%]  ">
             <SearchBar
               setFilters={setFilters}
               isHero={false}
@@ -191,10 +191,10 @@ export default function PropertySearch() {
             defaultBaths={filters.baths}
           />
           {/*Price */}
-          <Popover className=" md:w-40 xl:w-36 ">
+          <Popover className=" md:w-40 xl:w-32 ">
             <PopoverTrigger asChild>
               <Button
-                className="max-md:h-9 w-24 md:w-32 xl:w-36 justify-between"
+                className="max-md:h-9 w-24 md:w-32  justify-between"
                 variant="outline"
               >
                 Price
@@ -238,13 +238,6 @@ export default function PropertySearch() {
               </div>
             </PopoverContent>
           </Popover>
-
-          <Button
-            className="bg-Bgpurple max-md:w-28 md:w-32   text-white  transition-colors duration-500 ease-in-out hover:bg-indigo-800"
-            onClick={applyFilters}
-          >
-            Find
-          </Button>
           <SheetFilter
             isFilterOpen={isFilterOpen}
             setIsFilterOpen={setIsFilterOpen}
@@ -255,6 +248,13 @@ export default function PropertySearch() {
             applyFilters={applyFilters}
             clearFilters={clearFilters}
           />
+          <Button
+            className="bg-Bgpurple max-md:w-28 md:w-32   text-white  transition-colors duration-500 ease-in-out hover:bg-indigo-800"
+            onClick={applyFilters}
+          >
+            Find
+          </Button>
+
           <div className="filter-component md:hidden ">
             {/* SheetFilter Component */}
             <SheetFilter
@@ -270,6 +270,12 @@ export default function PropertySearch() {
 
             {/* Trigger Button (Optional) */}
           </div>
+          <Button
+            className="bg-red-500 w-24   text-white  transition-colors duration-500 ease-in-out hover:bg-red-700"
+            onClick={clearFilters}
+          >
+            Clear
+          </Button>
         </section>
       </div>
       {/**xs-lg screens */}
@@ -326,7 +332,7 @@ export default function PropertySearch() {
             }}
             value={filters.pty}
           >
-            <SelectTrigger className="md:w-[200px] w-36  max-md:h-9  ">
+            <SelectTrigger className="md:w-40 [200px] w-36  max-md:h-9  ">
               <SelectValue placeholder="Property type" />
             </SelectTrigger>
 
@@ -401,6 +407,12 @@ export default function PropertySearch() {
             defaultFrn={filters.frn}
             defaultUt={filters.ut}
           />
+          <Button
+            className="bg-red-500 w-24   text-white  transition-colors duration-500 ease-in-out hover:bg-red-700  max-md:h-9"
+            onClick={clearFilters}
+          >
+            Clear
+          </Button>
         </div>
       </div>
 

@@ -1,11 +1,9 @@
 /* eslint-disable react/prop-types */
 import {
   MapPin,
-  Bed,
   Bath,
   Maximize,
   Wifi,
-  HeartIcon,
   Snowflake,
   Waves,
   DumbbellIcon,
@@ -17,17 +15,23 @@ import {
   House,
   CarFront,
   Bookmark,
+  Phone,
+  Mail,
+  Building,
+  BedDouble,
+  Plug,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { MapContainer, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import LocationMaker from "@/components/LocationMaker";
 import PropertyGallery from "./PropertyGallery";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { createChat, getChatById } from "@/store/user/action";
+import { useDispatch } from "react-redux";
+import { createChat } from "@/store/user/action";
+
 {
   /** <div className="flex flex-col md:flex-row gap-4 h-[500px] ">
         <div className=" relative  bg-orange-200 w-[75%] ">
@@ -88,7 +92,7 @@ export default function PropertyDetails2({ property, handleSave }) {
   };
 
   return (
-    <div className="container  mx-auto px-1 md:px-3 pt-2 md:pt-4 pb-8  ">
+    <div className="  mx-auto px-1 md:px-3 pt-2 md:pt-4 pb-8  ">
       {/**images */}
       {property?.image && <PropertyGallery images={property?.image} />}
 
@@ -131,26 +135,12 @@ export default function PropertyDetails2({ property, handleSave }) {
         {/* Left column - Property details */}
         <div className="flex-1 pl-[2px] lg:pl-1">
           <div className="mb-4 md:mb-8">
-            <div className="flex   md:w-[60%] items-center justify-start pb-2 md:pb-4 gap-x-4 text-text font-medium   ">
-              <div className="  flex items-center pl-1  border-r pr-3">
-                <Bed className="size-5 mr-2 text-Primary" />
-                <span className="   ">{property?.bedrooms} Bed</span>
-              </div>
-              <div className="flex items-center   pl-1  border-r pr-3">
-                <Bath className="size-5 mr-2 text-Primary" />
-                <span className="   ">{property?.bathrooms} Baths</span>
-              </div>
-              <div className="flex items-center pl-1">
-                <Maximize className="size-5 mr-2 text-Primary" />
-                <span className=" ">{property?.area} sqft</span>
-              </div>
-            </div>
             <span className=" w-full flex justify-between items-center  py-1">
               <h1 className="text-2xl sm:text-3xl font-bold mb-1 text-text leading-snug ">
                 {property?.title}
               </h1>
               <Bookmark
-                className={`hidden md:block p-2 rounded-full ring-[0.2px] ring-bborder shadow-sm text-Primary size-11 hover:scale-95 cursor-pointer ${
+                className={`block p-2 rounded-full ring-[0.2px] ring-bborder shadow-sm text-Primary size-11 hover:scale-95 cursor-pointer ${
                   property?.isSaved ? "fill-Primary" : "bg-white"
                 }`}
                 onClick={() => {
@@ -169,31 +159,49 @@ export default function PropertyDetails2({ property, handleSave }) {
               ${property?.price.toLocaleString()}{" "}
               <span className="text-muted-foreground font-medium">/month</span>
             </div>
+            {/* Beds , Baths and area */}
+            <div className="grid grid-cols-4 gap-4 py-4">
+              <div className="flex flex-col items-center p-3 bg-muted shadow-sm rounded-lg">
+                <BedDouble className="h-6 w-6 mb-2 text-Primary" />
+                <span className="text-sm text-muted-foreground">Bedrooms</span>
+                <span className="font-semibold ">{property?.bedrooms}</span>
+              </div>
+              <div className="flex flex-col items-center p-3 bg-muted shadow-sm rounded-lg">
+                <Bath className="h-6 w-6 mb-2 text-Primary" />
+                <span className="text-sm text-muted-foreground">Bathrooms</span>
+                <span className="font-semibold ">{property?.bathrooms}</span>
+              </div>
+              <div className="flex flex-col items-center p-3 bg-muted shadow-sm rounded-lg">
+                <Maximize className="h-6 w-6 mb-2 text-Primary" />
+                <span className="text-sm text-muted-foreground">Area</span>
+                <span className="font-semibold ">{property?.area}</span>
+              </div>
+              <div className=" flex-col items-center p-3 bg-muted shadow-sm rounded-lg flex">
+                <Plug className="h-6 w-6 mb-2 text-Primary" />
+                <span className="text-sm text-muted-foreground">Utilities</span>
+                <span className="font-semibold ">{property?.utilities}</span>
+              </div>
+            </div>
+            {/* <div className="flex   md:w-[60%] items-center justify-start pb-2 md:pb-4 gap-x-4 text-text font-medium   ">
+              <div className="  flex items-center pl-1  border-r pr-3">
+                <Bed className="size-5 mr-2 text-Primary" />
+                <span className="   ">{property?.bedrooms} Bed</span>
+              </div>
+              <div className="flex items-center   pl-1  border-r pr-3">
+                <Bath className="size-5 mr-2 text-Primary" />
+                <span className="   ">{property?.bathrooms} Baths</span>
+              </div>
+              <div className="flex items-center pl-1">
+                <Maximize className="size-5 mr-2 text-Primary" />
+                <span className=" ">{property?.area} sqft</span>
+              </div>
+            </div> */}
 
             <div className="pt-2">
-              {/**
-              *  <div className="flex w-full items-center justify-between pb-4">
-                <div className="w-[30%] font-bold flex items-center ">
-                  <Bed className="size-5 mr-2 text-Primary" />
-                  <span className="text-text ">{property?.bedrooms} Bed</span>
-                </div>
-                <div className="flex items-center w-[30%] font-bold">
-                  <Bath className="size-5 mr-2 text-Primary" />
-                  <span className="text-text ">
-                    {property?.bathrooms} Baths
-                  </span>
-                </div>
-                <div className="flex items-center  w-[30%] font-bold">
-                  <Maximize className="size-5 mr-2 text-Primary" />
-                  <span className="text-text ">{property?.area} sqft</span>
-                </div>
-              </div>
-              */}
-
-              <h2 className="text-xl font-semibold mb-3 text-text">
+              <h2 className="text-xl font-semibold mb-4 text-text">
                 Amenities
               </h2>
-              <div className="grid grid-cols-3 lg:grid-cols-3 md:gap-x-5 gap-x-2 md:gap-y-6 gap-y-4  font-medium max-sm:text-sm">
+              <div className="grid grid-cols-3 lg:grid-cols-3 md:gap-x-5 gap-x-3 gap-y-6   font-medium max-sm:text-sm">
                 {property?.amenities?.map((am) => (
                   <div
                     className="flex items-center hover:text-Bgpurple"
@@ -209,9 +217,7 @@ export default function PropertyDetails2({ property, handleSave }) {
             </div>
           </div>
           <div className="mb-6  pt-2">
-            <h2 className="text-xl font-semibold text-text mb-3">
-              Description
-            </h2>
+            <h2 className="text-xl font-semibold  mb-3">Description</h2>
             <p className="text-[#4d5461] tracking-wide leading-relaxed md:mr-3 text-pretty">
               {property?.description}
             </p>
@@ -220,7 +226,7 @@ export default function PropertyDetails2({ property, handleSave }) {
 
         {/* Right column - Agent details and Map */}
         <div className="max-md:w-[90%] max-md:mx-auto md:flex gap-x-4 lg:flex-col max-md:space-y-6 lg:space-y-6 lg:sticky lg:top-6 lg:self-start items-start ">
-          <Card className="cursor-pointer md:h-64 lg:h-auto md:w-auto lg:w-full mx-auto ">
+          {/*  <Card className="cursor-pointer md:h-64 lg:h-auto md:w-auto lg:w-full mx-auto ">
             <CardContent className="p-7 ">
               <div className="flex items-center  gap-3 -ml-2 mb-4 justify-center">
                 <img
@@ -229,7 +235,7 @@ export default function PropertyDetails2({ property, handleSave }) {
                   className="rounded-full size-14  ring-1 ring-bborder"
                 />
                 <div>
-                  <h3 className="font-semibold text-text">
+                  <h3 className="font-semibold ">
                     {property?.user?.name}
                   </h3>
                   {property?.user?.role === "AGENT" ? (
@@ -266,7 +272,101 @@ export default function PropertyDetails2({ property, handleSave }) {
                 </Button>
               </div>
             </CardContent>
-          </Card>
+          </Card> */}
+          <div className="lg:col-span-1">
+            <Card className="sticky top-8">
+              <CardHeader>
+                <CardTitle>Contact Agent</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div className="flex items-center space-x-4">
+                  <div className="relative h-16 w-16 rounded-full overflow-hidden">
+                    <img
+                      src={property?.user?.avatar}
+                      alt="Agent photo"
+                      className="object-cover rounded-full border shadow-sm"
+                    />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold ">{property?.user?.name}</h4>
+
+                    {property?.user?.role === "AGENT" ? (
+                      <p className="text-sm text-muted-foreground">
+                        Real Estate Agent
+                      </p>
+                    ) : null}
+
+                    <div className="flex items-center mt-1">
+                      {/*   {[1, 2, 3, 4].map((star) => (
+                        <Star
+                          key={star}
+                          className="h-4 w-4 fill-yellow-400 text-yellow-400"
+                        />
+                      ))} */}
+                      <span className="text-xs ml-1 text-indigo-400">
+                        View all listings
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <Button
+                    className=" bg-indigo-700 w-full hover:bg-Primary"
+                    onClick={() => {
+                      handleMessage(property?.userId);
+                    }}
+                  >
+                    <Mail className="mr-2 h-4 w-4" /> Message Agent
+                  </Button>
+                  <Button
+                    variant=""
+                    className="w-full bg-[#01a849] hover:bg-green-700 text-white"
+                  >
+                    <Phone className="mr-2 h-4 w-4" /> Call Agent
+                  </Button>
+                </div>
+
+                <div className="space-y-1.5  cursor-pointer hidden lg:block">
+                  <div className="flex items-center hover:text-Primary">
+                    <Phone className="size-4   mr-2 text-muted-foreground" />
+                    <span>{property?.user?.mobile}</span>
+                  </div>
+                  <div className="flex items-center hover:text-Primary">
+                    <Mail className="size-4   mr-2 text-muted-foreground" />
+                    <span>{property?.user?.email}</span>
+                  </div>
+                  {property?.user?.role === "AGENT" ? (
+                    <div className="flex items-center ">
+                      <Building className="size-4   mr-2 text-muted-foreground" />
+                      <span>{property?.user?.company}</span>
+                    </div>
+                  ) : null}
+                </div>
+
+                {/* Booking <div>
+                  <h4 className="font-medium mb-2">Schedule a Viewing</h4>
+                  <div className="grid grid-cols-3 gap-2 mb-4">
+                    {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
+                      <Button
+                        key={day}
+                        variant="outline"
+                        size="sm"
+                        className="text-xs"
+                      >
+                        {day}
+                      </Button>
+                    ))}
+                  </div>
+                  <Button variant="secondary" className="w-full">
+                    <Calendar className="mr-2 h-4 w-4" /> View All Available
+                    Times
+                  </Button>
+                </div> */}
+              </CardContent>
+            </Card>
+          </div>
+
           <Card className="md:w-[80%]  lg:w-full  lg:h-[310px] mx-auto bg-white">
             <CardContent className="p-0.5 h-full w-full">
               <MapContainer

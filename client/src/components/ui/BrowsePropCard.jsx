@@ -14,7 +14,7 @@ const BrowsePropCard = ({ property }) => {
   return (
     <div
       key={property?.id}
-      className="md:h-[370px] h-[390px] w-[320px] md:w-[290px] rounded-lg border-[0.5px] bg-white relative cursor-pointer group  hover:shadow-lg transition-all duration-300 ease-in-out"
+      className="md:h-[370px] h-[390px] w-[320px] md:w-[300px] xl:w-80  rounded-lg border-[0.5px] bg-white relative cursor-pointer group  hover:shadow-lg transition-all duration-300 ease-in-out"
     >
       <div className="overflow-hidden w-full h-48 md:h-44 rounded-t-lg    relative ">
         <img

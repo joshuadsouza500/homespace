@@ -74,7 +74,7 @@ const Browse = () => {
             <BrowsePropCard key={property.id} property={property} />
           ))}
         </section>
-        <section className=" hidden md:grid    grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10 lg:gap-x-10 pt-12 pb-4 ">
+        <section className=" hidden w-full max-w-6xl md:grid    grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10 lg:gap-x-10 pt-12 px-4 pb-4   ">
           {Property?.properties?.slice(0, 6).map((property) => (
             <BrowsePropCard key={property.id} property={property} />
           ))}
