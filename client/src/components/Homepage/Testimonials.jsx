@@ -151,7 +151,7 @@ export default function Testimonials() {
           <div className="pt-6 md:pt-8  flex items-center gap-3 justify-center  ">
             {testimonials.map((testimonial, index) => (
               <button
-                key={testimonial.id}
+                key={index}
                 onClick={() => handleProfileClick(index)}
                 className={`transition-all duration-300 h-1 w-6 bg-Primary ${
                   index === currentIndex

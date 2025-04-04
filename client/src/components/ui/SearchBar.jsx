@@ -1,4 +1,4 @@
-import { MapPin } from "lucide-react";
+import { MapPin, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Input } from "./input";
 import { ScrollArea } from "./scroll-area";
@@ -32,8 +32,8 @@ const citiesInBahrain = [
   // "Northern_Governorate",
 ];
 
-const SearchBar = ({ setFilters, className, applyFilters, isHero }) => {
-  const [InputValue, setInputValue] = useState("");
+const SearchBar = ({ setFilters, className, applyFilters, isHero, city }) => {
+  const [InputValue, setInputValue] = useState(city || "");
   const [suggestions, setSuggestions] = useState([]);
   const [isOpen, setIsopen] = useState(false);
   const searchBarRef = useRef(null);
@@ -85,6 +85,11 @@ const SearchBar = ({ setFilters, className, applyFilters, isHero }) => {
     };
   }, [searchBarRef, suggestionRef]);
 
+  const clearSearch = () => {
+    setInputValue("");
+    setFilters((prev) => ({ ...prev, city: "" }));
+  };
+
   return (
     <div
       ref={searchBarRef}
@@ -97,7 +102,7 @@ const SearchBar = ({ setFilters, className, applyFilters, isHero }) => {
         <Input
           type="text"
           placeholder="Select Your City"
-          className={`w-full  h-10  font-normal focus-visible:ring-[0.5px]  px-2 capitalize ${
+          className={`w-full  h-10  font-normal focus-visible:ring-[0.5px]  px-2 capitalize  ${
             isHero ? "lg:bg-white/10 lg:h-9 lg:border-0" : ""
           }`}
           onChange={handleSuggestions}
@@ -107,7 +112,14 @@ const SearchBar = ({ setFilters, className, applyFilters, isHero }) => {
           value={InputValue}
         />
 
-        <MapPin className="size-5 absolute right-2 lg:right-1 top-1/2  -translate-y-1/2   text-muted-foreground" />
+        {InputValue ? (
+          <X
+            className={`size-5 absolute right-2  top-1/2  -translate-y-1/2   text-muted-foreground cursor-pointer hover:text-red-600`}
+            onClick={clearSearch}
+          />
+        ) : (
+          <MapPin className="size-5 absolute right-2  top-1/2  -translate-y-1/2   text-muted-foreground" />
+        )}
       </div>
       <div className="w-full  absolute z-20 ">
         {isOpen &&

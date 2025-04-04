@@ -4,16 +4,16 @@ import PropertyCard2 from "../ui/vo/property-card2";
 import BigProperyCard from "../ui/vo/Big-propery-card";
 
 import { useSelector } from "react-redux";
-import { Bookmark, Clock, MapPinCheck, SearchCheck } from "lucide-react";
+import { Bookmark, MapPinCheck, SearchCheck } from "lucide-react";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Search = () => {
   const Property = useSelector((store) => store.property);
-
+  const navigate = useNavigate();
   return (
     <div className="font-jakarta bg-estate-50">
-      <div className="px-2 md:px-6  w-full  max-w-5xl lg:max-w-6xl  xl:max-w-7xl  2xl:max-w-8xl mx-auto bg-white shadow-lg ">
+      <div className="px-2 md:px-6  w-full  max-w-5xl lg:max-w-6xl  xl:max-w-7xl  2xl:max-w-8xl mx-auto bg-white shadow ">
         <PropertySearch />
         <section className="h-full mx-auto  md:space-y-7 space-y-2 pb-10 lg:pb-16 pt-1">
           {Property?.properties?.length > 0 ? (
@@ -65,10 +65,16 @@ const Search = () => {
                           </h2>
                           <ul className="mt-2 ml-8 space-y-2 text-gray-600  text-sm">
                             <li className="hover:text-Primary">
-                              Apartments in Hamad Town
+                              <Link to={"/property?pty=Apartment&city=Riffa"}>
+                                {" "}
+                                Apartments in Riffa
+                              </Link>
                             </li>
                             <li className="hover:text-Primary">
-                              Studio in Jufffair
+                              <Link to={"/property?pty=Studio&city=Juffair"}>
+                                {" "}
+                                Studio in Jufffair
+                              </Link>
                             </li>
                             <li className="hover:text-Primary">
                               Luxury Condo in Manama
@@ -126,11 +132,10 @@ const Search = () => {
 
 export default Search;
 {
-  /**1 Change the height of the other cards especially md to lg
-1.
+  /**
 2.Fix the selecting and unselecting of type and proptype,
 3.Make sure state values for search remain after refresh (get values from urlparam)
-4.Onces a city has been selected after removing it it still remains in the query
+4.Onces a city has been selected after removing it it still remains in the query {propertyfinder maybe style each city to have an x when in search tab so i can click it to remove it}
 
   */
 }

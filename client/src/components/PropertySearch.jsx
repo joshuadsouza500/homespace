@@ -131,6 +131,12 @@ export default function PropertySearch() {
     applyFilters();
   }, [filters.srt, filters.type]);
 
+  useEffect(() => {
+    if (searchParams) {
+      applyFilters();
+    }
+  }, []); //Runs on mount by checking if Search params exist
+
   return (
     <div className="w-full  ">
       {/**Xl screens+ */}
@@ -138,6 +144,7 @@ export default function PropertySearch() {
         <section className="w-full  flex  justify-start px-2  mx-auto  py-2 gap-x-2  ">
           <div className="relative w-[30%]  ">
             <SearchBar
+              city={filters?.city}
               setFilters={setFilters}
               isHero={false}
               className={
@@ -284,6 +291,8 @@ export default function PropertySearch() {
           <div className="relative w-[65%] md:w-[75%]  ">
             <SearchBar
               setFilters={setFilters}
+              city={filters?.city}
+              isHero={false}
               className={"md:w-full max-w-full"}
             />
           </div>

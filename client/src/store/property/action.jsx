@@ -26,7 +26,7 @@ export const createProperty = (propertyDetails) => async (dispatch) => {
   try {
     const response = await api.post(`/api/property`, propertyDetails);
     const property = response.data;
-    console.log("action property", property);
+    // console.log("action property", property);
     dispatch({ type: CREATE_PROPERTY_SUCCESS, payload: property });
     alert("Property created successfully");
   } catch (error) {
@@ -115,7 +115,7 @@ export const getAllProperties = (reqQuery) => async (dispatch) => {
   try {
     const response = await api.get(`/api/property?${reqQuery}`);
     const properties = response.data;
-    console.log("Action props", properties);
+    // console.log("Action props", properties);
     dispatch({ type: GET_ALL_PROPERTY_SUCCESS, payload: properties });
   } catch (error) {
     dispatch({ type: GET_ALL_PROPERTY_FAILURE, payload: error.message });
