@@ -48,6 +48,7 @@ export default function PropertySearch() {
     frn: searchParams.get("frn") || "",
     ut: searchParams.get("ut") || "",
     srt: searchParams.get("srt") || "",
+    pg: searchParams.get("pg") || "",
   });
 
   //, you can use a variable as the key name if you wrap it in square brackets
@@ -58,6 +59,21 @@ export default function PropertySearch() {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFilters((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handlePageChange = (event, value) => {
+  
+    //get the string which is the page number from the url and parseInt converts it to int and,10 is to make the number base 10 and then we set it to num-1 or +1
+    if (value === "prev") {
+      const prevPage = filters.pg || 1;
+      setFilters((prev) => ({ ...prev, ["pg"]: prevPage - 1 }));
+    } else if (value === "next") {
+      const nextPage = filters.pg || 1;
+
+      setFilters((prev) => ({ ...prev, ["pg"]: nextPage + 1 }));
+    } else {
+      setFilters((prev) => ({ ...prev, ["pg"]: value }));
+    }
   };
 
   {

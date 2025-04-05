@@ -226,8 +226,22 @@ const getPropertyById = async (propertyId, userId) => {
 
 //add search using givernate here
 const getAllProperties = async (reqQuery, userId) => {
-  const { mnP, mxP, beds, baths, type, pty, ut, frn, search, city, srt, gov } =
-    reqQuery;
+  const {
+    mnP,
+    mxP,
+    beds,
+    baths,
+    type,
+    pty,
+    ut,
+    frn,
+    search,
+    city,
+    srt,
+    gov,
+    page = page || 1,
+    pageSize = 8,
+  } = reqQuery;
   let SORT = "";
   const minPrice = mnP;
   const maxPrice = mxP;
@@ -287,6 +301,8 @@ const getAllProperties = async (reqQuery, userId) => {
         user: true, // Include related user details
       },
       orderBy: SORT || undefined,
+      skip: page - 1 + pageSize, //number of properties to display
+      take: pageSize,
     });
     let savedIds = new Set();
 

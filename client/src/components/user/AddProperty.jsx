@@ -88,7 +88,7 @@ export default function AddProperty() {
     dispatch(createProperty(formData));
   };
 
-  console.log(formData);
+  //console.log(formData);
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-2xl md:text-4xl font-bold mb-8 text-text text-center">
