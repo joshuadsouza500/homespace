@@ -32,7 +32,7 @@ import SheetFilter from "./ui/vo/SheetFilter";
 import SearchBar from "./ui/SearchBar";
 
 //Allows the parent component to pass a ref to child and then be used.
-const PropertySearch = forwardRef((totalPages, ref) => {
+const PropertySearch = forwardRef((props, ref) => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllProperties("pg=1"));
@@ -68,16 +68,18 @@ const PropertySearch = forwardRef((totalPages, ref) => {
     setFilters((prev) => ({ ...prev, [name]: value }));
   };
 
-  /**/ const handlePageChange = (value) => {
+  const handlePageChange = (value) => {
     //get the string which is the page number from the url and parseInt converts it to int and,10 is to make the number base 10 and then we set it to num-1 or +1
+
     if (value === "prev") {
-      const prevPage = filters.pg || 1;
+      const prevPage = parseInt(filters.pg, 10) || 1;
       if (prevPage <= 1) return; // Prevents from going negative
       setFilters((prev) => ({ ...prev, ["pg"]: prevPage - 1 }));
     } else if (value === "next") {
-      const nextPage = filters.pg || 1;
+      const nextPage = parseInt(filters.pg, 10);
+
       //Check the total number of pages to make sure it doesnt exceed it
-      if (nextPage == totalPages) return;
+      if (nextPage >= props?.totalPages) return;
       setFilters((prev) => ({ ...prev, ["pg"]: nextPage + 1 }));
     } else {
       setFilters((prev) => ({ ...prev, ["pg"]: value }));
@@ -162,7 +164,7 @@ const PropertySearch = forwardRef((totalPages, ref) => {
   }, []); //Runs on mount by checking if Search params exist
   // Expose functions to the parent via ref
   useImperativeHandle(ref, () => ({ handlePageChange }));
-  console.log("FILTERS", filters.pg);
+
   return (
     <div className="w-full  " ref={ref}>
       {/**Xl screens+ */}

@@ -17,7 +17,7 @@ const Search = () => {
     ChildRef.current.handlePageChange(value);
   };
 
-  const totalPages = Property?.properties?.properties?.totalPages;
+  const totalPages = Property?.properties?.totalPages;
 
   return (
     <div className="font-jakarta bg-estate-50">
@@ -116,47 +116,47 @@ const Search = () => {
                           </Link>
                         </button>
                       </div>
-                      <div className="flex  justify-between items-end  max-w-6xl xl:max-w-7xl mx-auto max-md:mx-2 md:px-2 pb-4 md:pb-5 2xl:pb-8  pt-2 ">
-                        <nav aria-label="Pagination">
-                          <ul className="inline-flex  text-sm ">
-                            <li onClick={() => handlePageChange("prev")}>
-                              <p
-                                className="flex items-center justify-center px-3 h-10 leading-tight
+                    </section>
+                    <div className=" flex  justify-center  items-center  max-md:mx-2 md:px-2 pb-4 w-full md:pb-5   pt-2 cursor-pointer ">
+                      <nav aria-label="Pagination bg-red-200">
+                        <ul className="inline-flex  text-sm ">
+                          <li onClick={() => handlePageChange("prev")}>
+                            <p
+                              className="flex items-center justify-center px-3 h-10 leading-tight
                border  rounded-l-lg   bg-gray-800   border-gray-700 text-gray-200  hover:bg-gray-700
                "
-                              >
-                                Previous
-                              </p>
-                            </li>
-                            {Array.from({ length: totalPages }, (_, index) => (
-                              <li
-                                key={index}
-                                onClick={(e) => handlePageChange(index + 1)}
-                              >
-                                {" "}
-                                <p
-                                  className="flex items-center justify-center px-4 h-10 
+                            >
+                              Previous
+                            </p>
+                          </li>
+                          {Array.from({ length: totalPages }, (_, index) => (
+                            <li
+                              key={index}
+                              onClick={() => handlePageChange(index + 1)}
+                            >
+                              {" "}
+                              <p
+                                className="flex items-center justify-center px-4 h-10 
                 text-gray-500 bg-white border border-gray-300 hover:bg-gray-100
                 hover:text-Blue
                 "
-                                >
-                                  {index + 1}
-                                </p>
-                              </li>
-                            ))}
-                            <li onClick={() => handlePageChange("next")}>
-                              <p
-                                className="flex items-center justify-center px-6 h-10 leading-tight
-               border  rounded-e-lg   bg-gray-800   border-gray-700 text-gray-200  hover:bg-gray-700
-              "
                               >
-                                Next
+                                {index + 1}
                               </p>
                             </li>
-                          </ul>
-                        </nav>
-                      </div>
-                    </section>
+                          ))}
+                          <li onClick={() => handlePageChange("next")}>
+                            <p
+                              className="flex items-center justify-center px-6 h-10 leading-tight
+               border  rounded-e-lg   bg-gray-800   border-gray-700 text-gray-200  hover:bg-gray-700
+              "
+                            >
+                              Next
+                            </p>
+                          </li>
+                        </ul>
+                      </nav>
+                    </div>
                   </>
                 );
               })()}
