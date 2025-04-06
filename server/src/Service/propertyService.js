@@ -42,7 +42,7 @@ const createProperty = async (userId, reqData) => {
         userId,
       },
     });
-    console.log("prop ", newProperty);
+
     return newProperty;
   } catch (error) {
     throw new Error("Could not create property: " + error.message);

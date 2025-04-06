@@ -15,6 +15,8 @@ import {
 import { Link } from "react-router-dom";
 import { useRef } from "react";
 
+import SkeletonLoader from "../ui/vo/SkeletonLoader";
+
 const Search = () => {
   const Property = useSelector((store) => store.property);
   const ChildRef = useRef(null);
@@ -24,171 +26,179 @@ const Search = () => {
   };
   const currentPage = ChildRef?.current?.currentPage;
   const totalPages = Property?.properties?.totalPages;
-
+  console.log("pp", Property?.isLoading);
   return (
     <div className="font-jakarta bg-estate-50">
       <div className="px-2 md:px-6  w-full  max-w-5xl lg:max-w-6xl  xl:max-w-7xl  2xl:max-w-8xl mx-auto bg-white shadow ">
         <PropertySearch totalPages={totalPages} ref={ChildRef} />
-        <section className="h-full mx-auto  md:space-y-7 space-y-2 pb-10 lg:pb-16 pt-1">
-          {Property?.properties?.properties?.length > 0 ? (
-            <>
-              {(() => {
-                let randomProperty = null;
-                let remainingProperties = null;
-                const propertyLength = Property?.properties?.properties?.length;
-                if (propertyLength > 3) {
-                  const randomIndex = Math.floor(
-                    Math.random() * Property.properties.properties.length
-                  );
-                  randomProperty = Property.properties.properties[randomIndex];
+        {Property?.isLoading == false ? (
+          <section className="h-full mx-auto  md:space-y-7 space-y-2 pb-10 lg:pb-16 pt-1">
+            {Property?.properties?.properties?.length > 0 ? (
+              <>
+                {(() => {
+                  let randomProperty = null;
+                  let remainingProperties = null;
+                  const propertyLength =
+                    Property?.properties?.properties?.length;
+                  if (propertyLength > 3) {
+                    const randomIndex = Math.floor(
+                      Math.random() * Property.properties.properties.length
+                    );
+                    randomProperty =
+                      Property.properties.properties[randomIndex];
 
-                  // Filter out the random property from the original array
-                  remainingProperties = Property.properties.properties.filter(
-                    (property) => property.id !== randomProperty.id
-                  );
-                } else {
-                  remainingProperties = Property.properties.properties;
-                }
+                    // Filter out the random property from the original array
+                    remainingProperties = Property.properties.properties.filter(
+                      (property) => property.id !== randomProperty.id
+                    );
+                  } else {
+                    remainingProperties = Property.properties.properties;
+                  }
 
-                return (
-                  <>
-                    <div
-                      className={`ml-2 xl:ml-10 ${
-                        propertyLength > 3 ? "block" : "hidden"
-                      }`}
-                    >
-                      {" "}
-                      <BigProperyCard
-                        key={randomProperty?.id}
-                        property={randomProperty}
-                      />
-                    </div>
-
-                    <section className="grid lg:grid-cols-4  max-w-6xl mx-auto 2xl:max-w-7xl">
-                      <div className="space-y-7 col-span-3 md:pl-2 2xl:pl-6  max-lg:mx-auto px-1  ">
-                        {remainingProperties.map((property) => (
-                          <PropertyCard2
-                            key={property?.id}
-                            property={property}
-                          />
-                        ))}
-                      </div>
-                      {/* Popular Seaches box */}{" "}
-                      {/* Right now its mt-72 but after adding pagination making it self-center */}
-                      {/* Only display it if there are multiple properties displayed */}
+                  return (
+                    <>
                       <div
-                        className={`items-start justify-center bg-white backdrop-blur-lg shadow-xl border-[0.5px] rounded-md max-w-72 max-h-72  col-span-1 p-3  flex flex-col gap-y-4 cursor-pointer transition-all duration-300 mt-72 self- center ${
-                          Property?.properties?.length > 2 ? "block" : "hidden"
+                        className={`ml-2 xl:ml-10 ${
+                          propertyLength > 3 ? "block" : "hidden"
                         }`}
                       >
                         {" "}
-                        <span>
-                          {" "}
-                          <h2 className="text-lg font-semibold text-text flex items-center">
-                            <SearchCheck className="mr-2.5 text-Primary" />{" "}
-                            Popular Searches
-                          </h2>
-                          <ul className="mt-2 ml-8 space-y-2 text-gray-600  text-sm">
-                            <li className="hover:text-Primary">
-                              <Link to={"/property?pty=Apartment&city=Riffa"}>
-                                {" "}
-                                Apartments in Riffa
-                              </Link>
-                            </li>
-                            <li className="hover:text-Primary">
-                              <Link to={"/property?pty=Studio&city=Juffair"}>
-                                {" "}
-                                Studio in Jufffair
-                              </Link>
-                            </li>
-                            <li className="hover:text-Primary">
-                              Luxury Condo in Manama
-                            </li>
-                          </ul>
-                        </span>
-                        <span>
-                          {" "}
-                          <h2 className="text-lg font-semibold text-text flex items-center hover:text-Primary">
-                            <MapPinCheck className="mr-2.5 text-Primary" />{" "}
-                            Nearby Areas
-                          </h2>
-                          <ul className="mt-2 ml-8 space-y-2 text-gray-600  text-sm">
-                            <li className="hover:text-Primary">
-                              Apartments for rent in Manama
-                            </li>
-                            <li className="hover:text-Primary">
-                              Villas for sale in Seef
-                            </li>
-                          </ul>
-                        </span>
-                        <button className="text-lg font-semibold text-text  hover:text-Primary">
-                          <Link
-                            to="/user/property/saved"
-                            className="flex items-center"
-                          >
-                            <Bookmark className="mr-2.5 text-Primary " /> Saved
-                            Properties
-                          </Link>
-                        </button>
+                        <BigProperyCard
+                          key={randomProperty?.id}
+                          property={randomProperty}
+                        />
                       </div>
-                    </section>
-                    <div className=" flex  justify-center  items-center  max-md:mx-2 md:px-2  w-full    py-4 md:py-6 cursor-pointer ">
-                      <nav aria-label="Pagination">
-                        <ul className="inline-flex  text-sm ">
-                          <li onClick={() => handlePageChange("prev")}>
-                            <p
-                              className="flex items-center justify-center px-2 h-10 leading-tight border  rounded-l-lg   bg-Bgpurple   border-gray-700 text-gray-200  hover:bg-Bgpurple/90
-               "
+
+                      <section className="grid lg:grid-cols-4  max-w-6xl mx-auto 2xl:max-w-7xl">
+                        <div className="space-y-7 col-span-3 md:pl-2 2xl:pl-6  max-lg:mx-auto px-1  ">
+                          {remainingProperties.map((property) => (
+                            <PropertyCard2
+                              key={property?.id}
+                              property={property}
+                            />
+                          ))}
+                        </div>
+                        {/* Popular Seaches box */}{" "}
+                        {/* Right now its mt-72 but after adding pagination making it self-center */}
+                        {/* Only display it if there are multiple properties displayed */}
+                        <div
+                          className={`items-start justify-center bg-white backdrop-blur-lg shadow-xl border-[0.5px] rounded-md max-w-72 max-h-72  col-span-1 p-3  flex flex-col gap-y-4 cursor-pointer transition-all duration-300 mt-72 self- center ${
+                            Property?.properties?.length > 2
+                              ? "block"
+                              : "hidden"
+                          }`}
+                        >
+                          {" "}
+                          <span>
+                            {" "}
+                            <h2 className="text-lg font-semibold text-text flex items-center">
+                              <SearchCheck className="mr-2.5 text-Primary" />{" "}
+                              Popular Searches
+                            </h2>
+                            <ul className="mt-2 ml-8 space-y-2 text-gray-600  text-sm">
+                              <li className="hover:text-Primary">
+                                <Link to={"/property?pty=Apartment&city=Riffa"}>
+                                  {" "}
+                                  Apartments in Riffa
+                                </Link>
+                              </li>
+                              <li className="hover:text-Primary">
+                                <Link to={"/property?pty=Studio&city=Juffair"}>
+                                  {" "}
+                                  Studio in Jufffair
+                                </Link>
+                              </li>
+                              <li className="hover:text-Primary">
+                                Luxury Condo in Manama
+                              </li>
+                            </ul>
+                          </span>
+                          <span>
+                            {" "}
+                            <h2 className="text-lg font-semibold text-text flex items-center hover:text-Primary">
+                              <MapPinCheck className="mr-2.5 text-Primary" />{" "}
+                              Nearby Areas
+                            </h2>
+                            <ul className="mt-2 ml-8 space-y-2 text-gray-600  text-sm">
+                              <li className="hover:text-Primary">
+                                Apartments for rent in Manama
+                              </li>
+                              <li className="hover:text-Primary">
+                                Villas for sale in Seef
+                              </li>
+                            </ul>
+                          </span>
+                          <button className="text-lg font-semibold text-text  hover:text-Primary">
+                            <Link
+                              to="/user/property/saved"
+                              className="flex items-center"
                             >
-                              <ChevronLeft className="size-7" />
-                            </p>
-                          </li>
-                          {Array.from({ length: totalPages }, (_, index) => (
-                            <li
-                              key={index}
-                              onClick={() => handlePageChange(index + 1)}
-                            >
-                              {" "}
+                              <Bookmark className="mr-2.5 text-Primary " />{" "}
+                              Saved Properties
+                            </Link>
+                          </button>
+                        </div>
+                      </section>
+                      <div className=" flex  justify-center  items-center  max-md:mx-2 md:px-2  w-full    py-4 md:py-6 cursor-pointer ">
+                        <nav aria-label="Pagination">
+                          <ul className="inline-flex  text-sm ">
+                            <li onClick={() => handlePageChange("prev")}>
                               <p
-                                className={`flex items-center justify-center px-4 h-10 
+                                className="flex items-center justify-center px-2 h-10 leading-tight border  rounded-l-lg   bg-Bgpurple   border-gray-700 text-gray-200  hover:bg-Bgpurple/90
+               "
+                              >
+                                <ChevronLeft className="size-7" />
+                              </p>
+                            </li>
+                            {Array.from({ length: totalPages }, (_, index) => (
+                              <li
+                                key={index}
+                                onClick={() => handlePageChange(index + 1)}
+                              >
+                                {" "}
+                                <p
+                                  className={`flex items-center justify-center px-4 h-10 
                 text-gray-500    border border-gray-300
                 hover:text-Blue ${
                   currentPage == index + 1
                     ? "border-t-2 border-t-Bgpurple/95 text-lg text-text"
                     : "bg-white hover:bg-purple-100"
                 }`}
-                              >
-                                {index + 1}
+                                >
+                                  {index + 1}
+                                </p>
+                              </li>
+                            ))}
+                            <li onClick={() => handlePageChange("next")}>
+                              <p className="flex items-center justify-center px-2  h-10   border  rounded-e-lg   bg-Bgpurple   border-gray-700 text-gray-200  hover:bg-Bgpurple/90">
+                                <ChevronRight className="size-7" />
                               </p>
                             </li>
-                          ))}
-                          <li onClick={() => handlePageChange("next")}>
-                            <p className="flex items-center justify-center px-2  h-10   border  rounded-e-lg   bg-Bgpurple   border-gray-700 text-gray-200  hover:bg-Bgpurple/90">
-                              <ChevronRight className="size-7" />
-                            </p>
-                          </li>
-                        </ul>
-                      </nav>
-                    </div>
-                  </>
-                );
-              })()}{" "}
-              {/* { ... }()  // This part calls the function immediately */}
-            </>
-          ) : (
-            <div className="flex items-start mt-10 md:mt-20 justify-center min-h-screen ">
-              <div className="text-center p-6 bg-Bgpurple rounded-lg shadow-xl">
-                <h1 className="text-2xl md:text-3xl font-bold text-estate-100">
-                  Oops! Something went wrong.
-                </h1>
-                <p className="mt-4 text-gray-100">{`We couldn't find the properties you were looking for .`}</p>
-                <button className="mt-6 px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
-                  Try Again
-                </button>
+                          </ul>
+                        </nav>
+                      </div>
+                    </>
+                  );
+                })()}{" "}
+                {/* { ... }()  // This part calls the function immediately */}
+              </>
+            ) : (
+              <div className="flex items-start mt-10 md:mt-20 justify-center min-h-screen ">
+                <div className="text-center p-6 bg-Bgpurple rounded-lg shadow-xl">
+                  <h1 className="text-2xl md:text-3xl font-bold text-estate-100">
+                    Oops! Something went wrong.
+                  </h1>
+                  <p className="mt-4 text-gray-100">{`We couldn't find the properties you were looking for .`}</p>
+                  <button className="mt-6 px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                    Try Again
+                  </button>
+                </div>
               </div>
-            </div>
-          )}
-        </section>
+            )}
+          </section>
+        ) : (
+          <SkeletonLoader />
+        )}
       </div>
     </div>
   );

@@ -139,6 +139,9 @@ const PropertySearch = forwardRef((props, ref) => {
 
   const applyFilters = () => {
     const params = new URLSearchParams();
+
+    // Reset the page number to 1 since a filter is being applied
+
     // converts it into an array of key-value pairs.
     Object.entries(filters).forEach(([key, value]) => {
       if (value) params.set(key, value);
@@ -150,16 +153,16 @@ const PropertySearch = forwardRef((props, ref) => {
   };
 
   const clearFilters = () => {
-    setSearchParams((prevParams) => {
+    setSearchParams(() => {
       const newParams = new URLSearchParams();
-      newParams.set("pg", prevParams.get("pg") || 1); // Retain the current page
+      newParams.set("pg", 1); // Retain the current page
       return newParams;
     });
-    setFilters((prevFilters) => ({
-      pg: prevFilters.pg || 1, // Retain the current page
+    setFilters(() => ({
+      pg: 1, // Retain the current page
     }));
 
-    dispatch(getAllProperties(`pg=${filters.pg || 1}`));
+    dispatch(getAllProperties(`pg=1`));
   };
   useEffect(() => {
     applyFilters();
