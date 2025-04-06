@@ -18,17 +18,24 @@ import {
 import { Label } from "./ui/label";
 import Bed_Bath from "./ui/Bed&Bath";
 import PropertyFilter from "./ui/vo/PropertyFilter";
-import { useCallback, useEffect, useState } from "react";
+import {
+  forwardRef,
+  useCallback,
+  useEffect,
+  useImperativeHandle,
+  useState,
+} from "react";
 import { getAllProperties } from "@/store/property/action";
 import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import SheetFilter from "./ui/vo/SheetFilter";
 import SearchBar from "./ui/SearchBar";
 
-export default function PropertySearch() {
+//Allows the parent component to pass a ref to child and then be used.
+const PropertySearch = forwardRef((totalPages, ref) => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getAllProperties());
+    dispatch(getAllProperties("pg=1"));
   }, [dispatch]);
   const [selectedBedrooms, setSelectedBedrooms] = useState();
   const [selectedBathrooms, setSelectedBathrooms] = useState();
@@ -48,7 +55,7 @@ export default function PropertySearch() {
     frn: searchParams.get("frn") || "",
     ut: searchParams.get("ut") || "",
     srt: searchParams.get("srt") || "",
-    pg: searchParams.get("pg") || "",
+    pg: searchParams.get("pg") || 1,
   });
 
   //, you can use a variable as the key name if you wrap it in square brackets
@@ -61,15 +68,16 @@ export default function PropertySearch() {
     setFilters((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handlePageChange = (event, value) => {
-  
+  /**/ const handlePageChange = (value) => {
     //get the string which is the page number from the url and parseInt converts it to int and,10 is to make the number base 10 and then we set it to num-1 or +1
     if (value === "prev") {
       const prevPage = filters.pg || 1;
+      if (prevPage <= 1) return; // Prevents from going negative
       setFilters((prev) => ({ ...prev, ["pg"]: prevPage - 1 }));
     } else if (value === "next") {
       const nextPage = filters.pg || 1;
-
+      //Check the total number of pages to make sure it doesnt exceed it
+      if (nextPage == totalPages) return;
       setFilters((prev) => ({ ...prev, ["pg"]: nextPage + 1 }));
     } else {
       setFilters((prev) => ({ ...prev, ["pg"]: value }));
@@ -145,16 +153,18 @@ export default function PropertySearch() {
   };
   useEffect(() => {
     applyFilters();
-  }, [filters.srt, filters.type]);
+  }, [filters.srt, filters.type, filters.pg]);
 
   useEffect(() => {
     if (searchParams) {
       applyFilters();
     }
   }, []); //Runs on mount by checking if Search params exist
-
+  // Expose functions to the parent via ref
+  useImperativeHandle(ref, () => ({ handlePageChange }));
+  console.log("FILTERS", filters.pg);
   return (
-    <div className="w-full  ">
+    <div className="w-full  " ref={ref}>
       {/**Xl screens+ */}
       <div className="hidden xl:flex flex-col  items-center py-3  mx-auto border-b  px-1 ">
         <section className="w-full  flex  justify-start px-2  mx-auto  py-2 gap-x-2  ">
@@ -476,4 +486,7 @@ export default function PropertySearch() {
       </div>
     </div>
   );
-}
+});
+// Set display name for easier debugging
+PropertySearch.displayName = "PropertySearch";
+export default PropertySearch;

@@ -7,27 +7,37 @@ import { useSelector } from "react-redux";
 import { Bookmark, MapPinCheck, SearchCheck } from "lucide-react";
 
 import { Link } from "react-router-dom";
+import { useRef } from "react";
 
 const Search = () => {
   const Property = useSelector((store) => store.property);
+  const ChildRef = useRef(null);
+
+  const handlePageChange = (value) => {
+    ChildRef.current.handlePageChange(value);
+  };
+
+  const totalPages = Property?.properties?.properties?.totalPages;
 
   return (
     <div className="font-jakarta bg-estate-50">
       <div className="px-2 md:px-6  w-full  max-w-5xl lg:max-w-6xl  xl:max-w-7xl  2xl:max-w-8xl mx-auto bg-white shadow ">
-        <PropertySearch />
+        <PropertySearch totalPages={totalPages} ref={ChildRef} />
         <section className="h-full mx-auto  md:space-y-7 space-y-2 pb-10 lg:pb-16 pt-1">
-          {Property?.properties?.length > 0 ? (
+          {Property?.properties?.properties?.length > 0 ? (
             <>
               {(() => {
                 const randomIndex = Math.floor(
-                  Math.random() * Property.properties.length
+                  Math.random() * Property.properties.properties.length
                 );
-                const randomProperty = Property.properties[randomIndex];
+                const randomProperty =
+                  Property.properties.properties[randomIndex];
 
                 // Filter out the random property from the original array
-                const remainingProperties = Property.properties.filter(
-                  (property) => property.id !== randomProperty.id
-                );
+                const remainingProperties =
+                  Property.properties.properties.filter(
+                    (property) => property.id !== randomProperty.id
+                  );
 
                 return (
                   <>
@@ -105,6 +115,46 @@ const Search = () => {
                             Properties
                           </Link>
                         </button>
+                      </div>
+                      <div className="flex  justify-between items-end  max-w-6xl xl:max-w-7xl mx-auto max-md:mx-2 md:px-2 pb-4 md:pb-5 2xl:pb-8  pt-2 ">
+                        <nav aria-label="Pagination">
+                          <ul className="inline-flex  text-sm ">
+                            <li onClick={() => handlePageChange("prev")}>
+                              <p
+                                className="flex items-center justify-center px-3 h-10 leading-tight
+               border  rounded-l-lg   bg-gray-800   border-gray-700 text-gray-200  hover:bg-gray-700
+               "
+                              >
+                                Previous
+                              </p>
+                            </li>
+                            {Array.from({ length: totalPages }, (_, index) => (
+                              <li
+                                key={index}
+                                onClick={(e) => handlePageChange(index + 1)}
+                              >
+                                {" "}
+                                <p
+                                  className="flex items-center justify-center px-4 h-10 
+                text-gray-500 bg-white border border-gray-300 hover:bg-gray-100
+                hover:text-Blue
+                "
+                                >
+                                  {index + 1}
+                                </p>
+                              </li>
+                            ))}
+                            <li onClick={() => handlePageChange("next")}>
+                              <p
+                                className="flex items-center justify-center px-6 h-10 leading-tight
+               border  rounded-e-lg   bg-gray-800   border-gray-700 text-gray-200  hover:bg-gray-700
+              "
+                              >
+                                Next
+                              </p>
+                            </li>
+                          </ul>
+                        </nav>
                       </div>
                     </section>
                   </>

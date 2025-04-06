@@ -239,7 +239,7 @@ const getAllProperties = async (reqQuery, userId) => {
     city,
     srt,
     gov,
-    page = page || 1,
+    pg = pg || 1,
     pageSize = 8,
   } = reqQuery;
   let SORT = "";
@@ -252,7 +252,6 @@ const getAllProperties = async (reqQuery, userId) => {
   const furnishing = frn;
   const governate = gov;
 
-  console.log("reqQuery.city", city);
   try {
     const filters = [
       //minPrice && is used to make sure that there is a value
@@ -301,9 +300,17 @@ const getAllProperties = async (reqQuery, userId) => {
         user: true, // Include related user details
       },
       orderBy: SORT || undefined,
-      skip: page - 1 + pageSize, //number of properties to display
+      skip: Math.max(0, (pg - 1) * pageSize), //Makes sure pg doesnt go below 0 (If frontned sends 0 here it would be -1)
       take: pageSize,
     });
+
+    // Fetch the total number of properties matching the filters
+    const totalProperties = await prisma.property.count({
+      where: {
+        AND: filters,
+      },
+    });
+    const totalPages = Math.ceil(totalProperties / pageSize);
     let savedIds = new Set();
 
     if (userId) {
@@ -316,11 +323,17 @@ const getAllProperties = async (reqQuery, userId) => {
       savedIds = new Set(savedProperties.map((p) => p.propertyId));
     }
 
-    // 4. Add the `isSaved` field to each property based on whether it exists in the savedIds Set.
-    return properties.map((property) => ({
-      ...property, // Copy all property details
-      isSaved: savedIds.has(property.id), // Check if property ID is in the Set
+    // Add the `isSaved` field to each property
+    const propertiesWithSavedStatus = properties.map((property) => ({
+      ...property,
+      isSaved: savedIds.has(property.id),
     }));
+
+    return {
+      properties: propertiesWithSavedStatus,
+      totalProperties,
+      totalPages,
+    };
   } catch (error) {
     console.error("Error in getAllProperties:", error.message);
     throw new Error(error.message);
