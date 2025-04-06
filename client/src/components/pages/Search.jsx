@@ -4,7 +4,13 @@ import PropertyCard2 from "../ui/vo/property-card2";
 import BigProperyCard from "../ui/vo/Big-propery-card";
 
 import { useSelector } from "react-redux";
-import { Bookmark, MapPinCheck, SearchCheck } from "lucide-react";
+import {
+  Bookmark,
+  ChevronLeft,
+  ChevronRight,
+  MapPinCheck,
+  SearchCheck,
+} from "lucide-react";
 
 import { Link } from "react-router-dom";
 import { useRef } from "react";
@@ -16,7 +22,7 @@ const Search = () => {
   const handlePageChange = (value) => {
     ChildRef.current.handlePageChange(value);
   };
-
+  const currentPage = ChildRef?.current?.currentPage;
   const totalPages = Property?.properties?.totalPages;
 
   return (
@@ -27,21 +33,30 @@ const Search = () => {
           {Property?.properties?.properties?.length > 0 ? (
             <>
               {(() => {
-                const randomIndex = Math.floor(
-                  Math.random() * Property.properties.properties.length
-                );
-                const randomProperty =
-                  Property.properties.properties[randomIndex];
+                let randomProperty = null;
+                let remainingProperties = null;
+                const propertyLength = Property?.properties?.properties?.length;
+                if (propertyLength > 3) {
+                  const randomIndex = Math.floor(
+                    Math.random() * Property.properties.properties.length
+                  );
+                  randomProperty = Property.properties.properties[randomIndex];
 
-                // Filter out the random property from the original array
-                const remainingProperties =
-                  Property.properties.properties.filter(
+                  // Filter out the random property from the original array
+                  remainingProperties = Property.properties.properties.filter(
                     (property) => property.id !== randomProperty.id
                   );
+                } else {
+                  remainingProperties = Property.properties.properties;
+                }
 
                 return (
                   <>
-                    <div className="ml-2 xl:ml-10">
+                    <div
+                      className={`ml-2 xl:ml-10 ${
+                        propertyLength > 3 ? "block" : "hidden"
+                      }`}
+                    >
                       {" "}
                       <BigProperyCard
                         key={randomProperty?.id}
@@ -117,16 +132,15 @@ const Search = () => {
                         </button>
                       </div>
                     </section>
-                    <div className=" flex  justify-center  items-center  max-md:mx-2 md:px-2 pb-4 w-full md:pb-5   pt-2 cursor-pointer ">
-                      <nav aria-label="Pagination bg-red-200">
+                    <div className=" flex  justify-center  items-center  max-md:mx-2 md:px-2  w-full    py-4 md:py-6 cursor-pointer ">
+                      <nav aria-label="Pagination">
                         <ul className="inline-flex  text-sm ">
                           <li onClick={() => handlePageChange("prev")}>
                             <p
-                              className="flex items-center justify-center px-3 h-10 leading-tight
-               border  rounded-l-lg   bg-gray-800   border-gray-700 text-gray-200  hover:bg-gray-700
+                              className="flex items-center justify-center px-2 h-10 leading-tight border  rounded-l-lg   bg-Bgpurple   border-gray-700 text-gray-200  hover:bg-Bgpurple/90
                "
                             >
-                              Previous
+                              <ChevronLeft className="size-7" />
                             </p>
                           </li>
                           {Array.from({ length: totalPages }, (_, index) => (
@@ -136,22 +150,21 @@ const Search = () => {
                             >
                               {" "}
                               <p
-                                className="flex items-center justify-center px-4 h-10 
-                text-gray-500 bg-white border border-gray-300 hover:bg-gray-100
-                hover:text-Blue
-                "
+                                className={`flex items-center justify-center px-4 h-10 
+                text-gray-500    border border-gray-300
+                hover:text-Blue ${
+                  currentPage == index + 1
+                    ? "border-t-2 border-t-Bgpurple/95 text-lg text-text"
+                    : "bg-white hover:bg-purple-100"
+                }`}
                               >
                                 {index + 1}
                               </p>
                             </li>
                           ))}
                           <li onClick={() => handlePageChange("next")}>
-                            <p
-                              className="flex items-center justify-center px-6 h-10 leading-tight
-               border  rounded-e-lg   bg-gray-800   border-gray-700 text-gray-200  hover:bg-gray-700
-              "
-                            >
-                              Next
+                            <p className="flex items-center justify-center px-2  h-10   border  rounded-e-lg   bg-Bgpurple   border-gray-700 text-gray-200  hover:bg-Bgpurple/90">
+                              <ChevronRight className="size-7" />
                             </p>
                           </li>
                         </ul>
@@ -159,7 +172,8 @@ const Search = () => {
                     </div>
                   </>
                 );
-              })()}
+              })()}{" "}
+              {/* { ... }()  // This part calls the function immediately */}
             </>
           ) : (
             <div className="flex items-start mt-10 md:mt-20 justify-center min-h-screen ">

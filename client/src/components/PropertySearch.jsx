@@ -144,14 +144,22 @@ const PropertySearch = forwardRef((props, ref) => {
       if (value) params.set(key, value);
     });
     const updatedUrlParams = params.toString();
+
     setSearchParams(params);
     dispatch(getAllProperties(updatedUrlParams));
   };
 
   const clearFilters = () => {
-    setSearchParams({});
-    setFilters({});
-    dispatch(getAllProperties());
+    setSearchParams((prevParams) => {
+      const newParams = new URLSearchParams();
+      newParams.set("pg", prevParams.get("pg") || 1); // Retain the current page
+      return newParams;
+    });
+    setFilters((prevFilters) => ({
+      pg: prevFilters.pg || 1, // Retain the current page
+    }));
+
+    dispatch(getAllProperties(`pg=${filters.pg || 1}`));
   };
   useEffect(() => {
     applyFilters();
@@ -163,7 +171,10 @@ const PropertySearch = forwardRef((props, ref) => {
     }
   }, []); //Runs on mount by checking if Search params exist
   // Expose functions to the parent via ref
-  useImperativeHandle(ref, () => ({ handlePageChange }));
+  useImperativeHandle(ref, () => ({
+    handlePageChange,
+    currentPage: filters?.pg,
+  }));
 
   return (
     <div className="w-full  " ref={ref}>

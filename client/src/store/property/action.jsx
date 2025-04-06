@@ -115,7 +115,7 @@ export const getAllProperties = (reqQuery) => async (dispatch) => {
   try {
     const response = await api.get(`/api/property?${reqQuery}`);
     const properties = response.data;
-    console.log("Get all Action props", properties);
+    //  console.log("Get all Action props", properties);
     dispatch({ type: GET_ALL_PROPERTY_SUCCESS, payload: properties });
   } catch (error) {
     dispatch({ type: GET_ALL_PROPERTY_FAILURE, payload: error.message });
