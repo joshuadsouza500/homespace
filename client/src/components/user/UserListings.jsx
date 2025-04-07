@@ -5,21 +5,25 @@ import { getUserProperties } from "@/store/user/action";
 import { Button } from "../ui/button";
 import { cn } from "@/lib/utils";
 import { useNavigate } from "react-router-dom";
+import SkeletonLoader from "../ui/vo/SkeletonLoader";
 
 const UserListings = () => {
   const dispatch = useDispatch();
-  const userProperties = useSelector((state) => state.user.property);
+  const userPropertyState = useSelector((state) => state.user);
+
+  const userProperties = userPropertyState?.property;
+  const isLoading = userPropertyState?.isLoading;
   // Use useEffect to fetch user properties when the component mounts
   useEffect(() => {
     dispatch(getUserProperties());
   }, [dispatch]);
   const navigate = useNavigate();
-  // console.log("client prop", userProperties);
+
   return (
     <div className="container mx-auto px-4 lg:px-8 pt-4 lg:pt-6 pb-8  bg-estate-50">
       <div
         className="flex max-md:flex-col justify-between items-center
-      w-full mb-6 xl:mb-10 gap-y-4 "
+      w-full mb-6 md:mb-10 gap-y-4 "
       >
         {" "}
         <h1 className="text-3xl md:text-3xl 2xl:text-4xl   font-bold text-estate-800 dark:text-white ">
@@ -70,17 +74,23 @@ const UserListings = () => {
 
       <section className=" grid  xl:grid-cols-2 gap-x-6 gap-y-7 place-content-center  ">
         {/* Check if there are properties and map through them */}
-        {userProperties && userProperties.length > 0 ? (
-          userProperties.map((property) => (
-            <PropertyCard2
-              key={property.id}
-              update={true}
-              property={property}
-              className="md:max-w-2xl mx-1 md:h-64 2xl:g-64   backdrop-blur-md bg-white/70 dark:bg-black/40  border-black/5 dark:border-white/10 border"
-            />
-          ))
+        {isLoading == false ? (
+          userProperties && userProperties.length > 0 ? (
+            userProperties.map((property) => (
+              <PropertyCard2
+                key={property.id}
+                update={true}
+                property={property}
+                className="md:max-w-2xl mx-1 md:h-64 2xl:g-64   backdrop-blur-md bg-white/70 dark:bg-black/40  border-black/5 dark:border-white/10 border"
+              />
+            ))
+          ) : (
+            <p className="text-center xl:text-end w-full text-2xl font-medium">
+              No Propeties Listed By User!
+            </p>
+          )
         ) : (
-          <p className="text-center">No properties found.</p>
+          <SkeletonLoader />
         )}
       </section>
     </div>

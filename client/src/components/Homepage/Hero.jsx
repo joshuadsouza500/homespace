@@ -247,7 +247,7 @@ const LargeHero = ({
                     strokeWidth={2.5}
                     className="size-5 text-Primary"
                   />
-                  Sell
+                  Buy
                 </TabsTrigger>
               </TabsList>
             </Tabs>

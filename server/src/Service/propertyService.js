@@ -114,7 +114,7 @@ const updateProperty = async (userId, propertyId, updateData) => {
 };
 
 const deleteProperty = async (propertyId) => {
-  console.log(propertyId);
+  // console.log(propertyId);
   try {
     const property = await prisma.property.findUnique({
       where: { id: propertyId },
@@ -239,7 +239,7 @@ const getAllProperties = async (reqQuery, userId) => {
     city,
     srt,
     gov,
-    pg = pg || 1,
+    pg, //pg=pg||1 would'nt actual set it here as itwas destructing it here
     pageSize = 8,
   } = reqQuery;
   let SORT = "";
@@ -290,7 +290,7 @@ const getAllProperties = async (reqQuery, userId) => {
         SORT = { createdAt: "desc" }; // Sort by createdAt in descending order
       }
     }
-
+    const pageNumber = pg ? parseInt(pg, 10) : 1; // Fallback to 1 for undefined
     const properties = await prisma.property.findMany({
       where: {
         //ANd mean all of these conditions must be met
@@ -300,7 +300,7 @@ const getAllProperties = async (reqQuery, userId) => {
         user: true, // Include related user details
       },
       orderBy: SORT || undefined,
-      skip: Math.max(0, (pg - 1) * pageSize), //Makes sure pg doesnt go below 0 (If frontned sends 0 here it would be -1)
+      skip: Math.max(0, (pageNumber - 1) * pageSize), //Makes sure pg doesnt go below 0 (If frontned sends 0 here it would be -1)
       take: pageSize,
     });
 
@@ -376,7 +376,7 @@ const saveProperty = async (userId, propertyId) => {
           property: true, //include the related property details
         },
       });
-      console.log("Property saved successfully.", savedProperty);
+      //console.log("Property saved successfully.", savedProperty);
       return { message: "Property saved successfully", savedProperty };
     }
   } catch (error) {

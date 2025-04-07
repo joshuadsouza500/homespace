@@ -34,9 +34,9 @@ import SearchBar from "./ui/SearchBar";
 //Allows the parent component to pass a ref to child and then be used.
 const PropertySearch = forwardRef((props, ref) => {
   const dispatch = useDispatch();
-  useEffect(() => {
+  /*   useEffect(() => {
     dispatch(getAllProperties("pg=1"));
-  }, [dispatch]);
+  }, [dispatch]); */
   const [selectedBedrooms, setSelectedBedrooms] = useState();
   const [selectedBathrooms, setSelectedBathrooms] = useState();
   const [selectedFurnishing, setSelectedFurnishing] = useState();
@@ -68,22 +68,53 @@ const PropertySearch = forwardRef((props, ref) => {
     setFilters((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handlePageChange = (value) => {
+  /*   const handlePageChange = (value) => {
     //get the string which is the page number from the url and parseInt converts it to int and,10 is to make the number base 10 and then we set it to num-1 or +1
-
+    //Here set some variable state to true. And then in aplyfilters when it is called if this var is true it doesnt reset the page
     if (value === "prev") {
       const prevPage = parseInt(filters.pg, 10) || 1;
       if (prevPage <= 1) return; // Prevents from going negative
       setFilters((prev) => ({ ...prev, ["pg"]: prevPage - 1 }));
+      applyFilters(false);
     } else if (value === "next") {
       const nextPage = parseInt(filters.pg, 10);
 
       //Check the total number of pages to make sure it doesnt exceed it
       if (nextPage >= props?.totalPages) return;
       setFilters((prev) => ({ ...prev, ["pg"]: nextPage + 1 }));
+      console.log("ext", filters.pg);
+      applyFilters(false);
     } else {
       setFilters((prev) => ({ ...prev, ["pg"]: value }));
+      applyFilters(false);
     }
+  }; */
+
+  const handlePageChange = (value) => {
+    setFilters((prev) => {
+      let newPage;
+      const currentPage = parseInt(prev.pg, 10) || 1;
+
+      if (value === "prev") {
+        newPage = currentPage > 1 ? currentPage - 1 : 1;
+      } else if (value === "next") {
+        if (currentPage >= props?.totalPages) return prev;
+        newPage = currentPage + 1;
+      } else {
+        newPage = value;
+      }
+
+      const updated = { ...prev, pg: newPage };
+      const params = new URLSearchParams();
+
+      Object.entries(updated).forEach(([key, value]) => {
+        if (value) params.set(key, value);
+      });
+
+      setSearchParams(params);
+      dispatch(getAllProperties(params.toString()));
+      return updated; //updates filter state
+    });
   };
 
   {
@@ -137,18 +168,24 @@ const PropertySearch = forwardRef((props, ref) => {
     [selectedBedrooms, selectedBathrooms, selectedFurnishing, selectedUtilities]
   );
 
-  const applyFilters = () => {
+  const applyFilters = (resetPage = false) => {
     const params = new URLSearchParams();
-
+    const page = resetPage ? 1 : filters.pg;
     // Reset the page number to 1 since a filter is being applied
-
+    const updatedFilters = {
+      ...filters,
+      pg: page,
+    };
     // converts it into an array of key-value pairs.
-    Object.entries(filters).forEach(([key, value]) => {
-      if (value) params.set(key, value);
+    Object.entries(updatedFilters).forEach(([key, value]) => {
+      if (value) {
+        params.set(key, value);
+      }
     });
     const updatedUrlParams = params.toString();
 
     setSearchParams(params);
+    setFilters(updatedFilters); //Update searchParams and filter to reflect new page change
     dispatch(getAllProperties(updatedUrlParams));
   };
 
@@ -165,14 +202,15 @@ const PropertySearch = forwardRef((props, ref) => {
     dispatch(getAllProperties(`pg=1`));
   };
   useEffect(() => {
-    applyFilters();
-  }, [filters.srt, filters.type, filters.pg]);
+    applyFilters(true);
+  }, [filters.srt, filters.type]);
 
   useEffect(() => {
-    if (searchParams) {
+    if (filters) {
       applyFilters();
     }
   }, []); //Runs on mount by checking if Search params exist
+
   // Expose functions to the parent via ref
   useImperativeHandle(ref, () => ({
     handlePageChange,
@@ -299,7 +337,9 @@ const PropertySearch = forwardRef((props, ref) => {
           />
           <Button
             className="bg-Bgpurple max-md:w-28 md:w-32   text-white  transition-colors duration-500 ease-in-out hover:bg-indigo-800"
-            onClick={applyFilters}
+            onClick={() => {
+              applyFilters(true);
+            }}
           >
             Find
           </Button>
@@ -340,7 +380,9 @@ const PropertySearch = forwardRef((props, ref) => {
           </div>
           <Button
             className="bg-Bgpurple max-md:w-[20%] md:w-32  text-white  "
-            onClick={applyFilters}
+            onClick={() => {
+              applyFilters(true);
+            }}
           >
             Find
           </Button>

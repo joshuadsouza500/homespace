@@ -170,5 +170,6 @@ export default User;
  * Have some kind of validation and required input not just allow to click next without filling in the form
  * Appoinntment scheduling
  * Filters in my properties
+ * Add multiple properties so then check and implement pagination for it
  * Chat view
  */

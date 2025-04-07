@@ -26,7 +26,7 @@ const Search = () => {
   };
   const currentPage = ChildRef?.current?.currentPage;
   const totalPages = Property?.properties?.totalPages;
-  console.log("pp", Property?.isLoading);
+
   return (
     <div className="font-jakarta bg-estate-50">
       <div className="px-2 md:px-6  w-full  max-w-5xl lg:max-w-6xl  xl:max-w-7xl  2xl:max-w-8xl mx-auto bg-white shadow ">
