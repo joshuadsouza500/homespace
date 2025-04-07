@@ -43,7 +43,7 @@ const features = [
 //
 export default function Main() {
   return (
-    <div className=" h-auto   py-10 bg-estate-50">
+    <div className=" h-auto   py-10 bg-[#EDF9F9] estate-50">
       <div className="px-2 md:px-6  w-full  max-w-5xl lg:max-w-6xl  xl:max-w-7xl  2xl:max-w-8xl mx-auto relative grid grid-cols-1 lg:grid-cols-2 gap-6 place-items-start justify-items-center">
         {/* Left Side: Card with image  f7f6fc*/}
 

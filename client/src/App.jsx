@@ -24,7 +24,7 @@ export default App;
 
 {
   /** THINGS TO ADD
-   * Fix navbar li items  
+   * Fix navbar li items || Mayve add a saved properties after user is logged in 
    * Have to filter for governate and cities
    * Fix bg colour
    * FIgure out way to search for popular searches or recent searches
@@ -52,5 +52,8 @@ export default App;
    * Testing.
    * Maybe integrate CI CD
    * Maybe can  add images in the chat using cloudinary to store images and return link
+   *
+   *
+   * Add a contact page
    */
 }

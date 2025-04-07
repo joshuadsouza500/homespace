@@ -36,9 +36,9 @@ const Browse = () => {
     const updatedUrlParams = searchParams.toString();
     dispatch(getAllProperties(updatedUrlParams));
   }, [searchParams, dispatch]);
-  console.log("browse", Property);
+
   return (
-    <div className="h-full  bg-estate-50 pt-6 md:pt-16 pb-8 font-jakarta">
+    <div className="h-full  bg-slate-50 estate-50 pt-6 md:pt-16 pb-8 font-jakarta">
       <div className="flex flex-col gap-3 items-center justify-center px-2 md:px-6  w-full  max-w-5xl lg:max-w-6xl  xl:max-w-7xl  2xl:max-w-8xl mx-auto">
         <h2 className="text-4xl 2xl:text-5xl font-bold text-[#000929]">
           Featured Properties

@@ -35,11 +35,11 @@ export default function Navbar() {
   };
 
   return (
-    <nav className=" pt-4 lg:pt-5 pb-2 lg:pb-4 px-2      md:px-4  w-full  border-b">
-      <section className="max-w-6xl xl:max-w-7xl 2xl:max-w-[1440px] flex  pb-2 items-center justify-between mx-auto ">
+    <nav className=" pt-4 lg:pt-5 pb-2 lg:pb-3   w-full  border-b">
+      <section className="max-w-6xl xl:max-w-7xl 2xl:max-w-[1440px] flex  pb-2 items-center justify-between mx-auto px-2      md:px-4">
         <div className="flex items-center space-x-6  max-sm: w-full ">
           <div
-            className="flex items-center  justify-center space-x-1 cursor-pointer "
+            className="flex  items-center  justify-center space-x-1 cursor-pointer md:pl-1 "
             onClick={() => navigate("/")}
           >
             <img
@@ -49,7 +49,7 @@ export default function Navbar() {
               className="size-7 max-md:size-6 "
               src="/src/assets/Logo.svg"
             />
-            <span className=" text-lg md:text-xl pt-1 font-bold  text-Bgpurple">
+            <span className=" text-xl md:text-xl xl:text-2xl pt-0.5 font-bold  text-Bgpurple">
               HomeSpace
             </span>
           </div>
@@ -84,33 +84,50 @@ export default function Navbar() {
             </Button>
           </div> */}
 
-          <ul className="hidden md:flex space-x-4 text-muted-foreground font-medium  w-full justify-center">
+          <ul className="hidden md:flex space-x-4 max-xl:text-sm font-medium  w-full justify-center ">
             {" "}
-            <li>
+            <li className="hover:text-Primary transition-colors">
               {" "}
               <Link to="/">Home</Link>
             </li>
-            <li>
+            <li className="hover:text-Primary transition-colors">
               {" "}
-              <Link to="/property">Search</Link>
+              <Link to="/property">Properties</Link>
             </li>
-            <li>
+            <li className="hover:text-Primary transition-colors">
               {" "}
-              <Link to="/user/profile">Profile</Link>
+              <Link to="/about">About</Link>
+            </li>
+            <li className="hover:text-Primary transition-colors">
+              {" "}
+              <Link to="/contact">Contact</Link>
             </li>
           </ul>
         </div>
-        <div className="  lg:mr-1 flex items-center space-x-2 lg:space-x-3">
+        <div className="flex items-center gap-4 md:gap-5 justify-center  ">
+          {isSigned === true ? (
+            <UserDropdown handleLogout={handleLogout} user={auth.user} />
+          ) : (
+            <Link
+              to={"/signup"}
+              className=" font-medium hover:text-Primary  transition-colors  w-12 text-sm   "
+            >
+              Sign In
+            </Link>
+          )}
+
+          <Button className="bg-Primary  hover:bg-indigo-700">
+            <Link to="/user/property/create">List Property</Link>
+          </Button>
+        </div>
+        {/*   <div className="  lg:mr-1 flex items-center space-x-2 lg:space-x-3">
           <Link to="/user/property/create">
             <Button
               variant="outline"
-              className="max-sm:hidden  font-semibold border-Primary text-Primary  hover:text-Primary w-32 text-sm  max-md:h-9"
+              className="max-sm:hidden w-32   max-md:h-9 bg-Primary  hover:bg-indigo-700"
             >
-              Add Property
-              <PlusIcon
-                strokeWidth={3}
-                className="pl-1 size-3 md:size-5"
-              />{" "}
+              List Property
+            
             </Button>
           </Link>
           {isSigned === true ? (
@@ -120,7 +137,7 @@ export default function Navbar() {
               <Link to={"/signup"}>Sign up</Link>
             </Button>
           )}
-        </div>
+        </div> */}
       </section>
     </nav>
   );
