@@ -33,6 +33,7 @@ const ChatView = ({ chat, userId, onClose }) => {
     // Handle incoming messages
     newSocket.on("receiveMessage", (newMessage) => {
       setAllMessages((prev) => [newMessage, ...prev]); //Latest messages will be added to the start of array
+      //setIsOnline(isRecipientActive);
     });
     // Listen for status changes in this chat
 
@@ -84,7 +85,7 @@ const ChatView = ({ chat, userId, onClose }) => {
       </div>
     );
   }
-
+  console.log("online?", isOnline);
   return (
     <section className="h-full flex-1 flex flex-col bg-white animate-fade-in   rounded-lg shadow-xl backdrop-blur-md border-gray-100 border-[0.5px]">
       {/* Header */}
@@ -105,7 +106,7 @@ const ChatView = ({ chat, userId, onClose }) => {
             <h2 className="text-lg font-semibold capitalize">
               {otherParticipant.name}
             </h2>
-            {isOnline === "online" ? (
+            {isOnline ? (
               <div className="flex items-center justify-start pl-0.5 pt-0.5 gap-x-1 text-xs text-muted-foreground">
                 <span className="bg-[#00A884]  size-[10px]  rounded-full " />
                 <p className="leading-none">Online</p>
@@ -139,7 +140,7 @@ const ChatView = ({ chat, userId, onClose }) => {
           .map((msg, index) => {
             const isLastFromOther =
               index === 0 ||
-              (msg?.senderId === otherParticipant.id &&
+              (msg.senderId === otherParticipant.id &&
                 allMessages[allMessages.length - (index + 2)]?.senderId !==
                   otherParticipant.id);
             return (

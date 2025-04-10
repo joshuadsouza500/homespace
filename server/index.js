@@ -8,6 +8,7 @@ import AuthRoute from "./src/Routes/AuthRoute.js";
 import PropertyRoute from "./src/Routes/PropertyRoute.js";
 import { Server } from "socket.io";
 import userService from "./src/Service/userService.js";
+import activeChatTracker from "./src/Service/activeChatTracker.js";
 
 dotenv.config();
 const app = express();
@@ -54,6 +55,7 @@ async function main() {
 
     socket.on("joinRoom", (chatId, userId) => {
       socket.join(chatId);
+      activeChatTracker.addActiveUser(userId, socket.id, chatId);
       console.log(`${userId} with Socket ${socket.id} joined room ${chatId}`);
     });
 
@@ -74,6 +76,7 @@ async function main() {
 
     socket.on("disconnect", () => {
       console.log(`Socket disconnected: ${socket.id}`);
+      activeChatTracker.removeActiveUser(socket.id);
     });
   });
 }

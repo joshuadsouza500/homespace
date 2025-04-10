@@ -1,6 +1,7 @@
 import jwtProvider from "../config/jwtProvider.js";
 import prisma from "../lib/Prisma.js";
 import bcrypt from "bcrypt";
+import activeChatTracker from "./activeChatTracker.js";
 
 const createUser = async (reqData) => {
   //hashpassword and create user
@@ -233,6 +234,8 @@ const getUserChatById = async (userId, chatId) => {
       throw new Error("No chats found ");
     }
 
+    /* In get chat by id check if recipient is online or not  */
+
     // Update unreadCounts: Reset unread messages for the current user
     const updatedUnreadCounts = { ...chat.unreadCounts, [userId]: 0 };
 
@@ -325,7 +328,11 @@ const addMessage = async (userId, chatId, message) => {
 
     chat.participantsIds.forEach((id) => {
       if (id !== userId) {
-        updatedUnreadCounts[id] = (chat.unreadCounts?.[id] || 0) + 1; // get the current unread count for the user with id
+        //Check if receipiant is online
+        const recipientStatus = activeChatTracker.isUserActive(id, chatId);
+        if (!recipientStatus) {
+          updatedUnreadCounts[id] = (chat.unreadCounts?.[id] || 0) + 1; //Increment recipient unreadcou if is he notactive
+        }
       }
     });
 
@@ -348,7 +355,7 @@ const addMessage = async (userId, chatId, message) => {
       },
     });
 
-    return newMessage;
+    return newMessage; // Return the new message and recipient status
   } catch (error) {
     console.error("Error in addMessage:", error); // Logs full error stack
     throw new Error("Failed to send message. Please try again.");
