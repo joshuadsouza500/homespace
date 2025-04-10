@@ -28,6 +28,7 @@ import Bed_Bath from "../ui/Bed&Bath";
 import { useDispatch } from "react-redux";
 import { createProperty } from "@/store/property/action";
 import UploadWidget from "../ui/UploadWidget";
+import SearchBar from "../ui/SearchBar";
 
 const propertyTypes = ["Apartment", "Studio", "Villa", "Penthouse", "Condo"];
 const amenities = [
@@ -100,7 +101,7 @@ export default function AddProperty2() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Submitting property:", formData);
+    //console.log("Submitting property:", formData);
     dispatch(createProperty(formData));
   };
 
@@ -193,7 +194,7 @@ export default function AddProperty2() {
               />
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              <div className="flex-1">
+              <div className="flex-1 flex-col justify-end flex gap-y-2">
                 <Label className="font-medium font-jakarta" htmlFor="type">
                   Rent or Sell
                 </Label>
@@ -217,14 +218,20 @@ export default function AddProperty2() {
                 <Label className="font-medium font-jakarta" htmlFor="city">
                   City
                 </Label>
-                <Input
+                <SearchBar
+                  setFilters={
+                    (updateFn) => setFormData((prev) => updateFn(prev)) //setFilters takes another function (updateFn) as an argument. When setFilters is called, it executes updateFn, passing the current state of formData to it. // searchbar would send data like this tosetFIlters const updateCity = (prev) => ({ ...prev, city: 'New York' }); which then calls updatFn
+                  }
+                  city={formData.city} // Pass the current city value
+                />
+                {/* <Input
                   id="city"
                   name="city"
                   placeholder="Enter City"
                   value={formData.city}
                   onChange={handleInputChange}
                   required
-                />
+                /> */}
               </div>{" "}
               <div className="space-y-1">
                 <Label className="font-medium font-jakarta" htmlFor="governate">
@@ -256,7 +263,7 @@ export default function AddProperty2() {
               <Textarea
                 id="address"
                 name="address"
-                placeholder="Road number , Block number"
+                placeholder="Road no: , Block: , Flat no:"
                 value={formData.address}
                 onChange={handleInputChange}
                 required
@@ -321,7 +328,7 @@ export default function AddProperty2() {
                 </div>
               </div>
 
-              <div className=" h-full md:ml-2 flex flex-col max-md:gap-y-2  md:justify-around  ">
+              <div className=" h-full md:ml-2 flex flex-col gap-y-2  md:justify-around  ">
                 <Label className="font-medium font-jakarta">Utilities</Label>
                 <RadioGroup
                   name="Utilities"
@@ -329,7 +336,7 @@ export default function AddProperty2() {
                   onValueChange={(value) =>
                     setFormData((prev) => ({ ...prev, utilities: value }))
                   }
-                  className="flex space-x-4"
+                  className="flex gap-x-4 "
                 >
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="Exclusive" id="Exclusive" />
@@ -387,7 +394,9 @@ export default function AddProperty2() {
                 </Label>
                 <Bed_Bath
                   onSelectionChange={handleBedBathChange}
-                  className={"w-full md:w-full "}
+                  defaultBaths={formData?.bathrooms}
+                  defaultBeds={formData?.bedrooms}
+                  className={"w-full md:w-full xl:w-full "}
                 />
               </div>
 
@@ -422,6 +431,7 @@ export default function AddProperty2() {
                 onChange={handleInputChange}
                 required
               />
+              <p className="text-sm text-gray-500">Max: 70 words</p>
             </div>
             <div>
               <Label className="font-medium font-jakarta">Amenities</Label>

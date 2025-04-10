@@ -10,6 +10,8 @@ import {
   Phone,
   Calendar,
   Home,
+  Clock,
+  LockKeyhole,
 } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -117,6 +119,7 @@ export default function UserProfile({ user }) {
       // location.reload();
     }
   };
+  const comingSoon = true;
   //console.log("jj", user);
   return (
     <section className="container mx-auto px-4 lg:px-8 pt-4 lg:pt-8 pb-8 font-jakarta bg-estate-50">
@@ -390,7 +393,7 @@ export default function UserProfile({ user }) {
         {/* New Appointments Section */}
         <div className="grid grid-cols-1 xl:grid-cols-2 w-full gap-6 max-w-6xl mx-auto">
           {" "}
-          <Card className="shadow-sm ">
+          <Card className="shadow-sm relative">
             <CardHeader className="pb-3">
               <div className="flex items-center justify-between">
                 <CardTitle className="text-lg font-semibold text-estate-800 dark:text-white">
@@ -449,8 +452,34 @@ export default function UserProfile({ user }) {
                   ))}
               </div>
             </CardContent>
+            {/* Cpoming soon feature */}
+            {comingSoon && (
+              <div className="absolute inset-0 bg-gradient-to-br from-Bgpurple/80 to-blue-900/80 backdrop-blur-sm flex flex-col items-center justify-center text-white transition-all duration-300 rounded-md">
+                <div className="transform rotate-12 bg-Primary  text-white px-6 py-1 font-bold text-sm  rounded-r-sm absolute top-6 right-0">
+                  COMING SOON
+                </div>
+
+                <div className="flex flex-col items-center p-6 text-center">
+                  <div className="bg-white/10 p-4 rounded-full mb-4">
+                    <Clock className="h-10 w-10" />
+                  </div>
+                  <h3 className="text-2xl font-bold mb-2">
+                    Upcoming Appointments
+                  </h3>
+                  <p className="text-white/80 mb-6 max-w-xs">
+                    {`  We're working on this feature and it will be available in a future update.`}
+                  </p>
+                  <button className="group relative px-6 py-3 overflow-hidden rounded-lg bg-white/10 text-white shadow backdrop-blur-sm hover:bg-white/20 transition-all duration-300">
+                    <div className="relative flex items-center gap-2">
+                      <LockKeyhole className="h-4 w-4" />
+                      <span>Available in Future Update</span>
+                    </div>
+                  </button>
+                </div>
+              </div>
+            )}
           </Card>
-          <Card className="shadow-sm ">
+          <Card className="shadow-sm relative">
             <CardHeader className="pb-3">
               <div className="flex items-center justify-between">
                 <CardTitle className="text-lg font-semibold text-estate-800 dark:text-white">
@@ -509,6 +538,29 @@ export default function UserProfile({ user }) {
                   ))}
               </div>
             </CardContent>
+            {comingSoon && (
+              <div className="absolute inset-0 bg-gradient-to-br from-Bgpurple/80 to-blue-900/80 backdrop-blur-sm flex flex-col items-center justify-center text-white transition-all duration-300 rounded-md">
+                <div className="transform rotate-12 bg-Primary  text-white px-6 py-1 font-bold text-sm  rounded-r-sm absolute top-6 right-0">
+                  COMING SOON
+                </div>
+
+                <div className="flex flex-col items-center p-6 text-center">
+                  <div className="bg-white/10 p-4 rounded-full mb-4">
+                    <Clock className="h-10 w-10" />
+                  </div>
+                  <h3 className="text-2xl font-bold mb-2">Past Appointments</h3>
+                  <p className="text-white/80 mb-6 max-w-xs">
+                    {`  We're working on this feature and it will be available in a future update.`}
+                  </p>
+                  <button className="group relative px-6 py-3 overflow-hidden rounded-lg bg-white/10 text-white shadow backdrop-blur-sm hover:bg-white/20 transition-all duration-300">
+                    <div className="relative flex items-center gap-2">
+                      <LockKeyhole className="h-4 w-4" />
+                      <span>Available in Future Update</span>
+                    </div>
+                  </button>
+                </div>
+              </div>
+            )}
           </Card>
         </div>
       </section>

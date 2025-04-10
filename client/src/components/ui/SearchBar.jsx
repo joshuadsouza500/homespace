@@ -32,7 +32,7 @@ const citiesInBahrain = [
   // "Northern_Governorate",
 ];
 
-const SearchBar = ({ setFilters, className, applyFilters, isHero, city }) => {
+const SearchBar = ({ setFilters, className, isHero, city }) => {
   const [InputValue, setInputValue] = useState(city || "");
   const [suggestions, setSuggestions] = useState([]);
   const [isOpen, setIsopen] = useState(false);

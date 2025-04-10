@@ -253,7 +253,7 @@ const LargeHero = ({
             </Tabs>
             <div className="w-[85%] xl:w-8/12 h-24   rounded-tl-none rounded-xl bg-white/60  flex justify-between pl-4 pr-6 items-center shadow-xl backdrop-blur-md tranform left-1/2 absolute -translate-x-1/2 border-[0.5px] border-bborder">
               <div className=" w-[90%] border-r mr-1 ">
-                <Label className="pl-1.5" htmlFor="Location">
+                <Label className="pl-1.5 font-semibold" htmlFor="Location">
                   Location
                 </Label>
                 <SearchBar
@@ -265,7 +265,7 @@ const LargeHero = ({
               </div>
 
               <div className="w-full pl-3   space-y-0.5">
-                <Label className="pl-1 " htmlFor="Location">
+                <Label className="pl-1 font-semibold" htmlFor="Location">
                   Property Type
                 </Label>
                 <Select

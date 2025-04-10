@@ -118,7 +118,7 @@ const PropertyDetails = () => {
         </p>
 
         <div className="max-md:overflow-y-scroll md:gap-y-12 gap-x-4 lg:gap-x-8 justify-center lg:justify-start  mx-auto flex md:grid grid-cols-2 lg:grid-cols-3 similarProps">
-          {Property.properties?.slice(0, 6).map((property) => (
+          {Property.properties.properties?.slice(0, 6).map((property) => (
             <SimilarProps key={property?.id} property={property} />
           ))}
         </div>

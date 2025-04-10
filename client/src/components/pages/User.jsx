@@ -172,4 +172,11 @@ export default User;
  * Filters in my properties
  * Add multiple properties so then check and implement pagination for it
  * Chat view
+ *
+ *
+ *
+ * Add Property:
+ * * Fix dropdown : Ability to use arrows to navigate
+ ** Fix the upload button bug
+ ** The notification received on sucessful property ccreation design it
  */

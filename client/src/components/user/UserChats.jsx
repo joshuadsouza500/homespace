@@ -46,11 +46,31 @@ const UserChats = ({ user }) => {
     setIsMobileViewOpen(false);
     navigate(`/user/chat/`, { replace: true });
   };
+  //Wrapping it with async ensures both run in order, and sidebar gets up-to-date info right after opening the chat.
+  /*  const handleChatSelect = (chatId) => {
+    dispatch(getUserChats()); // Refresh chat list to update unread counts
 
-  const handleChatSelect = (chatId) => {
     dispatch(getChatById(chatId)); // Fetch chat details and update selectedChat
     setIsMobileViewOpen(true); // Open chat view
     navigate(`/user/chat/${chatId}`, { replace: true }); //replace doesnt cause page reload
+  }; */
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleChatSelect = async (chatId) => {
+    try {
+      setIsLoading(true);
+      setIsMobileViewOpen(true);
+      navigate(`/user/chat/${chatId}`, { replace: true });
+
+      await dispatch(getChatById(chatId));
+      // Then refresh the chat list to update unread indicators
+      await dispatch(getUserChats());
+    } catch (error) {
+      console.error("Error selecting chat:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -82,6 +102,12 @@ const UserChats = ({ user }) => {
             onClose={handleCloseChat}
             userId={user?.id}
           />
+        ) : isLoading ? (
+          <div className="flex-1 flex items-center justify-center bg-white mx-2 h-full rounded-lg">
+            <div className="text-center">
+              <p className="text-estate-500">Loading chat...</p>
+            </div>
+          </div>
         ) : (
           <div className="flex-1 flex items-center justify-center text-gray-500  bg-white mx-2  capitalize shadow-lg  h-full  rounded-lg">
             <div className="text-center">
@@ -103,3 +129,8 @@ const UserChats = ({ user }) => {
 };
 
 export default UserChats;
+
+/*
+ * If i clicked the unreadmessgae i.e clicked the chat in sidebar which has new mesage it stil shows as unread on the side. [So when clicking getCHatById we should refresh so getchats get updated unreadcounts]
+ * When im in chatView and a new message comes in if i swicth or refresh it will show as unreadmessage
+ */
