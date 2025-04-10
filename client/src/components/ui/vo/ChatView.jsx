@@ -26,7 +26,7 @@ const ChatView = ({ chat, userId, onClose }) => {
   useEffect(() => {
     const newSocket = io("http://localhost:5000");
     setSocket(newSocket);
-    newSocket.emit("joinRoom", chat.id, userId);
+    newSocket.emit("joinRoom", chat?.id, userId);
     if (chat) {
       setAllMessages(chat.messages || []); // Set initial messages if they exist
     }
@@ -41,7 +41,7 @@ const ChatView = ({ chat, userId, onClose }) => {
 
       newSocket.disconnect(); // Optionally disconnect
     };
-  }, [chat.id]);
+  }, [chat?.id]);
 
   const handleSubmit = () => {
     if (message.trim() && socket) {
@@ -84,6 +84,7 @@ const ChatView = ({ chat, userId, onClose }) => {
       </div>
     );
   }
+
   return (
     <section className="h-full flex-1 flex flex-col bg-white animate-fade-in   rounded-lg shadow-xl backdrop-blur-md border-gray-100 border-[0.5px]">
       {/* Header */}

@@ -7,7 +7,7 @@ import { getChatById, getUserChats } from "@/store/user/action";
 import { getUserProfile } from "@/store/auth/action";
 import { RESET_SELECTED_CHAT } from "@/store/user/actionType";
 
-import { SearchIcon } from "lucide-react";
+import { LoaderCircle, SearchIcon } from "lucide-react";
 
 //Left side displays all chats, last message and unread count.  (Maybe message image)
 //Right side displays the chat top sender profile maybe option to call and maybe on clicking sender profile can see other properties
@@ -62,10 +62,11 @@ const UserChats = ({ user }) => {
       setIsLoading(true);
       setIsMobileViewOpen(true);
       navigate(`/user/chat/${chatId}`, { replace: true });
-
       await dispatch(getChatById(chatId));
-      // Then refresh the chat list to update unread indicators
       await dispatch(getUserChats());
+
+      // Then refresh the chat list to update unread indicators
+      //  ;
     } catch (error) {
       console.error("Error selecting chat:", error);
     } finally {
@@ -96,14 +97,40 @@ const UserChats = ({ user }) => {
               md:block flex-1 max-md:pt-14 m-2 
             `}
       >
-        {SelectedChat ? (
+        {isLoading ? (
+          <div className="flex-1 flex items-center justify-center bg-white mx-2 h-full rounded-lg gap-x-2">
+            <LoaderCircle className="size-6 animate-spin" />
+            <div className="text-center">
+              <p className="text-estate-500 text-xl">Loading chat...</p>
+            </div>
+          </div>
+        ) : (
+          <ChatView
+            chat={SelectedChat}
+            onClose={handleCloseChat}
+            userId={user?.id}
+          />
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default UserChats;
+
+/*
+ * If i clicked the unreadmessgae i.e clicked the chat in sidebar which has new mesage it stil shows as unread on the side. [So when clicking getCHatById we should refresh so getchats get updated unreadcounts]
+ * When im in chatView and a new message comes in if i swicth or refresh it will show as unreadmessage
+ */
+/*  {SelectedChat ? (
           <ChatView
             chat={SelectedChat}
             onClose={handleCloseChat}
             userId={user?.id}
           />
         ) : isLoading ? (
-          <div className="flex-1 flex items-center justify-center bg-white mx-2 h-full rounded-lg">
+          <div className="flex-1 flex items-center justify-center bg-white mx-2 h-full rounded-lg gap-x-1">
+            <LoaderCircle className="size-6 " />
             <div className="text-center">
               <p className="text-estate-500">Loading chat...</p>
             </div>
@@ -122,15 +149,4 @@ const UserChats = ({ user }) => {
               </p>
             </div>
           </div>
-        )}
-      </div>
-    </div>
-  );
-};
-
-export default UserChats;
-
-/*
- * If i clicked the unreadmessgae i.e clicked the chat in sidebar which has new mesage it stil shows as unread on the side. [So when clicking getCHatById we should refresh so getchats get updated unreadcounts]
- * When im in chatView and a new message comes in if i swicth or refresh it will show as unreadmessage
- */
+        )} */
