@@ -19,7 +19,9 @@ const UserDropdown = ({ handleLogout, user }) => {
             src={user?.avatar}
           />
         ) : (
-          <h1>{user?.name[0].toUpperCase()}</h1>
+          <h1 className="text-2xl  text-Bgpurple">
+            {user?.name[0].toUpperCase()}
+          </h1>
         )}
       </DropdownMenuTrigger>
       <DropdownMenuContent

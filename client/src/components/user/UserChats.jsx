@@ -7,7 +7,7 @@ import { getChatById, getUserChats } from "@/store/user/action";
 import { getUserProfile } from "@/store/auth/action";
 import { RESET_SELECTED_CHAT } from "@/store/user/actionType";
 
-import { LoaderCircle, SearchIcon } from "lucide-react";
+import { LoaderCircle } from "lucide-react";
 
 //Left side displays all chats, last message and unread count.  (Maybe message image)
 //Right side displays the chat top sender profile maybe option to call and maybe on clicking sender profile can see other properties
@@ -84,7 +84,7 @@ const UserChats = ({ user }) => {
       >
         <ChatSidebar
           chats={userChats}
-          activeChat={SelectedChat?.id}
+          activeChat={SelectedChat?.chat?.id}
           onChatSelect={handleChatSelect}
           userId={user?.id}
         />
@@ -106,9 +106,10 @@ const UserChats = ({ user }) => {
           </div>
         ) : (
           <ChatView
-            chat={SelectedChat}
-            onClose={handleCloseChat}
+            chat={SelectedChat?.chat}
+            status={SelectedChat?.status}
             userId={user?.id}
+            onClose={handleCloseChat}
           />
         )}
       </div>

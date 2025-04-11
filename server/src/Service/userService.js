@@ -172,7 +172,7 @@ const getUserProperties = async (userId) => {
     const userProperties = await prisma.property.findMany({
       where: { userId: userId },
     });
-    console.log("user props", userProperties);
+    //  console.log("user props", userProperties);
     if (!userProperties) {
       throw new Error("No properties listed by this user ");
     }
@@ -238,13 +238,23 @@ const getUserChatById = async (userId, chatId) => {
 
     // Update unreadCounts: Reset unread messages for the current user
     const updatedUnreadCounts = { ...chat.unreadCounts, [userId]: 0 };
+    let status = false;
+    chat.participantsIds.forEach((id) => {
+      if (id !== userId) {
+        //Check if receipiant is online
+        const recipientStatus = activeChatTracker.isUserActive(id, chatId);
+        if (recipientStatus) {
+          status = true;
+        }
+      }
+    });
 
     await prisma.chat.update({
       where: { id: chatId },
       data: { unreadCounts: updatedUnreadCounts }, // [userId]: 0, //Overwrites the entire unreadCounts object. so if user2 had unreadcount it would completly remove it, so we need to spread it first then change
     });
 
-    return chat;
+    return { chat, status };
   } catch (error) {
     throw new Error(error.message);
   }
@@ -256,7 +266,7 @@ const addChat = async (userId, otherParticipant) => {
         participantsIds: [userId, otherParticipant],
       },
     });
-    // console.log("service cretae chat", userChat);
+
     return userChat;
   } catch (error) {
     throw new Error(error.message);
@@ -285,7 +295,7 @@ const deleteChat = async (userId, chatId) => {
       },
     });
 
-    console.log(`Deleted messages associated with chat ID: ${chatId}`);
+    //console.log(`Deleted messages associated with chat ID: ${chatId}`);
     await prisma.chat.delete({
       where: {
         id: chatId,

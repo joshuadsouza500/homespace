@@ -122,21 +122,27 @@ const ChatSidebar = ({ chats, activeChat, onChatSelect, userId }) => {
                           } `}
                         >
                           {/* Format the time of the last message// Checks if the last message was sent today? if so displays the time. if not displays the day it was sent */}
-                          {new Date(
-                            chat.messages[0]?.createdAt
-                          ).toLocaleDateString() ===
-                          new Date().toLocaleDateString()
-                            ? new Date(
+                          {chat.messages.length > 0 ? (
+                            new Date(
+                              chat.messages[0]?.createdAt
+                            ).toLocaleDateString() ===
+                            new Date().toLocaleDateString() ? (
+                              new Date(
                                 chat.messages[0]?.createdAt
                               ).toLocaleTimeString([], {
                                 hour: "2-digit",
                                 minute: "2-digit",
                               })
-                            : new Date(
+                            ) : (
+                              new Date(
                                 chat.messages[0]?.createdAt
                               ).toLocaleDateString("en-US", {
                                 weekday: "long",
-                              })}
+                              })
+                            )
+                          ) : (
+                            <span> </span>
+                          )}
                         </span>
                       </div>
                     </div>

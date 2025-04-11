@@ -11,11 +11,10 @@ import {
 import ChatMessage from "./ChatMessage";
 import { io } from "socket.io-client";
 
-const ChatView = ({ chat, userId, onClose }) => {
+const ChatView = ({ chat, status, userId, onClose }) => {
   const [socket, setSocket] = useState();
   const [message, setMessage] = useState(""); //used for message input
   const [allMessages, setAllMessages] = useState([]); //Used to store all the messages
-  const [isOnline, setIsOnline] = useState(false);
 
   const endOfMessagesRef = useRef(null);
 
@@ -33,7 +32,6 @@ const ChatView = ({ chat, userId, onClose }) => {
     // Handle incoming messages
     newSocket.on("receiveMessage", (newMessage) => {
       setAllMessages((prev) => [newMessage, ...prev]); //Latest messages will be added to the start of array
-      //setIsOnline(isRecipientActive);
     });
     // Listen for status changes in this chat
 
@@ -85,7 +83,7 @@ const ChatView = ({ chat, userId, onClose }) => {
       </div>
     );
   }
-  console.log("online?", isOnline);
+
   return (
     <section className="h-full flex-1 flex flex-col bg-white animate-fade-in   rounded-lg shadow-xl backdrop-blur-md border-gray-100 border-[0.5px]">
       {/* Header */}
@@ -106,13 +104,16 @@ const ChatView = ({ chat, userId, onClose }) => {
             <h2 className="text-lg font-semibold capitalize">
               {otherParticipant.name}
             </h2>
-            {isOnline ? (
+            {status ? (
               <div className="flex items-center justify-start pl-0.5 pt-0.5 gap-x-1 text-xs text-muted-foreground">
                 <span className="bg-[#00A884]  size-[10px]  rounded-full " />
-                <p className="leading-none">Online</p>
+                <p className="leading-none">Active</p>
               </div>
             ) : (
-              ""
+              <div className="flex items-center justify-start pl-0.5 pt-0.5 gap-x-1 text-xs text-muted-foreground">
+                <span className="bg-gray-200  size-[10px]  rounded-full " />
+                <p className="leading-none">Inactive</p>
+              </div>
             )}
           </div>
         </div>
