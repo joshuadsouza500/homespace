@@ -325,7 +325,7 @@ export default function PropertyDetails2({ property, handleSave }) {
                     <Phone className="mr-2 h-4 w-4" /> Call Agent
                   </Button>
                 </div>
-                <div className="space-y-1.5  cursor-pointer hidden lg :block">
+                <div className="space-y-1.5  cursor-pointer hidden lg:block">
                   <div className="flex items-center hover:text-Primary">
                     <Phone className="size-4   mr-2 text-muted-foreground" />
                     <span>{property?.user?.mobile}</span>
@@ -341,11 +341,11 @@ export default function PropertyDetails2({ property, handleSave }) {
                     </div>
                   ) : null}
                 </div>
-                {/**/}{" "}
+                {/*{" "}
                 <div>
                   <h4 className="font-medium mb-2">Schedule a Viewing</h4>
                   <div className="grid grid-cols-3 gap-2 mb-4">
-                    {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
+                    {["Sun", "Mon", "Tue", "Wed", "Thu", "Sat"].map((day) => (
                       <Button
                         key={day}
                         variant="outline"
@@ -360,7 +360,7 @@ export default function PropertyDetails2({ property, handleSave }) {
                     <Calendar className="mr-2 h-4 w-4" /> View All Available
                     Times
                   </Button>
-                </div>
+                </div>*/}
               </CardContent>
             </Card>
           </div>

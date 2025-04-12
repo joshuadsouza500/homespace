@@ -43,7 +43,7 @@ const features = [
 //
 export default function Main() {
   return (
-    <div className=" h-auto   py-10 bg-[#EDF9F9] estate-50">
+    <div className=" h-auto   py-14 0 md:py-24 bg-slate-50 [#EDF9F9] estate-50">
       <div className="px-2 md:px-6  w-full  max-w-5xl lg:max-w-6xl  xl:max-w-7xl  2xl:max-w-8xl mx-auto relative grid grid-cols-1 lg:grid-cols-2 gap-6 place-items-start justify-items-center">
         {/* Left Side: Card with image  f7f6fc*/}
 
@@ -71,13 +71,13 @@ export default function Main() {
 
         {/* Right Side: Features */}
         <section className="lg:mt-6">
-          <h2 className="text-4xl font-bold text-[#000929] max-md:text-center pb-2">
+          <h2 className="text-3xl md:4xl font-bold text-[#000929] max-lg:text-center pb-2">
             Why Choose Us
           </h2>
-          <p className="pl-1 max-sm:text-sm  text-pretty text-muted-foreground max-md:text-center tracking-wide pb-4 max-w-lg">
-            Find your dream home in just a few simple steps.
+          <p className="pl-1 max-sm:text-sm max-sm:w-[80%]  mx-auto text-pretty text-muted-foreground max-lg:text-center tracking-wide pb-4 max-w-lg">
+            Find your dream home in just a few simple steps
           </p>
-          <div className=" w-[95%] min-w-[30rem] 2xl:min-w-[36rem] mx-auto ">
+          <div className=" w-[95%]  min-w-[25rem] sm:min-w-[29rem] 2xl:min-w-[36rem] mx-auto ">
             <Accordion
               type="single"
               collapsible
@@ -89,7 +89,7 @@ export default function Main() {
                   key={content.title}
                   className=" border-b-Primary/15 py-3  "
                 >
-                  <AccordionTrigger className="py-2 text-xl xl:text-2xl font-semibold text-real-dark  ">
+                  <AccordionTrigger className="py-2 text-xl xl:text-2xl font-semibold text-real-dark   ">
                     <span className=" flex items-center gap-x-4 text-text ">
                       {" "}
                       <span className=" flex items-center justify-center aspect-square size-11  rounded-md   bg-Primary/20 text-Bgpurple ">
@@ -99,7 +99,7 @@ export default function Main() {
                       {content.title}
                     </span>
                   </AccordionTrigger>
-                  <AccordionContent className="text-sm text-pretty tracking-wider leading-snug text-muted-foreground  ml-16 font-normal  mr-4 max-w-sm 2xl:max-w-md  ">
+                  <AccordionContent className="text-xs md:text-sm text-pretty tracking-wider max-sm:leading-relaxed md:leading-normal text-muted-foreground  ml-16 font-normal  mr-4 max-w-sm 2xl:max-w-md  ">
                     {content.description}
                   </AccordionContent>
                 </AccordionItem>

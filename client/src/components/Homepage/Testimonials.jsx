@@ -74,14 +74,14 @@ export default function Testimonials() {
 
   return (
     <section className=" pt-12 md:pt-16 pb-20 md:pb-28 bg-white [#f7f6fc] ">
-      <div className="container px-2 md:px-6  w-full  max-w-5xl lg:max-w-6xl  xl:max-w-7xl  2xl:max-w-8xl mx-auto">
+      <div className="container px-2 md:px-6  w-full  max-w-5xl lg:max-w-6xl  xl:max-w-7xl  2xl:max-w-8xl mx-auto ">
         <div className="flex flex-col gap-3 items-center mt-8 mb-12  ">
           <h2 className="text-3xl md:text-4xl text-center pb-1  font-bold text-text">
             What Our Clients Say
           </h2>
-          <p className=" max-sm:text-sm w-[90%] tracking-wide md:w-[50%] lg:w-[35%] text-center text-[#4d5461] pb-3">
+          <p className=" max-sm:leading-relaxed max-sm:text-sm w-[90%] tracking-wide sm:w-[50%] lg:w-[35%] text-center text-muted-foreground pb-3">
             Hear from happy buyers and sellers {"who've"} achieved their real
-            estate goals with us.
+            estate goals with us
           </p>
         </div>
         <div>
@@ -100,14 +100,14 @@ export default function Testimonials() {
                   className=" relative basis-[75%] md:basis-1/2 lg:basis-1/3    overflow -hidden group mt-1"
                 >
                   <div
-                    className={` px-10 py-8 mb-8 rounded-lg text-center relative tracking-wide  ${
+                    className={` px-7 sm:px-10 py-8 mb-8 rounded-lg text-center relative tracking-wide  ${
                       currentIndex === index
                         ? "bg-Primary scale-105 text-white shadow-lg "
                         : "opacity-40 scale-95 text-black"
                     }`}
                   >
-                    <Quote className="size-7 fill-black text-black/0 opacity-20 rotate-180 fixed left-3 top-7" />
-                    <p className="text-sm  2xl :text-base  font-medium leading-relaxed  text-pretty text-">
+                    <Quote className="size-7 fill-black text-black/0 opacity-20 rotate-180 fixed left-2 sm:left-3 top-5 sm:top-7" />
+                    <p className="text-xs  sm:text-sm  2xl :text-base  font-medium leading-relaxed  text-pretty ">
                       {testimonial.quote}
                     </p>
                     <span

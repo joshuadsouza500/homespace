@@ -109,7 +109,7 @@ export default function Navbar() {
             <UserDropdown handleLogout={handleLogout} user={auth.user} />
           ) : (
             <Link
-              to={"/signup"}
+              to={"/signin"}
               className=" font-medium hover:text-Primary  transition-colors  w-12 text-sm   "
             >
               Sign In

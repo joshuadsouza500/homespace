@@ -38,12 +38,12 @@ const Browse = () => {
   }, [searchParams, dispatch]);
 
   return (
-    <div className="h-full  bg-slate-50 estate-50 pt-6 md:pt-16 pb-8 font-jakarta">
+    <div className="h-full  bg-slate-50 estate-50 pt-10 md:pt-16 pb-16 font-jakarta">
       <div className="flex flex-col gap-3 items-center justify-center px-2 md:px-6  w-full  max-w-5xl lg:max-w-6xl  xl:max-w-7xl  2xl:max-w-8xl mx-auto">
-        <h2 className="text-4xl 2xl:text-5xl font-bold text-[#000929]">
+        <h2 className="text-3xl md:text-4xl  font-bold text-[#000929]">
           Featured Properties
         </h2>
-        <p className=" max-sm:text-sm  text-pretty text-[#4d5461] pb-3">
+        <p className=" max-sm:text-sm  text-pretty text-[#4d5461] pb-3   mx-auto text-muted-foreground tracking-wide ">
           Here are some properties near you
         </p>
         <Tabs
@@ -53,7 +53,7 @@ const Browse = () => {
             handleChange({ id: "type", value });
           }}
         >
-          <TabsList className="bg-light_gray h-12 w-44 md:w-56    shadow-sm ring-2  ring-[#E0DEF7]">
+          <TabsList className="bg-light_gray/50 h-12 w-44 md:w-56    shadow-sm ring-2  ring-[#E0DEF7]">
             <TabsTrigger
               value="Rent"
               className="w-20 md:w-28  text-base data-[state=active]:text-Primary data-[state=active]:border border-bborder font-bold  data-[state=active]:shadow-sm shadow-Primary"

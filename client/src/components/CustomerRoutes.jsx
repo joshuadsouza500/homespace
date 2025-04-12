@@ -5,6 +5,7 @@ import Footer from "./Footer";
 import HomePage from "./pages/HomePage";
 import Search from "./pages/Search";
 import PropertyDetails from "./pages/PropertyDetails";
+import ContactPage from "./pages/ContactPage";
 
 const CustomerRoutes = () => {
   return (
@@ -14,6 +15,7 @@ const CustomerRoutes = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/property" element={<Search />} />
         <Route path="/property/:propertyId" element={<PropertyDetails />} />
+        <Route path="/contact" element={<ContactPage />} />
       </Routes>
       <Footer />
     </div>

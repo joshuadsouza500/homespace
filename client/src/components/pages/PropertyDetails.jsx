@@ -96,7 +96,7 @@ const PropertyDetails = () => {
                   value={`item-${index}`}
                   className="py-2"
                 >
-                  <AccordionTrigger className="flex items-center justify-between py-4 2 xl:text-xl text-lg font-medium">
+                  <AccordionTrigger className="flex items-center justify-between py-4 2 xl:text-xl text-lg font-medium md:tracking-wide">
                     {faq.question}
                   </AccordionTrigger>
                   <AccordionContent className="pb-4 pt-1 mr-5 md:mr-8 lg:text-base text-muted-foreground text-sm text-pretty tracking-wider leading-snug font-normal">
@@ -118,7 +118,7 @@ const PropertyDetails = () => {
         </p>
 
         <div className="max-md:overflow-y-scroll md:gap-y-12 gap-x-4 lg:gap-x-8 justify-center lg:justify-start  mx-auto flex md:grid grid-cols-2 lg:grid-cols-3 similarProps">
-          {Property.properties.properties?.slice(0, 6).map((property) => (
+          {Property.properties?.properties?.slice(0, 6).map((property) => (
             <SimilarProps key={property?.id} property={property} />
           ))}
         </div>

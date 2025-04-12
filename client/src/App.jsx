@@ -24,12 +24,9 @@ export default App;
 
 {
   /** THINGS TO ADD
-   * Fix navbar li items || Mayve add a saved properties after user is logged in 
    * Fix bg colour
-   * Have to filter for governate and cities
-   * FIgure out way to search for popular searches or recent searches
+   * Figure out way to search for popular searches or recent searches
    * maybe add navbar hamburger menu for mobile
-   * Check chat section and fix bugs
   /**
 
 
@@ -37,11 +34,12 @@ export default App;
   /**
    * EXTRAS
    * Add number animations for mobile hero
-   * Add a Booking section in property details page and then add a calendar to the user profile check windows ss
+   *
    * Prop validation
    * Testing
    * Footer design check 22 march ss VM
-   * Add a contact page
+   *
+   * Add a Booking section in property details page and then add a calendar to the user profile check windows ss
    *
    * Add animation for smooth transition when images are carsousel
    * Add Property add ability to add bullet points bold etc to description bar

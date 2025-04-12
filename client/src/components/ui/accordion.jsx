@@ -21,7 +21,7 @@ const AccordionTrigger = React.forwardRef(
       <AccordionPrimitive.Trigger
         ref={ref}
         className={cn(
-          " font-medium    group text-left flex flex-1 gap-10 items-center justify-between py-4 transition-all duration-300",
+          " font-medium    group text-left flex flex-1 gap-10 items-center justify-between py-4 transition-all duration-300 ease-in-out",
           className
         )}
         {...props}
@@ -33,7 +33,7 @@ const AccordionTrigger = React.forwardRef(
         />
         <MinusCircleIcon
           strokeWidth={1.2}
-          className="size-8 shrink-0 group-data-[state=closed]:hidden fill- Bgpurple/80 text-Bgpurple border-none"
+          className="size-8 shrink-0 group-data-[state=closed]:hidden fill- Bgpurple/80 text-Bgpurple border-none "
         />
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>

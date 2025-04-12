@@ -37,10 +37,10 @@ const HowItWorks = () => {
       <div className="px-2 md:px-6  w-full  max-w-5xl lg:max-w-6xl  xl:max-w-7xl  2xl:max-w-8xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 xl:gap-20 items-center">
           <div className="space-y-3 ">
-            <h2 className="text-4xl font-bold text-[#000929] max-lg:text-center">
-              How it works?
+            <h2 className="text-3xl md:text-4xl font-bold text-[#000929] max-lg:text-center ">
+              How It Works?
             </h2>
-            <p className=" max-sm:text-sm  text-pretty text-muted-foreground max-lg:text-center tracking-wide pb-8 ">
+            <p className=" max-sm:text-sm max-sm:w-[80%]  mx-auto  text-pretty text-muted-foreground max-lg:text-center tracking-wide pb-8 ">
               Find your dream home in just a few simple steps.
             </p>
 
@@ -66,7 +66,7 @@ const HowItWorks = () => {
                     <h3 className="text-xl font-semibold mb-1 text-real-dark">
                       {step.title}
                     </h3>
-                    <p className="max-md:tracking-wide text-muted-foreground text-xs md:text-sm w-[90%] md:w-[85%]">
+                    <p className="tracking-wider leading-snug text-muted-foreground text-xs md:text-sm  w-full pr-1 sm:w-[90%] md:w-[85%]">
                       {step.desc}
                     </p>
                   </div>
