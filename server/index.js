@@ -56,11 +56,13 @@ async function main() {
     socket.on("joinRoom", (chatId, userId) => {
       socket.join(chatId);
       activeChatTracker.addActiveUser(userId, socket.id, chatId);
+      io.to(chatId).emit("userJoined", { userId }); //Emits a userJoined to all connected
       console.log(`${userId} with Socket ${socket.id} joined room ${chatId}`);
     });
 
     socket.on("sendMessage", async ({ userId, chatId, message }) => {
       try {
+        io.to(chatId).emit("userJoined", { userId }); //This makes sure the status gets updated for both sides
         const newMessage = await userService.addMessage(
           userId,
           chatId,
@@ -76,7 +78,14 @@ async function main() {
 
     socket.on("disconnect", () => {
       console.log(`Socket disconnected: ${socket.id}`);
-      activeChatTracker.removeActiveUser(socket.id);
+      const userId = activeChatTracker.getUserIdBySocketId(socket.id);
+      const chatId = activeChatTracker.getChatIdBySocketId(socket.id);
+
+      if (userId && chatId) {
+        activeChatTracker.removeActiveUser(socket.id);
+        io.to(chatId).emit("userLeft", { userId }); // Notify all participants that the user left
+        console.log(`User ${userId} left room ${chatId}`);
+      }
     });
   });
 }

@@ -17,8 +17,13 @@ const UserChats = ({ user }) => {
   const navigate = useNavigate();
   const { chatId } = useParams();
   const dispatch = useDispatch();
-  const userChats = useSelector((state) => state.user.userChats);
+  /*   const userChats = useSelector((state) => state.user.userChats);
   const SelectedChat = useSelector((state) => state.user.selectedChat);
+  const Status = useSelector((state) => state.user.status); */
+
+  const { userChats, selectedChat: SelectedChat } = useSelector(
+    (state) => state.user
+  );
   //st user = useSelector((store) => store.auth.user);
   // Use useEffect to fetch user properties when the component mounts
 
@@ -84,7 +89,7 @@ const UserChats = ({ user }) => {
       >
         <ChatSidebar
           chats={userChats}
-          activeChat={SelectedChat?.chat?.id}
+          activeChat={SelectedChat?.id}
           onChatSelect={handleChatSelect}
           userId={user?.id}
         />
@@ -106,8 +111,7 @@ const UserChats = ({ user }) => {
           </div>
         ) : (
           <ChatView
-            chat={SelectedChat?.chat}
-            status={SelectedChat?.status}
+            chat={SelectedChat}
             userId={user?.id}
             onClose={handleCloseChat}
           />
@@ -119,10 +123,6 @@ const UserChats = ({ user }) => {
 
 export default UserChats;
 
-/*
- * If i clicked the unreadmessgae i.e clicked the chat in sidebar which has new mesage it stil shows as unread on the side. [So when clicking getCHatById we should refresh so getchats get updated unreadcounts]
- * When im in chatView and a new message comes in if i swicth or refresh it will show as unreadmessage
- */
 /*  {SelectedChat ? (
           <ChatView
             chat={SelectedChat}

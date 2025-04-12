@@ -20,6 +20,7 @@ import {
   Building,
   BedDouble,
   Plug,
+  Calendar,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -66,7 +67,6 @@ import { createChat } from "@/store/user/action";
 }
 
 export default function PropertyDetails2({ property, handleSave }) {
-  console.log("pp", property);
   const amenityIconMap = {
     ["Air Conditioning"]: <Snowflake className="size-5 mr-2 text-Primary" />,
     ["Parking"]: <CarFront className="size-5 mr-2 text-Primary" />,
@@ -309,7 +309,6 @@ export default function PropertyDetails2({ property, handleSave }) {
                     </div>
                   </div>
                 </div>
-
                 <div className="space-y-4">
                   <Button
                     className=" bg-indigo-700 w-full hover:bg-Primary"
@@ -326,8 +325,7 @@ export default function PropertyDetails2({ property, handleSave }) {
                     <Phone className="mr-2 h-4 w-4" /> Call Agent
                   </Button>
                 </div>
-
-                <div className="space-y-1.5  cursor-pointer hidden lg:block">
+                <div className="space-y-1.5  cursor-pointer hidden lg :block">
                   <div className="flex items-center hover:text-Primary">
                     <Phone className="size-4   mr-2 text-muted-foreground" />
                     <span>{property?.user?.mobile}</span>
@@ -343,8 +341,8 @@ export default function PropertyDetails2({ property, handleSave }) {
                     </div>
                   ) : null}
                 </div>
-
-                {/* Booking <div>
+                {/**/}{" "}
+                <div>
                   <h4 className="font-medium mb-2">Schedule a Viewing</h4>
                   <div className="grid grid-cols-3 gap-2 mb-4">
                     {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
@@ -362,7 +360,7 @@ export default function PropertyDetails2({ property, handleSave }) {
                     <Calendar className="mr-2 h-4 w-4" /> View All Available
                     Times
                   </Button>
-                </div> */}
+                </div>
               </CardContent>
             </Card>
           </div>

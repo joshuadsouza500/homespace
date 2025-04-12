@@ -10,18 +10,19 @@ import {
 } from "lucide-react";
 import ChatMessage from "./ChatMessage";
 import { io } from "socket.io-client";
+import { useSelector } from "react-redux";
 
-const ChatView = ({ chat, status, userId, onClose }) => {
+const ChatView = ({ chat, userId, onClose }) => {
   const [socket, setSocket] = useState();
   const [message, setMessage] = useState(""); //used for message input
   const [allMessages, setAllMessages] = useState([]); //Used to store all the messages
-
+  const [status, setStatus] = useState(false);
   const endOfMessagesRef = useRef(null);
 
   const otherParticipant = chat?.participants?.find(
     (participant) => participant.id !== userId
   );
-
+  //const status = useSelector((state) => state.user.status);
   useEffect(() => {
     const newSocket = io("http://localhost:5000");
     setSocket(newSocket);
@@ -33,11 +34,22 @@ const ChatView = ({ chat, status, userId, onClose }) => {
     newSocket.on("receiveMessage", (newMessage) => {
       setAllMessages((prev) => [newMessage, ...prev]); //Latest messages will be added to the start of array
     });
-    // Listen for status changes in this chat
+    // Listen for the recipient joining the chat
+    newSocket.on("userJoined", ({ userId: joinedUserId }) => {
+      if (joinedUserId === otherParticipant?.id) {
+        setStatus(true); // Update the online status
+      }
+    });
+    newSocket.on("userLeft", ({ userId: InactiveUsersId }) => {
+      if (InactiveUsersId === otherParticipant?.id) {
+        setStatus(false); // Update the online status when user disconnects
+      }
+    });
 
     return () => {
       newSocket.off("receiveMessage");
-
+      newSocket.off("userJoined");
+      newSocket.off("userLeft");
       newSocket.disconnect(); // Optionally disconnect
     };
   }, [chat?.id]);
@@ -56,6 +68,10 @@ const ChatView = ({ chat, status, userId, onClose }) => {
       handleSubmit();
     }
   };
+
+  /* useEffect(() => {
+    console.log("status changed", status);
+  }, status); */
 
   useEffect(() => {
     if (endOfMessagesRef.current) {
@@ -201,7 +217,5 @@ ChatView.propTypes = {
 export default ChatView;
 
 /*
- *  check if the otherparticipant is online
  *  when typing when they type so animate it and show 3 dots for other user
- *  now when we are chatting if new message arrive and i see it in chat when i refresh it appears as unreadchat
  */
