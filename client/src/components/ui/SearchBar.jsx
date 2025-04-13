@@ -36,6 +36,7 @@ const SearchBar = ({ setFilters, className, isHero, city }) => {
   const [InputValue, setInputValue] = useState(city || "");
   const [suggestions, setSuggestions] = useState([]);
   const [isOpen, setIsopen] = useState(false);
+  const [highlightedIndex, setHighlightedIndex] = useState(-1); // Track the highlighted suggestion
   const searchBarRef = useRef(null);
   const suggestionRef = useRef();
 
@@ -61,6 +62,28 @@ const SearchBar = ({ setFilters, className, isHero, city }) => {
     setIsopen(false);
     setFilters((prev) => ({ ...prev, city: suggestion }));
     setSuggestions([]); // Clear suggestions after selection
+  };
+
+  const handleKeyDown = (e) => {
+    if (isOpen && suggestions.length > 0) {
+      if (e.key === "ArrowDown") {
+        setHighlightedIndex(
+          (prevIndex) =>
+            prevIndex < suggestions.length - 1 ? prevIndex + 1 : 0 //Checks if current tab isnt last
+        );
+      } else if (e.key === "ArrowUp") {
+        // Move up in the suggestions list
+        setHighlightedIndex((prevIndex) =>
+          prevIndex > 0 ? prevIndex - 1 : suggestions.length - 1
+        );
+      } else if (e.key === "Enter" && highlightedIndex >= 0) {
+        // Select the highlighted suggestion
+        handleSuggestionClick(suggestions[highlightedIndex]);
+      } else if (e.key === "Escape") {
+        // Close the suggestions list
+        setIsopen(false);
+      }
+    }
   };
 
   // Handle clicks outside component
@@ -102,6 +125,7 @@ const SearchBar = ({ setFilters, className, isHero, city }) => {
         <Input
           type="text"
           placeholder="Select Your City"
+          onKeyDown={handleKeyDown}
           className={`w-full  h-10  font-normal focus-visible:ring-[0.5px]  px-2 capitalize  ${
             isHero ? "lg:bg-white/10 lg:h-9 lg:border-0" : ""
           }`}
@@ -129,10 +153,12 @@ const SearchBar = ({ setFilters, className, isHero, city }) => {
               ref={suggestionRef}
             >
               <ScrollArea className="max-h-[200px] pb-2 ">
-                {suggestions.map((suggestion) => (
+                {suggestions.map((suggestion, index) => (
                   <button
                     key={suggestion}
-                    className="text-sm w-full px-4 font-medium py-2 text-left hover:bg-gray-100 focus:bg-gray-100 focus:outline-none"
+                    className={`text-sm w-full px-4 font-medium py-2 text-left hover:bg-gray-100 focus:bg-gray-100 focus:outline-none ${
+                      highlightedIndex === index ? "bg-gray-100 " : ""
+                    }`}
                     onClick={() => handleSuggestionClick(suggestion)}
                   >
                     {suggestion}
