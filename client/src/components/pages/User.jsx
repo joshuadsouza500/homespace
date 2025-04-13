@@ -53,7 +53,7 @@ const User = () => {
 
   const Sidebar = (
     <div
-      className={`bg-Bgpurple text-white shadow-lg backdrop-blur-md h-dvh z-10 w-56 md:w-[25%] max-w-80 
+      className={`bg-Bgpurple text-white shadow-lg backdrop-blur-md h-dvh z-10 w-56 md:w-[25%] xl:w-[22%] max-w-80 
       fixed top-0 left-0 transition-transform duration-500 ease-in-out 2xl:px-4
       ${isOpen ? "translate-x-0" : "-translate-x-full"}
       lg:relative lg:translate-x-0
@@ -169,9 +169,7 @@ export default User;
 /* TODO
  * Have some kind of validation and required input not just allow to click next without filling in the form
  * Appoinntment scheduling
- *  pagination for it
  * Chat view: Maybe add typing
- *
  *
  * Add Property:
  * * Fix dropdown : Ability to use arrows to navigate

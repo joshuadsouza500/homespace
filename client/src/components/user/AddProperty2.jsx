@@ -109,17 +109,17 @@ export default function AddProperty2() {
   const goToPreviousStep = () => setCurrentStep((prev) => prev - 1);
 
   return (
-    <div className="container mx-auto px-2 md:px-6 pt-2 lg:pt-6 pb-8">
+    <div className="container mx-auto px-2 md:px-6 pt-2 lg:pt-4 pb-8">
       <h1 className="text-3xl text-text md:text-4xl font-bold mb-2 md:mb-4 text-center">
         Add New Property
       </h1>
 
       {/* Step Indicator */}
-      <div className="flex justify-center mb-6 md:mb-8 space-x-2 items-center text-sm ">
+      <div className="flex justify-center mb-6 md:mb-8 space-x-2 items-center text-sm cursor-pointer ">
         <div
           className={`size-8 flex items-center justify-center font-bold   rounded-full text-gray-800   ${
             currentStep === 1
-              ? " bg-gray-200 ring-1 ring-blue-500"
+              ? " bg-gray-100 ring-1 ring-indigo-600"
               : "bg-blue-600 "
           }`}
           onClick={goToPreviousStep}
@@ -136,7 +136,7 @@ export default function AddProperty2() {
         </span>
         <div
           className={`size-8 flex items-center justify-center font-bold   rounded-full text-gray-800 bg-gray-200 ${
-            currentStep === 2 ? " ring-1 ring-blue-500" : ""
+            currentStep === 2 ? " ring-1 ring-indigo-600" : ""
           }`}
           onClick={goToNextStep}
         >

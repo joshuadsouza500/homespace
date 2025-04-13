@@ -17,6 +17,7 @@ import { useRef } from "react";
 
 import SkeletonLoader from "../ui/vo/SkeletonLoader";
 import { getAllProperties } from "@/store/property/action";
+import { Button } from "../ui/button";
 
 const Search = () => {
   const Property = useSelector((store) => store.property);
@@ -190,14 +191,13 @@ const Search = () => {
                       <div className=" flex  justify-center  items-center  max-md:mx-2 md:px-2  w-full    py-4 md:py-6 cursor-pointer ">
                         <nav aria-label="Pagination">
                           <ul className="inline-flex  text-sm ">
-                            <li onClick={() => handlePageChange("prev")}>
-                              <p
-                                className="flex items-center justify-center px-2 h-10 leading-tight border  rounded-l-lg   bg-Bgpurple   border-gray-700 text-gray-200  hover:bg-Bgpurple/90
-               "
-                              >
-                                <ChevronLeft className="size-7" />
-                              </p>
-                            </li>
+                            <Button
+                              className="flex items-center justify-center px-2 h-10 leading-tight border  rounded-l-lg rounded-r-none   bg-Bgpurple   border-gray-700 text-gray-200  hover:bg-Bgpurple/90 "
+                              disabled={currentPage == 1}
+                              onClick={() => handlePageChange("prev")}
+                            >
+                              <ChevronLeft className="size-7" />
+                            </Button>
                             {Array.from({ length: totalPages }, (_, index) => (
                               <li
                                 key={index}
@@ -217,11 +217,13 @@ const Search = () => {
                                 </p>
                               </li>
                             ))}
-                            <li onClick={() => handlePageChange("next")}>
-                              <p className="flex items-center justify-center px-2  h-10   border  rounded-e-lg   bg-Bgpurple   border-gray-700 text-gray-200  hover:bg-Bgpurple/90">
-                                <ChevronRight className="size-7" />
-                              </p>
-                            </li>
+                            <Button
+                              className="flex items-center justify-center px-2  h-10   border rounded-l-none  rounded-e-lg   bg-Bgpurple   border-gray-700 text-gray-200  hover:bg-Bgpurple/90"
+                              disabled={currentPage == totalPages}
+                              onClick={() => handlePageChange("next")}
+                            >
+                              <ChevronRight className="size-7" />
+                            </Button>
                           </ul>
                         </nav>
                       </div>

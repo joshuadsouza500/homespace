@@ -48,7 +48,7 @@ const UserListings = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 lg:px-8 pt-4 lg:pt-6 pb-8 bg-estate-50">
+    <div className="container mx-auto px-4 lg:px-6 pt-4 lg:pt-6 pb-8 bg-estate-50">
       <div
         className="flex max-md:flex-col justify-between items-center
       w-full mb-10 gap-y-4 "
@@ -90,19 +90,19 @@ const UserListings = () => {
 
       {/* Pagination Controls */}
       {userProperties?.length > propertiesPerPage && (
-        <div className="flex justify-center mt-12 md:mt-20 mb-4">
+        <div className="flex justify-center mt-12 md:mt-20 mb-4 items-center">
           <Button
-            className="mr-4 bg-gray-200 text-gray-700 hover:bg-gray-300"
+            className="mr-4 px-5 bg-gray-300 text-gray-800 hover:bg-gray-300"
             onClick={handlePreviousPage}
             disabled={currentPage === 1}
           >
             Previous
           </Button>
-          <p className="text-lg font-medium text-gray-700">
+          <p className=" font-medium text-gray-700">
             Page {currentPage} of {totalPages}
           </p>
           <Button
-            className="ml-4 bg-gray-200 text-gray-700 hover:bg-gray-300"
+            className="ml-4 px-8"
             onClick={handleNextPage}
             disabled={currentPage === totalPages}
           >

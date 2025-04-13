@@ -24,11 +24,9 @@ export default App;
 
 {
   /* Today
-   * Pagination to user props
    * add prop form
    */
   /** THINGS TO ADD
-   * 
    * maybe add navbar hamburger menu for mobile
   /**
 
