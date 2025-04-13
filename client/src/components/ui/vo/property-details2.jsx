@@ -20,7 +20,6 @@ import {
   Building,
   BedDouble,
   Plug,
-  Calendar,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -140,7 +139,7 @@ export default function PropertyDetails2({ property, handleSave }) {
                 {property?.title}
               </h1>
               <Bookmark
-                className={`block p-2 rounded-full ring-[0.2px] ring-bborder shadow-sm text-Primary size-11 hover:scale-95 cursor-pointer ${
+                className={`block p-2 rounded-full ring-[0.2px] ring-bborder shadow-sm text-Primary size-11 hover:scale-95 cursor-pointer hover:fill-Primary/90 ${
                   property?.isSaved ? "fill-Primary" : "bg-white"
                 }`}
                 onClick={() => {
@@ -311,7 +310,7 @@ export default function PropertyDetails2({ property, handleSave }) {
                 </div>
                 <div className="space-y-4">
                   <Button
-                    className=" bg-indigo-700 w-full hover:bg-Primary"
+                    className=" bg-indigo-600 w-full hover:bg-Primary"
                     onClick={() => {
                       handleMessage(property?.userId);
                     }}

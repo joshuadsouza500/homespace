@@ -80,7 +80,7 @@ const UserChats = ({ user }) => {
   };
 
   return (
-    <div className=" flex max-w-7xl 2xl:max-w-[1640px]  h-screen  shadow-md pl- 0.5 bg-estate-50">
+    <div className=" flex max-w-7xl 2xl:max-w-[1640px]  h-screen  shadow-md pl- 0.5 bg-slate-50">
       <div
         className={`
               ${isMobileViewOpen ? "hidden" : "block"} 

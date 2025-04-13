@@ -3,7 +3,7 @@ import PropertySearch from "../PropertySearch";
 import PropertyCard2 from "../ui/vo/property-card2";
 import BigProperyCard from "../ui/vo/Big-propery-card";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Bookmark,
   ChevronLeft,
@@ -12,18 +12,35 @@ import {
   SearchCheck,
 } from "lucide-react";
 
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { useRef } from "react";
 
 import SkeletonLoader from "../ui/vo/SkeletonLoader";
+import { getAllProperties } from "@/store/property/action";
 
 const Search = () => {
   const Property = useSelector((store) => store.property);
   const ChildRef = useRef(null);
-
+  const dispatch = useDispatch();
+  const [searchParams, setSearchParams] = useSearchParams();
   const handlePageChange = (value) => {
     ChildRef.current.handlePageChange(value);
   };
+  const handleSearchClick = async (params) => {
+    // Update the URL with the new search parameters
+
+    const searchParam = new URLSearchParams();
+    // converts params{} into an array of key-value pairs.
+    Object.entries(params).forEach(([key, value]) => {
+      if (value) {
+        searchParam.set(key, value);
+      }
+    });
+
+    setSearchParams(searchParam.toString());
+    dispatch(getAllProperties(searchParam.toString()));
+  };
+
   const currentPage = ChildRef?.current?.currentPage;
   const totalPages = Property?.properties?.totalPages;
 
@@ -83,54 +100,85 @@ const Search = () => {
                         {/* Only display it if there are multiple properties displayed */}
                         <div
                           className={`items-start justify-center bg-white backdrop-blur-lg shadow-xl border-[0.5px] rounded-md max-w-72 max-h-72  col-span-1 p-3  flex flex-col gap-y-4 cursor-pointer transition-all duration-300 mt-72 self- center ${
-                            Property?.properties?.length > 2
+                            Property.properties?.properties?.length > 2
                               ? "block"
                               : "hidden"
                           }`}
                         >
-                          {" "}
                           <span>
-                            {" "}
                             <h2 className="text-lg font-semibold text-text flex items-center">
                               <SearchCheck className="mr-2.5 text-Primary" />{" "}
                               Popular Searches
                             </h2>
                             <ul className="mt-2 ml-8 space-y-2 text-gray-600  text-sm">
-                              <li className="hover:text-Primary">
-                                <Link to={"/property?pty=Apartment&city=Riffa"}>
-                                  {" "}
-                                  Apartments in Riffa
-                                </Link>
+                              <li
+                                className="hover:text-Primary"
+                                onClick={() =>
+                                  handleSearchClick({
+                                    pty: "Villa",
+                                    city: "Riffa",
+                                  })
+                                }
+                              >
+                                Villas in Riffa
                               </li>
-                              <li className="hover:text-Primary">
-                                <Link to={"/property?pty=Studio&city=Juffair"}>
-                                  {" "}
-                                  Studio in Jufffair
-                                </Link>
+                              <li
+                                className="hover:text-Primary"
+                                onClick={() =>
+                                  handleSearchClick({
+                                    pty: "Apartment",
+                                    city: "Juffair",
+                                  })
+                                }
+                              >
+                                Apartments in Juffair
                               </li>
-                              <li className="hover:text-Primary">
+                              <li
+                                className="hover:text-Primary"
+                                onClick={() =>
+                                  handleSearchClick({
+                                    pty: "Condo",
+                                    city: "Manama",
+                                  })
+                                }
+                              >
                                 Luxury Condo in Manama
                               </li>
                             </ul>
                           </span>
                           <span>
-                            {" "}
                             <h2 className="text-lg font-semibold text-text flex items-center hover:text-Primary">
                               <MapPinCheck className="mr-2.5 text-Primary" />{" "}
                               Nearby Areas
                             </h2>
                             <ul className="mt-2 ml-8 space-y-2 text-gray-600  text-sm">
-                              <li className="hover:text-Primary">
+                              <li
+                                className="hover:text-Primary"
+                                onClick={() =>
+                                  handleSearchClick({
+                                    city: "Manama",
+                                    type: "Rent",
+                                  })
+                                }
+                              >
                                 Apartments for rent in Manama
                               </li>
-                              <li className="hover:text-Primary">
+                              <li
+                                className="hover:text-Primary"
+                                onClick={() =>
+                                  handleSearchClick({
+                                    city: "Seef",
+                                    type: "Sell",
+                                  })
+                                }
+                              >
                                 Villas for sale in Seef
                               </li>
                             </ul>
                           </span>
                           <button className="text-lg font-semibold text-text  hover:text-Primary">
                             <Link
-                              to="/user/property/saved"
+                              to="/user/saved"
                               className="flex items-center"
                             >
                               <Bookmark className="mr-2.5 text-Primary " />{" "}

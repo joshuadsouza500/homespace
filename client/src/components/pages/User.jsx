@@ -128,7 +128,7 @@ const User = () => {
     <div className="flex font-poppins bg-background h-dvh z-0 justify-center w-screen  relative">
       {/*Sidebar */}
       {Sidebar}
-      <div className="w-full   bg-estate-50 flex- 1 flex flex-col  z-0  overflow-y-scroll overflow-x- clip">
+      <div className="w-full   bg-slate-50 flex- 1 flex flex-col  z-0  overflow-y-scroll overflow-x- clip">
         {/*Nav Bar */}{" "}
         <header className="bg-white shadow py-2 pl-2 pr-4 flex lg:hidden sticky top-0 justify-between   items-center z-10 ">
           <button
@@ -169,10 +169,8 @@ export default User;
 /* TODO
  * Have some kind of validation and required input not just allow to click next without filling in the form
  * Appoinntment scheduling
- * Filters in my properties
- * Add multiple properties so then check and implement pagination for it
+ *  pagination for it
  * Chat view: Maybe add typing
- *
  *
  *
  * Add Property:

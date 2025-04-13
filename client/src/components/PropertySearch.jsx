@@ -192,7 +192,7 @@ const PropertySearch = forwardRef((props, ref) => {
   const clearFilters = () => {
     setSearchParams(() => {
       const newParams = new URLSearchParams();
-      newParams.set("pg", 1); // Retain the current page
+      newParams.set("pg", 1); //Retain the current page
       return newParams;
     });
     setFilters(() => ({
@@ -336,7 +336,7 @@ const PropertySearch = forwardRef((props, ref) => {
             clearFilters={clearFilters}
           />
           <Button
-            className="bg-Bgpurple max-md:w-28 md:w-32   text-white  transition-colors duration-500 ease-in-out hover:bg-indigo-800"
+            className="bg-indigo-700  max-md:w-28 md:w-32   text-white  transition-colors duration-300 ease-in-out hover:bg-indigo-600"
             onClick={() => {
               applyFilters(true);
             }}
@@ -379,7 +379,7 @@ const PropertySearch = forwardRef((props, ref) => {
             />
           </div>
           <Button
-            className="bg-Bgpurple max-md:w-[20%] md:w-32  text-white  "
+            className="bg-indigo-700 hover:bg-indigo-600 max-md:w-[20%] md:w-32  text-white  "
             onClick={() => {
               applyFilters(true);
             }}

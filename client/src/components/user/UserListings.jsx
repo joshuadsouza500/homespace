@@ -1,9 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import PropertyCard2 from "../ui/vo/property-card2";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getUserProperties } from "@/store/user/action";
 import { Button } from "../ui/button";
-import { cn } from "@/lib/utils";
 import { useNavigate } from "react-router-dom";
 import SkeletonLoader from "../ui/vo/SkeletonLoader";
 
@@ -13,24 +12,52 @@ const UserListings = () => {
 
   const userProperties = userPropertyState?.property;
   const isLoading = userPropertyState?.isLoading;
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const propertiesPerPage = 8;
+
+  // Calculate the index range for slicing
+  const startIndex = (currentPage - 1) * propertiesPerPage;
+  const endIndex = startIndex + propertiesPerPage;
+
+  // Slice the properties array to display only the current page's properties
+  const currentProperties = userProperties?.slice(startIndex, endIndex);
+
+  // Calculate total pages
+  const totalPages = Math.ceil(
+    (userProperties?.length || 0) / propertiesPerPage
+  );
+
   // Use useEffect to fetch user properties when the component mounts
   useEffect(() => {
     dispatch(getUserProperties());
   }, [dispatch]);
+
   const navigate = useNavigate();
 
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage((prevPage) => prevPage + 1);
+    }
+  };
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage((prevPage) => prevPage - 1);
+    }
+  };
+
   return (
-    <div className="container mx-auto px-4 lg:px-8 pt-4 lg:pt-6 pb-8  bg-estate-50">
+    <div className="container mx-auto px-4 lg:px-8 pt-4 lg:pt-6 pb-8 bg-estate-50">
       <div
         className="flex max-md:flex-col justify-between items-center
-      w-full mb-6 md:mb-10 gap-y-4 "
+      w-full mb-10 gap-y-4 "
       >
-        {" "}
-        <h1 className="text-3xl md:text-3xl 2xl:text-4xl   font-bold text-estate-800 dark:text-white ">
+        <h1 className="text-3xl md:text-4xl font-bold text-estate-800 dark:text-white">
           My Properties
         </h1>
         <Button
-          className="max-md:h-9 bg-Primary  text-white font-medium tracking-wide hover:bg-purple-700 "
+          className="max-md:h-9 bg-Primary text-white font-medium tracking-wide hover:bg-purple-700"
           onClick={() => {
             navigate("/user/property/create");
           }}
@@ -38,61 +65,51 @@ const UserListings = () => {
           + Add New Property
         </Button>
       </div>
-      <div className="hidden md:block mb-8">
-        <p className="text-xs font-medium text-gray-500 uppercase mb-2">
-          Quick FILTERS
-        </p>
-        <div className="flex space-x-2">
-          <button
-            className={cn(
-              "chat-filter-button rounded-full text-sm px-5 py-1.5 font-medium transition-all bg-light_gray chat-gray text-gray-700 hover:bg-gray-200" //filter === "all" && "active"
-            )}
-            // onClick={() => setFilter("all")}
-          >
-            All
-          </button>
-          <button
-            className={cn(
-              "chat-filter-button rounded-full text-sm px-4 py-1.5 font-medium transition-all bg-light_gray chat-gray text-gray-700 hover:bg-gray-200l"
-              //  filter === "unread" && "active"
-            )}
-            //onClick={() => setFilter("unread")}
-          >
-            Listed{" "}
-          </button>
-          <button
-            className={cn(
-              "chat-filter-button rounded-full text-sm px-4 py-1.5 font-medium transition-all bg-light_gray chat-gray text-gray-700 hover:bg-gray-200l"
-              //  filter === "unread" && "active"
-            )}
-            //onClick={() => setFilter("unread")}
-          >
-            Unlisted{" "}
-          </button>
-        </div>
-      </div>
 
-      <section className=" grid  xl:grid-cols-2 gap-x-6 gap-y-7 place-content-center  ">
+      <section className="grid xl:grid-cols-2 gap-x-6 gap-y-7 place-content-center">
         {/* Check if there are properties and map through them */}
         {isLoading == false ? (
-          userProperties && userProperties.length > 0 ? (
-            userProperties.map((property) => (
+          currentProperties && currentProperties.length > 0 ? (
+            currentProperties.map((property) => (
               <PropertyCard2
                 key={property.id}
                 update={true}
                 property={property}
-                className="md:max-w-2xl mx-1 md:h-64 2xl:g-64   backdrop-blur-md bg-white/70 dark:bg-black/40  border-black/5 dark:border-white/10 border"
+                className="md:max-w-2xl mx-1 md:h-64 2xl:g-64 backdrop-blur-md bg-white/70 dark:bg-black/40 border-black/5 dark:border-white/10 border"
               />
             ))
           ) : (
             <p className="text-center xl:text-end w-full text-2xl font-medium">
-              No Propeties Listed By User!
+              No Properties Listed By User!
             </p>
           )
         ) : (
           <SkeletonLoader />
         )}
       </section>
+
+      {/* Pagination Controls */}
+      {userProperties?.length > propertiesPerPage && (
+        <div className="flex justify-center mt-12 md:mt-20 mb-4">
+          <Button
+            className="mr-4 bg-gray-200 text-gray-700 hover:bg-gray-300"
+            onClick={handlePreviousPage}
+            disabled={currentPage === 1}
+          >
+            Previous
+          </Button>
+          <p className="text-lg font-medium text-gray-700">
+            Page {currentPage} of {totalPages}
+          </p>
+          <Button
+            className="ml-4 bg-gray-200 text-gray-700 hover:bg-gray-300"
+            onClick={handleNextPage}
+            disabled={currentPage === totalPages}
+          >
+            Next
+          </Button>
+        </div>
+      )}
     </div>
   );
 };

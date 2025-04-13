@@ -74,7 +74,7 @@ export default function Main() {
           <h2 className="text-3xl md:4xl font-bold text-[#000929] max-lg:text-center pb-2">
             Why Choose Us
           </h2>
-          <p className="pl-1 max-sm:text-sm max-sm:w-[80%]  mx-auto text-pretty text-muted-foreground max-lg:text-center tracking-wide pb-4 max-w-lg">
+          <p className="pl-1 max-sm:text-sm max-sm:w-[80%]  max-lg:mx-auto text-pretty text-muted-foreground max-lg:text-center tracking-wide pb-4 md:pb-6 max-w-lg">
             Find your dream home in just a few simple steps
           </p>
           <div className=" w-[95%]  min-w-[25rem] sm:min-w-[29rem] 2xl:min-w-[36rem] mx-auto ">

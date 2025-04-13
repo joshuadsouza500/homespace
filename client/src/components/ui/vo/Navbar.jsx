@@ -116,7 +116,7 @@ export default function Navbar() {
             </Link>
           )}
 
-          <Button className="bg-Primary  hover:bg-indigo-700">
+          <Button className="bg-Primary  hover:bg-indigo-700 px-5">
             <Link to="/user/property/create">List Property</Link>
           </Button>
         </div>

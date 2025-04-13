@@ -75,7 +75,7 @@ const HowItWorks = () => {
             </div>
 
             <div className="pt-10 flex justify-center">
-              <Button className="px-5  h-11 hover:scale-[.98] bg-Bgpurple rounded-lg hover:bg-Bgpurple/80 text-white text-sm tracking-wide ">
+              <Button className="px-6 text-white font-medium tracking-wide ">
                 Learn More
               </Button>
             </div>

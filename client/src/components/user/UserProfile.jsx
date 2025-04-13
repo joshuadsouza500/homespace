@@ -123,7 +123,7 @@ export default function UserProfile({ user }) {
   //console.log("jj", user);
   return (
     <section className="container mx-auto px-4 lg:px-8 pt-4 lg:pt-8 pb-8 font-jakarta bg-estate-50">
-      <h1 className="text-2xl xl:text-3xl 2xl:text-4xl   font-bold text-estate-800 dark:text-white mb-6 xl:mb-10 lg:text-center">
+      <h1 className="text-3xl md:text-4xl   font-bold text-text dark:text-white mb-6 xl:mb-10 text-center">
         My Profile
       </h1>
       <section className="grid grid-rows-1  gap-6 xl:gap-8 2xl:mx-20 cursor-pointer">
@@ -208,8 +208,8 @@ export default function UserProfile({ user }) {
                 {" "}
                 {/* User */}
                 <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-full bg-azure-100 dark:bg-azure-900/30 flex items-center justify-center">
-                    <User className="h-5 w-5 text-azure-600 dark:text-azure-400" />
+                  <div className="h-10 w-10 rounded-full bg-Primary/20 dark:bg-azure-900/30 flex items-center justify-center">
+                    <User className="h-5 w-5 text-Bgpurple dark:text-azure-400" />
                   </div>
                   <div>
                     <Label
@@ -234,8 +234,8 @@ export default function UserProfile({ user }) {
                 </div>
                 {/* Mobile */}
                 <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-full bg-azure-100 dark:bg-azure-900/30 flex items-center justify-center">
-                    <Phone className="h-5 w-5 text-azure-600 dark:text-azure-400" />
+                  <div className="h-10 w-10 rounded-full   bg-Primary/20 dark:bg-azure-900/30 flex items-center justify-center">
+                    <Phone className="h-5 w-5 text-Bgpurple dark:text-azure-400" />
                   </div>
                   <div>
                     <Label
@@ -260,8 +260,8 @@ export default function UserProfile({ user }) {
                 </div>
                 {/* Email */}
                 <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-full bg-azure-100 dark:bg-azure-900/30 flex items-center justify-center">
-                    <Mail className="h-5 w-5 text-azure-600 dark:text-azure-400" />
+                  <div className="h-10 w-10 rounded-full bg-Primary/20 dark:bg-azure-900/30 flex items-center justify-center">
+                    <Mail className="h-5 w-5 text-Bgpurple dark:text-azure-400" />
                   </div>
                   <div>
                     <Label
@@ -290,8 +290,8 @@ export default function UserProfile({ user }) {
               <div className="space-y-2 xl:space-y-4">
                 {" "}
                 <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-full bg-azure-100 dark:bg-azure-900/30 flex items-center justify-center">
-                    <Mail className="h-5 w-5 text-azure-600 dark:text-azure-400" />
+                  <div className="h-10 w-10 rounded-full bg-Primary/20 dark:bg-azure-900/30 flex items-center justify-center">
+                    <Mail className="h-5 w-5 text-Bgpurple dark:text-azure-400" />
                   </div>
                   <div>
                     <Label
@@ -327,8 +327,8 @@ export default function UserProfile({ user }) {
                   <div className="flex items-start">
                     {isEditing && editedUser?.role === "AGENT" ? (
                       <div className="flex items-center gap-3">
-                        <div className="h-10 w-10 rounded-full bg-azure-100 dark:bg-azure-900/30 flex items-center justify-center">
-                          <MapPin className="h-5 w-5 text-azure-600 dark:text-azure-400" />
+                        <div className="h-10 w-10 rounded-full bg-Primary/20 dark:bg-azure-900/30 flex items-center justify-center">
+                          <MapPin className="h-5 w-5 text-Bgpurple dark:text-azure-400" />
                         </div>
                         <div>
                           <Label
@@ -349,8 +349,8 @@ export default function UserProfile({ user }) {
                     ) : (
                       user?.role === "AGENT" && (
                         <div className="flex items-center gap-3">
-                          <div className="h-10 w-10 rounded-full bg-azure-100 dark:bg-azure-900/30 flex items-center justify-center">
-                            <MapPin className="h-5 w-5 text-azure-600 dark:text-azure-400" />
+                          <div className="h-10 w-10 rounded-full bg-Primary/20 dark:bg-azure-900/30 flex items-center justify-center">
+                            <MapPin className="h-5 w-5 text-Bgpurple dark:text-azure-400" />
                           </div>
                           <div>
                             <Label
@@ -374,14 +374,14 @@ export default function UserProfile({ user }) {
               <div className="flex space-x-2 py-4  max-md:justify-center">
                 <Button
                   onClick={handleUpdate}
-                  className="bg-Bgpurple hover:bg-indigo-800 md:w-36"
+                  className="bg-Bgpurple hover:bg-indigo-700 md:w-36 "
                 >
                   <Save className="size-4 mr-2" />
                   Save Profile
                 </Button>
                 <Button
                   variant="outline"
-                  className="md:w-36 border-text px-10"
+                  className="md:w-36 border-Bgpurple text-Bgpurple px-10"
                   onClick={() => setIsEditing(false)}
                 >
                   Cancel
@@ -418,7 +418,7 @@ export default function UserProfile({ user }) {
                       className="flex items-center p-3 rounded-lg border border-estate-100 dark:border-estate-700 hover:bg-estate-50 dark:hover:bg-estate-700/50 transition-colors"
                     >
                       <div className="mr-4 flex-shrink-0">
-                        <div className="h-12 w-12 rounded-full bg-azure-100 dark:bg-azure-900/30 flex flex-col items-center justify-center text-azure-600 dark:text-azure-400">
+                        <div className="h-12 w-12 rounded-full bg-Primary/20 dark:bg-azure-900/30 flex flex-col items-center justify-center text-Bgpurple dark:text-azure-400">
                           <Calendar className="h-5 w-5 mb-0.5" />
                         </div>
                       </div>

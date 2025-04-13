@@ -68,7 +68,7 @@ const PropertyDetails = () => {
   };
 
   return (
-    <div className="px-2 md:px-6  w-full  max-w-5xl lg:max-w-6xl  xl:max-w-7xl  2xl:max-w-8xl mx-auto   font-jakarta bg-gradient-b from-estate-50 to-light_gray ">
+    <div className="px-2 md:px-6  w-full  max-w-5xl lg:max-w-6xl  xl:max-w-7xl  2xl:max-w-8xl mx-auto   font-jakarta  light_gray ">
       <PropertyDetails2 property={Property?.property} handleSave={handleSave} />
       {/* FAQ Section */}
       <section className="w-full px-2  xl:max-w-6xl 2xl:max-w-8xl mx-auto py-12 lg:py-24 ">
@@ -113,7 +113,7 @@ const PropertyDetails = () => {
         <h1 className="text-4xl md:text-5xl font-bold text-center pt-6 pb-2 md:pb-3 text-text">
           Similar Properties
         </h1>
-        <p className=" max-sm:text-sm  text-pretty text-[#4d5461]  text-center pb-10">
+        <p className=" max-sm:text-sm  text-pretty pt-1 text-muted-foreground  text-center pb-10">
           Checkout some other properties near you
         </p>
 

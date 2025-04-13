@@ -15,7 +15,7 @@ const ChatSidebar = ({ chats, activeChat, onChatSelect, userId }) => {
   return (
     <div className="h-full flex flex-col  w-full md:w-80 2xl:w-[440px] bg-estate-50 overflow-hidden animate-fade-in ">
       <div className="pt-4 px-4  ">
-        <h1 className="text-2xl xl:text-3xl font-bold text-chat-secondary mb-3 md:mb-3">
+        <h1 className="text-3xl md:text-4xl max-md:text-center font-bold text-chat-secondary mb-3 md:mb-3">
           Chats
         </h1>
         {/** {" "}

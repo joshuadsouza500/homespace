@@ -16,7 +16,7 @@ const UserFavourites = () => {
   const navigate = useNavigate;
   //console.log("user's saved prop", userSavedProperties);
   return (
-    <div className="container mx-auto px-4 lg:px-8 pt-4 lg:pt-6 pb-8 ">
+    <div className="container mx-auto px-4 lg:px-8 pt-4 lg:pt-6 pb-8  bg-slate-50">
       <div
         className="flex max-md:flex-col justify-between items-center
             w-full mb-6 md:mb-10 gap-y-4 "
@@ -31,7 +31,7 @@ const UserFavourites = () => {
           </p>
         </div>
         <Button
-          className="max-md:h-9 bg-Primary  text-white font-medium tracking-wide hover:bg-purple-700 "
+          className="max-md:h-9   text-white font-medium tracking-wide"
           onClick={() => {
             navigate("/user/property/create");
           }}

@@ -1,14 +1,12 @@
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-import { BanknoteIcon, KeyRoundIcon } from "lucide-react";
-import { Button } from "../ui/button";
-
 import { Link, useSearchParams } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getAllProperties } from "@/store/property/action";
 import BrowsePropCard from "../ui/BrowsePropCard";
+import { Button } from "../ui/button";
 //text-[#000929]
 
 /**
@@ -38,7 +36,7 @@ const Browse = () => {
   }, [searchParams, dispatch]);
 
   return (
-    <div className="h-full  bg-slate-50 estate-50 pt-10 md:pt-16 pb-16 font-jakarta">
+    <div className="h-full  bg-slate-50  pt-10 md:pt-16 pb-16 font-jakarta">
       <div className="flex flex-col gap-3 items-center justify-center px-2 md:px-6  w-full  max-w-5xl lg:max-w-6xl  xl:max-w-7xl  2xl:max-w-8xl mx-auto">
         <h2 className="text-3xl md:text-4xl  font-bold text-[#000929]">
           Featured Properties
@@ -53,7 +51,7 @@ const Browse = () => {
             handleChange({ id: "type", value });
           }}
         >
-          <TabsList className="bg-light_gray/50 h-12 w-44 md:w-56    shadow-sm ring-2  ring-[#E0DEF7]">
+          <TabsList className="bg-light_gray/50 h-11  w-40 md:w-56    shadow-sm ring-1  ring-bborder">
             <TabsTrigger
               value="Rent"
               className="w-20 md:w-28  text-base data-[state=active]:text-Primary data-[state=active]:border border-bborder font-bold  data-[state=active]:shadow-sm shadow-Primary"
@@ -81,7 +79,7 @@ const Browse = () => {
         </section>
         <div className="w-full flex justify-center pt-4">
           <Link to="/property">
-            <Button className="flex  h-11 bg-indigo-700 px-6  rounded-lg hover:bg-Primary Bgpurple/80 text-white text-sm tracking-wide font-semibold hover:shadow-lg">
+            <Button className="flex   px-6 py-[22px]    Bgpurple/80 text-white tracking-wide font-semibold hover:shadow-lg">
               Browse Properties
             </Button>
           </Link>

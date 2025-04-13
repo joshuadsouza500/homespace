@@ -291,9 +291,9 @@ const LargeHero = ({
                   </SelectContent>
                 </Select>
               </div>
-              <div className="mt-2">
+              <div className="">
                 <Button
-                  className="bg-Primary font-medium text-white px-6 w -32 hover:bg-indigo-700"
+                  className="bg-Primary font-medium text-white px-6  hover:bg-indigo-700"
                   onClick={applyFilters}
                 >
                   Find Properties

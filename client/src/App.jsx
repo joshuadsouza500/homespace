@@ -23,18 +23,23 @@ function App() {
 export default App;
 
 {
+  /* Today
+   * Pagination to user props
+   * add prop form
+   */
   /** THINGS TO ADD
-   * Fix bg colour
-   * Figure out way to search for popular searches or recent searches
+   * 
    * maybe add navbar hamburger menu for mobile
   /**
+
 
 
   */
   /**
    * EXTRAS
    * Add number animations for mobile hero
-   *
+   * When clicking pagination smooth scroll to top
+   *  Remove all implementation of status from services and redux state
    * Prop validation
    * Testing
    * Footer design check 22 march ss VM

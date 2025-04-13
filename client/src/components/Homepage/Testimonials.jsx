@@ -164,8 +164,8 @@ export default function Testimonials() {
         </div>
         <div className="w-full flex justify-center pt-10 lg:pt-16">
           <Link to="/property">
-            <Button className="flex px-8 h-11 bg-indigo-700 rounded-lg hover:bg-Primary text-white text-sm tracking-wide font-semibold">
-              View All
+            <Button className="px-6 text-white font-medium tracking-wide">
+              View More
             </Button>
           </Link>
         </div>{" "}
