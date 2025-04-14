@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowLeft, ArrowRight, CheckIcon } from "lucide-react";
+import { AlertCircle, ArrowLeft, ArrowRight, CheckIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -103,7 +103,7 @@ export default function AddProperty2() {
     if (!data.area) newErrors.area = "Area is required";
     if (!data.property_type)
       newErrors.property_type = "Property type is required";
-    if (!data.utilities) newErrors.utilities = "Utilities are required";
+
     if (!data.furnishing) newErrors.furnishing = "Select Furnishing Type";
 
     setErrors(newErrors); // Update the errors state with the new errors object
@@ -219,11 +219,7 @@ export default function AddProperty2() {
               <Label className="font-medium font-jakarta" htmlFor="title">
                 Title
               </Label>
-              {errors.title && (
-                <span className="text-red-500 text-sm px-2 pb-1 ">
-                  *{errors.title}*
-                </span>
-              )}
+
               <Input
                 id="title"
                 name="title"
@@ -231,8 +227,13 @@ export default function AddProperty2() {
                 value={formData.title}
                 onChange={handleInputChange}
               />
+              {errors.title && (
+                <span className="text-red-500 text-sm py-0.5  flex items-center gap-1 ">
+                  <AlertCircle className="size-4" /> {errors.title}
+                </span>
+              )}
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 ">
               <div className="flex-1 flex-col justify-end flex gap-y-2">
                 <Label className="font-medium font-jakarta" htmlFor="type">
                   Rent or Sell
@@ -252,37 +253,29 @@ export default function AddProperty2() {
                     <SelectItem value="Sell">Sell</SelectItem>
                   </SelectContent>
                 </Select>
-                {errors.type && (
-                  <span className="text-red-500 text-sm px-2 pb-1">
-                    *{errors.type}*
-                  </span>
-                )}
               </div>
               <div className="space-y-1">
                 <Label className="font-medium font-jakarta" htmlFor="city">
                   City
                 </Label>
-                {errors.city && (
-                  <span className="text-red-500 text-sm px-2 pb-1">
-                    *{errors.city}*
-                  </span>
-                )}
+
                 <SearchBar
                   setFilters={
                     (updateFn) => setFormData((prev) => updateFn(prev)) //setFilters takes another function (updateFn) as an argument. When setFilters is called, it executes updateFn, passing the current state of formData to it. // searchbar would send data like this tosetFIlters const updateCity = (prev) => ({ ...prev, city: 'New York' }); which then calls updatFn
                   }
                   city={formData.city} // Pass the current city value
                 />
+                {errors.city && (
+                  <span className="text-red-500 text-sm p x-2 py-0.5 1 flex items-center gap-1 z-10 relative">
+                    <AlertCircle className="size-4" /> {errors.city}
+                  </span>
+                )}
               </div>
               <div className="space-y-1">
                 <Label className="font-medium font-jakarta" htmlFor="governate">
                   Governorate
                 </Label>
-                {errors.governate && (
-                  <span className="text-red-500 text-sm px-2 pb-1">
-                    *{errors.governate}
-                  </span>
-                )}
+
                 <Select
                   onValueChange={(value) =>
                     setFormData((prev) => ({ ...prev, governate: value }))
@@ -300,17 +293,18 @@ export default function AddProperty2() {
                     ))}
                   </SelectContent>
                 </Select>
+                {errors.governate && (
+                  <span className="text-red-500 text-sm p x-2 py-0.5 1 flex items-center gap-1">
+                    <AlertCircle className="size-4" /> {errors.governate}
+                  </span>
+                )}
               </div>
             </div>
             <div className="space-y-1">
               <Label className="font-medium font-jakarta" htmlFor="address">
                 Address
               </Label>
-              {errors.address && (
-                <span className="text-red-500 text-sm px-2 pb-1">
-                  *{errors.address}
-                </span>
-              )}
+
               <Textarea
                 id="address"
                 name="address"
@@ -318,6 +312,11 @@ export default function AddProperty2() {
                 value={formData.address}
                 onChange={handleInputChange}
               />
+              {errors.address && (
+                <span className="text-red-500 text-sm p x-2 py-0.5 1 flex items-center gap-1">
+                  <AlertCircle className="size-4" /> {errors.address}
+                </span>
+              )}
             </div>
 
             <div className="flex items-center justify-center pt-6">
@@ -344,11 +343,6 @@ export default function AddProperty2() {
                   Property Type{" "}
                 </Label>
 
-                {errors.property_type && (
-                  <span className="text-red-500 text-sm px-2 pb-1">
-                    *{errors.property_type}*
-                  </span>
-                )}
                 <Select
                   name="propertyType"
                   value={formData.property_type}
@@ -367,16 +361,17 @@ export default function AddProperty2() {
                     ))}
                   </SelectContent>
                 </Select>
+                {errors.property_type && (
+                  <span className="text-red-500 text-sm p x-2 py-0.5 1 flex items-center gap-1">
+                    <AlertCircle className="size-4" /> {errors.property_type}
+                  </span>
+                )}
               </div>
               <div className="space-y-1">
                 <Label className="font-medium font-jakarta" htmlFor="price">
                   Price
                 </Label>
-                {errors.price && (
-                  <span className="text-red-500 text-sm px-2 pb-1">
-                    *{errors.price}*
-                  </span>
-                )}
+
                 <div className="relative">
                   <Input
                     id="price"
@@ -388,6 +383,11 @@ export default function AddProperty2() {
                     onChange={handleInputChange}
                   />
                 </div>
+                {errors.price && (
+                  <span className="text-red-500 text-sm p x-2 py-0.5 1 flex items-center gap-1">
+                    <AlertCircle className="size-4" /> {errors.price}
+                  </span>
+                )}
               </div>
 
               <div className=" h-full md:ml-2 flex flex-col gap-y-2  md:justify-around  ">
@@ -432,11 +432,7 @@ export default function AddProperty2() {
                 >
                   Furnishing
                 </Label>
-                {errors.furnishing && (
-                  <span className="text-red-500 text-sm px-2 pb-1">
-                    *{errors.furnishing}*
-                  </span>
-                )}
+
                 <Select
                   name="furnishing"
                   value={formData.furnishing}
@@ -455,25 +451,28 @@ export default function AddProperty2() {
                     <SelectItem value="Furnished">Fully Furnished</SelectItem>
                   </SelectContent>
                 </Select>
+                {errors.furnishing && (
+                  <span className="text-red-500 text-sm p x-2 py-0.5 1 flex items-center gap-1">
+                    <AlertCircle className="size-4" /> {errors.furnishing}
+                  </span>
+                )}
               </div>
               <div className="flex flex-col  justify-between pt-1 max-md:gap-y-2  ">
-                <div className="flex">
-                  {" "}
-                  <Label className="font-medium font-jakarta ">
-                    Beds and Baths
-                  </Label>
-                  {errors.bedrooms && errors.bathrooms && (
-                    <span className="text-red-500 text-sm px-2 pb-1">
-                      *{errors.bedrooms}*
-                    </span>
-                  )}
-                </div>
+                {" "}
+                <Label className="font-medium font-jakarta ">
+                  Beds and Baths
+                </Label>
                 <Bed_Bath
                   onSelectionChange={handleBedBathChange}
                   defaultBaths={formData?.bathrooms}
                   defaultBeds={formData?.bedrooms}
                   className={"w-full md:w-full xl:w-full "}
                 />
+                {errors.bedrooms && errors.bathrooms && (
+                  <span className="text-red-500 text-sm p x-2 py-0.5 1 flex items-center gap-1">
+                    <AlertCircle className="size-4" /> {errors.bedrooms}
+                  </span>
+                )}
               </div>
 
               <div className="space-y-1">
@@ -481,11 +480,6 @@ export default function AddProperty2() {
                   Area (sq ft)
                 </Label>
 
-                {errors.area && (
-                  <span className="text-red-500 text-sm px-2 pb-1">
-                    *{errors.area}*
-                  </span>
-                )}
                 <Input
                   id="area"
                   name="area"
@@ -494,6 +488,11 @@ export default function AddProperty2() {
                   value={formData.area}
                   onChange={handleInputChange}
                 />
+                {errors.area && (
+                  <span className="text-red-500 text-sm p x-2 py-0.5 1 flex items-center gap-1">
+                    <AlertCircle className="size-4" /> {errors.area}
+                  </span>
+                )}
               </div>
             </div>
 
@@ -505,11 +504,6 @@ export default function AddProperty2() {
                 Description
               </Label>
 
-              {errors.description && (
-                <span className="text-red-500 text-sm px-2 pb-1">
-                  *{errors.description}*
-                </span>
-              )}
               <Textarea
                 id="description"
                 name="description"
@@ -517,7 +511,13 @@ export default function AddProperty2() {
                 value={formData.description}
                 onChange={handleInputChange}
               />
-              <p className="text-sm text-gray-500">Max: 70 words</p>
+              {errors.description ? (
+                <span className="text-red-500 text-sm p x-2 py-0.5 1 flex items-center gap-1">
+                  <AlertCircle className="size-4" /> {errors.description}
+                </span>
+              ) : (
+                <p className="text-sm text-gray-500">Max: 70 words</p>
+              )}
             </div>
             <div>
               <Label className="font-medium font-jakarta">Amenities</Label>
