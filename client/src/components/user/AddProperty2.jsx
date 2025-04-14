@@ -1,16 +1,5 @@
 import { useState } from "react";
-import {
-  ArrowLeft,
-  ArrowRight,
-  CheckCircleIcon,
-  CheckIcon,
-  Currency,
-  DollarSign,
-  Home,
-  MoveLeftIcon,
-  PlusCircleIcon,
-  Upload,
-} from "lucide-react";
+import { ArrowLeft, ArrowRight, CheckIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -50,6 +39,8 @@ const governates = [
 ];
 export default function AddProperty2() {
   const [currentStep, setCurrentStep] = useState(1); // Step indicator
+  const [errors, setErrors] = useState({});
+
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -99,13 +90,57 @@ export default function AddProperty2() {
     setFormData((prev) => ({ ...prev, [type]: value }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    //console.log("Submitting property:", formData);
-    dispatch(createProperty(formData));
+  const formValidator = (data) => {
+    const newErrors = {}; // Create a new object to store errors
+
+    if (!data.description) newErrors.description = "Description is required";
+    if (!data.price) newErrors.price = "Price is required";
+    if (data.price < 0) {
+      newErrors.price = "Price must be a positive number";
+    }
+    if (!data.bedrooms) newErrors.bedrooms = "Select Bedrooms & Baths";
+    if (!data.bathrooms) newErrors.bathrooms = "Select Bedrooms & Baths";
+    if (!data.area) newErrors.area = "Area is required";
+    if (!data.property_type)
+      newErrors.property_type = "Property type is required";
+    if (!data.utilities) newErrors.utilities = "Utilities are required";
+    if (!data.furnishing) newErrors.furnishing = "Select Furnishing Type";
+
+    setErrors(newErrors); // Update the errors state with the new errors object
+
+    return Object.keys(newErrors).length === 0; // Return true if there are no errors COnverts to array of keys
   };
 
-  const goToNextStep = () => setCurrentStep((prev) => prev + 1);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Handle submit is triggered");
+    if (formValidator(formData)) {
+      // If the form is valid, dispatch the action
+      // dispatch(createProperty(formData));
+      console.log("Validation passed:");
+    } else {
+      console.log("Validation failed apple:", errors);
+    }
+  };
+
+  const goToNextStep = () => {
+    const { image, title, city, governate, address } = formData;
+    const newErrors = {};
+
+    // Validate required fields
+    // if (image.length === 0) newErrors.image = "Image is required";
+    if (!title) newErrors.title = "Title is required";
+    if (!city) newErrors.city = "City is required";
+    if (!governate) newErrors.governate = "Governorate is required";
+    if (!address) newErrors.address = "Address is required";
+
+    setErrors(newErrors); // Update the errors state with the new errors object
+    // Proceed to the next step only if there are no errors
+    if (Object.keys(newErrors).length === 0) {
+      setCurrentStep((prev) => prev + 1);
+    }
+  };
+
   const goToPreviousStep = () => setCurrentStep((prev) => prev - 1);
 
   return (
@@ -143,7 +178,7 @@ export default function AddProperty2() {
           <span className="">2</span>
         </div>
       </div>
-
+      {/* Inside a form unless a button type is specified as different it will be type submit as default */}
       <form
         onSubmit={handleSubmit}
         className=" mx-auto   max-w-5xl xl:max-w-6xl  backdrop-blur-md bg-white/70 dark:bg-black/40  border-black/5 dark:border-white/10 shadow-lg p-4 lg:p-8 rounded-lg"
@@ -184,13 +219,17 @@ export default function AddProperty2() {
               <Label className="font-medium font-jakarta" htmlFor="title">
                 Title
               </Label>
+              {errors.title && (
+                <span className="text-red-500 text-sm px-2 pb-1 ">
+                  *{errors.title}*
+                </span>
+              )}
               <Input
                 id="title"
                 name="title"
                 placeholder="Enter Property title"
                 value={formData.title}
                 onChange={handleInputChange}
-                required
               />
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -213,30 +252,37 @@ export default function AddProperty2() {
                     <SelectItem value="Sell">Sell</SelectItem>
                   </SelectContent>
                 </Select>
+                {errors.type && (
+                  <span className="text-red-500 text-sm px-2 pb-1">
+                    *{errors.type}*
+                  </span>
+                )}
               </div>
               <div className="space-y-1">
                 <Label className="font-medium font-jakarta" htmlFor="city">
                   City
                 </Label>
+                {errors.city && (
+                  <span className="text-red-500 text-sm px-2 pb-1">
+                    *{errors.city}*
+                  </span>
+                )}
                 <SearchBar
                   setFilters={
                     (updateFn) => setFormData((prev) => updateFn(prev)) //setFilters takes another function (updateFn) as an argument. When setFilters is called, it executes updateFn, passing the current state of formData to it. // searchbar would send data like this tosetFIlters const updateCity = (prev) => ({ ...prev, city: 'New York' }); which then calls updatFn
                   }
                   city={formData.city} // Pass the current city value
                 />
-                {/* <Input
-                  id="city"
-                  name="city"
-                  placeholder="Enter City"
-                  value={formData.city}
-                  onChange={handleInputChange}
-                  required
-                /> */}
-              </div>{" "}
+              </div>
               <div className="space-y-1">
                 <Label className="font-medium font-jakarta" htmlFor="governate">
                   Governorate
                 </Label>
+                {errors.governate && (
+                  <span className="text-red-500 text-sm px-2 pb-1">
+                    *{errors.governate}
+                  </span>
+                )}
                 <Select
                   onValueChange={(value) =>
                     setFormData((prev) => ({ ...prev, governate: value }))
@@ -260,18 +306,23 @@ export default function AddProperty2() {
               <Label className="font-medium font-jakarta" htmlFor="address">
                 Address
               </Label>
+              {errors.address && (
+                <span className="text-red-500 text-sm px-2 pb-1">
+                  *{errors.address}
+                </span>
+              )}
               <Textarea
                 id="address"
                 name="address"
                 placeholder="Road no: , Block: , Flat no:"
                 value={formData.address}
                 onChange={handleInputChange}
-                required
               />
             </div>
 
             <div className="flex items-center justify-center pt-6">
               <Button
+                type="button"
                 onClick={goToNextStep}
                 className="w-32 md:w-44 bg-Bgpurple gap-x-1 hover:bg-indigo-800 group"
               >
@@ -290,8 +341,14 @@ export default function AddProperty2() {
                   className="font-medium font-jakarta"
                   htmlFor="propertyType"
                 >
-                  Property Type
+                  Property Type{" "}
                 </Label>
+
+                {errors.property_type && (
+                  <span className="text-red-500 text-sm px-2 pb-1">
+                    *{errors.property_type}*
+                  </span>
+                )}
                 <Select
                   name="propertyType"
                   value={formData.property_type}
@@ -315,21 +372,27 @@ export default function AddProperty2() {
                 <Label className="font-medium font-jakarta" htmlFor="price">
                   Price
                 </Label>
+                {errors.price && (
+                  <span className="text-red-500 text-sm px-2 pb-1">
+                    *{errors.price}*
+                  </span>
+                )}
                 <div className="relative">
                   <Input
                     id="price"
                     name="price"
+                    min={10}
                     type="number"
                     placeholder="Enter Price"
                     value={formData.price}
                     onChange={handleInputChange}
-                    required
                   />
                 </div>
               </div>
 
               <div className=" h-full md:ml-2 flex flex-col gap-y-2  md:justify-around  ">
                 <Label className="font-medium font-jakarta">Utilities</Label>
+
                 <RadioGroup
                   name="Utilities"
                   value={formData.utilities}
@@ -369,6 +432,11 @@ export default function AddProperty2() {
                 >
                   Furnishing
                 </Label>
+                {errors.furnishing && (
+                  <span className="text-red-500 text-sm px-2 pb-1">
+                    *{errors.furnishing}*
+                  </span>
+                )}
                 <Select
                   name="furnishing"
                   value={formData.furnishing}
@@ -389,9 +457,17 @@ export default function AddProperty2() {
                 </Select>
               </div>
               <div className="flex flex-col  justify-between pt-1 max-md:gap-y-2  ">
-                <Label className="font-medium font-jakarta ">
-                  Beds and Baths
-                </Label>
+                <div className="flex">
+                  {" "}
+                  <Label className="font-medium font-jakarta ">
+                    Beds and Baths
+                  </Label>
+                  {errors.bedrooms && errors.bathrooms && (
+                    <span className="text-red-500 text-sm px-2 pb-1">
+                      *{errors.bedrooms}*
+                    </span>
+                  )}
+                </div>
                 <Bed_Bath
                   onSelectionChange={handleBedBathChange}
                   defaultBaths={formData?.bathrooms}
@@ -404,6 +480,12 @@ export default function AddProperty2() {
                 <Label className="font-medium font-jakarta" htmlFor="area">
                   Area (sq ft)
                 </Label>
+
+                {errors.area && (
+                  <span className="text-red-500 text-sm px-2 pb-1">
+                    *{errors.area}*
+                  </span>
+                )}
                 <Input
                   id="area"
                   name="area"
@@ -411,7 +493,6 @@ export default function AddProperty2() {
                   type="number"
                   value={formData.area}
                   onChange={handleInputChange}
-                  required
                 />
               </div>
             </div>
@@ -423,13 +504,18 @@ export default function AddProperty2() {
               >
                 Description
               </Label>
+
+              {errors.description && (
+                <span className="text-red-500 text-sm px-2 pb-1">
+                  *{errors.description}*
+                </span>
+              )}
               <Textarea
                 id="description"
                 name="description"
                 placeholder="Description about the property"
                 value={formData.description}
                 onChange={handleInputChange}
-                required
               />
               <p className="text-sm text-gray-500">Max: 70 words</p>
             </div>
@@ -455,6 +541,7 @@ export default function AddProperty2() {
             </div>
             <div className="flex justify-center gap-x-4   pt-6 pb-4 font-medium">
               <Button
+                type="button"
                 onClick={goToPreviousStep}
                 className="gap-1 border border-Bgpurple bg-white duration-200 text-Bgpurple hover:bg-Bgpurple/90 hover:text-white w-32 md:w-36 transition-colors  ease-in-out group"
               >
