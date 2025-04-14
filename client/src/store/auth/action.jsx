@@ -24,12 +24,13 @@ export const signup = (userData) => async (dispatch) => {
   try {
     const response = await axios.post(`${API_BASE_URL}/auth/signup`, userData);
     const user = response.data;
-    console.log("signed up user", user);
+    // console.log("signed up user", user);
     if (user.jwt) {
       localStorage.setItem("jwt", user.jwt);
     }
     dispatch({ type: SIGNUP_SUCCESS, payload: user.jwt });
   } catch (error) {
+    //console.log("ere", error.response.data);
     dispatch({ type: SIGNUP_FAILURE, payload: error.response });
   }
 };
@@ -40,7 +41,7 @@ export const signin = (userData) => async (dispatch) => {
   try {
     const response = await axios.post(`${API_BASE_URL}/auth/signin`, userData);
     const user = response.data;
-    console.log("dddfdsa", user);
+
     if (user.jwt) {
       localStorage.setItem("jwt", user.jwt);
     }

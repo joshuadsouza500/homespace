@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { getUserProfile, signin } from "@/store/auth/action";
+import { AlertCircle } from "lucide-react";
 
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,6 +13,8 @@ export default function SignIn() {
     email: "",
     password: "",
   });
+  const [showPassword, setShowPassword] = useState(false);
+  const [signInError, setSignInError] = useState({});
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const jwt = localStorage.getItem("jwt");
@@ -35,8 +38,19 @@ export default function SignIn() {
   };
 
   const handleSubmit = (e) => {
+    const { email, password } = formData;
     e.preventDefault();
-    dispatch(signin(formData));
+    const newError = {};
+
+    if (!email) newError.email = "Enter a valid email";
+    if (!password) newError.password = "Enter a valid password";
+    setSignInError(newError);
+
+    if (Object.keys(newError).length > 0) return;
+    if (Object.keys(newError).length === 0) {
+      setSignInError({});
+      dispatch(signin(formData));
+    }
   };
 
   return (
@@ -49,7 +63,7 @@ export default function SignIn() {
         />
       </div>
       <div className="flex w-full items-center justify-center lg:w-1/2">
-        <div className="mx-auto w-full max-w-sm space-y-6 p-6">
+        <div className="mx-auto w-full max-w-sm space-y-4 p-6">
           <div className="space-y-2 text-center">
             <h1 className="text-3xl font-bold text-text">Sign In</h1>
             <p className="text-gray-500 dark:text-gray-400">
@@ -57,11 +71,13 @@ export default function SignIn() {
             </p>
           </div>
           <form className="space-y-4 " onSubmit={handleSubmit}>
-            {auth.error?.status === 500 && (
-              <h1 className=" font-semibold text-red-600 py-1">
-                {auth.error?.data.error}!
-              </h1>
-            )}
+            {formData.email &&
+              formData.password &&
+              auth.error?.status === 401 && (
+                <h2 className=" font-semibold text-red-500 -my-2 py-1">
+                  {auth.error?.data.error}!
+                </h2>
+              )}
             <div className="space-y-1">
               <Label htmlFor="email">Email</Label>
               <Input
@@ -69,20 +85,40 @@ export default function SignIn() {
                 placeholder="user@example.com"
                 value={formData.name}
                 onChange={handleChange}
-                required
                 type="email"
               />
+              {signInError.email && (
+                <span className="text-red-500 text-sm  py-0.5 1 flex items-center gap-1">
+                  <AlertCircle className="size-4" /> {signInError.email}
+                </span>
+              )}
             </div>
             <div className="space-y-1 pb-2">
               <Label htmlFor="password">Password</Label>
               <Input
                 id="password"
-                required
-                type="password"
+                type={showPassword ? "text" : "password"}
                 placeholder="Enter Password"
                 value={formData.password}
                 onChange={handleChange}
               />
+              <div className="flex p-0.5 gap-x-1">
+                <input
+                  type="checkbox"
+                  onClick={() => {
+                    setShowPassword(!showPassword);
+                  }}
+                />
+                <span className="text-sm text-muted-foreground">
+                  {" "}
+                  Show Password
+                </span>
+              </div>
+              {signInError.password && (
+                <span className="text-red-500 text-sm p x-2 py-0.5 1 flex items-center gap-1">
+                  <AlertCircle className="size-4" /> {signInError.password}
+                </span>
+              )}
             </div>
             <Button
               className="w-full bg-Bgpurple hover:bg-indigo-800 transition-colors duration-500 ease-in-out"
@@ -92,9 +128,9 @@ export default function SignIn() {
             </Button>
           </form>
 
-          <div className="text-center text-sm">
+          <div className="text-center ">
             {"Don't"} have an account?{" "}
-            <Link className="underline" to="/signup">
+            <Link className="underline text-indigo-800" to="/signup">
               Sign Up
             </Link>
           </div>

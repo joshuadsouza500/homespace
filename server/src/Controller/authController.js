@@ -8,7 +8,6 @@ const signup = async (req, res) => {
   try {
     const user = await userService.createUser(req.body);
 
-    console.log("auth controller", user);
     const jwt = jwtProvider.generateToken(user.id);
 
     return res.status(200).send({ jwt, user, message: "User Sign up Success" });
@@ -26,19 +25,22 @@ const signin = async (req, res) => {
 
     if (!user) {
       return res
-        .status(404)
-        .send({ message: " User not found with  email ", email });
+        .status(401)
+        .send({ message: " User not found with  email", email });
     }
     const passwordIsValid = await bcrypt.compare(password, user.password);
 
     if (!passwordIsValid) {
-      return res.status(404).send({ message: " Incorrect password " });
+      return res.status(401).send({ error: "Incorrect password" });
     }
+
+    //return res.status(404).send({ message: "Incorrect password" });
+
     const jwt = jwtProvider.generateToken(user.id);
 
     return res.status(200).send({ jwt, user, message: "User Sign in Success" });
   } catch (error) {
-    return res.status(500).send({ error: error.message });
+    return res.status(401).send({ error: error.message });
   }
 };
 //logoout handles on client side just need to remove jwt from local storage

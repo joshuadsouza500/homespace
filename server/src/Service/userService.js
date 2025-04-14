@@ -39,7 +39,7 @@ const findUserByEmail = async (email) => {
     });
 
     if (!user) {
-      throw new Error("User does not exists with email: ", email);
+      throw new Error("User does not exists with this email ", email);
     }
     // console.log("Login service user:", user);
     return user;
