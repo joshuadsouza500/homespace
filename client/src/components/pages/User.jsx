@@ -167,12 +167,7 @@ const User = () => {
 export default User;
 
 /* TODO
- * Have some kind of validation and required input not just allow to click next without filling in the form
- * Appoinntment scheduling
  * Chat view: Maybe add typing
- *
  * Add Property:
- * * Fix dropdown : Ability to use arrows to navigate
  ** Fix the upload button bug
- ** The notification received on sucessful property creation design it
  */

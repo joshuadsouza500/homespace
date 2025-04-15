@@ -26,11 +26,13 @@ export const createProperty = (propertyDetails) => async (dispatch) => {
   try {
     const response = await api.post(`/api/property`, propertyDetails);
     const property = response.data;
-    // console.log("action property", property);
+    //console.log("action property", property);
     dispatch({ type: CREATE_PROPERTY_SUCCESS, payload: property });
-    alert("Property created successfully");
+    return { success: true, property };
+    // alert("Property created successfully");
   } catch (error) {
     dispatch({ type: CREATE_PROPERTY_FAILURE, payload: error.message });
+    return { success: false, message: error.message };
   }
 };
 
@@ -44,7 +46,7 @@ export const updateProperty =
         propertyDetails
       );
       const updatedProperty = response.data;
-      console.log("suc", updatedProperty);
+
       dispatch({ type: UPDATE_PROPERTY_SUCCESS, payload: updatedProperty });
       return { success: true };
     } catch (error) {

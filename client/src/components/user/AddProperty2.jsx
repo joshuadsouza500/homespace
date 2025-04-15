@@ -1,5 +1,11 @@
 import { useState } from "react";
-import { AlertCircle, ArrowLeft, ArrowRight, CheckIcon } from "lucide-react";
+import {
+  AlertCircle,
+  ArrowLeft,
+  ArrowRight,
+  CheckCircle2,
+  CheckIcon,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -40,7 +46,7 @@ const governates = [
 export default function AddProperty2() {
   const [currentStep, setCurrentStep] = useState(1); // Step indicator
   const [errors, setErrors] = useState({});
-
+  const [success, setSuccess] = useState();
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -111,15 +117,23 @@ export default function AddProperty2() {
     return Object.keys(newErrors).length === 0; // Return true if there are no errors COnverts to array of keys
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Handle submit is triggered");
+    let response;
     if (formValidator(formData)) {
-      // If the form is valid, dispatch the action
-      // dispatch(createProperty(formData));
-      console.log("Validation passed:");
+      // If the form is valid, dispatch the action and is it is successful display notification
+      response = await dispatch(createProperty(formData));
+      if (response.success) {
+        setSuccess(true);
+        setTimeout(() => {
+          setSuccess(false);
+        }, 3500);
+      } else {
+        console.error("Error creating property:", response.message);
+        setSuccess(false);
+      }
     } else {
-      console.log("Validation failed apple:", errors);
+      console.log("Validation failed:", errors);
     }
   };
 
@@ -128,7 +142,7 @@ export default function AddProperty2() {
     const newErrors = {};
 
     // Validate required fields
-    // if (image.length === 0) newErrors.image = "Image is required";
+    if (image.length === 0) newErrors.image = "Image is required";
     if (!title) newErrors.title = "Title is required";
     if (!city) newErrors.city = "City is required";
     if (!governate) newErrors.governate = "Governorate is required";
@@ -148,6 +162,29 @@ export default function AddProperty2() {
       <h1 className="text-3xl text-text md:text-4xl font-bold mb-2 md:mb-4 text-center">
         Add New Property
       </h1>
+      {/* Sucess or error pop up */}
+      {success !== undefined && (
+        <div
+          className={`fixed z-10 font-semibold  flex items-center gap-2 top-0 lg:top-10 left-1/2 lg:left-[55%] transform -translate-x-1/2 mt-4 px-6 py-4  rounded shadow-md transition-transform duration-500
+      ${
+        success
+          ? "bg-green-500 border-b-2 border-green-600 text-white translate-y-0 "
+          : "bg-red-500 border-b-2 border-red-600 text-white -translate-y-0"
+      }  `}
+        >
+          {success ? (
+            <>
+              <CheckCircle2 className="text-white ring-green-600 size-6" />
+              Property created successfully!
+            </>
+          ) : (
+            <>
+              <AlertCircle className="text-white ring-red-600 size-6" />
+              Error creating property!
+            </>
+          )}
+        </div>
+      )}
 
       {/* Step Indicator */}
       <div className="flex justify-center mb-6 md:mb-8 space-x-2 items-center text-sm cursor-pointer ">
@@ -186,6 +223,11 @@ export default function AddProperty2() {
         {currentStep === 1 && (
           <div className="space-y-4 xl:space-y-8">
             <div className="bg-gray-50 h-56    rounded-lg p-1 flex flex-col justify-between overflow-hidden border-2 border-dashed border-gray-300">
+              {errors.image && (
+                <span className="text-red-500  pt-2 md:pt-8 flex items-center gap-1 text-center justify-center">
+                  <AlertCircle className="size-4" /> {errors.image}
+                </span>
+              )}
               <div className="space-x-4 flex">
                 {formData.image.map((url, index) => (
                   <div key={index} className="relative">
@@ -333,7 +375,7 @@ export default function AddProperty2() {
         )}
 
         {currentStep === 2 && (
-          <div className="space-y-4 xl:space-y-8">
+          <div className="space-y-4 xl:space-y-8 relative">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 items-center">
               <div className="space-y-1">
                 <Label
