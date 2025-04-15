@@ -9,12 +9,6 @@ import BrowsePropCard from "../ui/BrowsePropCard";
 import { Button } from "../ui/button";
 //text-[#000929]
 
-/**
- * Add the properties from api
- * add prop type when for sale is
- * Carousel
- * Make sure properties changed when for rent or sale is clicked
- */
 const Browse = () => {
   const Property = useSelector((store) => store.property);
 

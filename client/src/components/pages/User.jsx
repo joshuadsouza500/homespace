@@ -8,7 +8,6 @@ import UserChats from "../user/UserChats";
 import {
   ArrowLeftCircle,
   Bookmark,
-  HeartIcon,
   HomeIcon,
   MenuIcon,
   MessageCircleMore,

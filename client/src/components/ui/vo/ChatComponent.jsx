@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   MessageSquare,
   Phone,
@@ -9,7 +9,7 @@ import {
 } from "lucide-react";
 import ChatMessage from "./ChatMessage";
 import { io } from "socket.io-client";
-
+import PropTypes from "prop-types";
 const ChatComponent = ({ chat, userId, onClose }) => {
   const [socket, setSocket] = useState(null);
   const [allMessages, setAllMessages] = useState([]);
@@ -149,5 +149,25 @@ const ChatComponent = ({ chat, userId, onClose }) => {
     </div>
   );
 };
-
+ChatComponent.propTypes = {
+  chat: PropTypes.shape({
+    id: PropTypes.string,
+    messages: PropTypes.arrayOf(
+      PropTypes.shape({
+        content: PropTypes.string,
+        createdAt: PropTypes.string,
+        senderId: PropTypes.string,
+      })
+    ),
+    participants: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string,
+        name: PropTypes.string,
+        avatar: PropTypes.string,
+      })
+    ),
+  }),
+  userId: PropTypes.string,
+  onClose: PropTypes.func,
+};
 export default ChatComponent;

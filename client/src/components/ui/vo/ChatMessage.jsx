@@ -1,6 +1,6 @@
+/* eslint-disable react/prop-types */
 import { cn } from "@/lib/utils";
-import { ChevronDown, ToggleLeftIcon } from "lucide-react";
-import DropDown from "../DropDown";
+import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 
 import {
@@ -11,13 +11,7 @@ import {
   DropdownMenuTrigger,
 } from "../dropdown-menu";
 
-const ChatMessage = ({
-  message,
-  timestamp,
-  isReceived,
-
-  otherParticipant,
-}) => {
+const ChatMessage = ({ message, timestamp, isReceived, otherParticipant }) => {
   const [dropDown, setDropDown] = useState(false);
   const handleDropDown = () => {
     setDropDown(!dropDown);

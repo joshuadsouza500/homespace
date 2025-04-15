@@ -1,16 +1,18 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Bookmark, PlusIcon } from "lucide-react";
+
 import { Link, useNavigate } from "react-router-dom";
 import UserDropdown from "../UserDropdown";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserProfile } from "@/store/auth/action";
 import { logout } from "@/store/auth/action";
+import { X } from "lucide-react";
 
 //Get user.. if user exists isSigned is true and then pass logout and user to dropdown
 export default function Navbar() {
-  const [activeTab, setActiveTab] = useState("");
+  //  const [activeTab, setActiveTab] = useState("");
   const [isSigned, setIsSigned] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const auth = useSelector((store) => store.auth);
@@ -104,7 +106,7 @@ export default function Navbar() {
             </li>
           </ul>
         </div>
-        <div className="flex items-center gap-4 md:gap-5 justify-center  ">
+        <div className="flex items-center gap-4 md:gap-5 justify-center  relative">
           {isSigned === true ? (
             <UserDropdown handleLogout={handleLogout} user={auth.user} />
           ) : (
@@ -116,9 +118,28 @@ export default function Navbar() {
             </Link>
           )}
 
-          <Button className="bg-Primary  hover:bg-indigo-700 px-5">
-            <Link to="/user/property/create">List Property</Link>
+          <Button
+            className="bg-Primary  hover:bg-indigo-700 px-5"
+            onClick={() => {
+              isSigned ? navigate("/user/property/create") : setShowPopup(true);
+            }}
+          >
+            List Property
           </Button>
+          {/* Popup */}
+          {showPopup && (
+            <div className="absolute top-12 flex justify-between right-0 bg-red-500 text-white px-2 w-auto py-4 rounded shadow-lg z-50 gap-x-2">
+              <p className="text-sm mr-4">
+                Please sign in to create a property.
+              </p>
+              <button
+                className=" text-sm underline absolute top-1.5 right-2"
+                onClick={() => setShowPopup(false)} // Close the popup
+              >
+                <X className="text-white size-4" />
+              </button>
+            </div>
+          )}
         </div>
         {/*   <div className="  lg:mr-1 flex items-center space-x-2 lg:space-x-3">
           <Link to="/user/property/create">

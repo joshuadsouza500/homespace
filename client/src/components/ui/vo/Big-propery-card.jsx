@@ -12,8 +12,9 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import PropTypes from "prop-types";
 /***/
-const BigProperyCard = ({ property }) => {
+const BigPropertyCard = ({ property }) => {
   return (
     <Card className="hidden md:block max-w-md sm:max-w-2xl md:max-w-5xl mx-1 cursor-pointer hover:shadow-m h-full">
       <div className="flex flex-col gap-1 sm:flex-row">
@@ -112,5 +113,22 @@ const BigProperyCard = ({ property }) => {
     </Card>
   );
 };
+BigPropertyCard.propTypes = {
+  property: PropTypes.shape({
+    //obj
+    image: PropTypes.arrayOf(PropTypes.string),
+    title: PropTypes.string,
+    type: PropTypes.string,
+    property_type: PropTypes.string,
+    price: PropTypes.number,
+    city: PropTypes.string,
+    governate: PropTypes.string,
+    description: PropTypes.string,
+    bedrooms: PropTypes.number,
+    bathrooms: PropTypes.number,
+    area: PropTypes.number,
+    createdAt: PropTypes.string,
+  }),
+};
 
-export default BigProperyCard;
+export default BigPropertyCard;

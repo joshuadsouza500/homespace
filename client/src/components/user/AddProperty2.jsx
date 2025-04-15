@@ -180,7 +180,7 @@ export default function AddProperty2() {
           ) : (
             <>
               <AlertCircle className="text-white ring-red-600 size-6" />
-              Error creating property!
+              Error creating Listing!
             </>
           )}
         </div>

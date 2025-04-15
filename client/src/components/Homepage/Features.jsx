@@ -6,7 +6,7 @@ import {
   Star,
   StarHalf,
 } from "lucide-react";
-import { Button } from "../ui/button";
+
 import {
   Accordion,
   AccordionContent,

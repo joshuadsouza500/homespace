@@ -1,7 +1,7 @@
 import PropertySearch from "../PropertySearch";
 
 import PropertyCard2 from "../ui/vo/property-card2";
-import BigProperyCard from "../ui/vo/Big-propery-card";
+import BigPropertyCard from "../ui/vo/Big-propery-card";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -81,7 +81,7 @@ const Search = () => {
                         }`}
                       >
                         {" "}
-                        <BigProperyCard
+                        <BigPropertyCard
                           key={randomProperty?.id}
                           property={randomProperty}
                         />

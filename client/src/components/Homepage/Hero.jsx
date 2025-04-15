@@ -2,7 +2,7 @@ import { Button } from "../ui/button";
 import { Label } from "@/components/ui/label";
 
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-
+import PropTypes from "prop-types";
 import { BanknoteIcon, KeyRoundIcon } from "lucide-react";
 
 import { useNavigate, useSearchParams } from "react-router-dom";
@@ -305,6 +305,27 @@ const LargeHero = ({
       </div>
     </section>
   );
+};
+
+LargeHero.propTypes = {
+  filters: PropTypes.shape({
+    type: PropTypes.string,
+    city: PropTypes.string,
+    pty: PropTypes.string,
+  }),
+  setFilters: PropTypes.func.isRequired,
+  applyFilters: PropTypes.func.isRequired,
+  handleFilterChange: PropTypes.func.isRequired,
+};
+MobileHero.propTypes = {
+  filters: PropTypes.shape({
+    type: PropTypes.string,
+    city: PropTypes.string,
+    pty: PropTypes.string,
+  }),
+  setFilters: PropTypes.func.isRequired,
+  applyFilters: PropTypes.func.isRequired,
+  handleFilterChange: PropTypes.func.isRequired,
 };
 
 export default Hero;
