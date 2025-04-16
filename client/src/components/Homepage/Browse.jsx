@@ -30,7 +30,7 @@ const Browse = () => {
   }, [searchParams, dispatch]);
 
   return (
-    <div className="h-full  bg-slate-50  pt-10 md:pt-16 pb-16 font-jakarta">
+    <div className="h-full  bg-[#F0F4FD] slate-50  pt-10 md:pt-16 pb-16 font-jakarta">
       <div className="flex flex-col gap-3 items-center justify-center px-2 md:px-6  w-full  max-w-5xl lg:max-w-6xl  xl:max-w-7xl  2xl:max-w-8xl mx-auto">
         <h2 className="text-3xl md:text-4xl  font-bold text-[#000929]">
           Featured Properties

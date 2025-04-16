@@ -1,31 +1,22 @@
-import { Skeleton } from "../skeleton";
+import { useEffect, useState } from "react";
 
 export default function Loader() {
+  const [dots, setDots] = useState("");
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setDots((prev) => (prev.length >= 2 ? "" : prev + "."));
+    }, 500);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <div className="container mx-auto flex flex-col items-center justify-center min-h-[70vh] py-12 px-4">
-      {/* Loading text with animation */}
-      <h1 className="text-3xl  font-bold text-center mb-8">
-        <span className="inline-block animate-pulse">Loading</span>
-        <span className="inline-block animate-pulse delay-100">.</span>
-        <span className="inline-block animate-pulse delay-200">.</span>
-        <span className="inline-block animate-pulse delay-300">.</span>
-      </h1>
-
-      <div className="w-full max-w-3xl space-y-8">
-        {/* Large hero skeleton */}
-        <Skeleton className="h-[200px] w-full rounded-xl" />
-
-        {/* Content skeletons - just a few large blocks */}
-        <Skeleton className="h-12 w-3/4 mx-auto" />
-
-        <div className="space-y-6">
-          <Skeleton className="h-24 w-full rounded-lg" />
-          <Skeleton className="h-24 w-full rounded-lg" />
-        </div>
-
-        {/* Action skeleton */}
-        <Skeleton className="h-14 w-48 mx-auto rounded-full" />
+    <div className="flex flex-col -mt-20 items-center justify-center h-screen bg-slate-50">
+      <div className="bg-Primary size-16 flex items-center justify-center rounded-md shadow-md">
+        <div className="size-10 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
       </div>
+      <p className="mt-3 text-xl font-medium text-Primary">Loading{dots}</p>
     </div>
   );
 }

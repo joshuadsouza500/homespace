@@ -71,11 +71,11 @@ export default function Testimonials() {
   }, [api]);
 
   //background colour option 1 : bg-[#f7f6fc]
-
+  // bg-gradient-to-b from-[#F0F4FD] to-[#FFFFFF]
   return (
-    <section className=" pt-12 md:pt-16 pb-20 md:pb-28 bg-white [#f7f6fc] ">
-      <div className="container px-2 md:px-6  w-full  max-w-5xl lg:max-w-6xl  xl:max-w-7xl  2xl:max-w-8xl mx-auto ">
-        <div className="flex flex-col gap-3 items-center mt-8 mb-12  ">
+    <section className=" pt-12 md:pt-16 pb-20 md:pb-28 bg-gradient-to-br from-[#F0F4FD] /70 to-[#FFFFFF] [#f7f6fc] relative">
+      <div className="container px-2 md:px-6  w-full  max-w-5xl lg:max-w-6xl  xl:max-w-7xl  2xl:max-w-8xl mx-auto  ">
+        <div className="flex flex-col gap-3 items-center mt-8 mb-12   ">
           <h2 className="text-3xl md:text-4xl text-center pb-1  font-bold text-text">
             What Our Clients Say
           </h2>

@@ -31,6 +31,7 @@ export default App;
   /** THINGS TO ADD
    * Remove all implementation of status from services and redux state
    * Footer design check 22 march ss VM
+   * Add not found page
   /**
 
 
@@ -43,7 +44,7 @@ export default App;
    * 
    * STYLING:
    * Add styles for dark theme
-   * Add number animations for mobile hero
+   * Add  number animations for  hero
    * When clicking pagination smooth scroll to top
    * Footer design check 22 march ss VM
    * Add Property add ability to add bullet points bold etc to description bar
