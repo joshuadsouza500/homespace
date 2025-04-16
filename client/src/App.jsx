@@ -7,6 +7,7 @@ import SignUp from "./components/pages/SignUp";
 //import User from "./components/pages/User";
 import { lazy, Suspense } from "react";
 import Loader from "./components/ui/vo/Loader"; //dynamically loads when route is naigated to
+import { NotFound } from "./components/pages/NotFound";
 const SignIn = lazy(() => import("./components/pages/SignIn"));
 const User = lazy(() => import("./components/pages/User"));
 
@@ -16,9 +17,11 @@ function App() {
       <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/signup" element={<SignUp />} />
+
+          <Route path="/user/*" element={<User />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/*" element={<CustomerRoutes />} />
-          <Route path="/user/*" element={<User />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
     </div>
@@ -29,24 +32,15 @@ export default App;
 
 {
   /** THINGS TO ADD
-   * Remove all implementation of status from services and redux state
-   * Footer design check 22 march ss VM
-   * Add not found page
-  /**
-
-
-
-  */
+  
   /**
    * EXTRAS
-   * Remove all implementation of status from services and redux state
    * Testing
    * 
    * STYLING:
    * Add styles for dark theme
    * Add  number animations for  hero
    * When clicking pagination smooth scroll to top
-   * Footer design check 22 march ss VM
    * Add Property add ability to add bullet points bold etc to description bar
    * Add a bit of blur to the sides of the logo slider
    * Pass a variable to the carousel change and maybe pass it the index value so each card will change images at different times

@@ -133,11 +133,11 @@ export const getChatById = (chatId, otherParticipant) => async (dispatch) => {
     const response = await api.get(`/api/user/profile/chat/${chatId}`, {
       otherParticipant,
     });
-    const { chat, status } = response.data;
-    //console.log("Action  chat:", chat); ={chat:{}, status}
+    const { chat } = response.data;
+    //console.log("Action  chat:", chat);
     dispatch({
       type: GET_CHAT_BY_ID_SUCCESS,
-      payload: { chat, status }, // Send both chat and status
+      payload: { chat }, // Send both chat and status
     });
   } catch (error) {
     dispatch({
@@ -155,13 +155,13 @@ export const createChat = (otherParticipant) => async (dispatch) => {
       "/api/user/profile/chat",
       { otherParticipant } // Avoid sending undefined
     );
-    const { chat, status } = response.data;
-    console.log("chat", chat);
+    const { chat } = response.data;
+    // console.log("chat", chat);
     dispatch({
       type: CREATE_CHAT_SUCCESS,
       payload: chat,
     });
-    return { chat, status }; //return the chat so that we can navigate to the chat view from the property details page
+    return { chat }; //return the chat so that we can navigate to the chat view from the property details page
   } catch (error) {
     dispatch({
       type: CREATE_CHAT_FAILURE,

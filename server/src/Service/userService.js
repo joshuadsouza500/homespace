@@ -238,14 +238,11 @@ const getUserChatById = async (userId, chatId) => {
 
     // Update unreadCounts: Reset unread messages for the current user
     const updatedUnreadCounts = { ...chat.unreadCounts, [userId]: 0 };
-    let status = false;
+
     chat.participantsIds.forEach((id) => {
       if (id !== userId) {
         //Check if receipiant is online
         const recipientStatus = activeChatTracker.isUserActive(id, chatId);
-        if (recipientStatus) {
-          status = true;
-        }
       }
     });
 
@@ -254,7 +251,7 @@ const getUserChatById = async (userId, chatId) => {
       data: { unreadCounts: updatedUnreadCounts }, // [userId]: 0, //Overwrites the entire unreadCounts object. so if user2 had unreadcount it would completly remove it, so we need to spread it first then change
     });
 
-    return { chat, status };
+    return { chat };
   } catch (error) {
     throw new Error(error.message);
   }

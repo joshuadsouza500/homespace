@@ -27,9 +27,9 @@ const Slider = () => {
               className="size-20 max-w-none md:size-24 "
             />
             <img
-              src="https://www.svgrepo.com/show/303412/tunein-logo.svg"
+              src="./client_5.png"
               alt="company logo"
-              className="size-14 max-w-none md:size-20 "
+              className="size-14 max-w-none md:size-12 "
             />
 
             <img
@@ -71,9 +71,9 @@ const Slider = () => {
               className="size-20 max-w-none md:size-24 "
             />
             <img
-              src="https://www.svgrepo.com/show/303412/tunein-logo.svg"
+              src="./client_5.png"
               alt="company logo"
-              className="size-14 max-w-none md:size-20 "
+              className="size-14 max-w-none md:size-20"
             />
 
             <img

@@ -123,12 +123,11 @@ const getOrCreateChat = async (req, res) => {
 
   try {
     let userChat;
-    let status;
+
     // Icf a chatId is provided, try to fetch the chat by ID
     if (chatId) {
       const result = await userService.getUserChatById(userId, chatId);
       userChat = result.chat; // Destructure chat
-      status = result.status;
     }
 
     // If no chatId is provided or the chat with the provided ID does not exist
@@ -146,16 +145,14 @@ const getOrCreateChat = async (req, res) => {
           messages: true,
         },
       });
-      status = false;
     }
 
     // If still no chat found, create a new chat
     if (!userChat && otherParticipant) {
       userChat = await userService.addChat(userId, otherParticipant);
-      status = false;
     }
 
-    return res.status(200).send({ chat: userChat, status });
+    return res.status(200).send({ chat: userChat });
   } catch (error) {
     console.error(error); // Log the actual error for debugging
     res.status(500).send({ message: "Failed to get or create chat!" });

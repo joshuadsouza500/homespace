@@ -29,7 +29,6 @@ const initialState = {
   savedProperty: null,
   userChats: [],
   selectedChat: null,
-  status: false,
   isLoading: false,
   error: null,
 };
@@ -86,7 +85,6 @@ export const userReducer = (state = initialState, action) => {
         ...state,
         isLoading: false,
         selectedChat: action.payload.chat, //Store specific chat
-        status: action.payload.status, // Store recipients status
       };
     case CREATE_CHAT_SUCCESS:
       return {
@@ -94,7 +92,6 @@ export const userReducer = (state = initialState, action) => {
         isLoading: false,
         userChats: [...state.userChats, action.payload.chat], // Add new chat to userChats
         selectedChat: action.payload.chat, // Store the chat
-        status: action.payload.status,
       };
 
     case RESET_SELECTED_CHAT:
