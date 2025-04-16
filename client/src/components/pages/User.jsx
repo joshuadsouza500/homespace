@@ -88,7 +88,7 @@ const User = () => {
           {menu.map((item) => (
             <li
               key={item.id}
-              className={`hover:bg-Primary/30 rounded-md  font-medium cursor-pointer transition-colo flex items-center p-3 md:p-4  gap-3 sm:gap-4  ${
+              className={`hover:bg-Primary/30 rounded-md  font-medium cursor-pointer transition-colors flex items-center p-3 md:p-4  gap-3 sm:gap-4  ${
                 activeItem === item.id
                   ? "bg-Primary/50 border-l-4 border-Primary "
                   : ""

@@ -29,7 +29,8 @@ export default App;
 
 {
   /** THINGS TO ADD
-   * maybe add navbar hamburger menu for mobile
+   * Remove all implementation of status from services and redux state
+   * Footer design check 22 march ss VM
   /**
 
 
@@ -37,26 +38,25 @@ export default App;
   */
   /**
    * EXTRAS
+   * Remove all implementation of status from services and redux state
+   * Testing
+   * 
+   * STYLING:
+   * Add styles for dark theme
    * Add number animations for mobile hero
    * When clicking pagination smooth scroll to top
-   * Remove all implementation of status from services and redux state
-   * Prop validation
-   * Testing
    * Footer design check 22 march ss VM
-   *
-   * Add animation for smooth transition when images are carsousel
    * Add Property add ability to add bullet points bold etc to description bar
    * Add a bit of blur to the sides of the logo slider
-   * Add a loan/ mortgage calculator for specific property etc.
- 
-  *  Add a Booking section in property details page and then add a calendar to the user profile check windows ss
-   * Optimizes sizes maybe dont use fixed sizes
    * Pass a variable to the carousel change and maybe pass it the index value so each card will change images at different times
-   *
+ 
+   * Add a Booking section in property details page and then add a calendar to the user profile check windows ss
+   * Add a loan/ mortgage calculator for specific property etc.
+   * Optimizes sizes maybe dont use fixed sizes
+   * 
    * Add google auth
-   *
    * Maybe integrate CI CD 
-   *Add synamic imports for some pages const Dashboard = lazy(() => import('./Dashboard')); Can wrap them in suspense and add loading page as fallbacck
+   * Add dynamic imports for some pages const Dashboard = lazy(() => import('./Dashboard')); Can wrap them in suspense and add loading page as fallbacck
    *
    */
 }

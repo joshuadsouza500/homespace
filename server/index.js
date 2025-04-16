@@ -55,7 +55,7 @@ async function main() {
 
     socket.on("joinRoom", (chatId, userId) => {
       socket.join(chatId);
-      activeChatTracker.addActiveUser(userId, socket.id, chatId);
+      activeChatTracker.addActiveUser(userId, socket.id, chatId); //Ads the id to activeUsers oj
       io.to(chatId).emit("userJoined", { userId }); //Emits a userJoined to all connected
       console.log(`${userId} with Socket ${socket.id} joined room ${chatId}`);
     });
