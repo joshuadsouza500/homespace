@@ -51,7 +51,7 @@ export default App;
    * 
    * Add google auth
    * Maybe integrate CI CD 
-   * Add dynamic imports for some pages const Dashboard = lazy(() => import('./Dashboard')); Can wrap them in suspense and add loading page as fallbacck
+   * Add dynamic imports for some pages const Dashboard = lazy(() => import('./Dashboard')); Can wrap them in suspense and add loading page as fallback
    *
    */
 }
