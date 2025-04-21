@@ -41,10 +41,9 @@ export default App;
    * Add styles for dark theme
    * Add  number animations for  hero
    * When clicking pagination smooth scroll to top
-   * Add Property add ability to add bullet points bold etc to description bar
    * Add a bit of blur to the sides of the logo slider
    * Pass a variable to the carousel change and maybe pass it the index value so each card will change images at different times
- 
+   * Add Property add ability to add bullet points bold etc to description bar 
    * Add a Booking section in property details page and then add a calendar to the user profile check windows ss
    * Add a loan/ mortgage calculator for specific property etc.
    * Optimizes sizes maybe dont use fixed sizes

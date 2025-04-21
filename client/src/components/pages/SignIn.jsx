@@ -122,6 +122,7 @@ export default function SignIn() {
             </div>
             <Button
               className="w-full bg-Bgpurple hover:bg-indigo-800 transition-colors duration-500 ease-in-out"
+              disabled={!formData.email || !formData.password} // disable button if empty to prevent unneccesary api calls to backend
               type="submit"
             >
               Sign In
