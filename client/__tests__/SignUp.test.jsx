@@ -44,7 +44,10 @@ vi.spyOn(authActions, "signup").mockImplementation((formData) => {
     if (formData.email === "existing@email.com") {
       dispatch({
         type: "SIGNUP_ERROR",
-        payload: { status: 409, data: { error: "Email already exists" } },
+        payload: {
+          status: 409,
+          data: { error: "User already exists with this email" },
+        },
       });
     } else {
       dispatch({
@@ -91,6 +94,41 @@ describe("SignUp component", () => {
       screen.getByText("Create your account (Step 2 of 2)")
     ).toBeInTheDocument();
     expect(screen.getByLabelText("Password")).toBeInTheDocument();
+  });
+  //Display email already exists error
+
+  test("Displays error messages when next is being clicked without filling the form", () => {
+    const nextButtonClick = screen.getByRole("button", { name: /next/i });
+    fireEvent.click(nextButtonClick);
+    //Assertions
+    expect(screen.getByText("Enter a valid name")).toBeInTheDocument();
+    expect(screen.getByText("Enter a valid mobile number")).toBeInTheDocument();
+    expect(screen.getByText("Enter a valid email")).toBeInTheDocument();
+  });
+
+  //Test to see if nextmoves to next section
+  test("Email already exists eror", () => {
+    const nameInput = screen.getByLabelText("Name");
+    const mobileInput = screen.getByLabelText("Mobile");
+    const emailInput = screen.getByLabelText("Email");
+    const nextButton = screen.getByRole("button", { name: /next/i });
+
+    fireEvent.change(nameInput, { target: { value: "John Doe" } });
+    fireEvent.change(mobileInput, { target: { value: "1234567890" } });
+    fireEvent.change(emailInput, { target: { value: "existing@email.com" } });
+    fireEvent.click(nextButton);
+
+    const passwordInput = screen.getByLabelText("Password");
+    const submitButton = screen.getByRole("button", {
+      name: /create account/i,
+    });
+
+    fireEvent.change(passwordInput, { target: { value: "password123" } });
+    fireEvent.click(submitButton);
+
+    expect(
+      screen.getByText("User already exists with this email!")
+    ).toBeInTheDocument();
   });
 
   test("submits the form successfully", () => {
