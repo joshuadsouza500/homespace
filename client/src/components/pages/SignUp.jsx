@@ -261,7 +261,7 @@ export default function SignUp() {
             )}
           </form>
           <div className="text-center text- sm">
-            Already have an account?{" "}
+            Already have an account?
             <Link className="underline text-indigo-800" to="/signin">
               Sign In
             </Link>
