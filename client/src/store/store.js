@@ -12,3 +12,5 @@ const rootReducers = combineReducers({
 });
 
 export const store = legacy_createStore(rootReducers, applyMiddleware(thunk));
+
+//apply thunk middleware as usually actions can only be obj but with thunk we can dispatch functions

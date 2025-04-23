@@ -65,7 +65,9 @@ export default function SignIn() {
       <div className="flex w-full items-center justify-center lg:w-1/2">
         <div className="mx-auto w-full max-w-sm space-y-4 p-6">
           <div className="space-y-2 text-center">
-            <h1 className="text-3xl font-bold text-text">Sign In</h1>
+            <h1 className="text-3xl font-bold text-text" data-testid="SignIn">
+              Sign In
+            </h1>
             <p className="text-gray-500 dark:text-gray-400">
               Enter your credentials to access your account
             </p>
@@ -82,6 +84,7 @@ export default function SignIn() {
               <Label htmlFor="email">Email</Label>
               <Input
                 id="email"
+                data-testid="Email"
                 placeholder="user@example.com"
                 value={formData.name}
                 onChange={handleChange}
@@ -97,6 +100,7 @@ export default function SignIn() {
               <Label htmlFor="password">Password</Label>
               <Input
                 id="password"
+                data-testid="Password"
                 type={showPassword ? "text" : "password"}
                 placeholder="Enter Password"
                 value={formData.password}
