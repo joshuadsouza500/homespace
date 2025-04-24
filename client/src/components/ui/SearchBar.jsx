@@ -124,6 +124,7 @@ const SearchBar = ({ setFilters, className, isHero, city }) => {
       <div className="flex items-center justify-center gap-x-1 bg-white/5   relative ">
         <Input
           type="text"
+          data-testid="search-bar"
           placeholder="Select Your City"
           onKeyDown={handleKeyDown}
           className={`w-full  h-10  font-normal focus-visible:ring-[0.5px]  px-2 capitalize  ${

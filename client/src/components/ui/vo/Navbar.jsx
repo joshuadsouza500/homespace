@@ -92,28 +92,28 @@ export default function Navbar() {
           <ul className=" flex flex-col gap-y-1 px-4 text-xl font-medium  w-full justify-center  cursor-pointer ">
             {" "}
             <li
-              className="hover:bg-Primary/30 rounded-md  font-medium  transition-colors  px-2 py-3   "
+              className="hover:text-Primary rounded-md  font-medium  transition-colors  px-2 py-3   "
               onClick={() => setMobileToggle(false)}
             >
               {" "}
               <Link to="/">Home</Link>
             </li>
             <li
-              className="hover:bg-Primary/30 rounded-md  font-medium  transition-colors  px-2 py-3   "
+              className="hover:text-Primary rounded-md  font-medium  transition-colors  px-2 py-3   "
               onClick={() => setMobileToggle(false)}
             >
               {" "}
               <Link to="/property">Properties</Link>
             </li>
             <li
-              className="hover:bg-Primary/30 rounded-md  font-medium  transition-colors  px-2 py-3   "
+              className="hover:text-Primary rounded-md  font-medium  transition-colors  px-2 py-3   "
               onClick={() => setMobileToggle(false)}
             >
               {" "}
               <Link to="/about">About</Link>
             </li>
             <li
-              className="hover:bg-Primary/30 rounded-md  font-medium  transition-colors  px-2 py-3   "
+              className="hover:text-Primary rounded-md  font-medium  transition-colors  px-2 py-3   "
               onClick={() => setMobileToggle(false)}
             >
               {" "}
@@ -142,28 +142,28 @@ export default function Navbar() {
           <ul className="hidden md:flex space-x-4 max-xl:text-sm font-medium  w-full justify-center ">
             {" "}
             <li
-              className="hover:bg-Primary/30 rounded-md  font-medium  transition-colors  px-2 py-3   "
+              className="hover:text-Primary rounded-md  font-medium  transition-colors  px-2 py-3   "
               onClick={() => setMobileToggle(false)}
             >
               {" "}
               <Link to="/">Home</Link>
             </li>
             <li
-              className="hover:bg-Primary/30 rounded-md  font-medium  transition-colors  px-2 py-3   "
+              className="hover:text-Primary rounded-md  font-medium  transition-colors  px-2 py-3   "
               onClick={() => setMobileToggle(false)}
             >
               {" "}
               <Link to="/property">Properties</Link>
             </li>
             <li
-              className="hover:bg-Primary/30 rounded-md  font-medium  transition-colors  px-2 py-3   "
+              className="hover:text-Primary rounded-md  font-medium  transition-colors  px-2 py-3   "
               onClick={() => setMobileToggle(false)}
             >
               {" "}
               <Link to="/about">About</Link>
             </li>
             <li
-              className="hover:bg-Primary/30 rounded-md  font-medium  transition-colors  px-2 py-3   "
+              className="hover:text-Primary rounded-md  font-medium  transition-colors  px-2 py-3   "
               onClick={() => setMobileToggle(false)}
             >
               {" "}
@@ -194,9 +194,7 @@ export default function Navbar() {
           {/* Popup */}
           {showPopup && (
             <div className="absolute top-12 hidden  md:flex justify-between right-0 bg-red-500 text-white px-2 w-auto py-4 rounded shadow-lg z-50 gap-x-2">
-              <p className="text-sm mr-4">
-                Please sign in to create a property.
-              </p>
+              <p className="text-sm mr-4">Please sign in to list a property.</p>
               <button
                 className=" text-sm underline absolute top-1.5 right-2"
                 onClick={() => setShowPopup(false)} // Close the popup

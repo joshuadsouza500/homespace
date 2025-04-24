@@ -31,26 +31,31 @@ function App() {
 export default App;
 
 {
-  /** THINGS TO ADD
-  
   /**
-   * EXTRAS
+   * THINGS TO ADD
    * Testing
-   * 
+   *
+   * When new search or pagination something make page scroll to top
+   * When clicking message agent when not signed in display something to say sign in first
+   * if not agent dont display message agent maybe message user
+   * Try to make chat display date if older than a week
+   *
    * STYLING:
-   * Add styles for dark theme
+   * Create a basic about page
    * Add  number animations for  hero
-   * When clicking pagination smooth scroll to top
-   * Add Property add ability to add bullet points bold etc to description bar
    * Add a bit of blur to the sides of the logo slider
+   * Add styles for dark theme
    * Pass a variable to the carousel change and maybe pass it the index value so each card will change images at different times
- 
+   * Add Property add ability to add bullet points bold etc to description bar
+   *
+   *
+   * EXTRAS:
+   *
    * Add a Booking section in property details page and then add a calendar to the user profile check windows ss
    * Add a loan/ mortgage calculator for specific property etc.
    * Optimizes sizes maybe dont use fixed sizes
-   * 
    * Add google auth
-   * Maybe integrate CI CD 
+   * Maybe integrate CI CD
    * Add dynamic imports for some pages const Dashboard = lazy(() => import('./Dashboard')); Can wrap them in suspense and add loading page as fallback
    *
    */

@@ -140,13 +140,17 @@ const MobileHero = ({
             />{" "}
             <Select
               id="propertyType"
+              data-testid="property-type"
               onValueChange={(value) => {
                 handleFilterChange({ id: "pty", value });
               }}
               value={filters?.pty}
             >
               <SelectTrigger className="w-full text-muted-foreground  border  h-10  focus-visible:ring-[0.5px] ">
-                <SelectValue placeholder="Property type" />
+                <SelectValue
+                  placeholder="Property type"
+                  data-testid="property-type-selected-value"
+                />
               </SelectTrigger>
 
               <SelectContent>
@@ -164,6 +168,7 @@ const MobileHero = ({
             <Button
               className="bg-Primary   w-[90%]   hover:bg-indigo-700 tracking-wide"
               onClick={applyFilters}
+              data-testid="find-properties-button"
             >
               Find Properties
             </Button>
