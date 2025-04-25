@@ -17,7 +17,6 @@ function App() {
       <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/signup" element={<SignUp />} />
-
           <Route path="/user/*" element={<User />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/*" element={<CustomerRoutes />} />
@@ -35,12 +34,12 @@ export default App;
   /**
    * THINGS TO ADD
    * Testing
-   *
-   * When new search or pagination something make page scroll to top
    * when using user dashboard sidebar initalyy it doest display what tab is selected (need to get from url)
+   * Create a basic about page
+   *
    *
    * STYLING:
-   * Create a basic about page
+   *
    * Add  number animations for  hero
    * Add a bit of blur to the sides of the logo slider
    * Add styles for dark theme

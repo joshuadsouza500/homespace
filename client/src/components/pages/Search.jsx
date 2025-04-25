@@ -25,8 +25,14 @@ const Search = () => {
   const dispatch = useDispatch();
   // eslint-disable-next-line no-unused-vars
   const [searchParams, setSearchParams] = useSearchParams();
+  //Scrolls to top when page is changed
   const handlePageChange = (value) => {
     ChildRef.current.handlePageChange(value);
+    window.scrollTo({
+      top: 10,
+      left: 0,
+      behavior: "smooth",
+    });
   };
   const handleSearchClick = async (params) => {
     // Update the URL with the new search parameters
