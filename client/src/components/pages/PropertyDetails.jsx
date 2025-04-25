@@ -66,7 +66,7 @@ const PropertyDetails = () => {
       console.error("Error saving property:", error);
     }
   };
-
+  console.log("propdpdeat", Property);
   return (
     <div className="px-2 md:px-6  w-full  max-w-5xl lg:max-w-6xl  xl:max-w-7xl  2xl:max-w-8xl mx-auto   font-jakarta  light_gray ">
       <PropertyDetails2 property={Property?.property} handleSave={handleSave} />
@@ -118,7 +118,7 @@ const PropertyDetails = () => {
         </p>
 
         <div className="max-md:overflow-y-scroll md:gap-y-12 gap-x-4 lg:gap-x-8 justify-center lg:justify-start  mx-auto flex md:grid grid-cols-2 lg:grid-cols-3 similarProps">
-          {Property.properties?.properties?.slice(0, 6).map((property) => (
+          {Property?.properties?.properties?.slice(0, 6).map((property) => (
             <SimilarProps key={property?.id} property={property} />
           ))}
         </div>

@@ -94,6 +94,7 @@ export default function PropertyDetails2({ property, handleSave }) {
   const dispatch = useDispatch();
   const [toggleMessage, setToggleMessage] = useState(false);
   const { isSignedIn, user } = useAuth();
+
   const handleMessage = async (otherParticipant) => {
     if (!isSignedIn) {
       // If the user is not signed in
@@ -160,6 +161,7 @@ export default function PropertyDetails2({ property, handleSave }) {
                 {property?.title}
               </h1>
               <Bookmark
+                data-testid="save-property-icon"
                 className={`block p-2 rounded-full ring-[0.2px] ring-bborder shadow-sm text-Primary size-11 hover:scale-95 cursor-pointer hover:fill-Primary/90 ${
                   property?.isSaved ? "fill-Primary" : "bg-white"
                 }`}
@@ -172,11 +174,11 @@ export default function PropertyDetails2({ property, handleSave }) {
             <div className="flex items-center text-muted-foreground mb-4 pt-1">
               <MapPin className="w-4 h-4 mr-2 text-Primary" />
               <span className="flex items-center justify-center gap-1">
-                {property?.city}, {property?.governate.replace("_", " ")}
+                {property?.city}, {property?.governate?.replace("_", " ")}
               </span>
             </div>
             <div className="text-2xl font-bold text-Primary mb-4 ">
-              ${property?.price.toLocaleString()}{" "}
+              ${property?.price?.toLocaleString()}{" "}
               <span className="text-muted-foreground font-medium">/month</span>
             </div>
             {/* Beds , Baths and area */}
@@ -335,6 +337,7 @@ export default function PropertyDetails2({ property, handleSave }) {
                     onClick={() => {
                       handleMessage(property?.userId);
                     }}
+                    data-testid="MessageAgent"
                   >
                     <Mail className="mr-2 h-4 w-4" />{" "}
                     {property?.user?.role === "AGENT"
@@ -423,9 +426,9 @@ export default function PropertyDetails2({ property, handleSave }) {
                 />
                 <LocationMaker
                   city={property?.city}
-                  image={property?.image[0]}
+                  image={property?.image?.length > 0 ? property.image[0] : null}
                   address={property?.address}
-                  price={property?.price.toLocaleString()}
+                  price={property?.price?.toLocaleString()}
                 />
               </MapContainer>
             </CardContent>

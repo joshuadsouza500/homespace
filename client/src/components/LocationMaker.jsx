@@ -55,11 +55,11 @@ const LocationMaker = ({ city, image, address, price }) => {
       const data = await response.json();
       if (data && data.length > 0) {
         const { lat, lon } = data[0]; // Take the first result
-        console.log("lat and long", lat, lon);
+
         setPosition([lat, lon]);
         map.flyTo([lat, lon], 13); // Set the map view
       } else {
-        console.error("city not found.");
+        // console.error("city not found.");
       }
     };
 

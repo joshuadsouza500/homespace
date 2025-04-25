@@ -18,7 +18,7 @@ const useAuth = () => {
 
   return {
     isSignedIn,
-    user: auth.user,
+    user: auth?.user,
   };
 };
 
