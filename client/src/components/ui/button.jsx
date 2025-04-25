@@ -10,7 +10,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          " text-primary-foreground bg-Primary hover:bg-indigo-700 hover:scale-[.99] hover:shadow-sm",
+          " text-primary-foreground bg-Primary hover:indigo-700 hover:scale-[.99] hover:shadow-sm",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
@@ -35,12 +35,23 @@ const buttonVariants = cva(
 );
 
 const Button = React.forwardRef(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
+  (
+    {
+      className,
+      variant,
+      size,
+      asChild = false,
+      "data-testid": testId,
+      ...props
+    },
+    ref
+  ) => {
     const Comp = asChild ? Slot : "button";
     return (
       <Comp
         className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
+        data-testid={testId}
         {...props}
       />
     );

@@ -23,6 +23,7 @@ const Search = () => {
   const Property = useSelector((store) => store.property);
   const ChildRef = useRef(null);
   const dispatch = useDispatch();
+  // eslint-disable-next-line no-unused-vars
   const [searchParams, setSearchParams] = useSearchParams();
   const handlePageChange = (value) => {
     ChildRef.current.handlePageChange(value);
@@ -192,6 +193,7 @@ const Search = () => {
                         <nav aria-label="Pagination">
                           <ul className="inline-flex  text-sm ">
                             <Button
+                              data-testid="Previous"
                               className="flex items-center justify-center px-2 h-10 leading-tight border  rounded-l-lg rounded-r-none   bg-Bgpurple   border-gray-700 text-gray-200  hover:bg-Bgpurple/90 "
                               disabled={currentPage == 1}
                               onClick={() => handlePageChange("prev")}
@@ -218,6 +220,7 @@ const Search = () => {
                               </li>
                             ))}
                             <Button
+                              data-test="Next"
                               className="flex items-center justify-center px-2  h-10   border rounded-l-none  rounded-e-lg   bg-Bgpurple   border-gray-700 text-gray-200  hover:bg-Bgpurple/90"
                               disabled={currentPage == totalPages}
                               onClick={() => handlePageChange("next")}
@@ -258,7 +261,6 @@ export default Search;
 {
   /**
 2.Fix the selecting and unselecting of type and proptype,
-3.Make sure state values for search remain after refresh (get values from urlparam)
 4.Onces a city has been selected after removing it it still remains in the query {propertyfinder maybe style each city to have an x when in search tab so i can click it to remove it}
 
   */

@@ -73,7 +73,7 @@ const LocationMaker = ({ city, image, address, price }) => {
           <img src={image} alt={address} className="w-full h-12 object-cover" />
           <div className="pt-1 pb-2 px-1 space-y-[2px] flex flex-col items-start">
             <span className="line-clamp-1 text-xs font-semibold text-text">
-              {city},{address}
+              {city ? city : null},{address}
             </span>
             <span className="text-sm font-medium text-Primary">
               {price} BHD

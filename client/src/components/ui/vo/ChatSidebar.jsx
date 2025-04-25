@@ -123,23 +123,34 @@ const ChatSidebar = ({ chats, activeChat, onChatSelect, userId }) => {
                         >
                           {/* Format the time of the last message// Checks if the last message was sent today? if so displays the time. if not displays the day it was sent */}
                           {chat.messages.length > 0 ? (
-                            new Date(
-                              chat.messages[0]?.createdAt
-                            ).toLocaleDateString() ===
-                            new Date().toLocaleDateString() ? (
-                              new Date(
+                            (() => {
+                              const messageDate = new Date(
                                 chat.messages[0]?.createdAt
-                              ).toLocaleTimeString([], {
-                                hour: "2-digit",
-                                minute: "2-digit",
-                              })
-                            ) : (
-                              new Date(
-                                chat.messages[0]?.createdAt
-                              ).toLocaleDateString("en-US", {
-                                weekday: "long",
-                              })
-                            )
+                              );
+                              const today = new Date();
+                              const startOfWeek = new Date(today);
+                              startOfWeek.setDate(
+                                today.getDate() - today.getDay()
+                              ); // getDay return number for each day of the week Sunday 0 , 1 etc this basically gets what date 0-31 was the current weeks sunday
+                              if (
+                                messageDate.toLocaleDateString() ===
+                                today.toLocaleDateString()
+                              ) {
+                                // If the message is from today, display the time
+                                return messageDate.toLocaleTimeString([], {
+                                  hour: "2-digit",
+                                  minute: "2-digit",
+                                });
+                              } else if (messageDate >= startOfWeek) {
+                                // If the message is from this week, display the day of the week
+                                return messageDate.toLocaleDateString("en-US", {
+                                  weekday: "long",
+                                });
+                              } else {
+                                // If the message is older than a week, display the full date
+                                return messageDate.toLocaleDateString("en-GB"); // Format: dd/mm/yyyy
+                              }
+                            })() //() immediately invokes the function
                           ) : (
                             <span> </span>
                           )}

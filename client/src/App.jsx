@@ -30,15 +30,14 @@ function App() {
 
 export default App;
 
+/* BY end of april after completing most things try optimizing and rmeoving uneccessary components are try to organize he files better */
 {
   /**
    * THINGS TO ADD
    * Testing
    *
    * When new search or pagination something make page scroll to top
-   * When clicking message agent when not signed in display something to say sign in first
-   * if not agent dont display message agent maybe message user
-   * Try to make chat display date if older than a week
+   * when using user dashboard sidebar initalyy it doest display what tab is selected (need to get from url)
    *
    * STYLING:
    * Create a basic about page
@@ -50,7 +49,7 @@ export default App;
    *
    *
    * EXTRAS:
-   *
+   * New logo
    * Add a Booking section in property details page and then add a calendar to the user profile check windows ss
    * Add a loan/ mortgage calculator for specific property etc.
    * Optimizes sizes maybe dont use fixed sizes

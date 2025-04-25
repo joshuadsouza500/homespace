@@ -9,7 +9,7 @@ import { propertyReducer } from "@/store/property/reducer";
 
 //Test to see when clicking find properties it navigates to the properties page and then test to see if clicking the select city selects something
 
-const rootReducer = combineReducers({ auth: propertyReducer });
+const rootReducer = combineReducers({ property: propertyReducer });
 
 const store = legacy_createStore(rootReducer, applyMiddleware(thunk));
 const navigate = vi.fn();
@@ -60,11 +60,6 @@ describe("Hero section", () => {
     expect(selectedValue.textContent).toBe("Villa");
   }); */
 });
-
-//PROPERTY SEARCH PAGE
-//Clicking find works
-//Checka if the property card goes to selected property
-//pagination works
 
 //Property Details Page
 //See if data is rendered

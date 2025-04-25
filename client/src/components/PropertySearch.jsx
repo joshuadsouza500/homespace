@@ -337,6 +337,7 @@ const PropertySearch = forwardRef((props, ref) => {
           />
           <Button
             className="bg-indigo-700  max-md:w-28 md:w-32   text-white  transition-colors duration-300 ease-in-out hover:bg-indigo-600"
+            data-testid="find-properties-button"
             onClick={() => {
               applyFilters(true);
             }}
@@ -517,9 +518,9 @@ const PropertySearch = forwardRef((props, ref) => {
             <ChevronRight className="size-4" />
             Properties for sale
           </p>
-          <h1 className="text-lg sm:text-xl md:text-2xl font-bold pt-2 md:pt-4">
+          <h2 className="text-lg sm:text-xl md:text-2xl font-bold pt-2 md:pt-4">
             Properties for sale in Bahrain
-          </h1>
+          </h2>
         </div>
         <Select
           onValueChange={(value) => {

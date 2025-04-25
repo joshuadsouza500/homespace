@@ -28,9 +28,21 @@ import { MapContainer, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import LocationMaker from "@/components/LocationMaker";
 import PropertyGallery from "./PropertyGallery";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { createChat } from "@/store/user/action";
+import { useState } from "react";
+import useAuth from "@/config/useAuth";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "../alert-dialog";
 
 {
   /** <div className="flex flex-col md:flex-row gap-4 h-[500px] ">
@@ -80,13 +92,22 @@ export default function PropertyDetails2({ property, handleSave }) {
   };
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  const [toggleMessage, setToggleMessage] = useState(false);
+  const { isSignedIn, user } = useAuth();
   const handleMessage = async (otherParticipant) => {
-    if (otherParticipant) {
-      // Create the chat and get the chat details returned by the action
-      const createdChat = await dispatch(createChat(otherParticipant));
-      const chatId = createdChat.id;
-      navigate(`/user/chat/${chatId}`);
+    if (!isSignedIn) {
+      // If the user is not signed in
+      setToggleMessage(true);
+      return;
+    } else if (user.id === otherParticipant) {
+      navigate("/user/property");
+    } else {
+      if (otherParticipant) {
+        // Create the chat and get the chat details returned by the action
+        const createdChat = await dispatch(createChat(otherParticipant));
+        const chatId = createdChat.id;
+        navigate(`/user/chat/${chatId}`);
+      }
     }
   };
 
@@ -315,7 +336,10 @@ export default function PropertyDetails2({ property, handleSave }) {
                       handleMessage(property?.userId);
                     }}
                   >
-                    <Mail className="mr-2 h-4 w-4" /> Message Agent
+                    <Mail className="mr-2 h-4 w-4" />{" "}
+                    {property?.user?.role === "AGENT"
+                      ? "Message Agent"
+                      : "Message User"}
                   </Button>
                   <Button
                     variant=""
@@ -362,6 +386,27 @@ export default function PropertyDetails2({ property, handleSave }) {
                 </div>*/}
               </CardContent>
             </Card>
+            <AlertDialog open={toggleMessage} onOpenChange={setToggleMessage}>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Sign in required</AlertDialogTitle>
+                  <AlertDialogDescription className="pr-4">
+                    You need to be signed in to message the agent. Would you
+                    like to sign in now?
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Cancel</AlertDialogCancel>
+                  <AlertDialogAction asChild>
+                    <Link to="/signin">
+                      <Button className="w-full px-2 hover:indigo-700">
+                        Sign In
+                      </Button>
+                    </Link>
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
           </div>
 
           <Card className="md:w-[80%]  lg:w-full  lg:h-[310px] mx-auto bg-white">
