@@ -80,14 +80,18 @@ const HowItWorks = () => {
               </Button>
             </div>
           </div>
-
-          <div className="relative h-fit w-full min-h-[350px] max-h-[450px] md:max-h-[550px] rounded-2xl overflow-hidden opacity -0 animate-fade-in">
-            <img
-              src="/Howitworks.png"
-              alt="Real estate professional holding a house model"
-              className="w-full h-full object-cover object-center rounded-2xl shadow-xl "
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl"></div>
+          <div className="relative">
+            {" "}
+            <div className="absolute -top-4 -left-4 size-24 bg-[#7065f0]/10 rounded-lg" />
+            <div className="absolute -bottom-4 -right-4 size-24 bg-[#7065f0]/10  rounded-lg" />
+            <div className="relative h-fit w-full min-h-[350px] max-h-[450px] md:max-h-[550px] rounded-2xl overflow-hidden opacity -0 animate-fade-in">
+              <img
+                src="/Howitworks.png"
+                alt="Real estate professional holding a house model"
+                className="w-full h-full object-cover object-center rounded-2xl shadow-xl z-10"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl"></div>
+            </div>
           </div>
         </div>
       </div>

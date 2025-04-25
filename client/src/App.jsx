@@ -48,6 +48,7 @@ export default App;
    *
    *
    * EXTRAS:
+   * For the project need to make the story match. If it is being created as a new modern verions then cant have yearsvof expiereicne etc maybe something else instead of it
    * New logo
    * Add a Booking section in property details page and then add a calendar to the user profile check windows ss
    * Add a loan/ mortgage calculator for specific property etc.

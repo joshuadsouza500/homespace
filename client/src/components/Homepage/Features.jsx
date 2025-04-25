@@ -16,15 +16,15 @@ import {
 
 const features = [
   {
-    title: "Property Insurance",
+    title: "Property Valuation ",
     description:
-      "Not sure what you should be charging for your property? No need to worry, let us do the numbers for you.",
+      "Get accurate and up-to-date property valuations to make informed buying, selling, or investing decisions.",
     icon: <House strokeWidth={1.5} className="text-text " />,
   },
   {
-    title: "Property Valuation",
+    title: "Verified Listings",
     description:
-      "Get accurate and up-to-date property valuations to make informed buying, selling, or investing decisions.",
+      "Every property on our platform is verified to ensure you get accurate, up-to-date information.",
     icon: <HousePlusIcon strokeWidth={1.5} className="text-text " />,
   },
   {

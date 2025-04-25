@@ -5,6 +5,7 @@ import HomePage from "./pages/HomePage";
 import { lazy, Suspense } from "react";
 import Loader from "./ui/vo/Loader";
 import { NotFound } from "./pages/NotFound";
+import AboutPage from "./pages/About";
 
 const Search = lazy(() => import("./pages/Search"));
 const PropertyDetails = lazy(() => import("./pages/PropertyDetails"));
@@ -20,6 +21,7 @@ const CustomerRoutes = () => {
           <Route path="/property" element={<Search />} />
           <Route path="/property/:propertyId" element={<PropertyDetails />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/about" element={<AboutPage />} />
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </Suspense>

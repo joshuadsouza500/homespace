@@ -46,7 +46,7 @@ const navigate = vi.fn();
 vi.mock("react-router-dom", async (importOriginal) => {
   const actual = await importOriginal("react-router-dom");
   return {
-    ...actual,
+    ...actual, // Spread the actual module's exports
     useNavigate: () => navigate,
   };
 });

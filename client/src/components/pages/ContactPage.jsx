@@ -83,7 +83,7 @@ export default function ContactPage() {
             </CardHeader>
             <CardContent className="md:grid grid-cols-2 lg:grid-cols-1 space-y-4">
               <div className="flex items-start gap-3">
-                <Phone className="h-5 w-5 mt-0.5 text-primary" />
+                <Phone className="h-5 w-5 mt-0.5 text-Primary" />
                 <div>
                   <h3 className="font-medium">Phone</h3>
                   <p className="text-muted-foreground">(+973) 34367282</p>
@@ -94,7 +94,7 @@ export default function ContactPage() {
               </div>
 
               <div className="flex items-start gap-3">
-                <Mail className="h-5 w-5 mt-0.5 text-primary" />
+                <Mail className="h-5 w-5 mt-0.5 text-Primary" />
                 <div>
                   <h3 className="font-medium">Email</h3>
                   <p className="text-muted-foreground">info@homespace.com</p>
@@ -102,7 +102,7 @@ export default function ContactPage() {
               </div>
 
               <div className="flex items-start gap-3">
-                <MapPin className="h-5 w-5 mt-0.5 text-primary" />
+                <MapPin className="h-5 w-5 mt-0.5 text-Primary" />
                 <div>
                   <h3 className="font-medium">Main Office</h3>
                   <p className="text-muted-foreground">123 Jabbir Avn</p>
@@ -113,7 +113,7 @@ export default function ContactPage() {
               </div>
 
               <div className="flex items-start gap-3">
-                <Clock className="h-5 w-5 mt-0.5 text-primary" />
+                <Clock className="h-5 w-5 mt-0.5 text-Primary" />
                 <div>
                   <h3 className="font-medium">Business Hours</h3>
                   <p className="text-muted-foreground">
