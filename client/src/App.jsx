@@ -34,16 +34,14 @@ export default App;
   /**
    * THINGS TO ADD
    * Testing
-   * when using user dashboard sidebar initalyy it doest display what tab is selected (need to get from url)
-   * Create a basic about page
-   *
+   * when using user dashboard sidebar initaly it doest display what tab is selected (need to get from url)
    *
    * STYLING:
    *
    * Add  number animations for  hero
+   * Pass a variable to the carousel change and maybe pass it the index value so each card will change images at different times
    * Add a bit of blur to the sides of the logo slider
    * Add styles for dark theme
-   * Pass a variable to the carousel change and maybe pass it the index value so each card will change images at different times
    * Add Property add ability to add bullet points bold etc to description bar
    *
    *

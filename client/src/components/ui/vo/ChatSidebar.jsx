@@ -10,7 +10,7 @@ const ChatSidebar = ({ chats, activeChat, onChatSelect, userId }) => {
   //    if (filter === "unread") return chat.unread;
   //   return true;
   //  });
-  // console.log("CHat sidebar", chats);
+
   const [isOnline, setIsOnline] = useState(false);
   return (
     <div className="h-full flex flex-col  w-full md:w-80 2xl:w-[440px] bg-estate-50 overflow-hidden animate-fade-in ">

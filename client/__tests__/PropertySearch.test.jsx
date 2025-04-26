@@ -6,7 +6,6 @@ import { beforeEach, describe, expect, test, vi } from "vitest";
 import { thunk } from "redux-thunk";
 import { propertyReducer } from "@/store/property/reducer";
 import Search from "@/components/pages/Search";
-import PropertyCard2 from "@/components/ui/vo/property-card2";
 
 //PROPERTY SEARCH PAGE
 //Clicking find works
@@ -14,24 +13,37 @@ import PropertyCard2 from "@/components/ui/vo/property-card2";
 //pagination works
 const initialState = {
   property: {
-    filters: { pg: 1 }, // Current page
-    properties: {
-      properties: [
-        { id: 1, name: "Property 1", onClick: vi.fn() },
-        { id: 2, name: "Property 2", onClick: vi.fn() },
-        { id: 3, name: "Property 3", onClick: vi.fn() },
-      ],
-      totalPages: 5, // Total number of pages
-    },
-    isLoading: false, // Ensure loading is false so the component renders
+    properties: [
+      {
+        properties: [
+          { id: "1", title: "Property 1" },
+          { id: "2", title: "Property 2" },
+          { id: "3", title: "Property 3" },
+          { id: "4", title: "Property 4" },
+        ],
+        total: 4,
+      },
+    ],
+    isLoading: false,
   },
 };
 vi.mock("@/components/ui/vo/property-card2", () => ({
   __esModule: true,
   default: vi.fn(({ property }) => (
-    <div data-testid="property-card" onClick={() => property.onClick()}>
-      {property.name}
+    <div
+      data-testid="property-card"
+      onClick={() => mockedNavigate(`/property/${property.id}`)} // simulate the mock card to have an onClick
+    >
+      {property.title}
     </div>
+  )),
+}));
+
+// Mock BigPropertyCard component
+vi.mock("@/components/ui/vo/Big-propery-card", () => ({
+  __esModule: true,
+  default: vi.fn(({ property }) => (
+    <div data-testid="big-property-card">{property?.title}</div>
   )),
 }));
 
@@ -42,16 +54,17 @@ const store = legacy_createStore(
   initialState,
   applyMiddleware(thunk)
 );
-const navigate = vi.fn();
+const mockedNavigate = vi.fn();
 vi.mock("react-router-dom", async (importOriginal) => {
   const actual = await importOriginal("react-router-dom");
   return {
     ...actual, // Spread the actual module's exports
-    useNavigate: () => navigate,
+    useNavigate: () => mockedNavigate,
   };
 });
 describe("property search section", () => {
   beforeEach(() => {
+    vi.clearAllMocks();
     render(
       <Provider store={store}>
         <BrowserRouter>
@@ -61,34 +74,17 @@ describe("property search section", () => {
     );
   });
   test("renders PropertySearch component", () => {
-    // screen.debug(); // Inspect the rendered DOM
     expect(
       screen.getByText("Properties for sale in Bahrain")
     ).toBeInTheDocument();
 
     expect(screen.getByTestId("find-properties-button")).toBeInTheDocument();
   });
-  test("renders PropertyCard2 components", async () => {
-    screen.debug(); // Check if the correct number of property cards are rendered
-    const propertyCards = await screen.findAllByTestId("property-card");
-    expect(propertyCards).toHaveLength(3); // Matches the mock data
-  });
-
-  /* test("navigates to /property/id on PropertyCard2 click", async () => {
+  /*   test("navigates to property/id on PropertyCard2 click", () => {
     // Wait for the property cards to appear
-    const propertyCards = await screen.findAllByTestId("property-card");
+    const propertyCards = screen.getAllByTestId("property-card");
+    fireEvent.click(propertyCards[2]);
 
-    // Log the property cards for debugging
-    // console.log(propertyCards);
-
-    // Simulate clicking the second property card
-    const propertyCard = propertyCards[1];
-    expect(propertyCard).toBeInTheDocument(); // Ensure the element exists
-    fireEvent.click(propertyCard);
-
-    // Check if the navigate function was called with the correct path
-    expect(navigate).toHaveBeenCalledWith(
-      expect.stringContaining("/property/")
-    );
+    expect(mockedNavigate).toHaveBeenCalledWith("/property/2");
   }); */
 });

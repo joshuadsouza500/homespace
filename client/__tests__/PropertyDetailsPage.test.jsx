@@ -17,7 +17,6 @@ const rootReducer = combineReducers({
 });
 
 // Create a real Redux store
-
 const initialState = {
   auth: {
     user: { id: "123", name: "Test User", email: "testuser@example.com" },
