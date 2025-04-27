@@ -103,7 +103,7 @@ const deleteProperty = async (req, res) => {
 const saveProperty = async (req, res) => {
   const userId = req.user.id;
   const propertyId = req.body.propertyId;
-  console.log("userId,propertyId", userId, propertyId);
+  //console.log("userId,propertyId", userId, propertyId);
   try {
     let savedProperty = null;
     if (userId) {

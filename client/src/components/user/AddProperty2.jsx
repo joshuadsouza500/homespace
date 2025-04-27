@@ -228,7 +228,7 @@ export default function AddProperty2() {
                   <AlertCircle className="size-4" /> {errors.image}
                 </span>
               )}
-              <div className="space-x-4 flex">
+              <div className="space-x-4 flex" data-testid="image-preview">
                 {formData.image.map((url, index) => (
                   <div key={index} className="relative">
                     <img

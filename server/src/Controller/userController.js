@@ -18,7 +18,9 @@ const getUserProfile = async (req, res) => {
     if (!jwt) {
       return res.status(404).send({ error: "Token not found" });
     }
+
     const user = await userService.getUserProfileFromToken(jwt);
+
     if (!user) {
       return res.status(404).send({ message: "User not found" });
     }
