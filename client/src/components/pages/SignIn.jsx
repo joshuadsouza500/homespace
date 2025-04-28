@@ -73,6 +73,7 @@ export default function SignIn() {
             </p>
           </div>
           <form className="space-y-4 " onSubmit={handleSubmit}>
+            {/* Displaying error */}
             {formData.email &&
               formData.password &&
               auth.error?.status === 401 && (
@@ -80,6 +81,12 @@ export default function SignIn() {
                   {auth.error?.data.error}!
                 </h2>
               )}
+            {/* Rate limiter error */}
+            {auth.error?.status === 429 && (
+              <h2 className=" font-semibold text-red-500 -my-2 py-1">
+                {auth.error?.data}!
+              </h2>
+            )}
             <div className="space-y-1">
               <Label htmlFor="email">Email</Label>
               <Input

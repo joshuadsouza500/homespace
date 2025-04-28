@@ -71,7 +71,6 @@ export const getUserProfile = (jwt) => async (dispatch) => {
 
     dispatch({ type: GET_USER_PROFILE_SUCCESS, payload: user });
   } catch (error) {
-    console.log(error);
     dispatch({ type: GET_USER_PROFILE_FAILURE, payload: error.message });
   }
 };

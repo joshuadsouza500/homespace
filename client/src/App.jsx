@@ -33,7 +33,6 @@ export default App;
 {
   /**
    * THINGS TO ADD
-   * Testing
    * when using user dashboard sidebar initaly it doest display what tab is selected (need to get from url)
    *
    * STYLING:

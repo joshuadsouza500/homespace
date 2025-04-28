@@ -1,7 +1,8 @@
 import request from "supertest";
 import { vi, describe, expect, beforeEach, test } from "vitest";
 import app from "../app.js";
-
+import propertyService from "../src/Service/propertyService.js";
+import prisma from "../src/lib/Prisma.js";
 // Mock the verifyToken middleware
 vi.mock("../src/middleware/verifyToken.js", () => ({
   default: vi.fn((req, res, next) => {
@@ -46,6 +47,7 @@ vi.mock("../src/Controller/propertyController.js", async () => {
   };
 });
 
+/* Testing User Routes */
 describe("Property Routes", () => {
   beforeEach(() => {
     vi.clearAllMocks();
@@ -76,6 +78,69 @@ describe("Property Routes", () => {
       isSaved: true,
       user: {
         id: "1223",
+      },
+    });
+  });
+});
+
+/* Unit Tests for individual services */
+describe("propertyService.createProperty", () => {
+  test("should create a property successfully", async () => {
+    const mockUserId = "1234";
+    const mockData = {
+      title: "Test Property",
+      description: "A beautiful property",
+      price: 100000,
+      address: "123 Test Street",
+      city: "Test City",
+      image: ["image1.jpg", "image2.jpg"],
+      bedrooms: 3,
+      bathrooms: 2,
+      area: 1200,
+      type: "Apartment",
+      property_type: "Residential",
+      utilities: ["Electricity", "Water"],
+      furnishing: "Furnished",
+      amenities: ["Pool", "Gym"],
+    };
+
+    // Mock the Prisma `create` method
+    vi.spyOn(prisma.property, "create").mockResolvedValue({
+      id: "1",
+      ...mockData,
+    });
+
+    const result = await propertyService.createProperty(mockUserId, mockData);
+
+    expect(result).toEqual({
+      id: "1",
+      ...mockData,
+    });
+  });
+});
+
+describe("propertyService.saveProperty", () => {
+  test("should save a property successfully", async () => {
+    const mockUserId = "1234";
+    const mockPropertyId = "1";
+
+    // Mock Prisma `findUnique` and `create` methods
+    vi.spyOn(prisma.savedProperty, "findUnique").mockResolvedValue(null); // No existing saved property
+    vi.spyOn(prisma.savedProperty, "create").mockResolvedValue({
+      userId: mockUserId,
+      propertyId: mockPropertyId,
+    });
+
+    const result = await propertyService.saveProperty(
+      mockUserId,
+      mockPropertyId
+    );
+
+    expect(result).toEqual({
+      message: "Property saved successfully",
+      savedProperty: {
+        userId: mockUserId,
+        propertyId: mockPropertyId,
       },
     });
   });
