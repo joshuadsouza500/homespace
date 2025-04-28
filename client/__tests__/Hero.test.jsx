@@ -1,4 +1,3 @@
-import Hero from "@/components/Homepage/Hero";
 import { applyMiddleware, combineReducers, legacy_createStore } from "redux";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
@@ -6,6 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 import { beforeEach, describe, expect, test, vi } from "vitest";
 import { thunk } from "redux-thunk";
 import { propertyReducer } from "@/store/property/reducer";
+import Hero from "@/components/Homepage/Hero";
 
 //Test to see when clicking find properties it navigates to the properties page and then test to see if clicking the select city selects something
 

@@ -1,15 +1,12 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-
-import CustomerRoutes from "./components/CustomerRoutes";
-import SignUp from "./components/pages/SignUp";
-//import SignIn from "./components/pages/SignIn";
-//import User from "./components/pages/User";
 import { lazy, Suspense } from "react";
-import Loader from "./components/ui/vo/Loader"; //dynamically loads when route is naigated to
-import { NotFound } from "./components/pages/NotFound";
-const SignIn = lazy(() => import("./components/pages/SignIn"));
-const User = lazy(() => import("./components/pages/User"));
+import Loader from "./components/common/Loader"; //dynamically loads when route is naigated to
+import { NotFound } from "./pages/NotFound";
+import SignUp from "./pages/SignUp";
+import CustomerRoutes from "./components/CustomerRoutes";
+const SignIn = lazy(() => import("./pages/SignIn"));
+const User = lazy(() => import("./pages/User"));
 
 function App() {
   return (
@@ -29,18 +26,15 @@ function App() {
 
 export default App;
 
-/* BY end of april after completing most things try optimizing and rmeoving uneccessary components are try to organize he files better */
+/* PArt 3: Animations & Dark Styles & Optimize & comments  */
 {
   /**
    * THINGS TO ADD
-   * when using user dashboard sidebar initaly it doest display what tab is selected (need to get from url)
-   *
    * STYLING:
    *
    * Add  number animations for  hero
-   * Pass a variable to the carousel change and maybe pass it the index value so each card will change images at different times
    * Add a bit of blur to the sides of the logo slider
-   * Add styles for dark theme
+   * Add styles for dark theme and maybe add a toggle for it
    * Add Property add ability to add bullet points bold etc to description bar
    *
    *

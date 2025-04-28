@@ -1,12 +1,10 @@
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-
+import { Tabs, TabsList, TabsTrigger } from "@/components/UI/ShadCN/tabs";
 import { Link, useSearchParams } from "react-router-dom";
-
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getAllProperties } from "@/store/property/action";
-import BrowsePropCard from "../ui/BrowsePropCard";
-import { Button } from "../ui/button";
+import BrowsePropCard from "../UI/BrowsePropCard";
+import { Button } from "@/components/UI/ShadCN/button";
 //text-[#000929]
 
 const Browse = () => {
@@ -66,7 +64,7 @@ const Browse = () => {
             <BrowsePropCard key={property.id} property={property} />
           ))}
         </section>
-        <section className=" hidden w-full max-w-6xl md:grid    grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10 lg:gap-x-10 pt-12 px-4 pb-4   ">
+        <section className=" hidden w-full max-w-7xl 6xl md:grid    grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10 lg:gap-x-10 pt-12 px-4 pb-4   ">
           {Property?.properties?.properties?.slice(0, 6).map((property) => (
             <BrowsePropCard key={property.id} property={property} />
           ))}

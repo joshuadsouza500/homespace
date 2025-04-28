@@ -5,7 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 import { beforeEach, describe, expect, test, vi } from "vitest";
 import { thunk } from "redux-thunk";
 import { propertyReducer } from "@/store/property/reducer";
-import Search from "@/components/pages/Search";
+import Search from "@/pages/Search";
 
 //PROPERTY SEARCH PAGE
 //Clicking find works
@@ -27,7 +27,8 @@ const initialState = {
     isLoading: false,
   },
 };
-vi.mock("@/components/ui/vo/property-card2", () => ({
+
+vi.mock("@/components/UI/property-card", () => ({
   __esModule: true,
   default: vi.fn(({ property }) => (
     <div
@@ -40,7 +41,7 @@ vi.mock("@/components/ui/vo/property-card2", () => ({
 }));
 
 // Mock BigPropertyCard component
-vi.mock("@/components/ui/vo/Big-propery-card", () => ({
+vi.mock("@/components/SearchPage/Big-propery-card", () => ({
   __esModule: true,
   default: vi.fn(({ property }) => (
     <div data-testid="big-property-card">{property?.title}</div>

@@ -2,12 +2,12 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 
-import UserListings from "@/components/user/UserListings";
 import { describe, test, expect, vi, beforeEach } from "vitest";
 import { userReducer } from "@/store/user/reducer";
 import { applyMiddleware, combineReducers, legacy_createStore } from "redux";
 import { thunk } from "redux-thunk";
 import { authReducer } from "@/store/auth/reducer";
+import UserListings from "@/components/User/UserProp/UserListings";
 
 const rootReducer = combineReducers({ user: userReducer, auth: authReducer });
 const initialState = {
@@ -42,8 +42,9 @@ vi.mock("react-router-dom", async () => {
     useNavigate: () => mockedNavigate,
   };
 });
-// Mock PropertyCard2 component
-vi.mock("@/components/ui/vo/property-card2", () => ({
+
+// Mock PropertyCard component
+vi.mock("@/components/UI/property-card", () => ({
   __esModule: true,
   default: vi.fn(({ property }) => (
     <div
@@ -72,7 +73,7 @@ describe("UserListings Component", () => {
     expect(screen.getByText("My Properties")).toBeInTheDocument();
   });
 
-  test("renders PropertyCard2 components", () => {
+  test("renders PropertyCard components", () => {
     render(
       <Provider store={store}>
         <BrowserRouter>
@@ -81,7 +82,7 @@ describe("UserListings Component", () => {
       </Provider>
     );
 
-    // Check if PropertyCard2 components are rendered
+    // Check if PropertyCard components are rendered
     const propertyCards = screen.getAllByTestId("property-card");
     expect(propertyCards).toHaveLength(2); // Matches the mock data
     expect(propertyCards[0]).toHaveTextContent("Property 1");

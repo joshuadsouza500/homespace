@@ -1,15 +1,12 @@
-import { Button } from "../ui/button";
-import { Label } from "@/components/ui/label";
-
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Button } from "../UI/ShadCN/button";
+import { Label } from "@/components/UI/ShadCN/label";
+import { Tabs, TabsList, TabsTrigger } from "@/components/UI/ShadCN/tabs";
 import PropTypes from "prop-types";
 import { BanknoteIcon, KeyRoundIcon } from "lucide-react";
-
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useState } from "react";
 import { getAllProperties } from "@/store/property/action";
 import { useDispatch } from "react-redux";
-
 import {
   Select,
   SelectContent,
@@ -17,8 +14,8 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../ui/select";
-import SearchBar from "../ui/SearchBar";
+} from "../UI/ShadCN/select";
+import SearchBar from "../CustomComp/SearchBar";
 
 const Hero = () => {
   const dispatch = useDispatch();

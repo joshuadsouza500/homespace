@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
-import PropertyDetails from "@/components/pages/PropertyDetails";
+
 import { saveProperty } from "@/store/property/action";
 import { describe, vi } from "vitest";
 import { beforeEach } from "vitest";
@@ -11,6 +11,7 @@ import { authReducer } from "@/store/auth/reducer";
 import { propertyReducer } from "@/store/property/reducer";
 import { applyMiddleware, combineReducers, legacy_createStore } from "redux";
 import { thunk } from "redux-thunk";
+import PropertyDetailsPg from "@/pages/PropertyDetailsPg";
 const rootReducer = combineReducers({
   auth: authReducer,
   property: propertyReducer,
@@ -68,7 +69,7 @@ describe("PropertyDetailsPage", () => {
     render(
       <Provider store={store}>
         <BrowserRouter>
-          <PropertyDetails />
+          <PropertyDetailsPg />
         </BrowserRouter>
       </Provider>
     );

@@ -4,8 +4,8 @@ import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { thunk } from "redux-thunk";
 import { applyMiddleware, combineReducers, legacy_createStore } from "redux";
-import AddProperty2 from "@/components/user/AddProperty2";
 import { propertyReducer } from "@/store/property/reducer";
+import AddProperty2 from "@/components/User/AddProperty/AddProperty2";
 
 // Mock Redux store
 const rootReducer = combineReducers({ property: propertyReducer });

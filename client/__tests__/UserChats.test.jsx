@@ -5,10 +5,9 @@ import { thunk } from "redux-thunk";
 import { applyMiddleware, combineReducers, legacy_createStore } from "redux";
 import { describe, test, expect, vi, beforeEach } from "vitest";
 import { userReducer } from "@/store/user/reducer";
-import UserChats from "@/components/user/UserChats";
-
+import UserChats from "@/components/User/UserChat/UserChats";
 // Mock ChatSidebar component
-vi.mock("@/components/ui/vo/ChatSidebar", () => ({
+vi.mock("@/components/User/UserChat/ChatComponents/ChatSidebar", () => ({
   __esModule: true,
   default: vi.fn(({ chats, onChatSelect }) => (
     <div data-testid="chat-sidebar">
@@ -24,7 +23,7 @@ vi.mock("@/components/ui/vo/ChatSidebar", () => ({
 }));
 
 // Mock ChatView component
-vi.mock("@/components/ui/vo/ChatView", () => ({
+vi.mock("@/components/User/UserChat/ChatComponents/ChatView", () => ({
   __esModule: true,
   default: vi.fn(({ chat }) => (
     <div data-testid="chat-view">{chat ? chat.name : "No chat selected"}</div>

@@ -4,10 +4,10 @@ import { Provider } from "react-redux";
 import { applyMiddleware, combineReducers, legacy_createStore } from "redux";
 import { thunk } from "redux-thunk";
 import { beforeEach, describe, expect, test } from "vitest";
-import SignIn from "@/components/pages/SignIn";
 import { act } from "react-dom/test-utils";
 import { vi } from "vitest";
 import * as authActions from "@/store/auth/action"; //Can access any of the auth actions
+import SignIn from "@/pages/SignIn";
 
 // Mock reducer for auth
 const authReducer = (state = { user: null }, action) => {

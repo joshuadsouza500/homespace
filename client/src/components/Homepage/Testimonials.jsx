@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 
 import { Quote, Star } from "lucide-react";
 
-import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
-import { Button } from "../ui/button";
+import { Carousel, CarouselContent, CarouselItem } from "../UI/ShadCN/carousel";
+import { Button } from "../UI/ShadCN/button";
 import { Link } from "react-router-dom";
 
 const testimonials = [
@@ -172,95 +172,4 @@ export default function Testimonials() {
       </div>
     </section>
   );
-}
-
-{
-  /**
-   * 
-   * 
-   * 
-     <div className="relative max-w-2xl mx-auto">
-          <Card className="bg-white border-[#e0def7] shadow-md">
-            <CardContent className="p-4 md:p-6">
-              <QuoteIcon className="size-5 md:size-8 text-[#e0def7] mb-4 mx-auto " />
-              <p className="text-[#4d5461]  mb-4 text-center text-pretty max-md:tracking-wide text-base md:text-lg">
-                {testimonials[currentIndex].quote}
-              </p>
-              <div className="flex items-center justify-center">
-                <Avatar className="size-14 mr-2">
-                  <AvatarImage
-                    src={testimonials[currentIndex].avatar}
-                    alt={testimonials[currentIndex].name}
-                  />
-                </Avatar>
-                <div>
-                  <p className="font-semibold text-text">
-                    {testimonials[currentIndex].name}
-                  </p>
-                  <p className="text-sm text-black/60">
-                    {testimonials[currentIndex].role}
-                  </p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-        <div className="flex justify-center mt-4">
-          {testimonials.map((_, index) => (
-            <Button
-              key={index}
-              variant="ghost"
-              size="sm"
-              className={`w-2 h-2 rounded-full mx-1 p-0 ${
-                index === currentIndex ? "bg-text" : "bg-gray-300"
-              }`}
-              onClick={() => setCurrentIndex(index)}
-            >
-              <span className="sr-only">Go to testimonial {index + 1}</span>
-            </Button>
-          ))}
-        </div> * 
-   
-   
-   
-  
-  
-  
-  
-  
-  
-  
-  const nextTestimonial = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1
-    );
-  };
-
-  const prevTestimonial = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? testimonials.length - 1 : prevIndex - 1
-    );
-  };
-    <div className="absolute top-1/2 left-0 -translate-y-1/2 -translate-x-full">
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={prevTestimonial}
-              className="rounded-full"
-            >
-              <ChevronLeft className="h-4 w-4" />
-              <span className="sr-only">Previous testimonial</span>
-            </Button>
-          </div>
-          <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-full">
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={nextTestimonial}
-              className="rounded-full"
-            >
-              <ChevronRight className="h-4 w-4" />
-              <span className="sr-only">Next testimonial</span>
-            </Button>
-          </div> */
 }

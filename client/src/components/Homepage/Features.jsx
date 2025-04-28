@@ -12,7 +12,7 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "../ui/accordion";
+} from "../UI/ShadCN/accordion";
 
 const features = [
   {
@@ -41,7 +41,7 @@ const features = [
   },
 ];
 //
-export default function Main() {
+export default function Features() {
   return (
     <div className=" h-auto   py-14 0 md:py-24 bg-slate-50 [#EDF9F9] relative">
       <div className="absolute inset-0  bg-[url('./bgGradient.png')]  bg-center  opacity-60  bg-cover bg-no-repeat"></div>
@@ -112,25 +112,3 @@ export default function Main() {
     </div>
   );
 }
-
-/*  
-Left side : OLD
-<div className="hidden col-span-2  lg:flex   flex-col max-w-[400px] h-[480px] rounded-lg overflow-hidden border border-[#e0def7] bg-[#fbfbfe] relative md:hidden shadow-md shadow-[#f7f6fc]">
-        <div className="flex flex-col gap-4 items-start relative z-10 mt-8 ml-10 mr-2 w-[80%]">
-          <h1 className="text-3xl font-bold text-text ">
-            The new way to find your new home
-          </h1>
-          <p className="opacity-70 text-[#100a55] text-balance pb-2">
-            Find your dream place to live in with more than 10k+ properties
-            listed.
-          </p>
-
-          <Button className="flex w-36 h-11 bg-Bgpurple rounded-lg hover:bg-Bgpurple/80 text-white text-sm font-semibold">
-            Browse Properties
-          </Button>
-        </div>
-
-        <div className="w-full h-full relative z-10 ml-11 overflow-hidden">
-          <div className="w-[450px] h-60 bg-[url(/House.png)] bg-cover bg-no-repeat absolute left-0 bottom-0" />
-        </div>
-      </div> */

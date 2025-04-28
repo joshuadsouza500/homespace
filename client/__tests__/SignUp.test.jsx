@@ -4,9 +4,9 @@ import { Provider } from "react-redux";
 import { applyMiddleware, combineReducers, legacy_createStore } from "redux";
 import { thunk } from "redux-thunk";
 import { beforeEach, describe, expect, test } from "vitest";
-import SignUp from "@/components/pages/SignUp";
 import { vi } from "vitest";
 import * as authActions from "@/store/auth/action";
+import SignUp from "@/pages/SignUp";
 //Mock Resize Observer ResizeObserver is a browser API that is not available in the Node.js environment used by testing libraries
 class ResizeObserver {
   observe() {}
@@ -14,6 +14,7 @@ class ResizeObserver {
   disconnect() {}
 }
 
+// eslint-disable-next-line no-undef
 global.ResizeObserver = ResizeObserver;
 
 // Mock reducer for auth
