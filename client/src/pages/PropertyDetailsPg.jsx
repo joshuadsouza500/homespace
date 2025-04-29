@@ -94,7 +94,7 @@ const PropertyDetailsPg = () => {
                   value={`item-${index}`}
                   className="py-2"
                 >
-                  <AccordionTrigger className="flex items-center justify-between py-4 2 xl:text-xl text-lg font-medium md:tracking-wide">
+                  <AccordionTrigger className="flex items-center justify-between py-4 2 max-md:text-sm xl:text-xl text-lg font-medium md:tracking-wide">
                     {faq.question}
                   </AccordionTrigger>
                   <AccordionContent className="pb-4 pt-1 mr-5 md:mr-8 lg:text-base text-muted-foreground text-sm text-pretty tracking-wider leading-snug font-normal">

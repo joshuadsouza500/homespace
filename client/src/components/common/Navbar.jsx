@@ -37,7 +37,7 @@ export default function Navbar() {
 
   return (
     <nav className=" pt-3  lg:pt-5 pb-2 lg:pb-3   w-full  border-b">
-      <section className="max-w-6xl xl:max-w-7xl 2xl:max-w-[1440px] flex  pb-2 items-center justify-between mx-auto px-3      md:px-4">
+      <section className="max-w-6xl xl:max-w-7xl 2xl:max-w-[1440px] flex  pb-2 items-center justify-between mx-auto px-3  md:px-4 relative ">
         {/* Add nabar for mobile */}
         <button
           className="md:hidden block"
@@ -49,7 +49,7 @@ export default function Navbar() {
         </button>
 
         <nav
-          className={`md:hidden block bg-Bgpurple space-y-6 w-[100%] sm:w-[50%] shadow-2xl  fixed top-0  left-0 z-30 h-full text-background1  transition-transform duration-300 ease-in-out  ${
+          className={`md:hidden block bg-Bgpurple space-y-6 w-[75%] sm:w-[50%] shadow-2xl  fixed top-0  left-0 z-30 h-full text-background1  transition-transform  duration-300 ease-in-out  ${
             mobileToggle ? "translate-x-0" : "-translate-x-full"
           }`}
         >
@@ -79,15 +79,17 @@ export default function Navbar() {
               <X className="size-6" />
             </button>
           </section>
-          <div className="px-4">
-            <p className="text-muted/90 text-sm pb-4 tracking-wide  px-1">
-              Sign in to save your favorite properties and stay updated on new
-              listings!
-            </p>
-            <Button className="w-full rounded-md h-11">
-              <Link to={"/signin"}>Sign In / Register</Link>
-            </Button>
-          </div>
+          {!isSigned && (
+            <div className="px-4">
+              <p className="text-muted/90 text-sm pb-4 tracking-wide  px-1">
+                Sign in to save your favorite properties and stay updated on new
+                listings!
+              </p>
+              <Button className="w-full rounded-md h-11">
+                <Link to={"/signin"}>Sign In / Register</Link>
+              </Button>
+            </div>
+          )}
           <ul className=" flex flex-col gap-y-1 px-4 text-xl font-medium  w-full justify-center  cursor-pointer ">
             {" "}
             <li
@@ -176,7 +178,7 @@ export default function Navbar() {
           ) : (
             <Link
               to={"/signin"}
-              className=" text-Bgpurple max-md:border-[0.5px] border-Bgpurple/50 rounded-md max-md:w-[70px] py-1.5  font-medium hover:text-Primary  transition-colors  w-12 text-sm   text-center"
+              className=" text-Bgpurple max-md:border-[0.5px] border-Bgpurple/50 rounded-md max-md:w-[70px] py-1.5  font-medium hover:text-Primary  transition-colors  w-12 text-sm   text-center dark:max-md:bg-Primary dark:text-muted "
             >
               Sign In
             </Link>
@@ -206,7 +208,7 @@ export default function Navbar() {
         {/*Overlay */}
         {mobileToggle && (
           <div
-            className="fixed inset-0 bg-black opacity-55 transition-all duration-200 ease-in z-20"
+            className="fixed inset-0 bg-black opacity-60 transition-all duration-200 ease-in z-20 "
             onClick={() => {
               setMobileToggle(!mobileToggle);
             }}

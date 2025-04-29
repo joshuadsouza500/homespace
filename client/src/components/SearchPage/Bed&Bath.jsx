@@ -45,7 +45,7 @@ export default function Bed_Bath({
         <Button
           variant="outline"
           className={cn(
-            " justify-between hidden sm:flex md:w-44 xl:w-40  max-md:h-9",
+            " justify-between   flex md:w-44 xl:w-40  max-md:h-9 dark:bg-muted",
             className
           )}
         >

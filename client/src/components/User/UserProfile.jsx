@@ -116,7 +116,6 @@ export default function UserProfile({ user }) {
   const handleDelete = () => {
     // Here you would typically send a request to delete the user account
     const message = dispatch(deleteUser());
-    console.log("Deleting user account");
 
     if (message) {
       window.location.href = "/";
@@ -126,7 +125,7 @@ export default function UserProfile({ user }) {
   const comingSoon = true;
   //console.log("jj", user);
   return (
-    <section className="container mx-auto px-4 lg:px-8 pt-4 lg:pt-8 pb-8 font-jakarta bg-estate-50">
+    <section className="container mx-auto px-4 lg:px-8 pt-4 lg:pt-8 pb-8 font-jakarta bg-white estate-50">
       <h1 className="text-3xl md:text-4xl   font-bold text-text dark:text-white mb-6 xl:mb-10 text-center">
         My Profile
       </h1>
@@ -134,7 +133,7 @@ export default function UserProfile({ user }) {
         {/* User Profile section */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6  rounded-md  max-md:items-center    w-full  h-fit max-w-6xl mx-auto">
           <div className="  flex flex-col  items-center justify-center  md:pt-4  bg-white/80 dark:bg-black/40  border border-black/10 dark:border-white/10 shadow rounded-lg pt-4 lg:pt-6 pb-6 ">
-            <Avatar className="ring-1 ring-text rounded-full size-48 mb-2 md:mb-4">
+            <Avatar className="ring-1 ring-text dark:ring-muted rounded-full size-48 mb-2 md:mb-4">
               <AvatarImage src={editedUser?.avatar} alt={editedUser?.name} />
               <AvatarFallback>
                 {editedUser?.name.slice(0, 2).toUpperCase()}
@@ -143,9 +142,7 @@ export default function UserProfile({ user }) {
             <h2 className="text-xl font-semibold text-estate-800 dark:text-white mb-1">
               {user?.name}
             </h2>
-            <p className="text-estate-500 dark:text-estate-400 mb-4">
-              {user?.role}
-            </p>
+            <p className="text-estate-500 dark:text-muted mb-4">{user?.role}</p>
             {isEditing ? (
               <UploadWidget
                 uwConfig={{
@@ -212,13 +209,13 @@ export default function UserProfile({ user }) {
                 {" "}
                 {/* User */}
                 <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-full bg-Primary/20 dark:bg-azure-900/30 flex items-center justify-center">
-                    <User className="h-5 w-5 text-Bgpurple dark:text-azure-400" />
+                  <div className="h-10 w-10 rounded-full bg-Primary/20 dark:bg-Primary/20 flex items-center justify-center">
+                    <User className="h-5 w-5 text-Bgpurple " />
                   </div>
                   <div>
                     <Label
                       htmlFor="name"
-                      className="font-normal text-sm text-estate-500 dark:text-estate-400"
+                      className="font-normal text-sm text-estate-500 dark:text-muted-foreground"
                     >
                       Full Name
                     </Label>
@@ -238,13 +235,13 @@ export default function UserProfile({ user }) {
                 </div>
                 {/* Mobile */}
                 <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-full   bg-Primary/20 dark:bg-azure-900/30 flex items-center justify-center">
-                    <Phone className="h-5 w-5 text-Bgpurple dark:text-azure-400" />
+                  <div className="h-10 w-10 rounded-full   bg-Primary/20 dark:bg-Primary/20 flex items-center justify-center">
+                    <Phone className="h-5 w-5 text-Bgpurple " />
                   </div>
                   <div>
                     <Label
                       htmlFor="mobile"
-                      className="font-normal text-sm text-estate-500 dark:text-estate-400"
+                      className="font-normal text-sm text-estate-500 dark:text-muted-foreground"
                     >
                       Mobile
                     </Label>
@@ -264,13 +261,13 @@ export default function UserProfile({ user }) {
                 </div>
                 {/* Email */}
                 <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-full bg-Primary/20 dark:bg-azure-900/30 flex items-center justify-center">
-                    <Mail className="h-5 w-5 text-Bgpurple dark:text-azure-400" />
+                  <div className="h-10 w-10 rounded-full bg-Primary/20 dark:bg-Primary/20 flex items-center justify-center">
+                    <Mail className="h-5 w-5 text-Bgpurple " />
                   </div>
                   <div>
                     <Label
                       htmlFor="email"
-                      className="font-normal text-sm text-estate-500 dark:text-estate-400"
+                      className="font-normal text-sm text-estate-500 dark:text-muted-foreground"
                     >
                       Email
                     </Label>
@@ -294,13 +291,13 @@ export default function UserProfile({ user }) {
               <div className="space-y-2 xl:space-y-4">
                 {" "}
                 <div className="flex items-center gap-3">
-                  <div className="h-10 w-10 rounded-full bg-Primary/20 dark:bg-azure-900/30 flex items-center justify-center">
-                    <Mail className="h-5 w-5 text-Bgpurple dark:text-azure-400" />
+                  <div className="h-10 w-10 rounded-full bg-Primary/20 dark:bg-Primary/20 flex items-center justify-center">
+                    <Mail className="h-5 w-5 text-Bgpurple " />
                   </div>
                   <div>
                     <Label
                       htmlFor="role"
-                      className="font-normal text-sm text-estate-500 dark:text-estate-400"
+                      className="font-normal text-sm text-estate-500 dark:text-muted-foreground"
                     >
                       Role
                     </Label>
@@ -331,13 +328,13 @@ export default function UserProfile({ user }) {
                   <div className="flex items-start">
                     {isEditing && editedUser?.role === "AGENT" ? (
                       <div className="flex items-center gap-3">
-                        <div className="h-10 w-10 rounded-full bg-Primary/20 dark:bg-azure-900/30 flex items-center justify-center">
-                          <MapPin className="h-5 w-5 text-Bgpurple dark:text-azure-400" />
+                        <div className="h-10 w-10 rounded-full bg-Primary/20 dark:bg-Primary/20 flex items-center justify-center">
+                          <MapPin className="h-5 w-5 text-Bgpurple " />
                         </div>
                         <div>
                           <Label
                             htmlFor="company"
-                            className="font-normal text-sm text-estate-500 dark:text-estate-400"
+                            className="font-normal text-sm text-estate-500 dark:text-muted-foreground"
                           >
                             Company
                           </Label>
@@ -353,13 +350,13 @@ export default function UserProfile({ user }) {
                     ) : (
                       user?.role === "AGENT" && (
                         <div className="flex items-center gap-3">
-                          <div className="h-10 w-10 rounded-full bg-Primary/20 dark:bg-azure-900/30 flex items-center justify-center">
-                            <MapPin className="h-5 w-5 text-Bgpurple dark:text-azure-400" />
+                          <div className="h-10 w-10 rounded-full bg-Primary/20 dark:bg-Primary/20 flex items-center justify-center">
+                            <MapPin className="h-5 w-5 text-Bgpurple " />
                           </div>
                           <div>
                             <Label
                               htmlFor="company"
-                              className="font-normal text-sm text-estate-500 dark:text-estate-400"
+                              className="font-normal text-sm text-estate-500 dark:text-muted-foreground"
                             >
                               Company
                             </Label>
@@ -405,7 +402,7 @@ export default function UserProfile({ user }) {
                 </CardTitle>
                 <Badge
                   variant="outline"
-                  className="bg-azure-100 text-azure-800 dark:bg-azure-900/30 dark:text-azure-400 border-none"
+                  className="bg-azure-100 text-azure-800 dark:bg-Primary/20 dark:text-azure-400 border-none"
                 >
                   {appointments.filter((a) => a.status === "upcoming").length}{" "}
                   Total
@@ -422,7 +419,7 @@ export default function UserProfile({ user }) {
                       className="flex items-center p-3 rounded-lg border border-estate-100 dark:border-estate-700 hover:bg-estate-50 dark:hover:bg-estate-700/50 transition-colors"
                     >
                       <div className="mr-4 flex-shrink-0">
-                        <div className="h-12 w-12 rounded-full bg-Primary/20 dark:bg-azure-900/30 flex flex-col items-center justify-center text-Bgpurple dark:text-azure-400">
+                        <div className="h-12 w-12 rounded-full bg-Primary/20 dark:bg-Primary/20 flex flex-col items-center justify-center text-Bgpurple dark:text-Primary">
                           <Calendar className="h-5 w-5 mb-0.5" />
                         </div>
                       </div>
@@ -443,11 +440,11 @@ export default function UserProfile({ user }) {
                             <p className="text-sm text-estate-600 dark:text-estate-300">
                               {appointment.property}
                             </p>
-                            <p className="text-xs text-estate-500 dark:text-estate-400">
+                            <p className="text-xs text-estate-500 dark:text-muted-foreground">
                               {appointment.address}
                             </p>
                           </div>
-                          <p className="font-normal text-sm text-estate-500 dark:text-estate-400">
+                          <p className="font-normal text-sm text-estate-500 dark:text-muted-foreground">
                             With: {appointment.client}
                           </p>
                         </div>
@@ -529,11 +526,11 @@ export default function UserProfile({ user }) {
                             <p className="text-sm text-estate-600 dark:text-estate-300">
                               {appointment.property}
                             </p>
-                            <p className="text-xs text-estate-500 dark:text-estate-400">
+                            <p className="text-xs text-estate-500 dark:text-muted-foreground">
                               {appointment.address}
                             </p>
                           </div>
-                          <p className="font-normal text-sm text-estate-500 dark:text-estate-400">
+                          <p className="font-normal text-sm text-estate-500 dark:text-muted-foreground">
                             With: {appointment.client}
                           </p>
                         </div>

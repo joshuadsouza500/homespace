@@ -65,7 +65,7 @@ export default function ContactPage() {
       {/* Header Section */}
       <div className="text-center mb-12">
         <h1 className="text-4xl md:text-5xl font-bold mb-4">Contact Us</h1>
-        <p className="text-muted-foreground max-w-xl mx-auto tracking-wide ">
+        <p className="max-md:text-sm  text-muted-foreground max-w-xl mx-auto tracking-wide ">
           Have questions about buying, selling, or renting properties? Our team
           of experts is here to help you every step of the way.
         </p>
@@ -199,7 +199,7 @@ export default function ContactPage() {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-muted-foreground ">
                     Full Name
                   </label>
                   <input
@@ -212,7 +212,7 @@ export default function ContactPage() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-muted-foreground ">
                     Email
                   </label>
                   <input
@@ -228,7 +228,7 @@ export default function ContactPage() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-muted-foreground ">
                     Phone Number
                   </label>
                   <input
@@ -241,17 +241,17 @@ export default function ContactPage() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-muted-foreground ">
                     Subject
                   </label>
                   <Select onValueChange={handleSelectChange}>
-                    <SelectTrigger className="mt-1  w-full rounded-md border border-gray-300   focus:border-bborder sm:text-sm px-4  h-11 ">
+                    <SelectTrigger className="mt-1  w-full rounded-md border border-gray-300   focus:border-bborder sm:text-sm px-4  h-11 dark:bg-[#121212]">
                       <SelectValue
                         placeholder="Select a subject"
-                        className="text-muted-foreground"
+                        className="text-muted-foreground "
                       />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="dark:text-muted-foreground ">
                       <SelectItem value="buying">Buying a Property</SelectItem>
                       <SelectItem value="selling">
                         Selling a Property
@@ -269,7 +269,7 @@ export default function ContactPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700">
+                <label className="block text-sm font-medium text-gray-700 dark:text-muted-foreground ">
                   Message
                 </label>
                 <textarea

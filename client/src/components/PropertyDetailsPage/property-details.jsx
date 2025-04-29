@@ -20,6 +20,7 @@ import {
   Building,
   BedDouble,
   Plug,
+  WashingMachine,
 } from "lucide-react";
 
 import { Button } from "@/components/UI/ShadCN/button";
@@ -54,9 +55,11 @@ export default function PropertyDetails({ property, handleSave }) {
   const amenityIconMap = {
     ["Air Conditioning"]: <Snowflake className="size-5 mr-2 text-Primary" />,
     ["Parking"]: <CarFront className="size-5 mr-2 text-Primary" />,
-    "Swimming Pool": <Waves className="size-5 mr-2 text-Primary" />,
+    ["Swimming Pool"]: <Waves className="size-5 mr-2 text-Primary" />,
+    ["Laundry"]: <WashingMachine className="size-5 mr-2 text-Primary" />,
     ["Gym"]: <DumbbellIcon className="size-5 mr-2 text-Primary" />,
     ["Wifi"]: <Wifi className="size-5 mr-2 text-Primary" />,
+    ["Wi-Fi"]: <Wifi className="size-5 mr-2 text-Primary" />,
     ["Balcony"]: <Columns3 className="size-5 mr-2 text-Primary" />,
     ["Garden"]: <Fence className="size-5 mr-2 text-Primary" />,
     ["Security System"]: <Cctv className="size-5 mr-2 text-Primary" />,
@@ -93,14 +96,14 @@ export default function PropertyDetails({ property, handleSave }) {
         {/* Left column - Property details */}
         <div className="flex-1 pl-[2px] lg:pl-1">
           <div className="mb-4 md:mb-8">
-            <span className=" w-full flex justify-between items-center  py-1">
+            <span className=" w-full flex justify-between items-center gap-x-2 py-1 ">
               <h1 className="text-2xl sm:text-3xl font-bold mb-1 text-text leading-snug ">
                 {property?.title}
               </h1>
               <Bookmark
                 data-testid="save-property-icon"
-                className={`block p-2 rounded-full ring-[0.2px] ring-bborder shadow-sm text-Primary size-11 hover:scale-95 cursor-pointer hover:fill-Primary/90 ${
-                  property?.isSaved ? "fill-Primary" : "bg-white"
+                className={`block sm:p-2 rounded-full ring-[0.2px] ring-bborder dark:ring-0 shadow-sm text-Primary size-8 md:size-11 hover:scale-95 cursor-pointer hover:fill-Primary/90 ${
+                  property?.isSaved ? "fill-Primary" : "bg-white dark:bg-"
                 }`}
                 onClick={() => {
                   handleSave(property?.id);
@@ -119,26 +122,34 @@ export default function PropertyDetails({ property, handleSave }) {
               <span className="text-muted-foreground font-medium">/month</span>
             </div>
             {/* Beds , Baths and area */}
-            <div className="grid grid-cols-4 gap-4 py-4">
+            <div className="grid grid-cols-4 gap-2 md:gap-4 py-4">
               <div className="flex flex-col items-center p-3 bg-muted shadow-sm rounded-lg">
                 <BedDouble className="h-6 w-6 mb-2 text-Primary" />
                 <span className="text-sm text-muted-foreground">Bedrooms</span>
-                <span className="font-semibold ">{property?.bedrooms}</span>
+                <span className="font-semibold max-md:text-sm">
+                  {property?.bedrooms}
+                </span>
               </div>
               <div className="flex flex-col items-center p-3 bg-muted shadow-sm rounded-lg">
                 <Bath className="h-6 w-6 mb-2 text-Primary" />
                 <span className="text-sm text-muted-foreground">Bathrooms</span>
-                <span className="font-semibold ">{property?.bathrooms}</span>
+                <span className="font-semibold  max-md:text-sm">
+                  {property?.bathrooms}
+                </span>
               </div>
               <div className="flex flex-col items-center p-3 bg-muted shadow-sm rounded-lg">
                 <Maximize className="h-6 w-6 mb-2 text-Primary" />
                 <span className="text-sm text-muted-foreground">Area</span>
-                <span className="font-semibold ">{property?.area}</span>
+                <span className="font-semibold  max-md:text-sm">
+                  {property?.area}
+                </span>
               </div>
               <div className=" flex-col items-center p-3 bg-muted shadow-sm rounded-lg flex">
                 <Plug className="h-6 w-6 mb-2 text-Primary" />
                 <span className="text-sm text-muted-foreground">Utilities</span>
-                <span className="font-semibold ">{property?.utilities}</span>
+                <span className="font-semibold  max-md:text-sm">
+                  {property?.utilities}
+                </span>
               </div>
             </div>
             {/* <div className="flex   md:w-[60%] items-center justify-start pb-2 md:pb-4 gap-x-4 text-text font-medium   ">
@@ -160,7 +171,7 @@ export default function PropertyDetails({ property, handleSave }) {
               <h2 className="text-xl font-semibold mb-4 text-text">
                 Amenities
               </h2>
-              <div className="grid grid-cols-3 lg:grid-cols-3 md:gap-x-5 gap-x-3 gap-y-6   font-medium max-sm:text-sm">
+              <div className="grid grid-cols-3 lg:grid-cols-3 md:gap-x-5 gap-x-2 gap-y-6   font-medium max-sm:text-sm">
                 {property?.amenities?.map((am) => (
                   <div
                     className="flex items-center hover:text-Bgpurple"
@@ -177,7 +188,7 @@ export default function PropertyDetails({ property, handleSave }) {
           </div>
           <div className="mb-6  pt-2">
             <h2 className="text-xl font-semibold  mb-3">Description</h2>
-            <p className="text-[#4d5461] tracking-wide leading-relaxed md:mr-3 text-pretty">
+            <p className="text-[#4d5461] dark:text-muted-foreground tracking-wide leading-relaxed md:mr-3 text-pretty">
               {property?.description}
             </p>
           </div>

@@ -79,7 +79,7 @@ const UserChats = ({ user }) => {
   };
 
   return (
-    <div className=" flex max-w-7xl 2xl:max-w-[1640px]  h-screen  shadow-md pl- 0.5 bg-slate-50">
+    <div className=" flex max-w-7xl 2xl:max-w-[1640px]  h-screen  shadow-md pl- 0.5 bg-estate-50 dark:bg-[#121212]">
       <div
         className={`
               ${isMobileViewOpen ? "hidden" : "block"} 
@@ -105,7 +105,9 @@ const UserChats = ({ user }) => {
           <div className="flex-1 flex items-center justify-center bg-white mx-2 h-full rounded-lg gap-x-2">
             <LoaderCircle className="size-6 animate-spin" />
             <div className="text-center">
-              <p className="text-estate-500 text-xl">Loading chat...</p>
+              <p className="text-estate-500 dark:text-muted text-xl">
+                Loading chat...
+              </p>
             </div>
           </div>
         ) : (

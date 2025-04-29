@@ -2,7 +2,6 @@ import { Routes, Route } from "react-router-dom";
 import Footer from "./common/Footer";
 import { lazy, Suspense } from "react";
 import Loader from "./common/Loader";
-import AboutPage from "@/pages/About";
 import Navbar from "./common/Navbar";
 import HomePage from "@/pages/HomePage";
 import { NotFound } from "@/pages/NotFound";
@@ -10,10 +9,11 @@ import { NotFound } from "@/pages/NotFound";
 const Search = lazy(() => import("@/pages/Search"));
 const PropertyDetailsPg = lazy(() => import("@/pages/PropertyDetailsPg"));
 const ContactPage = lazy(() => import("@/pages/ContactPage"));
+const AboutPage = lazy(() => import("@/pages/About"));
 
 const CustomerRoutes = () => {
   return (
-    <div className=" w-full ">
+    <div className=" w-full dark:bg-[#121212]">
       <Navbar />
       <Suspense fallback={<Loader />}>
         <Routes>

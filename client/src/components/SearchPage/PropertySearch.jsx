@@ -282,7 +282,7 @@ const PropertySearch = forwardRef((props, ref) => {
           <Popover className=" md:w-40 xl:w-32 ">
             <PopoverTrigger asChild>
               <Button
-                className="max-md:h-9 w-24 md:w-32  justify-between"
+                className="max-md:h-9 w-24 md:w-32  justify-between dark:bg-muted "
                 variant="outline"
               >
                 Price
@@ -513,8 +513,8 @@ const PropertySearch = forwardRef((props, ref) => {
 
       {/****Property for sale  */}
       <div className="flex  justify-between items-end  max-w-6xl xl:max-w-7xl mx-auto max-md:mx-2 md:px-2 pb-4 md:pb-5 2xl:pb-8  pt-2 ">
-        <div>
-          <p className="flex items-center text-xs font-light">
+        <div className="md:pt-0.5">
+          <p className="flex items-center text-xs font-light ">
             Home
             <ChevronRight className="size-4" />
             Properties for sale

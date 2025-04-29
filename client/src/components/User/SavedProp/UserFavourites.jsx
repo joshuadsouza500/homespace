@@ -41,7 +41,7 @@ const UserFavourites = () => {
   const navigate = useNavigate;
   //console.log("user's saved prop", userSavedProperties);
   return (
-    <div className="container mx-auto px-4 lg:px-6 pt-4 lg:pt-6 pb-8  bg-slate-50">
+    <div className="container mx-auto px-4 lg:px-6 pt-4 lg:pt-6 pb-8  bg-estate-50 dark:bg-[#121212]">
       <div
         className="flex max-md:flex-col justify-between items-center
             w-full mb-6 md:mb-10 gap-y-4 "

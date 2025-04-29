@@ -104,34 +104,34 @@ const MobileHero = ({
         </div>
         {/* Search Bar */}
 
-        <div className="absolute -bottom-20 left-1/2 transform -translate-x-1/2 z-10 p-4 bg-white rounded-md w-[90%]  sm:w-[80%] md:w-[75%] shadow-xl">
+        <div className="absolute -bottom-20 left-1/2 transform -translate-x-1/2 z-10 p-4 bg-white rounded-md w-[90%]  sm:w-[80%] md:w-[75%] shadow-xl dark:bg-slate-50">
           <Tabs
             id="type"
             value={filters?.type}
-            className=" bg-rounded-b-none"
+            className="  bg- rounded-b-none"
             onValueChange={(value) => {
               handleFilterChange({ id: "type", value });
             }}
           >
-            <TabsList className="bg-muted white/90 h-12  ring-0  ring-[#E0DEF7] mb-2 w-full grid grid-cols-2">
+            <TabsList className="bg-muted dark:bg-[#121212] white/90 h-12  ring-0  ring-[#E0DEF7] mb-2 w-full grid grid-cols-2">
               <TabsTrigger
                 value="Rent"
-                className="w-auto text-base data-[state=active]:text-Primary data-[state=active]:border border-bborder font-semibold  "
+                className="w-auto text-base data-[state=active]:text-Primary data-[state=active]:border border-bborder font-semibold  data-[state=active]:dark:bg-muted "
               >
                 Rent
               </TabsTrigger>
               <TabsTrigger
                 value="Sell"
-                className="w-auto  text-base data-[state=active]:text-Primary data-[state=active]:border border-bborder font-semibold"
+                className="w-auto  text-base data-[state=active]:text-Primary data-[state=active]:border border-bborder font-semibold data-[state=active]:dark:bg-muted"
               >
                 Buy
               </TabsTrigger>
             </TabsList>
           </Tabs>
-          <div className="md:grid grid-cols-2 space-y-2 md:space-y-1  md:gap-x-2    justify-start">
+          <div className="grid  md:grid-cols-2 gap-y-2 md:gap-y-1  md:gap-x-2    md:justify-start ">
             <SearchBar
               setFilters={setFilters}
-              className={"max-w-lg h-12  rounded-tl-none border-t-none"}
+              className={"max-w-lg   rounded-tl-none border-t-none"}
               applyFilters={applyFilters}
               isHero={true}
             />{" "}
@@ -183,12 +183,12 @@ const LargeHero = ({
   handleFilterChange,
 }) => {
   return (
-    <section className=" hidden lg:block h-auto     mt-1 pt-2    pb-16 bg-white ">
-      <div className=" rounded-3xl    px-2 md:px-6  w-full  max-w-5xl lg:max-w-6xl  xl:max-w-7xl  2xl:max-w-[1300px] 2xl:b g-red-500 mx-auto">
-        <div className="flex min-h-[550px]  max-w-full max-2xl:max-h-[650px] 2xl:min-h-[600px]   bg-[url('/Hero2.png')] object-cover object-center  rounded-3xl   flex-col justify-start    items-start relative bg-no-repeat ">
+    <section className=" hidden lg:block h-auto bg-white dark:bg-[#121212]     mt-1 pt-2    pb-16 bg -estate-50  ">
+      <div className=" rounded-3xl    px-2 md:px-6  w-full  max-w-5xl lg:max-w-6xl  xl:max-w-7xl  2xl:max-w-[1300px]  mx-auto">
+        <div className=" flex min-h-[550px]  max-w-full max-2xl:max-h-[650px] 2xl:min-h-[600px]   bg-[url('/Hero2.png')] object-cover object-center  rounded-3xl   flex-col justify-start    items-start relative bg-no-repeat ">
           {/*      <div className="absolute inset-0 h-auto w-full bg-black opacity-5 z-0 rounded-3xl" /> */}
           <div className="flex flex-col items-start lg:w-6/12  gap-y-2  pb-2   lg:ml-12 mt-20 z-10 relative">
-            <h1 className=" lg:text-7xl text-balance font-semibold  font-serif tracking-wide ">
+            <h1 className="  lg:text-7xl text-balance font-semibold  font-serif tracking-wide ">
               Home Hunting{" "}
               <span className=" pt-2 flex items-center  gap-2">
                 <img
@@ -220,7 +220,7 @@ const LargeHero = ({
             </div>
           </div>
 
-          <section className="z-10 h-auto w-full    absolute bottom-12  ">
+          <section className="z-10 h-auto w-full    absolute bottom-12  [#121212]">
             {" "}
             <Tabs
               id="type"
@@ -230,10 +230,10 @@ const LargeHero = ({
                 handleFilterChange({ id: "type", value });
               }}
             >
-              <TabsList className="bg-white/60 h-14 w-52 border-[0.5px] border-bborder gap-x-[2px]  shadow-sm ring-0 rounded-b-none ring-[#E0DEF7]">
+              <TabsList className="bg-white/60 dark:bg-[#121212] h-14 w-52 border-[0.5px] border-bborder gap-x-[2px]  shadow-sm ring-0 rounded-b-none ring-[#E0DEF7]">
                 <TabsTrigger
                   value="Rent"
-                  className="w-24 flex items-center gap-1 text-base data-[state=active]:text-Primary data-[state=active]:border border-bborder font-bold  data-[state=active]:shadow-sm shadow-Primary"
+                  className="w-24 flex items-center gap-1 text-base data-[state=active]:text-Primary data-[state=active]:border border-bborder font-bold  data-[state=active]:shadow-sm shadow-Primary dark:data-[state=active]:bg-estate-200"
                 >
                   <KeyRoundIcon
                     strokeWidth={2.5}
@@ -253,7 +253,7 @@ const LargeHero = ({
                 </TabsTrigger>
               </TabsList>
             </Tabs>
-            <div className="w-[85%] xl:w-8/12 h-24   rounded-tl-none rounded-xl bg-gradient-to-br from-white/60 to-white/80 flex justify-between pl-4 pr-6 items-center shadow-xl backdrop-blur-sm  tranform left-1/2 absolute -translate-x-1/2 border-[0.5px] border-bborder">
+            <div className="w-[85%] xl:w-8/12 h-24   rounded-tl-none rounded-xl bg-gradient-to-br from-white/60 to-white/80 flex justify-between pl-4 pr-6 items-center shadow-xl backdrop-blur-sm  tranform left-1/2 absolute -translate-x-1/2 border-[0.5px] border-bborder dark:bg-light_gray Primary [#b4b4b4]">
               <div className=" w-[90%] border-r mr-1 ">
                 <Label className="pl-1.5 font-semibold " htmlFor="Location">
                   Location
@@ -266,7 +266,7 @@ const LargeHero = ({
                 />
               </div>
 
-              <div className="w-full pl-3   space-y-0.5">
+              <div className="w-full pl-3   gap-y-0.5">
                 <Label className="pl-1 font-semibold" htmlFor="Location">
                   Property Type
                 </Label>

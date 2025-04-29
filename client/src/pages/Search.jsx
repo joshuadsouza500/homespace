@@ -50,8 +50,8 @@ const Search = () => {
   const totalPages = Property?.properties?.totalPages;
 
   return (
-    <div className="font-jakarta bg-estate-50">
-      <div className="px-2 md:px-6  w-full  max-w-5xl lg:max-w-6xl  xl:max-w-7xl  2xl:max-w-8xl mx-auto bg-white shadow ">
+    <div className="font-jakarta bg- estate-50 dark:bg-[#121212]">
+      <div className="px-2 md:px-6  w-full  max-w-5xl lg:max-w-6xl  xl:max-w-7xl  2xl:max-w-8xl mx-auto bg-estate-50 white shadow dark:bg-[#121210]">
         <PropertySearch totalPages={totalPages} ref={ChildRef} />
         {Property?.isLoading == false ? (
           <section className="h-full mx-auto  md:space-y-7 space-y-2 pb-10 lg:pb-16 pt-1">
@@ -115,7 +115,7 @@ const Search = () => {
                               <SearchCheck className="mr-2.5 text-Primary" />{" "}
                               Popular Searches
                             </h2>
-                            <ul className="mt-2 ml-8 space-y-2 text-gray-600  text-sm">
+                            <ul className="mt-2 ml-8 space-y-2 text-gray-600 dark:text-muted-foreground  text-sm">
                               <li
                                 className="hover:text-Primary"
                                 onClick={() =>
@@ -156,7 +156,7 @@ const Search = () => {
                               <MapPinCheck className="mr-2.5 text-Primary" />{" "}
                               Nearby Areas
                             </h2>
-                            <ul className="mt-2 ml-8 space-y-2 text-gray-600  text-sm">
+                            <ul className="mt-2 ml-8 space-y-2 text-gray-600  text-sm dark:text-muted-foreground">
                               <li
                                 className="hover:text-Primary"
                                 onClick={() =>
@@ -211,10 +211,10 @@ const Search = () => {
                                 {" "}
                                 <p
                                   className={`flex items-center justify-center px-4 h-10 
-                text-gray-500    border border-gray-300
+                text-gray-500 dark:text-muted-foreground    border border-gray-300
                 hover:text-Blue ${
                   currentPage == index + 1
-                    ? "border-t-2 border-t-Bgpurple/95 text-lg text-text"
+                    ? "border-t-2 border-t-Bgpurple/95 dark:border-t-Primary text-lg text-text"
                     : "bg-white hover:bg-purple-100"
                 }`}
                                 >

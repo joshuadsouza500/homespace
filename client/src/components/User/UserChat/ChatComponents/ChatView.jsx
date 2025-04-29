@@ -90,7 +90,7 @@ const ChatView = ({ chat, userId, onClose }) => {
           <h2 className="text-xl font-semibold text-gray-800 mb-2">
             Select a conversation
           </h2>
-          <p className="text-gray-500">
+          <p className="text-gray-500 dark:text-muted-foreground">
             Choose a conversation from the list to view messages or start a new
             one
           </p>
@@ -133,15 +133,15 @@ const ChatView = ({ chat, userId, onClose }) => {
           </div>
         </div>
         <div className="flex items-center gap-x-6">
-          <button className="text-gray-500 hover:text-Primary transition-colors">
+          <button className="text-gray-500 dark:text-muted-foreground hover:text-Primary transition-colors">
             <MessageSquareMore className="xl:size-6 size-5" />
           </button>
-          <button className="text-gray-500 hover:text-Primary transition-colors">
+          <button className="text-gray-500 dark:text-muted-foreground hover:text-Primary transition-colors">
             <Phone className="xl:size-6 size-5" />
           </button>
           <button
             onClick={onClose}
-            className="text-gray-500 hover:bg-gray-600/10 hover:text-red-400 rounded-full transition-colors p-0.5"
+            className="text-gray-500 dark:text-muted-foreground hover:bg-gray-600/10 hover:text-red-400 rounded-full transition-colors p-0.5"
           >
             <X className="size-6" />
           </button>
@@ -180,7 +180,10 @@ const ChatView = ({ chat, userId, onClose }) => {
       {/* Message Input */}
       <div className="p-4 border-t border-gray-100 shadow ">
         <div className="flex items-center gap-x-2 ">
-          <button type="button" className="text-gray-500 hover:text-Primary ">
+          <button
+            type="button"
+            className="text-gray-500 dark:text-muted-foreground hover:text-Primary "
+          >
             <Paperclip className="xl:size-6 size-5" />
           </button>
           <input

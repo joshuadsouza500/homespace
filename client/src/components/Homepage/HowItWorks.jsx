@@ -33,7 +33,7 @@ const HowItWorks = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
   return (
-    <section className="py-16 md:py-24 px-4 bg-white estate-50">
+    <section className="py-16 md:py-24 px-4 bg-white   dark:bg-[#121212]">
       <div className="px-2 md:px-6  w-full  max-w-5xl lg:max-w-6xl  xl:max-w-7xl  2xl:max-w-8xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 xl:gap-20 items-center">
           <div className="space-y-3 ">

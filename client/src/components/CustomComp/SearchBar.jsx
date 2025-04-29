@@ -116,19 +116,16 @@ const SearchBar = ({ setFilters, className, isHero, city }) => {
   return (
     <div
       ref={searchBarRef}
-      className={cn(
-        "relative max-w-sm  rounded-lg  dark:bg-gray-900   ",
-        className
-      )}
+      className={cn("relative   rounded-lg   ", className)}
     >
-      <div className="flex items-center justify-center gap-x-1 bg-white/5   relative ">
+      <div className="flex items-center justify-center gap-x-1 bg-white/5  dark:bg-inherit  relative ">
         <Input
           type="text"
           data-testid="search-bar"
           placeholder="Select Your City"
           onKeyDown={handleKeyDown}
-          className={`w-full  h-10  font-normal focus-visible:ring-[0.5px]  px-2 capitalize  ${
-            isHero ? "lg:bg-white/10 lg:h-9 lg:border-0" : ""
+          className={`w-full  h-10  font-normal focus-visible:ring-[0.5px]  px-2 capitalize dark:bg-muted  ${
+            isHero ? "h-10 lg:bg-white/10 lg:h-9 lg:border-0" : ""
           }`}
           onChange={handleSuggestions}
           onFocus={() => {

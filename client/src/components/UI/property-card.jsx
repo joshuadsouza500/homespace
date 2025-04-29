@@ -3,13 +3,13 @@ import {
   MoreVertical,
   Bed,
   Bath,
-  Maximize,
   MapPin,
   Phone,
-  Mail,
   Edit,
   Trash2,
   Bookmark,
+  MessageCircle,
+  Scan,
 } from "lucide-react";
 import { Button } from "@/components/UI/ShadCN/button";
 import { Card, CardContent } from "@/components/UI/ShadCN/card";
@@ -113,7 +113,7 @@ export default function PropertyCard({ update, className, property }) {
                 >
                   {property?.property_type} {/* Use property's property_type */}
                 </Badge>
-                <h2 className="text-2xl font-bold text-Bgpurple">
+                <h2 className="text-2xl font-bold text-Bgpurple dark:text-white">
                   {property?.price.toLocaleString()} BHD
                 </h2>
               </div>
@@ -126,7 +126,7 @@ export default function PropertyCard({ update, className, property }) {
               </Button>
             </div>
             <div className="flex items-center text-muted-foreground text-sm mb-4 xl:pt-2">
-              <MapPin className="h-4 w-4 mr-1.5 text-Primary flex-shrink-0" />
+              <MapPin className="h-4 w-4 mr-1.5 text-Primary dark:text-muted flex-shrink-0" />
               <span>
                 {property?.city}, {property?.governate.replace("_", " ")}
               </span>{" "}
@@ -134,23 +134,26 @@ export default function PropertyCard({ update, className, property }) {
             </div>
             <div className="flex justify-start gap-2 text-sm text-muted-foreground mb-4 pl-1">
               <div className="flex items-center border-r-2 pr-2">
-                <Bed className="h-4 w-4 mr-1.5 text-Primary" />
+                <Bed className="h-4 w-4 mr-1.5 text-Primary dark:text-muted" />
                 <span>{property?.bedrooms}</span>{" "}
                 {/* Use the number of bedrooms */}
               </div>
               <div className="flex items-center border-r-2 pr-2">
-                <Bath className="h-4 w-4 mr-1.5 text-Primary" />
+                <Bath className="h-4 w-4 mr-1.5 text-Primary dark:text-muted" />
                 <span>{property?.bathrooms}</span>{" "}
                 {/* Use the number of bathrooms */}
               </div>
               <div className="flex items-center pr-2">
-                <Maximize className="h-4 w-4 mr-1.5 text-Primary" />
-                <span>{property?.area} sqm</span> {/* Use the area */}
+                <Scan className="h-4 w-4 mr-1.5 text-Primary dark:text-muted" />
+                <span>
+                  {property?.area} sqm<sup>2</sup>
+                </span>{" "}
+                {/* Use the area */}
               </div>
             </div>
           </div>
           <div className="flex justify-between items-center mt-auto pt-2 border-t ">
-            <span className="text-xs font-light text-muted-foreground">
+            <span className="text-[10px] sm:text-xs font-light text-muted-foreground">
               Listed {new Date(property?.createdAt).toLocaleDateString()}{" "}
               {/* Display listing date */}
             </span>
@@ -201,18 +204,32 @@ export default function PropertyCard({ update, className, property }) {
               </div>
             ) : (
               <div className="flex space-x-2 items-center ">
-                <Button variant="outline" size="sm" className="text-primary ">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="text-primary  dark:bg-[#121212]"
+                >
                   <Phone className="h-4 w-4 mr-1" />
                   Call
                 </Button>
-                <Button variant="outline" size="sm" className="text-primary">
-                  <Mail className="h-4 w-4  mr-1" />
-                  Email
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="text-primary dark:bg-[#121212]"
+                >
+                  <MessageCircle className="h-4 w-4  mr-1" />
+                  Message
                 </Button>
-                <Button variant="outline" size="sm" className={`text-text `}>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className={`text-text dark:bg-[#121212]`}
+                >
                   <Bookmark
                     className={`size-4 lg:size-5 text-Primary/50  ${
-                      property?.isSaved ? "fill-Primary" : "text-gray-700"
+                      property?.isSaved
+                        ? "fill-Primary"
+                        : "text-gray-700 dark:text-muted"
                     }`}
                   />
                 </Button>

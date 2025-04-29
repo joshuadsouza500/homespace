@@ -31,10 +31,8 @@ export default App;
   /**
    * THINGS TO ADD
    * STYLING:
-   *
+   * Dark style for Homepage
    * Add  number animations for  hero
-   * Add a bit of blur to the sides of the logo slider
-   * Add styles for dark theme and maybe add a toggle for it
    * Add Property add ability to add bullet points bold etc to description bar
    *
    *
@@ -48,5 +46,6 @@ export default App;
    * Maybe integrate CI CD
    * Add dynamic imports for some pages const Dashboard = lazy(() => import('./Dashboard')); Can wrap them in suspense and add loading page as fallback
    *
+   * When using bg as white when it goes to auto dark it becomes [#121212]
    */
 }

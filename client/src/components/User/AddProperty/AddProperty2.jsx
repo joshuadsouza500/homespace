@@ -159,7 +159,7 @@ export default function AddProperty2() {
   const goToPreviousStep = () => setCurrentStep((prev) => prev - 1);
 
   return (
-    <div className="container mx-auto px-2 md:px-6 pt-2 lg:pt-4 pb-8">
+    <div className="container mx-auto px-2 md:px-6 pt-2 sm:pt-6 lg:pt-4 pb-8 dark:bg-[#121212]">
       <h1 className="text-3xl text-text md:text-4xl font-bold mb-2 md:mb-4 text-center">
         Add New Property
       </h1>
@@ -219,7 +219,7 @@ export default function AddProperty2() {
       {/* Inside a form unless a button type is specified as different it will be type submit as default */}
       <form
         onSubmit={handleSubmit}
-        className=" mx-auto   max-w-5xl xl:max-w-6xl  backdrop-blur-md bg-white/70 dark:bg-black/40  border-black/5 dark:border-white/10 shadow-lg p-4 lg:p-8 rounded-lg"
+        className=" mx-auto   max-w-5xl xl:max-w-6xl  backdrop-blur-md bg-white/70 dark:bg-black/50  border-black/5 dark:border-white/10 shadow-lg p-4 lg:p-8 rounded-lg"
       >
         {currentStep === 1 && (
           <div className="space-y-4 xl:space-y-8">
@@ -269,6 +269,7 @@ export default function AddProperty2() {
                 placeholder="Enter Property title"
                 value={formData.title}
                 onChange={handleInputChange}
+                className="dark:bg-muted"
               />
               {errors.title && (
                 <span className="text-red-500 text-sm py-0.5  flex items-center gap-1 ">
@@ -354,6 +355,7 @@ export default function AddProperty2() {
                 placeholder="Road no: , Block: , Flat no:"
                 value={formData.address}
                 onChange={handleInputChange}
+                className="dark:bg-muted"
               />
               {errors.address && (
                 <span className="text-red-500 text-sm p x-2 py-0.5 1 flex items-center gap-1">
@@ -366,10 +368,10 @@ export default function AddProperty2() {
               <Button
                 type="button"
                 onClick={goToNextStep}
-                className="w-32 md:w-44 bg-Bgpurple gap-x-1 hover:bg-indigo-800 group"
+                className="w-32 md:w-44 bg-Bgpurple gap-x-1  hover:bg-indigo-800 group"
               >
                 Next
-                <ArrowRight className="size-4 md:size-5 group-hover:translate-x-1 transition-transform duration-200 ease-in-out" />
+                <ArrowRight className="size-4 md:size-5 group-hover:translate-x-0.5 transition-transform duration-200 ease-in-out" />
               </Button>
             </div>
           </div>
@@ -424,6 +426,7 @@ export default function AddProperty2() {
                     placeholder="Enter Price"
                     value={formData.price}
                     onChange={handleInputChange}
+                    className="dark:bg-muted"
                   />
                 </div>
                 {errors.price && (
@@ -509,7 +512,7 @@ export default function AddProperty2() {
                   onSelectionChange={handleBedBathChange}
                   defaultBaths={formData?.bathrooms}
                   defaultBeds={formData?.bedrooms}
-                  className={"w-full md:w-full xl:w-full "}
+                  className={"w-full max-md:h-10 md:w-full xl:w-full "}
                 />
                 {errors.bedrooms && errors.bathrooms && (
                   <span className="text-red-500 text-sm p x-2 py-0.5 1 flex items-center gap-1">
@@ -530,6 +533,7 @@ export default function AddProperty2() {
                   type="number"
                   value={formData.area}
                   onChange={handleInputChange}
+                  className="dark:bg-muted"
                 />
                 {errors.area && (
                   <span className="text-red-500 text-sm p x-2 py-0.5 1 flex items-center gap-1">
@@ -553,13 +557,16 @@ export default function AddProperty2() {
                 placeholder="Description about the property"
                 value={formData.description}
                 onChange={handleInputChange}
+                className="dark:bg-muted"
               />
               {errors.description ? (
                 <span className="text-red-500 text-sm p x-2 py-0.5 1 flex items-center gap-1">
                   <AlertCircle className="size-4" /> {errors.description}
                 </span>
               ) : (
-                <p className="text-sm text-gray-500">Max: 70 words</p>
+                <p className="text-sm text-gray-500 dark:text-muted-foreground">
+                  Max: 70 words
+                </p>
               )}
             </div>
             <div>
@@ -586,9 +593,9 @@ export default function AddProperty2() {
               <Button
                 type="button"
                 onClick={goToPreviousStep}
-                className="gap-1 border border-Bgpurple bg-white duration-200 text-Bgpurple hover:bg-Bgpurple/90 hover:text-white w-32 md:w-36 transition-colors  ease-in-out group"
+                className="gap-1 border border-Bgpurple bg-white duration-200 text-Bgpurple hover:bg-Bgpurple/90 hover:text-white w-32 md:w-36 transition-colors  ease-in-out group dark:hover:bg-inherit"
               >
-                <ArrowLeft className="size-4 md:size-5 group-hover:-translate-x-1 transition-transform duration-200 ease-in-out" />
+                <ArrowLeft className="size-4 md:size-5 group-hover:-translate-x-0.5 transition-transform duration-200 ease-in-out" />
                 Back
               </Button>
               <Button

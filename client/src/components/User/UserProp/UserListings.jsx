@@ -49,7 +49,7 @@ const UserListings = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 lg:px-6 pt-4 lg:pt-6 pb-8 bg-estate-50">
+    <div className="container mx-auto px-4 lg:px-6 pt-4 lg:pt-6 pb-8 bg-estate-50 dark:bg-[#121212]">
       <div
         className="flex max-md:flex-col justify-between items-center
       w-full mb-10 gap-y-4 "
@@ -76,7 +76,7 @@ const UserListings = () => {
                 key={property.id}
                 update={true}
                 property={property}
-                className="md:max-w-2xl mx-1 md:h-64 2xl:g-64 backdrop-blur-md bg-white/70 dark:bg-black/40 border-black/5 dark:border-white/10 border"
+                className="md:max-w-2xl mx-1 md:h-64 2xl:h-64 backdrop-blur-md bg-white/70 dark:bg-black/40 border-black/5 dark:border-white/10 border"
               />
             ))
           ) : (

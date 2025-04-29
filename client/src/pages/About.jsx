@@ -4,28 +4,28 @@ import CTA from "@/components/Homepage/CTA";
 
 export default function AboutPage() {
   return (
-    <section className="px-2 md:px-6  w-full  max-w-5xl lg:max-w-6xl  xl:max-w-7xl  2xl:max-w-8xl mx-auto py-4 md:py-8 font-jakarta ">
+    <section className="px-2 md:px-6  w-full  max-w-5xl lg:max-w-6xl  xl:max-w-7xl  2xl:max-w-8xl mx-auto py-4 md:py-8 font-jakarta  bg-estat e-50">
       {/* Hero Section */}
 
       <div className="text-center mb-12">
         <h1 className="text-4xl md:text-5xl font-bold mb-4">About HomeSpace</h1>
-        <p className="text-muted-foreground max-2xl:max-w-xl  mx-auto tracking-wide ">
+        <p className="max-md:text-sm text-muted-foreground max-2xl:max-w-xl  mx-auto tracking-wide ">
           Your trusted partner in finding the perfect property in the Kingdom of
           Bahrain
         </p>
       </div>
 
       {/* Our Story Section */}
-      <section className="py-16 container mx-auto px-4 ">
+      <section className="py-4 md:py-16 container mx-auto px-4 ">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 mb-6">
               Our Story
             </h2>
-            <p className="text-gray-600 mb-4">
+            <p className="text-gray-600 dark:text-muted-foreground mb-4">
               {`HomeSpace is a revolutionary property finder platform that has quickly made its mark in Bahrain's real estate landscape. Emerging as a solution to the common challenges faced by property seekers, we utilize cutting-edge technology and innovative features to streamline the home search process, connecting you with a curated selection of properties that match your needs.`}
             </p>
-            <p className="text-gray-600 mb-6">
+            <p className="text-gray-600 dark:text-muted-foreground mb-6">
               {` At HomeSpace, we recognize that finding a home is about more than just a transaction; it's about discovering a place where cherished memories can be made and we are here to help you find the one that resonates with you.  `}
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
@@ -81,21 +81,21 @@ export default function AboutPage() {
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 mb-4">
               Our Mission & Vision
             </h2>
-            <p className="max-w-2xl mx-auto text-gray-600">
+            <p className="max-md:text-sm max-w-2xl mx-auto text-gray-600 dark:text-muted-foreground">
               {`      Guided by our core values, we're committed to transforming the
               real estate experience in Bahrain`}
             </p>
           </div>
-          <div className="grid md:grid-cols-2 gap-8">
-            <Card className="border-none shadow-lg">
-              <CardContent className="pt-6">
-                <div className="bg-[#7065f0]/10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-6">
+          <div className="grid md:grid-cols-2 gap-8 ">
+            <Card className=" shadow-lg dark:border">
+              <CardContent className="pt-6 ">
+                <div className="bg-[#7065f0]/10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-6 max-md:mx-auto">
                   <Globe className="h-8 w-8 text-[#7065f0]" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">
+                <h3 className="text-xl font-bold text-gray-900 mb-4 max-md:text-center">
                   Our Mission
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-gray-600 dark:text-muted-foreground  max-md:text-center">
                   Our mission is straightforward: to transform property
                   searching in Bahrain into a transparent, efficient, and
                   enjoyable experience.With HomeSpace, you can trust that your
@@ -103,15 +103,15 @@ export default function AboutPage() {
                 </p>
               </CardContent>
             </Card>
-            <Card className="border-none shadow-lg">
-              <CardContent className="pt-6">
-                <div className="bg-[#7065f0]/10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-6">
+            <Card className=" shadow-lg  dark:border ">
+              <CardContent className="pt-6 ">
+                <div className="bg-[#7065f0]/10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-6 max-md:mx-auto">
                   <Clock className="h-8 w-8 text-[#7065f0]" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">
+                <h3 className="text-xl font-bold text-gray-900 mb-4 max-md:text-center">
                   Our Vision
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-gray-600 dark:text-muted-foreground max-md:text-center ">
                   To be the most trusted and innovative property platform in the
                   Middle East. We envision a future where finding your dream
                   property is just a few clicks away, regardless of your needs

@@ -4,46 +4,13 @@ import { cn } from "@/lib/utils";
 import { Search } from "lucide-react";
 
 const ChatSidebar = ({ chats, activeChat, onChatSelect, userId }) => {
-  //const [filter, setFilter] =
-  // (useState < "all") | "unread" | ("important" > "all");
-
-  ///  const filteredChats = chats.filter((chat) => {
-  //    if (filter === "unread") return chat.unread;
-  //   return true;
-  //  });
-
   const [isOnline, setIsOnline] = useState(false);
   return (
-    <div className="h-full flex flex-col  w-full md:w-80 2xl:w-[440px] bg-estate-50 overflow-hidden animate-fade-in ">
+    <div className="h-full flex flex-col  w-full md:w-80 2xl:w-[440px] bg-estate-50 dark:bg-[#121212] overflow-hidden animate-fade-in ">
       <div className="pt-4 px-4  ">
         <h1 className="text-3xl md:text-4xl max-md:text-center font-bold text-chat-secondary mb-3 md:mb-3">
           Chats
         </h1>
-        {/** {" "}
-        <div className="mb-2">
-          <p className="text-xs font-medium text-gray-500 uppercase mb-2">
-            Quick FILTERS
-          </p>
-          <div className="flex space-x-2">
-            <button
-              className={cn(
-                "chat-filter-button rounded-full text-sm px-5 py-1.5 font-medium transition-all bg-light_gray chat-gray text-gray-700 hover:bg-gray-200" //filter === "all" && "active"
-              )}
-              // onClick={() => setFilter("all")}
-            >
-              All
-            </button>
-            <button
-              className={cn(
-                "chat-filter-button rounded-full text-sm px-4 py-1.5 font-medium transition-all bg-light_gray chat-gray text-gray-700 hover:bg-gray-200l"
-                //  filter === "unread" && "active"
-              )}
-              //onClick={() => setFilter("unread")}
-            >
-              Unread Chats
-            </button>
-          </div>
-        </div>*/}
       </div>
       <section className="bg-white h-full  rounded-lg shadow-md backdrop-blur-md mx-2 my-2 border-gray-100 border-[0.5px]">
         <div className="relative px-4 pt-4 ">

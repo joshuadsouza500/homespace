@@ -57,7 +57,7 @@ const User = () => {
 
   const Sidebar = (
     <div
-      className={`bg-Bgpurple text-white shadow-lg backdrop-blur-md h-dvh z-10 w-56 md:w-[25%] xl:w-[22%] max-w-80 
+      className={`bg-Bgpurple  text-white shadow-lg backdrop-blur-md h-dvh z-10 w-56 md:w-[30%] xl:w-[22%] max-w-80 
       fixed top-0 left-0 transition-transform duration-500 ease-in-out 2xl:px-4
       ${isOpen ? "translate-x-0" : "-translate-x-full"}
       lg:relative lg:translate-x-0
@@ -129,12 +129,12 @@ const User = () => {
   );
 
   return (
-    <div className="flex font-poppins bg-background h-dvh z-0 justify-center w-screen  relative">
+    <div className="flex font-poppins bg-background  h-dvh z-0 justify-center w-screen  relative">
       {/*Sidebar */}
       {Sidebar}
       <div className="w-full   bg-slate-50 flex- 1 flex flex-col  z-0  overflow-y-scroll overflow-x- clip">
         {/*Nav Bar */}{" "}
-        <header className="bg-white shadow py-2 pl-2 pr-4 flex lg:hidden sticky top-0 justify-between   items-center z-10 ">
+        <header className="bg-white dark:bg-estate-50 shadow py-2 pl-2 pr-4 flex lg:hidden sticky top-0 justify-between   items-center z-10 ">
           <button
             onClick={toggleSidebar}
             className="lg:hidden  hover:bg-gray-100  text-slate-800  rounded-full p-2 "
@@ -145,7 +145,7 @@ const User = () => {
           <UserDropdown user={auth.user} />
         </header>
         {/*Routes */}
-        <div>
+        <div className="dark:bg-[#121212]">
           <Routes>
             <Route
               path="/profile"

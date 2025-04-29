@@ -42,7 +42,7 @@ export default function PropertyGallery({ images }) {
   return (
     <div className="relative">
       <div className="grid md:grid-cols-[3fr,1fr] gap-3 cursor-pointer">
-        {/* Main Image */}
+        {/* Main Image and arrows for smaller screens */}
         <div
           onClick={() => {
             setActiveImage(0);
@@ -55,25 +55,8 @@ export default function PropertyGallery({ images }) {
             alt={images[0]}
             className="object-cover w-full h-full transition-transform duration-300 hover:scale-[1.02]"
           />
-          <div className="md:hidden absolute left-1 top-1/2 -translate-y-1/2">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={handlePrevious}
-              className="text-white hover:bg-white/20"
-            >
-              <ChevronLeft className="h-8 w-8" />
-            </Button>
-          </div>
-          <div className="md:hidden absolute right-1 top-1/2 -translate-y-1/2">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={handleNext}
-              className="text-white hover:bg-white/20"
-            >
-              <ChevronRight className="h-8 w-8" />
-            </Button>
+          <div className="md:hidden absolute bottom-2 left-1/2 -translate-x-1/2 text-white">
+            {activeImage + 1} / {images.length}
           </div>
         </div>
 
@@ -136,7 +119,7 @@ export default function PropertyGallery({ images }) {
               variant="ghost"
               size="icon"
               onClick={() => setShowGallery(false)}
-              className="text-white hover:bg-white/20"
+              className="text-white hover:bg-white/20 hover:text-red-500"
             >
               <X className="h-6 w-6" />
             </Button>
@@ -146,7 +129,7 @@ export default function PropertyGallery({ images }) {
               variant="ghost"
               size="icon"
               onClick={handlePrevious}
-              className="text-white hover:bg-white/20"
+              className="text-white hover:bg-white/20 "
             >
               <ChevronLeft className="h-8 w-8" />
             </Button>
