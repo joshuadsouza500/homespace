@@ -64,7 +64,9 @@ export default function ContactPage() {
     <section className=" px-2 md:px-6  w-full  max-w-5xl lg:max-w-6xl  xl:max-w-7xl  2xl:max-w-8xl mx-auto py-4 md:py-8 font-jakarta ">
       {/* Header Section */}
       <div className="text-center mb-12">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4">Contact Us</h1>
+        <h1 className="text-4xl md:text-5xl font-bold mb-4 dark:text-[#F8FDFF]">
+          Contact Us
+        </h1>
         <p className="max-md:text-sm  text-muted-foreground max-w-xl mx-auto tracking-wide ">
           Have questions about buying, selling, or renting properties? Our team
           of experts is here to help you every step of the way.
@@ -85,7 +87,7 @@ export default function ContactPage() {
               <div className="flex items-start gap-3">
                 <Phone className="h-5 w-5 mt-0.5 text-Primary" />
                 <div>
-                  <h3 className="font-medium">Phone</h3>
+                  <h3 className="font-medium dark:text-[#F8FDFF]">Phone</h3>
                   <p className="text-muted-foreground">(+973) 34367282</p>
                   <p className="text-sm text-muted-foreground">
                     Sun-Thrs, 9am-5pm
@@ -96,7 +98,7 @@ export default function ContactPage() {
               <div className="flex items-start gap-3">
                 <Mail className="h-5 w-5 mt-0.5 text-Primary" />
                 <div>
-                  <h3 className="font-medium">Email</h3>
+                  <h3 className="font-medium dark:text-[#F8FDFF]">Email</h3>
                   <p className="text-muted-foreground">info@homespace.com</p>
                 </div>
               </div>
@@ -104,7 +106,9 @@ export default function ContactPage() {
               <div className="flex items-start gap-3">
                 <MapPin className="h-5 w-5 mt-0.5 text-Primary" />
                 <div>
-                  <h3 className="font-medium">Main Office</h3>
+                  <h3 className="font-medium dark:text-[#F8FDFF]">
+                    Main Office
+                  </h3>
                   <p className="text-muted-foreground">123 Jabbir Avn</p>
                   <p className="text-muted-foreground">
                     2nd Floor, StarPrize Towers{" "}
@@ -115,7 +119,9 @@ export default function ContactPage() {
               <div className="flex items-start gap-3">
                 <Clock className="h-5 w-5 mt-0.5 text-Primary" />
                 <div>
-                  <h3 className="font-medium">Business Hours</h3>
+                  <h3 className="font-medium dark:text-[#F8FDFF]">
+                    Business Hours
+                  </h3>
                   <p className="text-muted-foreground">
                     Sunday-Thursday:{" "}
                     <span className="font-semibold">9am-5pm</span>
@@ -208,7 +214,7 @@ export default function ContactPage() {
                     value={formData.name}
                     onChange={handleChange}
                     placeholder="John Doe"
-                    className="mt-1 block w-full rounded-md border border-gray-300   focus:border-bborder sm:text-sm px-4 py-3"
+                    className="mt-1 block w-full rounded-md border border-gray-300   focus:border-bborder sm:text-sm px-4 py-3 dark:bg-[#121212] dark:border-[#49494b] [#4D4D4E]"
                   />
                 </div>
                 <div>
@@ -221,7 +227,7 @@ export default function ContactPage() {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="john@example.com"
-                    className="mt-1 block w-full rounded-md border border-gray-300   focus:border-bborder sm:text-sm px-4 py-3"
+                    className="mt-1 block w-full rounded-md border border-gray-300   focus:border-bborder sm:text-sm px-4 py-3 dark:bg-[#121212] dark:border-[#49494b] [#4D4D4E]"
                   />
                 </div>
               </div>
@@ -237,7 +243,7 @@ export default function ContactPage() {
                     value={formData.phone}
                     onChange={handleChange}
                     placeholder="+973 123-4567"
-                    className="mt-1 block w-full rounded-md border border-gray-300   focus:border-bborder sm:text-sm px-4 py-3"
+                    className="mt-1 block w-full rounded-md border border-gray-300   focus:border-bborder sm:text-sm px-4 py-3 dark:bg-[#121212] dark:border-[#49494b] [#4D4D4E]"
                   />
                 </div>
                 <div>
@@ -245,7 +251,7 @@ export default function ContactPage() {
                     Subject
                   </label>
                   <Select onValueChange={handleSelectChange}>
-                    <SelectTrigger className="mt-1  w-full rounded-md border border-gray-300   focus:border-bborder sm:text-sm px-4  h-11 dark:bg-[#121212]">
+                    <SelectTrigger className="mt-1  w-full rounded-md border border-gray-300   focus:border-bborder sm:text-sm px-4  h-11 dark:bg-[#121212] dark:border-[#49494b] [#4D4D4E]">
                       <SelectValue
                         placeholder="Select a subject"
                         className="text-muted-foreground "
@@ -277,7 +283,7 @@ export default function ContactPage() {
                   value={formData.message}
                   onChange={handleChange}
                   placeholder="Please provide details about your inquiry..."
-                  className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-bborder p-2 sm:text-sm min-h-[120px]"
+                  className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-bborder p-2 sm:text-sm min-h-[120px] dark:bg-[#121212] dark:border-[#49494b] [#4D4D4E]"
                 />
               </div>
               <div className="w-full flex justify-center py-2">
@@ -296,7 +302,7 @@ export default function ContactPage() {
 
       {/* Map Section */}
       <div className="mb-16">
-        <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center">
+        <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center dark:text-[#F8FDFF]">
           Find Us
         </h2>
         <div className="relative w-full md:w-[90%] mx-auto h-[400px] rounded-lg overflow-hidden border shadow">

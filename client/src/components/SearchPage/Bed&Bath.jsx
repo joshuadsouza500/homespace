@@ -45,7 +45,7 @@ export default function Bed_Bath({
         <Button
           variant="outline"
           className={cn(
-            " justify-between   flex md:w-44 xl:w-40  max-md:h-9 dark:bg-muted",
+            " justify-between   flex md:w-44 xl:w-40  max-md:h-9  ",
             className
           )}
         >
@@ -59,26 +59,28 @@ export default function Bed_Bath({
       </PopoverTrigger>
       <PopoverContent className="w-52 md:w-72 p-0">
         <div className="p-4">
-          <h3 className="font-semibold mb-2">Bedrooms</h3>
+          <h3 className="font-semibold mb-2 dark:text-[#F8FDFF]">Bedrooms</h3>
           <div className="flex flex-wrap gap-2 mb-4">
             {bedroomOptions.map((option) => (
               <Button
                 key={`bed-${option}`}
                 variant={defaultBeds === option ? "default" : "outline"}
                 size="sm"
+                className="dark:hover:bg-[#333333]"
                 onClick={() => handleSelect("bedrooms", option)}
               >
                 {option}
               </Button>
             ))}
           </div>
-          <h3 className="font-semibold mb-2">Bathrooms</h3>
+          <h3 className="font-semibold mb-2 dark:text-[#F8FDFF]">Bathrooms</h3>
           <div className="flex flex-wrap gap-2">
             {bathroomOptions.map((option) => (
               <Button
                 key={`bath-${option}`}
                 variant={defaultBaths === option ? "default" : "outline"}
                 size="sm"
+                className="dark:hover:bg-[#333333]"
                 onClick={() => handleSelect("bathrooms", option)}
               >
                 {option}

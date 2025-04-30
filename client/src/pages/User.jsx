@@ -129,15 +129,15 @@ const User = () => {
   );
 
   return (
-    <div className="flex font-poppins bg-background  h-dvh z-0 justify-center w-screen  relative">
+    <div className="flex font-poppins bg-background   h-dvh z-0 justify-center w-screen  relative">
       {/*Sidebar */}
       {Sidebar}
-      <div className="w-full   bg-slate-50 flex- 1 flex flex-col  z-0  overflow-y-scroll overflow-x- clip">
+      <div className="w-full   bg-slate-50 flex- 1 flex flex-col  z-0  overflow-y-scroll dark:bg-[#121212]">
         {/*Nav Bar */}{" "}
-        <header className="bg-white dark:bg-estate-50 shadow py-2 pl-2 pr-4 flex lg:hidden sticky top-0 justify-between   items-center z-10 ">
+        <header className="bg-white dark:bg-[#121212] shadow py-2 pl-2 pr-4 flex lg:hidden sticky top-0 justify-between   items-center z-10 ">
           <button
             onClick={toggleSidebar}
-            className="lg:hidden  hover:bg-gray-100  text-slate-800  rounded-full p-2 "
+            className="lg:hidden  hover:bg-gray-100  text-text dark:text-[#F8FDFF]  rounded-full p-2 "
           >
             <MenuIcon className="size-5 " />
           </button>

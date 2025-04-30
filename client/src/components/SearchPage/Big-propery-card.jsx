@@ -47,7 +47,7 @@ const BigPropertyCard = ({ property }) => {
                 <h2 className="text-2xl font-bold text-Primary pt-1 pb-0.5 dark:text-muted">
                   {property?.price.toLocaleString()} BHD
                 </h2>
-                <h2 className="text-lg lg:text-2xl font-semibold text-text  line-clamp-1">
+                <h2 className="text-lg lg:text-2xl font-semibold text-text  line-clamp-1 dark:text-muted">
                   {property?.title}
                 </h2>
                 <div className="flex items-center text-muted-foreground text-sm pt-1">
@@ -68,11 +68,11 @@ const BigPropertyCard = ({ property }) => {
               {property?.description}
             </p>
             <div className="flex justify-start gap-2 lg:gap-3 text-sm text-muted-foreground mb-4 pl-1 absolute bottom-0">
-              <div className="flex items-center border-r-2 pr-2">
+              <div className="flex items-center border-r-2 pr-2 dark:border-r-[#222222]">
                 <Bed className="size-4 mr-1 text-Primary dark:text-muted" />
                 <span>{property?.bedrooms}</span>
               </div>
-              <div className="flex items-center border-r-2 pr-2">
+              <div className="flex items-center border-r-2 pr-2 dark:border-r-[#222222]">
                 <Bath className="size-4 mr-1 text-Primary dark:text-muted" />
                 <span>{property?.bathrooms} </span>
               </div>
@@ -82,7 +82,7 @@ const BigPropertyCard = ({ property }) => {
               </div>
             </div>
           </div>
-          <div className="flex justify-between items-center mt-auto pt-2 border-t">
+          <div className="flex justify-between items-center mt-auto pt-2 border-t dark:border-t-[#222222]">
             <span className="text-xs text-muted-foreground">
               Listed on {new Date(property?.createdAt).toLocaleDateString()}{" "}
               {/* Display listing date */}

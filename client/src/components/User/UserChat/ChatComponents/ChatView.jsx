@@ -100,7 +100,7 @@ const ChatView = ({ chat, userId, onClose }) => {
   }
 
   return (
-    <section className="h-full flex-1 flex flex-col bg-white animate-fade-in   rounded-lg shadow-xl backdrop-blur-md border-gray-100 border-[0.5px]">
+    <section className="h-full flex-1 flex flex-col bg-white animate-fade-in   rounded-lg shadow-xl backdrop-blur-md border-gray-100 border-[0.5px] dark:bg-[#121212]">
       {/* Header */}
       <nav className="p-3 md:p-4 border-b border-gray-200 flex items-center justify-between shadow-sm ">
         <div className="flex items-center">
@@ -149,7 +149,7 @@ const ChatView = ({ chat, userId, onClose }) => {
       </nav>
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto p-6 bg-estate-50 [#f7f6fc]">
+      <div className="flex-1 overflow-y-auto p-6 bg-estate-50 [#f7f6fc] dark:bg-[#]">
         {allMessages
           .slice()
           .reverse()

@@ -36,7 +36,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className=" pt-3  lg:pt-5 pb-2 lg:pb-3   w-full  border-b">
+    <nav className=" pt-3  lg:pt-5 pb-2 lg:pb-3   w-full  border-b dark:border-[#4D4D4E]">
       <section className="max-w-6xl xl:max-w-7xl 2xl:max-w-[1440px] flex  pb-2 items-center justify-between mx-auto px-3  md:px-4 relative ">
         {/* Add nabar for mobile */}
         <button
@@ -93,28 +93,28 @@ export default function Navbar() {
           <ul className=" flex flex-col gap-y-1 px-4 text-xl font-medium  w-full justify-center  cursor-pointer ">
             {" "}
             <li
-              className="hover:text-Primary rounded-md  font-medium  transition-colors  px-2 py-3   "
+              className="hover:text-Primary rounded-md  font-medium  transition-colors  px-2 py-3 dark:text-[#F8FDFF]   "
               onClick={() => setMobileToggle(false)}
             >
               {" "}
               <Link to="/">Home</Link>
             </li>
             <li
-              className="hover:text-Primary rounded-md  font-medium  transition-colors  px-2 py-3   "
+              className="hover:text-Primary rounded-md  font-medium  transition-colors  px-2 py-3 dark:text-[#F8FDFF]   "
               onClick={() => setMobileToggle(false)}
             >
               {" "}
               <Link to="/property">Properties</Link>
             </li>
             <li
-              className="hover:text-Primary rounded-md  font-medium  transition-colors  px-2 py-3   "
+              className="hover:text-Primary rounded-md  font-medium  transition-colors  px-2 py-3 dark:text-[#F8FDFF]   "
               onClick={() => setMobileToggle(false)}
             >
               {" "}
               <Link to="/about">About</Link>
             </li>
             <li
-              className="hover:text-Primary rounded-md  font-medium  transition-colors  px-2 py-3   "
+              className="hover:text-Primary rounded-md  font-medium  transition-colors  px-2 py-3 dark:text-[#F8FDFF]   "
               onClick={() => setMobileToggle(false)}
             >
               {" "}
@@ -135,7 +135,7 @@ export default function Navbar() {
               className="size-7 max-md:size-6 "
               src="/src/assets/Logo.svg"
             />
-            <span className=" text-xl md:text-xl xl:text-2xl pt-0.5 font-bold  text-Bgpurple">
+            <span className=" text-xl md:text-xl xl:text-2xl pt-0.5 font-bold  text-Bgpurple dark:text-[#F8FDFF]">
               HomeSpace
             </span>
           </div>
@@ -143,28 +143,28 @@ export default function Navbar() {
           <ul className="hidden md:flex space-x-4 max-xl:text-sm font-medium  w-full justify-center ">
             {" "}
             <li
-              className="hover:text-Primary rounded-md  font-medium  transition-colors  px-2 py-3   "
+              className="hover:text-Primary rounded-md  font-medium  transition-colors  px-2 py-3 dark:text-[#F8FDFF]   "
               onClick={() => setMobileToggle(false)}
             >
               {" "}
               <Link to="/">Home</Link>
             </li>
             <li
-              className="hover:text-Primary rounded-md  font-medium  transition-colors  px-2 py-3   "
+              className="hover:text-Primary rounded-md  font-medium  transition-colors  px-2 py-3 dark:text-[#F8FDFF]   "
               onClick={() => setMobileToggle(false)}
             >
               {" "}
               <Link to="/property">Properties</Link>
             </li>
             <li
-              className="hover:text-Primary rounded-md  font-medium  transition-colors  px-2 py-3   "
+              className="hover:text-Primary rounded-md  font-medium  transition-colors  px-2 py-3 dark:text-[#F8FDFF]   "
               onClick={() => setMobileToggle(false)}
             >
               {" "}
               <Link to="/about">About</Link>
             </li>
             <li
-              className="hover:text-Primary rounded-md  font-medium  transition-colors  px-2 py-3   "
+              className="hover:text-Primary rounded-md  font-medium  transition-colors  px-2 py-3 dark:text-[#F8FDFF]   "
               onClick={() => setMobileToggle(false)}
             >
               {" "}

@@ -125,7 +125,7 @@ export default function UserProfile({ user }) {
   const comingSoon = true;
   //console.log("jj", user);
   return (
-    <section className="container mx-auto px-4 lg:px-8 pt-4 lg:pt-8 pb-8 font-jakarta bg-white estate-50">
+    <section className="container mx-auto px-4 lg:px-8 pt-4 lg:pt-8 pb-8 font-jakarta bg-white estate-50 h-full  dark:bg-[#121212]">
       <h1 className="text-3xl md:text-4xl   font-bold text-text dark:text-white mb-6 xl:mb-10 text-center">
         My Profile
       </h1>
@@ -142,7 +142,9 @@ export default function UserProfile({ user }) {
             <h2 className="text-xl font-semibold text-estate-800 dark:text-white mb-1">
               {user?.name}
             </h2>
-            <p className="text-estate-500 dark:text-muted mb-4">{user?.role}</p>
+            <p className="text-estate-500 dark:text-muted mb-4 ">
+              {user?.role}
+            </p>
             {isEditing ? (
               <UploadWidget
                 uwConfig={{
@@ -196,7 +198,7 @@ export default function UserProfile({ user }) {
                 </AlertDialog>{" "}
                 <button
                   onClick={() => setIsEditing(true)}
-                  className="text-Bgpurple  hover:text-indigo-800  flex items-center gap-1 md:gap-2 max-sm:text-sm"
+                  className="text-Bgpurple dark:text-[#F8FDFF]  hover:text-indigo-800  flex items-center gap-1 md:gap-2 max-sm:text-sm"
                 >
                   <Edit className="size-4 " />
                   Edit
@@ -210,7 +212,7 @@ export default function UserProfile({ user }) {
                 {/* User */}
                 <div className="flex items-center gap-3">
                   <div className="h-10 w-10 rounded-full bg-Primary/20 dark:bg-Primary/20 flex items-center justify-center">
-                    <User className="h-5 w-5 text-Bgpurple " />
+                    <User className="h-5 w-5 text-Bgpurple dark:text-[#F8FDFF]" />
                   </div>
                   <div>
                     <Label
@@ -236,7 +238,7 @@ export default function UserProfile({ user }) {
                 {/* Mobile */}
                 <div className="flex items-center gap-3">
                   <div className="h-10 w-10 rounded-full   bg-Primary/20 dark:bg-Primary/20 flex items-center justify-center">
-                    <Phone className="h-5 w-5 text-Bgpurple " />
+                    <Phone className="h-5 w-5 text-Bgpurple dark:text-[#F8FDFF]" />
                   </div>
                   <div>
                     <Label
@@ -262,7 +264,7 @@ export default function UserProfile({ user }) {
                 {/* Email */}
                 <div className="flex items-center gap-3">
                   <div className="h-10 w-10 rounded-full bg-Primary/20 dark:bg-Primary/20 flex items-center justify-center">
-                    <Mail className="h-5 w-5 text-Bgpurple " />
+                    <Mail className="h-5 w-5 text-Bgpurple dark:text-[#F8FDFF]" />
                   </div>
                   <div>
                     <Label
@@ -292,7 +294,7 @@ export default function UserProfile({ user }) {
                 {" "}
                 <div className="flex items-center gap-3">
                   <div className="h-10 w-10 rounded-full bg-Primary/20 dark:bg-Primary/20 flex items-center justify-center">
-                    <Mail className="h-5 w-5 text-Bgpurple " />
+                    <Mail className="h-5 w-5 text-Bgpurple dark:text-[#F8FDFF]" />
                   </div>
                   <div>
                     <Label
@@ -329,7 +331,7 @@ export default function UserProfile({ user }) {
                     {isEditing && editedUser?.role === "AGENT" ? (
                       <div className="flex items-center gap-3">
                         <div className="h-10 w-10 rounded-full bg-Primary/20 dark:bg-Primary/20 flex items-center justify-center">
-                          <MapPin className="h-5 w-5 text-Bgpurple " />
+                          <MapPin className="h-5 w-5 text-Bgpurple dark:text-[#F8FDFF]" />
                         </div>
                         <div>
                           <Label
@@ -351,7 +353,7 @@ export default function UserProfile({ user }) {
                       user?.role === "AGENT" && (
                         <div className="flex items-center gap-3">
                           <div className="h-10 w-10 rounded-full bg-Primary/20 dark:bg-Primary/20 flex items-center justify-center">
-                            <MapPin className="h-5 w-5 text-Bgpurple " />
+                            <MapPin className="h-5 w-5 text-Bgpurple dark:text-[#F8FDFF]" />
                           </div>
                           <div>
                             <Label

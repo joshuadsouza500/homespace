@@ -41,14 +41,14 @@ const UserFavourites = () => {
   const navigate = useNavigate;
   //console.log("user's saved prop", userSavedProperties);
   return (
-    <div className="container mx-auto px-4 lg:px-6 pt-4 lg:pt-6 pb-8  bg-estate-50 dark:bg-[#121212]">
+    <div className="container mx-auto px-4 lg:px-6   pt-4 lg:pt-6 pb-8  bg-estate-50 dark:bg-[#121212] h-screen">
       <div
         className="flex max-md:flex-col justify-between items-center
             w-full mb-6 md:mb-10 gap-y-4 "
       >
         <div className="flex flex-col justify-between items-center md:items-start   w-full gap-y-1 ">
           {" "}
-          <h1 className="text-3xl md:text-4xl font-bold text-text ">
+          <h1 className="text-3xl md:text-4xl font-bold text-text  dark:text-[#F8FDFF]">
             Saved Properties
           </h1>
           <p className="max-md:text-sm text-muted-foreground">
@@ -64,9 +64,14 @@ const UserFavourites = () => {
           + Add New Property
         </Button>
       </div>
-      <section className=" grid  xl:grid-cols-2 gap-x-6 gap-y-7 place-content-center ">
+      <section className=" grid  xl:grid-cols-2 gap-x-6  gap-y-7 place-content-center ">
         {userSavedProperties?.map((savedProperty) => (
-          <PropertyCard key={savedProperty?.id} property={savedProperty} />
+          <PropertyCard
+            key={savedProperty?.id}
+            property={savedProperty}
+            saved={true}
+            className={"dark:border-white/10 dark:border"}
+          />
         ))}
       </section>
       {userSavedProperties?.length > propertiesPerPage && (

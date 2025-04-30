@@ -104,14 +104,14 @@ const Search = () => {
                         {/* Right now its mt-72 but after adding pagination making it self-center */}
                         {/* Only display it if there are multiple properties displayed */}
                         <div
-                          className={`items-start justify-center bg-white backdrop-blur-lg shadow-xl border-[0.5px] rounded-md max-w-72 max-h-72  col-span-1 p-3  flex flex-col gap-y-4 cursor-pointer transition-all duration-300 mt-72 self- center ${
+                          className={`items-start justify-center bg-white backdrop-blur-lg shadow-xl border-[0.5px] rounded-md max-w-72 max-h-72  col-span-1 p-3  flex flex-col gap-y-4 cursor-pointer transition-all duration-300 mt-72 self- center dark:bg-[#121212] dark:border-[#49494b] [#4D4D4E] ${
                             Property.properties?.properties?.length > 2
                               ? "block"
                               : "hidden"
                           }`}
                         >
                           <span>
-                            <h2 className="text-lg font-semibold text-text flex items-center">
+                            <h2 className="text-lg font-semibold text-text flex items-center dark:text-muted">
                               <SearchCheck className="mr-2.5 text-Primary" />{" "}
                               Popular Searches
                             </h2>
@@ -152,7 +152,7 @@ const Search = () => {
                             </ul>
                           </span>
                           <span>
-                            <h2 className="text-lg font-semibold text-text flex items-center hover:text-Primary">
+                            <h2 className="text-lg font-semibold text-text flex items-center hover:text-Primary dark:text-muted">
                               <MapPinCheck className="mr-2.5 text-Primary" />{" "}
                               Nearby Areas
                             </h2>
@@ -181,7 +181,7 @@ const Search = () => {
                               </li>
                             </ul>
                           </span>
-                          <button className="text-lg font-semibold text-text  hover:text-Primary">
+                          <button className="text-lg font-semibold text-text  hover:text-Primary dark:text-muted">
                             <Link
                               to="/user/saved"
                               className="flex items-center"
@@ -211,11 +211,11 @@ const Search = () => {
                                 {" "}
                                 <p
                                   className={`flex items-center justify-center px-4 h-10 
-                text-gray-500 dark:text-muted-foreground    border border-gray-300
+                text-gray-500 dark:text-muted-foreground    border border-gray-300 dark:border-[#49494b] [#4D4D4E]
                 hover:text-Blue ${
                   currentPage == index + 1
                     ? "border-t-2 border-t-Bgpurple/95 dark:border-t-Primary text-lg text-text"
-                    : "bg-white hover:bg-purple-100"
+                    : "bg-white hover:bg-purple-100 dark:bg-[#121212] dark:hover:bg-Bgpurple/30"
                 }`}
                                 >
                                   {index + 1}

@@ -73,10 +73,10 @@ export default function Testimonials() {
   //background colour option 1 : bg-[#f7f6fc]
   // bg-gradient-to-b from-[#F0F4FD] to-[#FFFFFF]
   return (
-    <section className=" pt-12 md:pt-16 pb-20 md:pb-28 bg-gradient-to-b from-[#f0f4fdab] /70 to-white dark:bg-[#121212] [#f7f6fc] relative">
+    <section className=" pt-12 md:pt-16 pb-20 md:pb-28 bg-gradient-to-b from-[#f0f4fdab] /70 to-white dark:bg-gradient-to-b  dark:from-[#121212]  [#f7f6fc] relative">
       <div className="container px-2 md:px-6  w-full  max-w-5xl lg:max-w-6xl  xl:max-w-7xl  2xl:max-w-8xl mx-auto  ">
         <div className="flex flex-col gap-3 items-center mt-8 mb-12   ">
-          <h2 className="text-3xl md:text-4xl text-center pb-1  font-bold text-text">
+          <h2 className="text-3xl md:text-4xl text-center pb-1  font-bold text-text dark:text-[#F8FDFF]">
             What Our Clients Say
           </h2>
           <p className=" max-sm:leading-relaxed max-sm:text-sm w-[90%] tracking-wide sm:w-[50%] lg:w-[35%] text-center text-muted-foreground pb-3">
@@ -103,7 +103,7 @@ export default function Testimonials() {
                     className={` px-7 sm:px-10 py-8 mb-8 rounded-lg text-center relative tracking-wide  ${
                       currentIndex === index
                         ? "bg-Primary scale-105 text-white shadow-lg "
-                        : "opacity-40 scale-95 text-black"
+                        : "opacity-40 scale-95 text-black dark:text-[#F8FDFF]"
                     }`}
                   >
                     <Quote className="size-7 fill-black text-black/0 opacity-20 rotate-180 fixed left-2 sm:left-3 top-5 sm:top-7" />
@@ -139,8 +139,10 @@ export default function Testimonials() {
                       src={testimonial.avatar}
                       className="rounded-full size-12 bg-white border border-border object-cover"
                     />
-                    <h3 className=" text-sm pt-1">{testimonial.name}</h3>
-                    <p className="opacity-90 text-xs pt-0.5 text-gray-600">
+                    <h3 className=" text-sm pt-1 dark:text-[#F8FDFF]">
+                      {testimonial.name}
+                    </h3>
+                    <p className="opacity-90 text-xs pt-0.5 text-gray-600 dark:text-muted-foreground">
                       {testimonial.role}
                     </p>
                   </div>

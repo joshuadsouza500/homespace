@@ -43,18 +43,20 @@ const SheetFilter = ({
   return (
     <Sheet open={isFilterOpen} onOpenChange={setIsFilterOpen}>
       <SheetTrigger asChild>
-        <Button variant="outline" className="whitespace-nowrap  dark:bg-muted">
-          <SlidersHorizontal className="size-4 text-text" />
+        <Button variant="outline" className="whitespace-nowrap  text-text ">
+          <SlidersHorizontal className="size-4 " />
           {/** <span className="max-md:hidden ml-2">Filters</span> */}
         </Button>
       </SheetTrigger>
 
       <SheetContent
         side="right"
-        className="w-full sm:max-w-lg  h-screen overflow-y-auto"
+        className="w-full sm:max-w-lg  h-screen overflow-y-auto dark:bg-[#121212]"
       >
         <SheetHeader className="mb-6">
-          <SheetTitle className="text-2xl">Filters</SheetTitle>
+          <SheetTitle className="text-2xl dark:text-[#F8FDFF]">
+            Filters
+          </SheetTitle>
           <SheetDescription className="hidden">
             Adjust your search parameters
           </SheetDescription>
@@ -72,7 +74,7 @@ const SheetFilter = ({
                 handleFilterChange({ id: "type", value })
               }
             >
-              <TabsList className="flex gap-x-2 mx-1  h-11 px-2 ">
+              <TabsList className="flex gap-x-2 mx-1  h-11 px-2  dark:bg-[#121212] dark:ring-[#49494b]">
                 <TabsTrigger
                   className=" w-full data-[state=active]:text-Primary data-[state=active]:border border-bborder font-bold "
                   value="Rent"
@@ -105,7 +107,9 @@ const SheetFilter = ({
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
-                  <SelectLabel className="pl-4">Property Type</SelectLabel>
+                  <SelectLabel className="pl-4 dark:text-[#F8FDFF]">
+                    Property Type
+                  </SelectLabel>
                   <SelectItem value="Studio">Studio</SelectItem>
                   <SelectItem value="Apartment">Apartment</SelectItem>
                   <SelectItem value="Villa">Villa</SelectItem>
@@ -148,7 +152,7 @@ const SheetFilter = ({
           {/* Bedrooms & Bathrooms Filter */}
           {/* Bedrooms Filter */}
           <div className="space-y-2">
-            <h3 className="font-semibold mb-2">Bedrooms</h3>
+            <h3 className="font-semibold mb-2 dark:text-[#F8FDFF]">Bedrooms</h3>
             <div className="flex flex-wrap gap-2">
               {bedroomOptions.map((option) => (
                 <Button
@@ -165,7 +169,9 @@ const SheetFilter = ({
 
           {/* Bathrooms Filter */}
           <div className="space-y-2">
-            <h3 className="font-semibold mb-2">Bathrooms</h3>
+            <h3 className="font-semibold mb-2 dark:text-[#F8FDFF]">
+              Bathrooms
+            </h3>
             <div className="flex flex-wrap gap-2">
               {bathroomOptions.map((option) => (
                 <Button
@@ -183,7 +189,7 @@ const SheetFilter = ({
           {/* Furnishing and Utilities Filter */}
           {/* Furnishing Filter */}
           <div className="space-y-2">
-            <h3 className="font-semibold">Furnishing</h3>
+            <h3 className="font-semibold dark:text-[#F8FDFF]">Furnishing</h3>
             <div className="flex flex-wrap gap-2">
               {furnishingOptions.map((option) => (
                 <Button
@@ -201,7 +207,7 @@ const SheetFilter = ({
 
           {/* Utilities Filter */}
           <div className="space-y-2">
-            <h3 className="font-semibold">Utilities</h3>
+            <h3 className="font-semibold dark:text-[#F8FDFF]">Utilities</h3>
             <div className="flex flex-wrap gap-2">
               {utilitiesOptions.map((option) => (
                 <Button

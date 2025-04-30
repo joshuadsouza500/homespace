@@ -159,8 +159,8 @@ export default function AddProperty2() {
   const goToPreviousStep = () => setCurrentStep((prev) => prev - 1);
 
   return (
-    <div className="container mx-auto px-2 md:px-6 pt-2 sm:pt-6 lg:pt-4 pb-8 dark:bg-[#121212]">
-      <h1 className="text-3xl text-text md:text-4xl font-bold mb-2 md:mb-4 text-center">
+    <div className="container mx-auto px-2 md:px-6 pt-2 sm:pt-6 lg:pt-4 pb-8 dark:bg-[#121212] h-screen ">
+      <h1 className="text-3xl text-text md:text-4xl font-bold mb-2 md:mb-4 text-center dark:text-[#F8FDFF]">
         Add New Property
       </h1>
       {/* Sucess or error pop up */}
@@ -223,7 +223,7 @@ export default function AddProperty2() {
       >
         {currentStep === 1 && (
           <div className="space-y-4 xl:space-y-8">
-            <div className="bg-gray-50 h-56    rounded-lg p-1 flex flex-col justify-between overflow-hidden border-2 border-dashed border-gray-300">
+            <div className="bg-gray-50 h-56    rounded-lg p-1 flex flex-col justify-between overflow-hidden border-2 border-dashed border-gray-300 dark:bg-[#222222] dark:border-[#49494b] [#4D4D4E]">
               {errors.image && (
                 <span className="text-red-500  pt-2 md:pt-8 flex items-center gap-1 text-center justify-center">
                   <AlertCircle className="size-4" /> {errors.image}
@@ -269,7 +269,6 @@ export default function AddProperty2() {
                 placeholder="Enter Property title"
                 value={formData.title}
                 onChange={handleInputChange}
-                className="dark:bg-muted"
               />
               {errors.title && (
                 <span className="text-red-500 text-sm py-0.5  flex items-center gap-1 ">
@@ -355,7 +354,7 @@ export default function AddProperty2() {
                 placeholder="Road no: , Block: , Flat no:"
                 value={formData.address}
                 onChange={handleInputChange}
-                className="dark:bg-muted"
+                className=""
               />
               {errors.address && (
                 <span className="text-red-500 text-sm p x-2 py-0.5 1 flex items-center gap-1">
@@ -426,7 +425,7 @@ export default function AddProperty2() {
                     placeholder="Enter Price"
                     value={formData.price}
                     onChange={handleInputChange}
-                    className="dark:bg-muted"
+                    className="dark:bg-[#222222]"
                   />
                 </div>
                 {errors.price && (
@@ -533,7 +532,7 @@ export default function AddProperty2() {
                   type="number"
                   value={formData.area}
                   onChange={handleInputChange}
-                  className="dark:bg-muted"
+                  className="dark:bg-[#222222]"
                 />
                 {errors.area && (
                   <span className="text-red-500 text-sm p x-2 py-0.5 1 flex items-center gap-1">
@@ -557,7 +556,7 @@ export default function AddProperty2() {
                 placeholder="Description about the property"
                 value={formData.description}
                 onChange={handleInputChange}
-                className="dark:bg-muted"
+                className="dark:bg-[#222222]"
               />
               {errors.description ? (
                 <span className="text-red-500 text-sm p x-2 py-0.5 1 flex items-center gap-1">

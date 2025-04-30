@@ -97,13 +97,15 @@ export default function PropertyDetails({ property, handleSave }) {
         <div className="flex-1 pl-[2px] lg:pl-1">
           <div className="mb-4 md:mb-8">
             <span className=" w-full flex justify-between items-center gap-x-2 py-1 ">
-              <h1 className="text-2xl sm:text-3xl font-bold mb-1 text-text leading-snug ">
+              <h1 className="text-2xl sm:text-3xl font-bold mb-1 text-text dark:text-[#F8FDFF]  leading-snug ">
                 {property?.title}
               </h1>
               <Bookmark
                 data-testid="save-property-icon"
                 className={`block sm:p-2 rounded-full ring-[0.2px] ring-bborder dark:ring-0 shadow-sm text-Primary size-8 md:size-11 hover:scale-95 cursor-pointer hover:fill-Primary/90 ${
-                  property?.isSaved ? "fill-Primary" : "bg-white dark:bg-"
+                  property?.isSaved
+                    ? "fill-Primary"
+                    : "bg-white dark:bg-[#121212]"
                 }`}
                 onClick={() => {
                   handleSave(property?.id);
@@ -123,21 +125,21 @@ export default function PropertyDetails({ property, handleSave }) {
             </div>
             {/* Beds , Baths and area */}
             <div className="grid grid-cols-4 gap-2 md:gap-4 py-4">
-              <div className="flex flex-col items-center p-3 bg-muted shadow-sm rounded-lg">
+              <div className="flex flex-col items-center p-3 bg-muted  shadow-sm rounded-lg">
                 <BedDouble className="h-6 w-6 mb-2 text-Primary" />
                 <span className="text-sm text-muted-foreground">Bedrooms</span>
                 <span className="font-semibold max-md:text-sm">
                   {property?.bedrooms}
                 </span>
               </div>
-              <div className="flex flex-col items-center p-3 bg-muted shadow-sm rounded-lg">
+              <div className="flex flex-col items-center p-3 bg-muted  shadow-sm rounded-lg">
                 <Bath className="h-6 w-6 mb-2 text-Primary" />
                 <span className="text-sm text-muted-foreground">Bathrooms</span>
                 <span className="font-semibold  max-md:text-sm">
                   {property?.bathrooms}
                 </span>
               </div>
-              <div className="flex flex-col items-center p-3 bg-muted shadow-sm rounded-lg">
+              <div className="flex flex-col items-center p-3 bg-muted  shadow-sm rounded-lg">
                 <Maximize className="h-6 w-6 mb-2 text-Primary" />
                 <span className="text-sm text-muted-foreground">Area</span>
                 <span className="font-semibold  max-md:text-sm">
@@ -152,7 +154,7 @@ export default function PropertyDetails({ property, handleSave }) {
                 </span>
               </div>
             </div>
-            {/* <div className="flex   md:w-[60%] items-center justify-start pb-2 md:pb-4 gap-x-4 text-text font-medium   ">
+            {/* <div className="flex   md:w-[60%] items-center justify-start pb-2 md:pb-4 gap-x-4 text-text dark:text-[#F8FDFF]  font-medium   ">
               <div className="  flex items-center pl-1  border-r pr-3">
                 <Bed className="size-5 mr-2 text-Primary" />
                 <span className="   ">{property?.bedrooms} Bed</span>
@@ -168,7 +170,7 @@ export default function PropertyDetails({ property, handleSave }) {
             </div> */}
 
             <div className="pt-2">
-              <h2 className="text-xl font-semibold mb-4 text-text">
+              <h2 className="text-xl font-semibold mb-4 text-text dark:text-[#F8FDFF] ">
                 Amenities
               </h2>
               <div className="grid grid-cols-3 lg:grid-cols-3 md:gap-x-5 gap-x-2 gap-y-6   font-medium max-sm:text-sm">
@@ -180,14 +182,16 @@ export default function PropertyDetails({ property, handleSave }) {
                     {amenityIconMap[am] || (
                       <House className="size-5 mr-2 text-Primary" /> // Default icon
                     )}
-                    <p className="text-text ">{am}</p>
+                    <p className="text-text dark:text-[#F8FDFF]  ">{am}</p>
                   </div>
                 ))}
               </div>
             </div>
           </div>
           <div className="mb-6  pt-2">
-            <h2 className="text-xl font-semibold  mb-3">Description</h2>
+            <h2 className="text-xl font-semibold  mb-3 dark:text-[#F8FDFF]">
+              Description
+            </h2>
             <p className="text-[#4d5461] dark:text-muted-foreground tracking-wide leading-relaxed md:mr-3 text-pretty">
               {property?.description}
             </p>
@@ -258,7 +262,9 @@ export default function PropertyDetails({ property, handleSave }) {
                     />
                   </div>
                   <div>
-                    <h4 className="font-semibold ">{property?.user?.name}</h4>
+                    <h4 className="font-semibold text-[#F8FDFF]">
+                      {property?.user?.name}
+                    </h4>
 
                     {property?.user?.role === "AGENT" ? (
                       <p className="text-sm text-muted-foreground">
@@ -300,16 +306,16 @@ export default function PropertyDetails({ property, handleSave }) {
                   </Button>
                 </div>
                 <div className="space-y-1.5  cursor-pointer hidden lg:block">
-                  <div className="flex items-center hover:text-Primary">
+                  <div className="flex items-center hover:text-Primary dark:text-muted-foreground">
                     <Phone className="size-4   mr-2 text-muted-foreground" />
                     <span>{property?.user?.mobile}</span>
                   </div>
-                  <div className="flex items-center hover:text-Primary">
+                  <div className="flex items-center hover:text-Primary dark:text-muted-foreground">
                     <Mail className="size-4   mr-2 text-muted-foreground" />
                     <span>{property?.user?.email}</span>
                   </div>
                   {property?.user?.role === "AGENT" ? (
-                    <div className="flex items-center ">
+                    <div className="flex items-center hover:text-Primary dark:text-muted-foreground">
                       <Building className="size-4   mr-2 text-muted-foreground" />
                       <span>{property?.user?.company}</span>
                     </div>

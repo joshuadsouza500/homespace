@@ -9,7 +9,7 @@ const Accordion = AccordionPrimitive.Root;
 const AccordionItem = React.forwardRef(({ className, ...props }, ref) => (
   <AccordionPrimitive.Item
     ref={ref}
-    className={cn("border-b", className)}
+    className={cn("border-b-[0.5]", className)}
     {...props}
   />
 ));
@@ -29,11 +29,11 @@ const AccordionTrigger = React.forwardRef(
         {children}
         <PlusCircleIcon
           strokeWidth={1.2}
-          className="size-8  shrink-0 group-data-[state=open]:hidden fill- Primary text-Bgpurple border-none"
+          className="size-8  shrink-0 group-data-[state=open]:hidden fill- Primary text-Bgpurple border-none  dark:text-[#F8FDFF] "
         />
         <MinusCircleIcon
           strokeWidth={1.2}
-          className="size-8 shrink-0 group-data-[state=closed]:hidden fill- Bgpurple/80 text-Bgpurple border-none "
+          className="size-8 shrink-0 group-data-[state=closed]:hidden fill- Bgpurple/80 text-Bgpurple border-none  dark:text-[#F8FDFF]"
         />
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>

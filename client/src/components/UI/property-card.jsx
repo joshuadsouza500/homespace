@@ -31,7 +31,7 @@ import { useDispatch } from "react-redux";
 import { deleteProperty } from "@/store/property/action";
 import { useEffect, useState } from "react";
 
-export default function PropertyCard({ update, className, property }) {
+export default function PropertyCard({ update, className, property, saved }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -109,7 +109,7 @@ export default function PropertyCard({ update, className, property }) {
               <div>
                 <Badge
                   variant="secondary"
-                  className="mb-2 px-4 py-0.5 bg-estate-200 tracking-wide"
+                  className="mb-2 px-4 py-0.5 bg-estate-200 tracking-wide dark:bg-[#222222] dark:text-[#F8FDFF]"
                 >
                   {property?.property_type} {/* Use property's property_type */}
                 </Badge>
@@ -120,7 +120,7 @@ export default function PropertyCard({ update, className, property }) {
               <Button
                 variant="ghost"
                 size="icon"
-                className="text-muted-foreground"
+                className="text-muted-foreground "
               >
                 <MoreVertical className="h-4 w-4" />
               </Button>
@@ -133,12 +133,12 @@ export default function PropertyCard({ update, className, property }) {
               {/* Use city and location */}
             </div>
             <div className="flex justify-start gap-2 text-sm text-muted-foreground mb-4 pl-1">
-              <div className="flex items-center border-r-2 pr-2">
+              <div className="flex items-center border-r-2 pr-2 dark:border-r-[#222222]">
                 <Bed className="h-4 w-4 mr-1.5 text-Primary dark:text-muted" />
                 <span>{property?.bedrooms}</span>{" "}
                 {/* Use the number of bedrooms */}
               </div>
-              <div className="flex items-center border-r-2 pr-2">
+              <div className="flex items-center border-r-2 pr-2 dark:border-r-[#222222]">
                 <Bath className="h-4 w-4 mr-1.5 text-Primary dark:text-muted" />
                 <span>{property?.bathrooms}</span>{" "}
                 {/* Use the number of bathrooms */}
@@ -152,15 +152,15 @@ export default function PropertyCard({ update, className, property }) {
               </div>
             </div>
           </div>
-          <div className="flex justify-between items-center mt-auto pt-2 border-t ">
-            <span className="text-[10px] sm:text-xs font-light text-muted-foreground">
+          <div className="flex justify-between items-center mt-auto pt-2 border-t dark:border-t-[#222222]">
+            <span className="text-[10px] sm:text-xs font-light text-muted-foreground  ">
               Listed {new Date(property?.createdAt).toLocaleDateString()}{" "}
               {/* Display listing date */}
             </span>
             {update ? (
               <div className="flex space-x-4 items-center ">
                 <button
-                  className="text-Bgpurple  hover:text-Primary  flex items-center gap-1 md:gap-2 max-sm:text-sm"
+                  className="text-Bgpurple dark:text-[#F8FDFF]  hover:text-Primary  flex items-center gap-1 md:gap-2 max-sm:text-sm"
                   onClick={() => {
                     handleClick(property?.id); // Use the actual property ID
                   }}
@@ -203,11 +203,13 @@ export default function PropertyCard({ update, className, property }) {
                 </AlertDialog>
               </div>
             ) : (
-              <div className="flex space-x-2 items-center ">
+              <div className="flex space-x-2  items-center  ">
                 <Button
                   variant="outline"
                   size="sm"
-                  className="text-primary  dark:bg-[#121212]"
+                  className={`text-primary  dark:bg-[#121212] ${
+                    saved ? "xl:hidden 2xl:block" : ""
+                  }`}
                 >
                   <Phone className="h-4 w-4 mr-1" />
                   Call

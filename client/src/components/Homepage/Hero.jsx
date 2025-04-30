@@ -89,15 +89,21 @@ const MobileHero = ({
           {/* Stats */}
           <div className="grid grid-cols-3 sm:w-[60%] gap-4 py-2 px-3">
             <div className="text-center">
-              <div className="text-3xl font-bold text-text">200+</div>
+              <div className="text-3xl font-bold text-text dark:text-Primary">
+                200+
+              </div>
               <div className="text-sm text-black/60">Properties</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-text">10K+</div>
+              <div className="text-3xl font-bold text-text dark:text-Primary">
+                10K+
+              </div>
               <div className="text-sm text-slate-600">Customers</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-text">100+</div>
+              <div className="text-3xl font-bold text-text dark:text-Primary">
+                100+
+              </div>
               <div className="text-sm text-slate-600">Reviews</div>
             </div>
           </div>
@@ -186,9 +192,10 @@ const LargeHero = ({
     <section className=" hidden lg:block h-auto bg-white dark:bg-[#121212]     mt-1 pt-2    pb-16 bg -estate-50  ">
       <div className=" rounded-3xl    px-2 md:px-6  w-full  max-w-5xl lg:max-w-6xl  xl:max-w-7xl  2xl:max-w-[1300px]  mx-auto">
         <div className=" flex min-h-[550px]  max-w-full max-2xl:max-h-[650px] 2xl:min-h-[600px]   bg-[url('/Hero2.png')] object-cover object-center  rounded-3xl   flex-col justify-start    items-start relative bg-no-repeat ">
-          {/*      <div className="absolute inset-0 h-auto w-full bg-black opacity-5 z-0 rounded-3xl" /> */}
+          {/*  */}{" "}
+          <div className=" absolute inset-0 h-auto w-full bg-black opacity-10 z-0 rounded-3xl" />
           <div className="flex flex-col items-start lg:w-6/12  gap-y-2  pb-2   lg:ml-12 mt-20 z-10 relative">
-            <h1 className="  lg:text-7xl text-balance font-semibold  font-serif tracking-wide ">
+            <h1 className="  lg:text-7xl text-balance font-semibold  font-serif tracking-wide dark:text-text">
               Home Hunting{" "}
               <span className=" pt-2 flex items-center  gap-2">
                 <img
@@ -200,40 +207,51 @@ const LargeHero = ({
               </span>{" "}
             </h1>
 
-            <p className="w-10/12 ml-2  font-medium text-black/60 text-lg ">
+            <p className="w-10/12 ml-2  font-medium text-black/60 dark:text-black/60 text-lg ">
               Discover a hasstle-free way to find residences that best suit your
               needs and lifestyle.
             </p>
             <div className="grid grid-cols-3 gap-4 py-4 px-1 ">
               <div className="text-center">
-                <div className="text-3xl font-bold text-text">200+</div>
-                <div className="text-sm text-black/60">Properties</div>
+                <div className="text-3xl font-bold text-text dark:text-text">
+                  200+
+                </div>
+                <div className="text-sm text-slate-600 dark:text-muted-foreground">
+                  Properties
+                </div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-text">10K+</div>
-                <div className="text-sm text-slate-600">Customers</div>
+                <div className="text-3xl font-bold text-text dark:text-text">
+                  1K+
+                </div>
+                <div className="text-sm text-slate-600 dark:text-muted-foreground">
+                  Customers
+                </div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-text">100+</div>
-                <div className="text-sm text-slate-600">Positive reviews</div>
+                <div className="text-3xl font-bold text-text dark:text-text">
+                  100+
+                </div>
+                <div className="text-sm text-slate-600 dark:text-muted-foreground">
+                  Positive reviews
+                </div>
               </div>
             </div>
           </div>
-
-          <section className="z-10 h-auto w-full    absolute bottom-12  [#121212]">
+          <section className="z-10 h-auto w-full    absolute bottom-12  ">
             {" "}
             <Tabs
               id="type"
               value={filters?.type}
-              className="ml-2 lg:left-[6.7%] xl:left-[16.1%] absolute   tranform  bottom-0"
+              className="ml-2 lg:left-[6.7%] xl:left-[16.1%] absolute   tranform  bottom-0 "
               onValueChange={(value) => {
                 handleFilterChange({ id: "type", value });
               }}
             >
-              <TabsList className="bg-white/60 dark:bg-[#121212] h-14 w-52 border-[0.5px] border-bborder gap-x-[2px]  shadow-sm ring-0 rounded-b-none ring-[#E0DEF7]">
+              <TabsList className="bg-white/60 dark:bg-[#121212] h-14 w-52 border-[0.5px] border-bborder dark:border-none gap-x-[2px]  shadow-sm ring-0 rounded-b-none ring-[#E0DEF7] ">
                 <TabsTrigger
                   value="Rent"
-                  className="w-24 flex items-center gap-1 text-base data-[state=active]:text-Primary data-[state=active]:border border-bborder font-bold  data-[state=active]:shadow-sm shadow-Primary dark:data-[state=active]:bg-estate-200"
+                  className="w-24 flex items-center gap-1 text-base data-[state=active]:text-Primary data-[state=active]:border border-bborder font-bold  data-[state=active]:shadow-sm shadow-Primary "
                 >
                   <KeyRoundIcon
                     strokeWidth={2.5}
@@ -253,9 +271,12 @@ const LargeHero = ({
                 </TabsTrigger>
               </TabsList>
             </Tabs>
-            <div className="w-[85%] xl:w-8/12 h-24   rounded-tl-none rounded-xl bg-gradient-to-br from-white/60 to-white/80 flex justify-between pl-4 pr-6 items-center shadow-xl backdrop-blur-sm  tranform left-1/2 absolute -translate-x-1/2 border-[0.5px] border-bborder dark:bg-light_gray Primary [#b4b4b4]">
-              <div className=" w-[90%] border-r mr-1 ">
-                <Label className="pl-1.5 font-semibold " htmlFor="Location">
+            <div className="w-[85%] xl:w-8/12 h-24   rounded-tl-none rounded-xl bg-gradient-to-br from-white/60 to-white/80 flex justify-between pl-4 pr-6 items-center shadow-xl backdrop-blur-sm  tranform left-1/2 absolute -translate-x-1/2 border-[0.5px] border-bborder dark:border-[#49494b]  dark:bg-gradient dark:from-[#121212]  dark:to-[#121212] ">
+              <div className=" w-[90%] border-r mr-1 dark:border-[#49494b] []">
+                <Label
+                  className="pl-1.5 font-semibold dark:text-[#F8FDFF]"
+                  htmlFor="Location"
+                >
                   Location
                 </Label>
                 <SearchBar
@@ -266,8 +287,11 @@ const LargeHero = ({
                 />
               </div>
 
-              <div className="w-full pl-3   gap-y-0.5">
-                <Label className="pl-1 font-semibold" htmlFor="Location">
+              <div className="w-full pl-3    lg:space-y-0.5">
+                <Label
+                  className="pl-1 font-semibold dark:text-[#F8FDFF]  "
+                  htmlFor="Location"
+                >
                   Property Type
                 </Label>
                 <Select
@@ -276,7 +300,7 @@ const LargeHero = ({
                     handleFilterChange({ id: "pty", value });
                   }}
                   value={filters?.pty}
-                  className=" focus-visible:ring-[0.5px]"
+                  className=" focus-visible:ring-[0.5px] py-0.5"
                 >
                   <SelectTrigger className="w-[90%] text-muted-foreground    border-none bg-white/10 h-9  font-normal focus-visible:ring-[0.5px] py-1   px-2">
                     <SelectValue placeholder="Property type" />

@@ -8,8 +8,10 @@ export default function AboutPage() {
       {/* Hero Section */}
 
       <div className="text-center mb-12">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4">About HomeSpace</h1>
-        <p className="max-md:text-sm text-muted-foreground max-2xl:max-w-xl  mx-auto tracking-wide ">
+        <h1 className="text-4xl md:text-5xl font-bold mb-4 dark:text-[#F8FDFF]">
+          About HomeSpace
+        </h1>
+        <p className="max-md:text-sm text-muted-foreground max-2xl:max-w-lg  mx-auto tracking-wide ">
           Your trusted partner in finding the perfect property in the Kingdom of
           Bahrain
         </p>
@@ -19,7 +21,7 @@ export default function AboutPage() {
       <section className="py-4 md:py-16 container mx-auto px-4 ">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 mb-6">
+            <h2 className="text-3xl font-bold tracking-tight text-gray-900 mb-6 dark:text-[#F8FDFF]">
               Our Story
             </h2>
             <p className="text-gray-600 dark:text-muted-foreground mb-4">
@@ -31,28 +33,34 @@ export default function AboutPage() {
             <div className="flex flex-col sm:flex-row gap-4">
               <div className="flex items-center">
                 <div className="bg-[#7065f0]/10 p-3 rounded-full mr-4">
-                  <Building2 className="h-6 w-6 text-[#7065f0]" />
+                  <Building2 className="h-6 w-6 text-Primary" />
                 </div>
                 <div>
-                  <p className="font-bold text-gray-900">200+</p>
+                  <p className="font-bold text-gray-900 dark:text-[#F8FDFF]">
+                    200+
+                  </p>
                   <p className="text-sm text-gray-500">Properties Listed</p>
                 </div>
               </div>
               <div className="flex items-center">
                 <div className="bg-[#7065f0]/10 p-3 rounded-full mr-4">
-                  <Users className="h-6 w-6 text-[#7065f0]" />
+                  <Users className="h-6 w-6 text-Primary" />
                 </div>
                 <div>
-                  <p className="font-bold text-gray-900">1000+</p>
+                  <p className="font-bold text-gray-900 dark:text-[#F8FDFF]">
+                    1000+
+                  </p>
                   <p className="text-sm text-gray-500">Happy Clients</p>
                 </div>
               </div>
               <div className="flex items-center">
                 <div className="bg-[#7065f0]/10 p-3 rounded-full mr-4">
-                  <Home className="h-6 w-6 text-[#7065f0]" />
+                  <Home className="h-6 w-6 text-Primary" />
                 </div>
                 <div>
-                  <p className="font-bold text-gray-900">100+</p>
+                  <p className="font-bold text-gray-900 dark:text-[#F8FDFF]">
+                    100+
+                  </p>
                   <p className="text-sm text-gray-500">Successful Deals</p>
                 </div>
               </div>
@@ -78,11 +86,11 @@ export default function AboutPage() {
       <section className=" pt-16 pb-32">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 mb-4">
+            <h2 className="text-3xl font-bold tracking-tight text-gray-900 mb-4 dark:text-[#F8FDFF]">
               Our Mission & Vision
             </h2>
-            <p className="max-md:text-sm max-w-2xl mx-auto text-gray-600 dark:text-muted-foreground">
-              {`      Guided by our core values, we're committed to transforming the
+            <p className="max-md:text-sm max-w-lg mx-auto text-gray-600 dark:text-muted-foreground ">
+              {`Guided by our core values, we're committed to transforming the
               real estate experience in Bahrain`}
             </p>
           </div>
@@ -90,9 +98,9 @@ export default function AboutPage() {
             <Card className=" shadow-lg dark:border">
               <CardContent className="pt-6 ">
                 <div className="bg-[#7065f0]/10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-6 max-md:mx-auto">
-                  <Globe className="h-8 w-8 text-[#7065f0]" />
+                  <Globe className="h-8 w-8 text-Primary" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4 max-md:text-center">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-[F8FDFF] mb-4 max-md:text-center dark:text-[#F8FDFF]">
                   Our Mission
                 </h3>
                 <p className="text-gray-600 dark:text-muted-foreground  max-md:text-center">
@@ -106,9 +114,9 @@ export default function AboutPage() {
             <Card className=" shadow-lg  dark:border ">
               <CardContent className="pt-6 ">
                 <div className="bg-[#7065f0]/10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-6 max-md:mx-auto">
-                  <Clock className="h-8 w-8 text-[#7065f0]" />
+                  <Clock className="h-8 w-8 text-Primary" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4 max-md:text-center">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-[F8FDFF] mb-4 max-md:text-center dark:text-[#F8FDFF] ">
                   Our Vision
                 </h3>
                 <p className="text-gray-600 dark:text-muted-foreground max-md:text-center ">

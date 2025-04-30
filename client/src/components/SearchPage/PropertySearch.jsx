@@ -218,19 +218,18 @@ const PropertySearch = forwardRef((props, ref) => {
     currentPage: filters?.pg,
   }));
 
+  /* #222222 */
   return (
     <div className="w-full  " ref={ref}>
       {/**Xl screens+ */}
-      <div className="hidden xl:flex flex-col  items-center py-3  mx-auto border-b  px-1 ">
+      <div className="hidden xl:flex flex-col  items-center py-3  mx-auto border-b dark:border-[#49494b] [#4D4D4E]  px-1 ">
         <section className="w-full  flex  justify-start px-2  mx-auto  py-2 gap-x-2  ">
           <div className="relative w-[30%]  ">
             <SearchBar
               city={filters?.city}
               setFilters={setFilters}
               isHero={false}
-              className={
-                "md:w-full max-w-full bg-white bo rder focus-visible:border-0"
-              }
+              className={"md:w-full max-w-full   focus-visible:border-0 "}
             />
           </div>
           <Select
@@ -263,7 +262,9 @@ const PropertySearch = forwardRef((props, ref) => {
 
             <SelectContent className="pb-2 ">
               <SelectGroup>
-                <SelectLabel className="pl-6">Property Type</SelectLabel>
+                <SelectLabel className="pl-6 dark:text-[#F8FDFF]">
+                  Property Type
+                </SelectLabel>
                 <SelectItem value="Studio">Studio</SelectItem>
                 <SelectItem value="Apartment">Apartment</SelectItem>
                 <SelectItem value="Villa">Villa</SelectItem>
@@ -282,7 +283,7 @@ const PropertySearch = forwardRef((props, ref) => {
           <Popover className=" md:w-40 xl:w-32 ">
             <PopoverTrigger asChild>
               <Button
-                className="max-md:h-9 w-24 md:w-32  justify-between dark:bg-muted "
+                className="max-md:h-9 w-24 md:w-32  justify-between  "
                 variant="outline"
               >
                 Price
@@ -306,7 +307,7 @@ const PropertySearch = forwardRef((props, ref) => {
                       onChange={(e) => {
                         handleInputChange(e);
                       }}
-                      className="col-span-2 h-8"
+                      className="col-span-2 h-8 "
                     />
                   </div>
                   <div className="grid grid-cols-3 items-center gap-4">
@@ -370,7 +371,7 @@ const PropertySearch = forwardRef((props, ref) => {
         </section>
       </div>
       {/**xs-lg screens */}
-      <div className=" xl:hidden flex flex-col max-lg:gap-y-1 items-center py-2  lg:py-4  mx-auto border-b  lg:px-2  grid-cols-3 ">
+      <div className=" xl:hidden flex flex-col max-lg:gap-y-1 items-center py-2  lg:py-4  mx-auto border-b dark:border-[#4D4D4E]  lg:px-2  grid-cols-3 ">
         <section className="w-full  flex  justify-start  mx-auto   pt-1 md:py-2 gap-x-2  ">
           <div className="relative w-[65%] md:w-[75%]  ">
             <SearchBar
@@ -513,7 +514,7 @@ const PropertySearch = forwardRef((props, ref) => {
 
       {/****Property for sale  */}
       <div className="flex  justify-between items-end  max-w-6xl xl:max-w-7xl mx-auto max-md:mx-2 md:px-2 pb-4 md:pb-5 2xl:pb-8  pt-2 ">
-        <div className="md:pt-0.5">
+        <div className="md:pt-0.5 dark:text-[#F8FDFF]">
           <p className="flex items-center text-xs font-light ">
             Home
             <ChevronRight className="size-4" />

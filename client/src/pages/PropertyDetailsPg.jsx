@@ -72,7 +72,7 @@ const PropertyDetailsPg = () => {
       <section className="w-full px-2  xl:max-w-6xl 2xl:max-w-8xl mx-auto py-12 lg:py-24 ">
         <div className="grid lg:grid-cols-[1fr_2fr] gap-8 lg:gap-12 2xl:gap-20 items-start">
           <div className="md:mt-5 ">
-            <h2 className=" max-lg:text-center text-4xl 2xl:text-5xl font-semibold mb-4  2xl:mb-6">
+            <h2 className=" max-lg:text-center text-4xl 2xl:text-5xl font-semibold mb-4  2xl:mb-6 dark:text-[#F8FDFF]">
               Frequently asked questions
             </h2>
             <p className="hidden lg:block text-muted-foreground mb-2 ">
@@ -80,7 +80,7 @@ const PropertyDetailsPg = () => {
             </p>
             <Link
               to="/"
-              className="group  hidden lg:inline-flex items-center text-primary font-medium hover:underline gap-x-1"
+              className="group  hidden lg:inline-flex items-center text-primary font-medium hover:underline gap-x-1 dark:text-muted-foreground"
             >
               Contact us
               <ArrowRight className="group-hover:rotate-0 duration-200  size-5 transform -rotate-45" />
@@ -94,7 +94,7 @@ const PropertyDetailsPg = () => {
                   value={`item-${index}`}
                   className="py-2"
                 >
-                  <AccordionTrigger className="flex items-center justify-between py-4 2 max-md:text-sm xl:text-xl text-lg font-medium md:tracking-wide">
+                  <AccordionTrigger className="flex items-center justify-between py-4 2 max-md:text-sm xl:text-xl text-lg font-medium md:tracking-wide dark:text-[#353d41]">
                     {faq.question}
                   </AccordionTrigger>
                   <AccordionContent className="pb-4 pt-1 mr-5 md:mr-8 lg:text-base text-muted-foreground text-sm text-pretty tracking-wider leading-snug font-normal">
@@ -108,7 +108,7 @@ const PropertyDetailsPg = () => {
       </section>
       {/* SImilar Properties */}
       <section className="  h-full mt-8 md:my-16 ">
-        <h1 className="text-4xl md:text-5xl font-bold text-center pt-6 pb-2 md:pb-3 text-text">
+        <h1 className="text-4xl md:text-5xl font-bold text-center pt-6 pb-2 md:pb-3 text-text dark:text-[#F8FDFF]">
           Similar Properties
         </h1>
         <p className=" max-sm:text-sm  text-pretty pt-1 text-muted-foreground  text-center pb-10">

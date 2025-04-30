@@ -8,11 +8,11 @@ const ChatSidebar = ({ chats, activeChat, onChatSelect, userId }) => {
   return (
     <div className="h-full flex flex-col  w-full md:w-80 2xl:w-[440px] bg-estate-50 dark:bg-[#121212] overflow-hidden animate-fade-in ">
       <div className="pt-4 px-4  ">
-        <h1 className="text-3xl md:text-4xl max-md:text-center font-bold text-chat-secondary mb-3 md:mb-3">
+        <h1 className="text-3xl md:text-4xl max-md:text-center font-bold text-chat-secondary mb-3 md:mb-3 dark:text-[#F8FDFF]">
           Chats
         </h1>
       </div>
-      <section className="bg-white h-full  rounded-lg shadow-md backdrop-blur-md mx-2 my-2 border-gray-100 border-[0.5px]">
+      <section className="bg-white h-full  rounded-lg shadow-md backdrop-blur-md mx-2 my-2 border-gray-100 border-[0.5px] dark:bg-[#121212] dark:border-[#49494b] [#4D4D4E]">
         <div className="relative px-4 pt-4 ">
           <div className="absolute inset-y-1 top-5 left-7 flex items-center pointer-events-none">
             <Search className="h-4 w-4 text-gray-400" />
@@ -20,7 +20,7 @@ const ChatSidebar = ({ chats, activeChat, onChatSelect, userId }) => {
           <input
             type="text"
             placeholder="Search chats..."
-            className="w-full pl-10 rounded-full pr-4 py-2.5 border border-gray-200 text-base focus:outline-none focus:ring-1 focus:ring-primary/20 text-muted-foreground  bg-secondary/50"
+            className="w-full pl-10 rounded-full pr-4 py-2.5 border border-gray-200 text-base focus:outline-none focus:ring-1 focus:ring-primary/20 text-muted-foreground  bg-secondary/50 dark:bg-[#222222] dark:border-[#49494b] [#4D4D4E]"
           />
         </div>
 
@@ -41,9 +41,9 @@ const ChatSidebar = ({ chats, activeChat, onChatSelect, userId }) => {
                 key={chat.id}
                 onClick={() => onChatSelect(chat.id)}
                 className={cn(
-                  "py-4 px-3 border-b border-gray-100 hover:bg-gray-50 cursor-pointer transition-all",
+                  "py-4 px-3 border-b border-gray-100 hover:bg-gray-50 dark:border-[#49494b] [#4D4D4E] cursor-pointer transition-all ",
                   activeChat === chat.id &&
-                    "border-l-[3px] border-l-Primary bg-[#F1F0FB]"
+                    "border-l-[3px] border-l-Primary bg-[#F1F0FB] dark:bg-[#222222]"
                 )}
               >
                 <div className="flex items-start">
@@ -73,7 +73,7 @@ const ChatSidebar = ({ chats, activeChat, onChatSelect, userId }) => {
                   <div className="flex-1 min-w-0">
                     <div className="flex justify-between items-center ">
                       <h3
-                        className={`max-xl:text-sm font-semibold  text-gray-800 truncate capitalize ${
+                        className={`max-xl:text-sm font-semibold  text-gray-800 truncate capitalize dark:text-[#F8FDFF] ${
                           activeChat === chat.id && "text-gray-900 font-bold"
                         }`}
                       >

@@ -12,7 +12,7 @@ export default function Loader() {
   }, []);
 
   return (
-    <div className="flex flex-col -mt-20 items-center justify-center h-screen bg-slate-50">
+    <div className="flex flex-col -mt-20 items-center justify-center h-dvh bg-slate-50 dark:bg-[#181818]">
       <div className="bg-Primary size-16 flex items-center justify-center rounded-md shadow-md">
         <div className="size-10 border-4 border-white border-t-transparent rounded-full animate-spin dark:border-bborder"></div>
       </div>

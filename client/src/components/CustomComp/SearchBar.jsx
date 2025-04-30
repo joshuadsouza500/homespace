@@ -118,14 +118,14 @@ const SearchBar = ({ setFilters, className, isHero, city }) => {
       ref={searchBarRef}
       className={cn("relative   rounded-lg   ", className)}
     >
-      <div className="flex items-center justify-center gap-x-1 bg-white/5  dark:bg-inherit  relative ">
+      <div className="flex items-center justify-center gap-x-1 relative ">
         <Input
           type="text"
           data-testid="search-bar"
           placeholder="Select Your City"
           onKeyDown={handleKeyDown}
-          className={`w-full  h-10  font-normal focus-visible:ring-[0.5px]  px-2 capitalize dark:bg-muted  ${
-            isHero ? "h-10 lg:bg-white/10 lg:h-9 lg:border-0" : ""
+          className={`w-full  h-10  font-normal focus-visible:ring-[0.5px]   px-2 capitalize dark:bg-[#222222] dark:border-[#49494b] [#4D4D4E]  ${
+            isHero ? "h-10 lg:white/10 lg:h-9 lg:border-0" : ""
           }`}
           onChange={handleSuggestions}
           onFocus={() => {
@@ -147,15 +147,17 @@ const SearchBar = ({ setFilters, className, isHero, city }) => {
         {isOpen &&
           suggestions?.length > 0 && ( //
             <ul
-              className=" border bg-white border-gray-300 md:w-[95%] xl:w-[100%] rounded-sm mt-[2px] md:mt-0.5 "
+              className=" border bg-white border-gray-300 md:w-[95%] xl:w-[100%] rounded-sm mt-[2px] md:mt-0.5 dark:bg-[#121212] dark:border-[#49494b] [#4D4D4E]"
               ref={suggestionRef}
             >
               <ScrollArea className="max-h-[200px] pb-2 ">
                 {suggestions.map((suggestion, index) => (
                   <button
                     key={suggestion}
-                    className={`text-sm w-full px-4 font-medium py-2 text-left hover:bg-gray-100 focus:bg-gray-100 focus:outline-none ${
-                      highlightedIndex === index ? "bg-gray-100 " : ""
+                    className={`text-sm w-full px-4 font-medium py-2 text-left hover:bg-gray-100 focus:bg-gray-100 focus:outline-none dark:text-[#F8FDFF] ${
+                      highlightedIndex === index
+                        ? "bg-gray-100 dark:bg-[#222222] "
+                        : " "
                     }`}
                     onClick={() => handleSuggestionClick(suggestion)}
                   >

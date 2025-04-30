@@ -30,8 +30,9 @@ export default App;
 {
   /**
    * THINGS TO ADD
+   * For property card message button on search cards it should go to chat
    * STYLING:
-   * Dark style for Homepage
+   * Dark style: ALL the button hover and search dropdowns
    * Add  number animations for  hero
    * Add Property add ability to add bullet points bold etc to description bar
    *

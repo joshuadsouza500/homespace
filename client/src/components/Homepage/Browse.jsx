@@ -28,10 +28,10 @@ const Browse = () => {
   }, [searchParams, dispatch]);
 
   return (
-    <div className="h-full  bg- [#F0F4FD] slate-50  pt-10 md:pt-16 pb-16 font-jakarta relative dark:bg-[#121212]">
+    <div className="h-full  bg- [#F0F4FD] slate-50  pt-10 md:pt-16 pb-16 font-jakarta relative dark:bg-[#121212] [#121212]">
       <div className="absolute inset-0  bg-[url('./bgGradient.png')]  bg-center  opacity-40 60  bg-cover bg-no-repeat rotate-180 dark:hidden"></div>
       <div className="flex flex-col gap-3 items-center justify-center px-2 md:px-6  w-full  max-w-5xl lg:max-w-6xl  xl:max-w-7xl  2xl:max-w-8xl mx-auto z-10 relative">
-        <h2 className="text-3xl md:text-4xl  font-bold text-[#000929]">
+        <h2 className="text-3xl md:text-4xl  font-bold text-[#000929] dark:text-[#F8FDFF]">
           Featured Properties
         </h2>
         <p className=" max-sm:text-sm  text-pretty text-[#4d5461] pb-3   mx-auto text-muted-foreground tracking-wide ">
@@ -44,10 +44,10 @@ const Browse = () => {
             handleChange({ id: "type", value });
           }}
         >
-          <TabsList className="bg-light_gray/50 dark:bg-[#121212] h-11  w-40 md:w-56    shadow-sm ring-1  ring-bborder">
+          <TabsList className="bg-light_gray/50 dark:bg-[#121212] h-11  w-40 md:w-56    shadow-sm ring-1  ring-bborder dark:ring-[#49494b] [#4D4D4E]">
             <TabsTrigger
               value="Rent"
-              className="w-20 md:w-28  text-base data-[state=active]:text-Primary data-[state=active]:border border-bborder font-bold  data-[state=active]:shadow-sm shadow-Primary data-[state=active]:dark:bg-muted"
+              className="w-20 md:w-28  text-base data-[state=active]:text-Primary data-[state=active]:border border-bborder font-bold  data-[state=active]:shadow-sm shadow-Primary "
             >
               Rent
             </TabsTrigger>

@@ -24,7 +24,7 @@ const BrowsePropCard = ({ property }) => {
     /* md:h-[370px] h-[390px] w-[320px] md:w-[300px] xl:w-80 */
     <Card
       key={property?.id}
-      className=" min-w-80 max-w-sm  rounded-lg border-[0.5px] bg-white relative cursor-pointer group  hover:shadow-lg transition-all duration-300 ease-in-out"
+      className=" min-w-80 max-w-sm  rounded-lg border-[0.5px] bg-white dark:bg-[#121212] dark:border-[#49494b] [#4D4D4E] relative cursor-pointer group  hover:shadow-lg transition-all duration-300 ease-in-out"
       onClick={() => {
         propertyDetails(property?.id);
       }}
@@ -67,7 +67,7 @@ const BrowsePropCard = ({ property }) => {
             </span>
           </h6>
         </div>
-        <h6 className="font-bold text-lg  pb-1 tracking-wide text-text line-clamp-1 ">
+        <h6 className="font-bold text-lg  pb-1 tracking-wide text-text line-clamp-1 dark:text-[#F8FDFF]">
           {property?.title}
         </h6>
         <p className="flex items-center gap-[2px] md:gap-1 text-sm font-medium tracking-wide text-muted-foreground pb-1">
@@ -76,7 +76,7 @@ const BrowsePropCard = ({ property }) => {
             {property?.city}, {property?.governate.replace("_", " ")}
           </span>{" "}
         </p>
-        <div className="flex justify-between items-center px-1 md:px-2 border-t mt-4 pt-3 pb-1  w-full  ">
+        <div className="flex justify-between items-center px-1 md:px-2 border-t mt-4 pt-3 pb-1  w-full  dark:border-t-[#181818]">
           {/* bottom-1 absolute left-0 right-0  */}
           <span className="flex items-center gap-1 text-xs font-semibold text-[#4d5461]">
             <BedDoubleIcon className="size-4 text-Primary dark:text-muted" />
