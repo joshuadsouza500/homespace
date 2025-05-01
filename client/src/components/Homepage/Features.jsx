@@ -102,7 +102,7 @@ export default function Features() {
                 <AccordionItem
                   value={`item-${content.title}`}
                   key={content.title}
-                  className=" border-b-Primary/15 py-3  dark:border-b-[#F8FDFF]/20"
+                  className="border-b border-b-Bgpurple/15 py-3  dark:border-b-[#F8FDFF]/20"
                 >
                   <AccordionTrigger className="py-2 text-xl xl:text-2xl font-semibold text-real-dark   ">
                     <span className=" flex items-center gap-x-4 text-text dark:text-[#F8FDFF]">

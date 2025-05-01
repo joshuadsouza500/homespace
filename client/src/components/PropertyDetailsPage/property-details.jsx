@@ -125,21 +125,21 @@ export default function PropertyDetails({ property, handleSave }) {
             </div>
             {/* Beds , Baths and area */}
             <div className="grid grid-cols-4 gap-2 md:gap-4 py-4">
-              <div className="flex flex-col items-center p-3 bg-muted  shadow-sm rounded-lg">
+              <div className="flex flex-col items-center p-3 bg-muted  shadow-sm rounded-lg dark:bg-[#222222]">
                 <BedDouble className="h-6 w-6 mb-2 text-Primary" />
                 <span className="text-sm text-muted-foreground">Bedrooms</span>
                 <span className="font-semibold max-md:text-sm">
                   {property?.bedrooms}
                 </span>
               </div>
-              <div className="flex flex-col items-center p-3 bg-muted  shadow-sm rounded-lg">
+              <div className="flex flex-col items-center p-3 bg-muted  shadow-sm rounded-lg dark:bg-[#222222]">
                 <Bath className="h-6 w-6 mb-2 text-Primary" />
                 <span className="text-sm text-muted-foreground">Bathrooms</span>
                 <span className="font-semibold  max-md:text-sm">
                   {property?.bathrooms}
                 </span>
               </div>
-              <div className="flex flex-col items-center p-3 bg-muted  shadow-sm rounded-lg">
+              <div className="flex flex-col items-center p-3 bg-muted  shadow-sm rounded-lg dark:bg-[#222222]">
                 <Maximize className="h-6 w-6 mb-2 text-Primary" />
                 <span className="text-sm text-muted-foreground">Area</span>
                 <span className="font-semibold  max-md:text-sm">

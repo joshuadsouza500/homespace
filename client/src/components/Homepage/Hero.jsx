@@ -190,7 +190,7 @@ const LargeHero = ({
       <div className=" rounded-3xl    px-2 md:px-6  w-full  max-w-5xl lg:max-w-6xl  xl:max-w-7xl  2xl:max-w-[1300px]  mx-auto">
         <div className=" flex min-h-[550px]  max-w-full max-2xl:max-h-[650px] 2xl:min-h-[600px]   bg-[url('/Hero2.png')] object-cover object-center  rounded-3xl   flex-col justify-start    items-start relative bg-no-repeat ">
           {/*  */}{" "}
-          <div className=" absolute inset-0 h-auto w-full bg-black opacity-10 z-0 rounded-3xl" />
+          <div className="hidden dark:block absolute inset-0 h-auto w-full bg-black opacity-10 z-0 rounded-3xl" />
           <div className="flex flex-col items-start lg:w-6/12  gap-y-2  pb-2   lg:ml-12 mt-20 z-10 relative">
             <h1 className="  lg:text-7xl text-balance font-semibold  font-serif tracking-wide dark:text-[#2C2C2C] text">
               Home Hunting{" "}
@@ -278,7 +278,7 @@ const LargeHero = ({
                 </Label>
                 <SearchBar
                   setFilters={setFilters}
-                  className={"md:w-[95%] py-1"}
+                  className={"md:w-[95%] py-1 "}
                   applyFilters={applyFilters}
                   isHero={true}
                 />
@@ -299,7 +299,7 @@ const LargeHero = ({
                   value={filters?.pty}
                   className=" focus-visible:ring-[0.5px] py-0.5"
                 >
-                  <SelectTrigger className="w-[90%] text-muted-foreground    border-none bg-white/10 h-9  font-normal focus-visible:ring-[0.5px] py-1   px-2">
+                  <SelectTrigger className="w-[90%] text-muted-foreground    border-none bg-gray-100 h-9  font-normal focus-visible:ring-[0.5px] py-1   px-2">
                     <SelectValue placeholder="Property type" />
                   </SelectTrigger>
 

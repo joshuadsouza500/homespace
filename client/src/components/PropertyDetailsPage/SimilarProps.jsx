@@ -69,7 +69,7 @@ export default function SimilarProps({ className, property }) {
               <Button
                 variant="outline"
                 size="icon"
-                className="text-muted-foreground dark:bg-[#121212] dark:border-none"
+                className="text-muted-foreground dark:bg-[#121212] border-none dark:border-none"
               >
                 <MoreVertical className="h-4 w-4" />
               </Button>

@@ -109,7 +109,7 @@ export default function PropertyCard({ update, className, property, saved }) {
               <div>
                 <Badge
                   variant="secondary"
-                  className="mb-2 px-4 py-0.5 bg-estate-200 tracking-wide dark:bg-[#222222] dark:text-[#F8FDFF]"
+                  className="mb-2 px-4 py-0.5 bg-estate-100 tracking-wide dark:bg-[#222222] dark:text-[#F8FDFF]"
                 >
                   {property?.property_type} {/* Use property's property_type */}
                 </Badge>

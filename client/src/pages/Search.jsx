@@ -50,8 +50,8 @@ const Search = () => {
   const totalPages = Property?.properties?.totalPages;
 
   return (
-    <div className="font-jakarta bg- estate-50 dark:bg-[#121212]">
-      <div className="px-2 md:px-6  w-full  max-w-5xl lg:max-w-6xl  xl:max-w-7xl  2xl:max-w-8xl mx-auto bg-estate-50 white shadow dark:bg-[#121210]">
+    <div className="font-jakarta bg-estate-50 dark:bg-[#121212]">
+      <div className="px-2 md:px-6 w-full max-w-5xl lg:max-w-6xl xl:max-w-7xl 2xl:max-w-8xl mx-auto bg-white shadow dark:bg-[#121210]">
         <PropertySearch totalPages={totalPages} ref={ChildRef} />
         {Property?.isLoading == false ? (
           <section className="h-full mx-auto  md:space-y-7 space-y-2 pb-10 lg:pb-16 pt-1">
@@ -104,7 +104,7 @@ const Search = () => {
                         {/* Right now its mt-72 but after adding pagination making it self-center */}
                         {/* Only display it if there are multiple properties displayed */}
                         <div
-                          className={`items-start justify-center bg-white backdrop-blur-lg shadow-xl border-[0.5px] rounded-md max-w-72 max-h-72  col-span-1 p-3   flex-col gap-y-4 cursor-pointer transition-all duration-300 mt-72 self- center dark:bg-[#121212] dark:border-[#49494b] [#4D4D4E] hidden lg:flex ${
+                          className={`items-start justify-center bg-white backdrop-blur-lg shadow-md border-[0.5px] rounded-md max-w-72 max-h-72  col-span-1 p-3   flex-col gap-y-4 cursor-pointer transition-all duration-300 mt-72 self- center dark:bg-[#121212] dark:border-[#49494b]  hidden lg:flex ${
                             Property.properties?.properties?.length > 2
                               ? "block"
                               : "hidden"

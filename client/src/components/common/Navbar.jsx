@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserProfile } from "@/store/auth/action";
 import { logout } from "@/store/auth/action";
-import { MenuIcon, X } from "lucide-react";
+import { MenuIcon, Moon, Sun, X } from "lucide-react";
 import { Button } from "../UI/ShadCN/button";
 import UserDropdown from "../CustomComp/UserDropdown";
 
@@ -12,6 +12,7 @@ export default function Navbar() {
   const [isSigned, setIsSigned] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [mobileToggle, setMobileToggle] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const auth = useSelector((store) => store.auth);
@@ -33,6 +34,47 @@ export default function Navbar() {
   const handleLogout = () => {
     dispatch(logout());
     setIsSigned(false);
+  };
+
+  //Get the current theme from local storage or check what the system prefers
+  useEffect(() => {
+    //parse as booleon otherwise it stores as "true or false"
+    const storedTheme = JSON.parse(localStorage.getItem("theme"));
+
+    if (storedTheme != null) {
+      setDarkMode(storedTheme);
+      if (storedTheme) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    } else {
+      const systemTheme = window.matchMedia(
+        "(prefers-color-scheme:dark)"
+      ).matches;
+      setDarkMode(systemTheme);
+      if (systemTheme) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    }
+  }, []);
+  //Get the current theme and set localStorage to the opposite of it
+  const handleThemeToggle = () => {
+    setDarkMode((prev) => {
+      const newTheme = !prev;
+
+      //converts boool to string for storing
+      localStorage.setItem("theme", JSON.stringify(newTheme));
+      //If darkToggle is true add it to the html class
+      if (newTheme) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+      return newTheme;
+    });
   };
 
   return (
@@ -93,28 +135,28 @@ export default function Navbar() {
           <ul className=" flex flex-col gap-y-1 px-4 text-xl font-medium  w-full justify-center  cursor-pointer ">
             {" "}
             <li
-              className="hover:text-Primary rounded-md  font-medium  transition-colors  px-2 py-3 dark:text-[#F8FDFF]   "
+              className="hover:text-Primary rounded-md  font-medium  transition-colors  px-2 py-3 dark:text-[#F8FDFF] dark:hover:text-Primary   "
               onClick={() => setMobileToggle(false)}
             >
               {" "}
               <Link to="/">Home</Link>
             </li>
             <li
-              className="hover:text-Primary rounded-md  font-medium  transition-colors  px-2 py-3 dark:text-[#F8FDFF]   "
+              className="hover:text-Primary rounded-md  font-medium  transition-colors  px-2 py-3 dark:text-[#F8FDFF] dark:hover:text-Primary   "
               onClick={() => setMobileToggle(false)}
             >
               {" "}
               <Link to="/property">Properties</Link>
             </li>
             <li
-              className="hover:text-Primary rounded-md  font-medium  transition-colors  px-2 py-3 dark:text-[#F8FDFF]   "
+              className="hover:text-Primary rounded-md  font-medium  transition-colors  px-2 py-3 dark:text-[#F8FDFF] dark:hover:text-Primary   "
               onClick={() => setMobileToggle(false)}
             >
               {" "}
               <Link to="/about">About</Link>
             </li>
             <li
-              className="hover:text-Primary rounded-md  font-medium  transition-colors  px-2 py-3 dark:text-[#F8FDFF]   "
+              className="hover:text-Primary rounded-md  font-medium  transition-colors  px-2 py-3 dark:text-[#F8FDFF] dark:hover:text-Primary   "
               onClick={() => setMobileToggle(false)}
             >
               {" "}
@@ -123,9 +165,9 @@ export default function Navbar() {
           </ul>
         </nav>
 
-        <div className="flex items-center space-x-6   md:w-full">
+        <div className="flex items-center  space-x-6   md:w-full">
           <div
-            className="flex  items-center  justify-center space-x-1 cursor-pointer md:pl-1 "
+            className="flex  items-center  justify-center space-x-1 cursor-pointer md:pl-1.5  "
             onClick={() => navigate("/")}
           >
             <img
@@ -140,31 +182,31 @@ export default function Navbar() {
             </span>
           </div>
 
-          <ul className="hidden md:flex space-x-4 max-xl:text-sm font-medium  w-full justify-center ">
+          <ul className="hidden md:flex space-x-4 max-xl:text-sm font-medium  w-full  justify-center  ">
             {" "}
             <li
-              className="hover:text-Primary rounded-md  font-medium  transition-colors  px-2 py-3 dark:text-[#F8FDFF]   "
+              className="hover:text-Primary rounded-md  font-medium  transition-colors  px-2 py-3 dark:text-[#F8FDFF] dark:hover:text-Primary   "
               onClick={() => setMobileToggle(false)}
             >
               {" "}
               <Link to="/">Home</Link>
             </li>
             <li
-              className="hover:text-Primary rounded-md  font-medium  transition-colors  px-2 py-3 dark:text-[#F8FDFF]   "
+              className="hover:text-Primary rounded-md  font-medium  transition-colors  px-2 py-3 dark:text-[#F8FDFF] dark:hover:text-Primary   "
               onClick={() => setMobileToggle(false)}
             >
               {" "}
               <Link to="/property">Properties</Link>
             </li>
             <li
-              className="hover:text-Primary rounded-md  font-medium  transition-colors  px-2 py-3 dark:text-[#F8FDFF]   "
+              className="hover:text-Primary rounded-md  font-medium  transition-colors  px-2 py-3 dark:text-[#F8FDFF] dark:hover:text-Primary   "
               onClick={() => setMobileToggle(false)}
             >
               {" "}
               <Link to="/about">About</Link>
             </li>
             <li
-              className="hover:text-Primary rounded-md  font-medium  transition-colors  px-2 py-3 dark:text-[#F8FDFF]   "
+              className="hover:text-Primary rounded-md  font-medium  transition-colors  px-2 py-3 dark:text-[#F8FDFF] dark:hover:text-Primary   "
               onClick={() => setMobileToggle(false)}
             >
               {" "}
@@ -172,25 +214,34 @@ export default function Navbar() {
             </li>
           </ul>
         </div>
-        <div className="flex items-center gap-4 md:gap-5 justify-center  relative ">
+        <div className="flex items-center gap-1 2 md:gap-5 justify-center  relative ">
           {isSigned === true ? (
             <UserDropdown handleLogout={handleLogout} user={auth.user} />
           ) : (
             <Link
               to={"/signin"}
-              className=" text-Bgpurple max-md:border-[0.5px] border-Bgpurple/50 rounded-md max-md:w-[70px] py-1.5  font-medium hover:text-Primary  transition-colors  w-12 text-sm   text-center dark:max-md:bg-Primary dark:text-muted "
+              className=" text-Bgpurple max-md:border-[0.5px] border-Bgpurple/50 rounded-md max-md:w-[70px] py-1.5  font-medium hover:text-Primary dark:hover:text-Primary  transition-colors  w-12 text-sm   text-center dark:max-md:bg-Primary dark:text-[#f8fdff] "
             >
               Sign In
             </Link>
           )}
 
           <Button
-            className="bg-Primary  hover:bg-indigo-700 px-5 hidden md:block"
+            className="bg-Primary  hover:bg-indigo-700 px-5 hidden md:block "
             onClick={() => {
               isSigned ? navigate("/user/property/create") : setShowPopup(true);
             }}
           >
             List Property
+          </Button>
+          {/* Theme toggle */}
+          <Button
+            size="sm"
+            variant="outline"
+            className="bg-white border-none dark:border-none dark:bg-[#121212] max-md:px-2 max-md:h-8"
+            onClick={handleThemeToggle}
+          >
+            {darkMode ? <Sun /> : <Moon />}
           </Button>
           {/* Popup */}
           {showPopup && (

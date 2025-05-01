@@ -31,9 +31,11 @@ export default App;
   /**
    * THINGS TO ADD
    * For property card message button on search cards it should go to chat
-   * SIgnin signup and about image
+   * Navbar make it equally apart. logo nav and button
+   * Signin signup and about image
+   *
+   *
    * STYLING:
-   * Dark style: chat view and chat loading,
    * Add  number animations for  hero
    * Add Property add ability to add bullet points bold etc to description bar
    *

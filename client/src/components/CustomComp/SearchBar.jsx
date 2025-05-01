@@ -125,7 +125,7 @@ const SearchBar = ({ setFilters, className, isHero, city }) => {
           placeholder="Select Your City"
           onKeyDown={handleKeyDown}
           className={`w-full  h-10  font-normal focus-visible:ring-[0.5px] dark:placeholder:text-[#f8fdff]  px-2 capitalize dark:bg-[#222222] dark:border-[#49494b] [#4D4D4E]  ${
-            isHero ? "h-10 lg:white/10 lg:h-9 lg:border-0 " : ""
+            isHero ? "h-10 lg:bg-gray-100 lg:h-9 lg:border-0 " : ""
           }`}
           onChange={handleSuggestions}
           onFocus={() => {
