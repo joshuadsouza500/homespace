@@ -30,9 +30,8 @@ export default App;
 {
   /**
    * THINGS TO ADD
-   * For property card message button on search cards it should go to chat
-   * Navbar make it equally apart. logo nav and button
    * Signin signup and about image
+   * smooth scroll
    *
    *
    * STYLING:

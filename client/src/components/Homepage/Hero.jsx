@@ -268,7 +268,7 @@ const LargeHero = ({
                 </TabsTrigger>
               </TabsList>
             </Tabs>
-            <div className="w-[85%] xl:w-8/12 h-24   rounded-tl-none rounded-xl bg-gradient-to-br from-white/60 to-white/80 flex justify-between pl-4 pr-6 items-center shadow-xl backdrop-blur-sm  tranform left-1/2 absolute -translate-x-1/2 border-[0.5px] border-bborder dark:border-[#49494b]  dark:bg-gradient dark:from-[#121212]  dark:to-[#121212] ">
+            <div className="w-[85%] xl:w-8/12 h-24   rounded-tl-none rounded-xl bg-gradient-to-br from-white/70 to-white/80 flex justify-between pl-4 pr-6 items-center shadow-xl backdrop-blur-sm  tranform left-1/2 absolute -translate-x-1/2 border-[0.5px] border-bborder dark:border-[#49494b]  dark:bg-gradient dark:from-[#121212]  dark:to-[#121212] ">
               <div className=" w-[90%] border-r mr-1 dark:border-[#49494b] []">
                 <Label
                   className="pl-1.5 font-semibold dark:text-[#F8FDFF]"

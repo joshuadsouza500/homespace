@@ -43,6 +43,7 @@ export default function Navbar() {
 
     if (storedTheme != null) {
       setDarkMode(storedTheme);
+      //Checks if its true
       if (storedTheme) {
         document.documentElement.classList.add("dark");
       } else {
@@ -79,10 +80,10 @@ export default function Navbar() {
 
   return (
     <nav className=" pt-3  lg:pt-5 pb-2 lg:pb-3   w-full  border-b dark:border-[#4D4D4E]">
-      <section className="max-w-6xl xl:max-w-7xl 2xl:max-w-[1440px] flex  pb-2 items-center justify-between mx-auto px-3  md:px-4 relative ">
+      <section className="max-w-6xl xl:max-w-7xl 2xl:max-w-[1440px] flex  pb-2 items-center justify-start md:justify-between mx-auto px-3  md:px-4 relative ">
         {/* Add nabar for mobile */}
         <button
-          className="md:hidden block"
+          className="md:hidden block "
           onClick={() => {
             setMobileToggle(!mobileToggle);
           }}
@@ -167,22 +168,21 @@ export default function Navbar() {
 
         <div className="flex items-center  space-x-6   md:w-full">
           <div
-            className="flex  items-center  justify-center space-x-1 cursor-pointer md:pl-1.5  "
+            className="flex  items-center  justify-center space-x-1 cursor-pointer pl-6 md:pl-1.5"
             onClick={() => navigate("/")}
           >
             <img
               alt="Homespace logo"
               height={24}
               width={24}
-              className="size-7 max-md:size-6 "
+              className="size-5 max-md:size-[22px] "
               src="/src/assets/Logo.svg"
             />
             <span className=" text-xl md:text-xl xl:text-2xl pt-0.5 font-bold  text-Bgpurple dark:text-[#F8FDFF]">
               HomeSpace
             </span>
           </div>
-
-          <ul className="hidden md:flex space-x-4 max-xl:text-sm font-medium  w-full  justify-center  ">
+          <ul className="hidden md:flex space-x-4 max-xl:text-sm font-medium  w-full  justify-center ">
             {" "}
             <li
               className="hover:text-Primary rounded-md  font-medium  transition-colors  px-2 py-3 dark:text-[#F8FDFF] dark:hover:text-Primary   "
@@ -214,7 +214,8 @@ export default function Navbar() {
             </li>
           </ul>
         </div>
-        <div className="flex items-center gap-1 2 md:gap-5 justify-center  relative ">
+
+        <div className="flex items-center gap-1 justify-end md:gap-5 md:justify-center   relative    max-md:w-full ">
           {isSigned === true ? (
             <UserDropdown handleLogout={handleLogout} user={auth.user} />
           ) : (
@@ -226,23 +227,28 @@ export default function Navbar() {
             </Link>
           )}
 
-          <Button
-            className="bg-Primary  hover:bg-indigo-700 px-5 hidden md:block "
-            onClick={() => {
-              isSigned ? navigate("/user/property/create") : setShowPopup(true);
-            }}
-          >
-            List Property
-          </Button>
-          {/* Theme toggle */}
-          <Button
-            size="sm"
-            variant="outline"
-            className="bg-white border-none dark:border-none dark:bg-[#121212] max-md:px-2 max-md:h-8"
-            onClick={handleThemeToggle}
-          >
-            {darkMode ? <Sun /> : <Moon />}
-          </Button>
+          <div className="flex items-center gap-x-1">
+            {" "}
+            <Button
+              className="bg-Primary  hover:bg-indigo-700 px-5 hidden md:block "
+              onClick={() => {
+                isSigned
+                  ? navigate("/user/property/create")
+                  : setShowPopup(true);
+              }}
+            >
+              List Property
+            </Button>
+            {/* Theme toggle */}
+            <Button
+              size="sm"
+              variant="outline"
+              className="bg-white border-none dark:border-none dark:bg-[#121212] max-md:px-2 max-md:h-8"
+              onClick={handleThemeToggle}
+            >
+              {darkMode ? <Sun /> : <Moon />}
+            </Button>
+          </div>
           {/* Popup */}
           {showPopup && (
             <div className="absolute top-12 hidden  md:flex justify-between right-0 bg-red-500 text-white px-2 w-auto py-4 rounded shadow-lg z-50 gap-x-2">

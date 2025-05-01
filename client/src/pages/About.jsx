@@ -71,7 +71,7 @@ export default function AboutPage() {
             <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-[#7065f0]/10 rounded-lg"></div>
             <div className="relative rounded-lg overflow-hidden shadow-xl">
               <img
-                src="/HouseF.jpeg"
+                src="/Team1.jpeg"
                 alt="HomeSpace office"
                 width={800}
                 height={600}

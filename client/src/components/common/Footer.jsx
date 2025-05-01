@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function Footer() {
   //text-[#4d5461]
   return (
-    <footer className="text-white border-t pt-12 pb-8 bg-slate-900 dark:bg-[#121212] dark:border-t-muted-foreground rounded-t-md">
+    <footer className="text-white border-t pt-12 pb-8 bg- slate-900 bg-text dark:bg-[#121212] dark:border-t-muted-foreground rounded-t-md">
       <div className="container mx-auto px-4 w-full h-auto bg-no-repeat">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Company Info Section */}
@@ -20,7 +20,7 @@ export default function Footer() {
                 className="size-8"
                 src="/src/assets/Logo.svg"
               />
-              <span className="text-4xl font-bold text-transparent bg-gradient-to-b from-zinc-200 to-zinc-50 bg-clip-text dark:text-muted">
+              <span className="text-4xl font-bold text-transparent bg-gradient-to-b from-zinc-200 to-zinc-50 bg-clip-text dark:text-zinc-200">
                 HomeSpace
               </span>
             </Link>
@@ -52,7 +52,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="/about"
+                  href="/property"
                   className="hover:text-white text-white/70 transition duration-300"
                 >
                   Properties
@@ -60,7 +60,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="/pricing"
+                  href="/about"
                   className="hover:text-white text-white/70 transition duration-300"
                 >
                   About
@@ -73,7 +73,7 @@ export default function Footer() {
             <ul className="space-y-3 pl-1">
               <li>
                 <a
-                  href="/customer-support"
+                  href="/contact"
                   className="hover:text-white text-white/70 transition duration-300"
                 >
                   Contact
@@ -81,7 +81,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="/license"
+                  href="/contact"
                   className="hover:text-white text-white/70 transition duration-300"
                 >
                   Customer Support
@@ -110,7 +110,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="/quick-start"
+                  href="/contact"
                   className="hover:text-white text-white/70 transition duration-300"
                 >
                   Help
@@ -118,7 +118,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="/documentation"
+                  href="/"
                   className="hover:text-white text-white/70 transition duration-300"
                 >
                   Settings
