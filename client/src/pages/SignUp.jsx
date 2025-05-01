@@ -96,7 +96,7 @@ export default function SignUp() {
   };
 
   return (
-    <div className="flex min-h-screen">
+    <div className="flex min-h-screen dark:bg-[#121212]">
       <div className="hidden w-1/2 bg-gray-100 lg:block h-screen relative">
         <img
           src="/signin.png"
@@ -111,7 +111,9 @@ export default function SignUp() {
       <div className="flex w-full items-center justify-center lg:w-1/2">
         <div className="mx-auto w-full max-w-sm space-y-4 p-6">
           <div className="space-y-2 text-center">
-            <h1 className="text-3xl font-bold text-text">Sign Up</h1>
+            <h1 className="text-3xl font-bold text-text dark:text-[#F8FDFF]">
+              Sign Up
+            </h1>
             <p className="text-gray-500 dark:text-gray-400">
               Create your account (Step {currentStep} of 2)
             </p>
@@ -235,7 +237,7 @@ export default function SignUp() {
             )}
             {currentStep === 1 ? (
               <Button
-                className="w-full bg-Bgpurple hover:bg-indigo-800 hover:scale-[.99] hover:shadow-sm"
+                className="w-full bg-Bgpurple hover:bg-indigo-800 dark:bg-indigo-600 hover:scale-[.99] hover:shadow-sm"
                 type="button"
                 onClick={handleNext}
               >
@@ -243,7 +245,7 @@ export default function SignUp() {
               </Button>
             ) : (
               <Button
-                className="w-full bg-Bgpurple hover:bg-indigo-800 hover:scale-[.99] hover:shadow-sm"
+                className="w-full bg-Bgpurple hover:bg-indigo-800 dark:bg-indigo-600 hover:scale-[.99] hover:shadow-sm"
                 type="submit"
               >
                 Create Account
@@ -252,7 +254,7 @@ export default function SignUp() {
 
             {currentStep == 2 && (
               <button
-                className="w-full border-Bgpurple/80 rounded-lg border  h-10 px-4 py-2 hover:scale-[.99] hover:shadow-sm"
+                className="w-full border-Bgpurple/80 dark:border-indigo-600 rounded-lg border  h-10 px-4 py-2 hover:scale-[.99] hover:shadow-sm dark:text-indigo-600"
                 type="button"
                 onClick={() => setCurrentStep(1)}
               >
@@ -260,9 +262,12 @@ export default function SignUp() {
               </button>
             )}
           </form>
-          <div className="text-center text- sm">
+          <div className="text-center text- sm dark:text-[#F8FDFF]">
             Already have an account?
-            <Link className="underline text-indigo-800" to="/signin">
+            <Link
+              className="underline text-indigo-800 dark:text-Primary pl-1"
+              to="/signin"
+            >
               Sign In
             </Link>
           </div>

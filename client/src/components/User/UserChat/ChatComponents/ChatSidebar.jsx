@@ -41,7 +41,7 @@ const ChatSidebar = ({ chats, activeChat, onChatSelect, userId }) => {
                 key={chat.id}
                 onClick={() => onChatSelect(chat.id)}
                 className={cn(
-                  "py-4 px-3 border-b border-gray-100 hover:bg-gray-50 dark:border-[#49494b] [#4D4D4E] cursor-pointer transition-all ",
+                  "py-4 px-3 border-b border-gray-100 hover:bg-gray-50 dark:border-[#49494b] dark:hover:bg-[#222222] cursor-pointer transition-all ",
                   activeChat === chat.id &&
                     "border-l-[3px] border-l-Primary bg-[#F1F0FB] dark:bg-[#222222]"
                 )}
@@ -86,7 +86,7 @@ const ChatSidebar = ({ chats, activeChat, onChatSelect, userId }) => {
                           } ${
                             unreadLastMessage
                               ? "text-Primary font-semibold "
-                              : "text-gray-500"
+                              : "text-gray-500 dark:text-muted-foreground"
                           } `}
                         >
                           {/* Format the time of the last message// Checks if the last message was sent today? if so displays the time. if not displays the day it was sent */}

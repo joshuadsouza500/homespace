@@ -262,9 +262,7 @@ const PropertySearch = forwardRef((props, ref) => {
 
             <SelectContent className="pb-2 ">
               <SelectGroup>
-                <SelectLabel className="pl-6 dark:text-[#F8FDFF]">
-                  Property Type
-                </SelectLabel>
+                <SelectLabel className="pl-6 ">Property Type</SelectLabel>
                 <SelectItem value="Studio">Studio</SelectItem>
                 <SelectItem value="Apartment">Apartment</SelectItem>
                 <SelectItem value="Villa">Villa</SelectItem>
@@ -530,7 +528,7 @@ const PropertySearch = forwardRef((props, ref) => {
           }}
           value={filters.srt}
         >
-          <SelectTrigger className="w-28  md:w-32 text-xs max-sm:h-9 ">
+          <SelectTrigger className="w-24  md:w-32 text-xs max-sm:h-9 ">
             <SelectValue placeholder="Sort" className="text-semibold" />
           </SelectTrigger>
           <SelectContent className="w-28 md:w-36 ">

@@ -53,7 +53,7 @@ const ChatMessage = ({ message, timestamp, isReceived, otherParticipant }) => {
           className={cn(
             "rounded-lg  px-3 pt-2 pb-1 shadow-md group cursor-pointer flex justify-between",
             isReceived
-              ? " bg-background1 text-gray-700 rounded-bl-none border-[0.5px] shadow-sm"
+              ? " bg-background1 text-gray-700 rounded-bl-none border-[0.5px] shadow-sm dark:bg-[#1E1E20] dark:border-[#49494b] dark:text-[#F8FDFF]"
               : "bg-Primary text-white rounded-br-none"
           )}
         >

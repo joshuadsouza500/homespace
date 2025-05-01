@@ -102,10 +102,10 @@ const UserChats = ({ user }) => {
             `}
       >
         {isLoading ? (
-          <div className="flex-1 flex items-center justify-center bg-white mx-2 h-full rounded-lg gap-x-2">
-            <LoaderCircle className="size-6 animate-spin" />
+          <div className="flex-1 flex items-center justify-center bg-white dark:bg-[#121212] mx-2 h-full rounded-lg gap-x-2">
+            <LoaderCircle className="size-6 animate-spin dark:text-[#f8fdff]" />
             <div className="text-center">
-              <p className="text-estate-500 dark:text-muted text-xl">
+              <p className="text-estate-500 dark:text-[#f8fdff] text-xl">
                 Loading chat...
               </p>
             </div>

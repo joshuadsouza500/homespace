@@ -53,7 +53,7 @@ export default function SignIn() {
   };
 
   return (
-    <div className="flex min-h-screen">
+    <div className="flex min-h-screen dark:bg-[#121212]">
       <div className="hidden w-1/2 bg-gray-100  lg:block">
         <img
           src="/HouseF.jpeg"
@@ -64,7 +64,10 @@ export default function SignIn() {
       <div className="flex w-full items-center justify-center lg:w-1/2">
         <div className="mx-auto w-full max-w-sm space-y-4 p-6">
           <div className="space-y-2 text-center">
-            <h1 className="text-3xl font-bold text-text" data-testid="SignIn">
+            <h1
+              className="text-3xl font-bold text-text dark:text-[#F8FDFF]"
+              data-testid="SignIn"
+            >
               Sign In
             </h1>
             <p className="text-gray-500 dark:text-gray-400">
@@ -131,16 +134,19 @@ export default function SignIn() {
               )}
             </div>
             <Button
-              className="w-full bg-Bgpurple hover:bg-indigo-800 transition-colors duration-500 ease-in-out"
+              className="w-full bg-Bgpurple dark:bg-indigo-600 hover:bg-indigo-800 transition-colors duration-500 ease-in-out"
               type="submit"
             >
               Sign In
             </Button>
           </form>
 
-          <div className="text-center ">
+          <div className="text-center dark:text-[#F8FDFF]">
             {"Don't"} have an account?{" "}
-            <Link className="underline text-indigo-800" to="/signup">
+            <Link
+              className="underline text-indigo-800 dark:text-Primary"
+              to="/signup"
+            >
               Sign Up
             </Link>
           </div>

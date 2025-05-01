@@ -367,7 +367,7 @@ export default function AddProperty2() {
               <Button
                 type="button"
                 onClick={goToNextStep}
-                className="w-32 md:w-44 bg-Bgpurple gap-x-1  hover:bg-indigo-800 group"
+                className="w-32 md:w-44 bg-Bgpurple gap-x-1 dark:bg-indigo-600 hover:bg-indigo-800 group"
               >
                 Next
                 <ArrowRight className="size-4 md:size-5 group-hover:translate-x-0.5 transition-transform duration-200 ease-in-out" />
@@ -592,14 +592,14 @@ export default function AddProperty2() {
               <Button
                 type="button"
                 onClick={goToPreviousStep}
-                className="gap-1 border border-Bgpurple bg-white duration-200 text-Bgpurple hover:bg-Bgpurple/90 hover:text-white w-32 md:w-36 transition-colors  ease-in-out group dark:hover:bg-inherit"
+                className="gap-1 border border-Bgpurple bg-white duration-200 text-Bgpurple hover:bg-Bgpurple/90 hover:text-white w-32 md:w-36 transition-colors  ease-in-out group dark:text-indigo-600 dark:hover:bg-white/80"
               >
                 <ArrowLeft className="size-4 md:size-5 group-hover:-translate-x-0.5 transition-transform duration-200 ease-in-out" />
                 Back
               </Button>
               <Button
                 type="submit"
-                className="bg-Bgpurple w-32 md:w-40 hover:bg-indigo-800 duration-150"
+                className="bg-Bgpurple w-32 md:w-40 hover:bg-indigo-800 duration-150 dark:bg-indigo-600 dark:hover:bg-indigo-800"
               >
                 Add Property
               </Button>

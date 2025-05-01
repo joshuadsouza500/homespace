@@ -133,7 +133,7 @@ export default function UserProfile({ user }) {
         {/* User Profile section */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6  rounded-md  max-md:items-center    w-full  h-fit max-w-6xl mx-auto">
           <div className="  flex flex-col  items-center justify-center  md:pt-4  bg-white/80 dark:bg-black/40  border border-black/10 dark:border-white/10 shadow rounded-lg pt-4 lg:pt-6 pb-6 ">
-            <Avatar className="ring-1 ring-text dark:ring-muted rounded-full size-48 mb-2 md:mb-4">
+            <Avatar className="ring-1 ring-text dark:ring-[#49494b] rounded-full size-48 mb-2 md:mb-4 ">
               <AvatarImage src={editedUser?.avatar} alt={editedUser?.name} />
               <AvatarFallback>
                 {editedUser?.name.slice(0, 2).toUpperCase()}

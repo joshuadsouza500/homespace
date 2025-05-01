@@ -69,14 +69,14 @@ const SheetFilter = ({
               Type
             </Label>
             <Tabs
-              value={filters.type || "rent"}
+              value={filters.type || "Rent"}
               onValueChange={(value) =>
                 handleFilterChange({ id: "type", value })
               }
             >
-              <TabsList className="flex gap-x-2 mx-1  h-11 px-2  dark:bg-[#121212] dark:ring-[#49494b]">
+              <TabsList className="flex gap-x-2 mx-1  h-11 px-2 border  dark:bg-[#121212] dark:border-[#49494b]">
                 <TabsTrigger
-                  className=" w-full data-[state=active]:text-Primary data-[state=active]:border border-bborder font-bold "
+                  className=" w-full data-[state=active]:text-Primary data-[state=active]:border border-bborder font-bold  "
                   value="Rent"
                 >
                   Rent
@@ -227,7 +227,7 @@ const SheetFilter = ({
           <SheetClose asChild>
             <div className="flex flex-col gap-y-2">
               <Button
-                className="w-full bg-Bgpurple hover-text"
+                className="w-full bg-Bgpurple hover:bg-text"
                 onClick={applyFilters}
               >
                 Apply Filters

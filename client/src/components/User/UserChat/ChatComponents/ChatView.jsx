@@ -90,7 +90,7 @@ const ChatView = ({ chat, userId, onClose }) => {
           <h2 className="text-xl font-semibold text-gray-800 mb-2">
             Select a conversation
           </h2>
-          <p className="text-gray-500 dark:text-muted-foreground">
+          <p className="text-gray-500 dark:text-[#f8fdff]">
             Choose a conversation from the list to view messages or start a new
             one
           </p>
@@ -100,9 +100,9 @@ const ChatView = ({ chat, userId, onClose }) => {
   }
 
   return (
-    <section className="h-full flex-1 flex flex-col bg-white animate-fade-in   rounded-lg shadow-xl backdrop-blur-md border-gray-100 border-[0.5px] dark:bg-[#121212]">
+    <section className="h-full flex-1 flex flex-col bg-white animate-fade-in   rounded-lg shadow-xl backdrop-blur-md border-gray-100 border-[0.5px] dark:bg-[#121212] dark:border-[#49494b]">
       {/* Header */}
-      <nav className="p-3 md:p-4 border-b border-gray-200 flex items-center justify-between shadow-sm ">
+      <nav className="p-3 md:p-4 border-b border-gray-200 flex items-center justify-between shadow-sm dark:border-[#49494b]">
         <div className="flex items-center">
           {otherParticipant.avatar ? (
             <img
@@ -111,12 +111,12 @@ const ChatView = ({ chat, userId, onClose }) => {
               className="w-10 h-10 rounded-full object-cover mr-3"
             />
           ) : (
-            <div className="avatar-circle w-10 h-10 mr-3 rounded-full flex items-center justify-center text-white font-semibold bg-Primary">
+            <div className="avatar-circle w-10 h-10 mr-3 rounded-full flex items-center justify-center text-white font-semibold bg-Primary dark:text-[#f8fdff]">
               {otherParticipant.name.charAt(0).toUpperCase()}
             </div>
           )}
           <div className="flex flex-col ">
-            <h2 className="text-lg font-semibold capitalize">
+            <h2 className="text-lg font-semibold capitalize dark:text-[#f8fdff]">
               {otherParticipant.name}
             </h2>
             {status ? (
@@ -126,22 +126,19 @@ const ChatView = ({ chat, userId, onClose }) => {
               </div>
             ) : (
               <div className="flex items-center justify-start pl-0.5 pt-0.5 gap-x-1 text-xs text-muted-foreground">
-                <span className="bg-gray-200  size-[10px]  rounded-full " />
+                <span className="bg-gray-200 dark:bg-[#4D4D4E] size-[10px]  rounded-full " />
                 <p className="leading-none">Inactive</p>
               </div>
             )}
           </div>
         </div>
-        <div className="flex items-center gap-x-6">
-          <button className="text-gray-500 dark:text-muted-foreground hover:text-Primary transition-colors">
-            <MessageSquareMore className="xl:size-6 size-5" />
-          </button>
-          <button className="text-gray-500 dark:text-muted-foreground hover:text-Primary transition-colors">
+        <div className="flex items-center gap-x-6 xl:pr-4">
+          <button className="text-gray-500 dark:text-[#f8fdff] hover:text-Primary transition-colors">
             <Phone className="xl:size-6 size-5" />
           </button>
           <button
             onClick={onClose}
-            className="text-gray-500 dark:text-muted-foreground hover:bg-gray-600/10 hover:text-red-400 rounded-full transition-colors p-0.5"
+            className="text-gray-500 dark:text-[#f8fdff] hover:bg-gray-600/10 hover:text-red-400 rounded-full transition-colors p-0.5"
           >
             <X className="size-6" />
           </button>
@@ -149,7 +146,7 @@ const ChatView = ({ chat, userId, onClose }) => {
       </nav>
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto p-6 bg-estate-50 [#f7f6fc] dark:bg-[#]">
+      <div className="flex-1 overflow-y-auto p-6 bg-estate-50  dark:bg-[#1E1F21]">
         {allMessages
           .slice()
           .reverse()
@@ -178,11 +175,11 @@ const ChatView = ({ chat, userId, onClose }) => {
       </div>
 
       {/* Message Input */}
-      <div className="p-4 border-t border-gray-100 shadow ">
-        <div className="flex items-center gap-x-2 ">
+      <div className="p-4 border-t border-gray-100 shadow dark:border-[#49494b]">
+        <div className="flex items-center gap-x-2 2xl:gap-x-4">
           <button
             type="button"
-            className="text-gray-500 dark:text-muted-foreground hover:text-Primary "
+            className="text-gray-500 dark:text-[#f8fdff] hover:text-Primary "
           >
             <Paperclip className="xl:size-6 size-5" />
           </button>
@@ -192,7 +189,7 @@ const ChatView = ({ chat, userId, onClose }) => {
             onChange={(e) => setMessage(e.target.value)}
             onKeyDown={handleKeyDown} // Add the key down event handler
             placeholder="Type a message"
-            className="chat-input w-full border border-gray-200 rounded-full py-3 px-4 focus:outline-none focus:ring-1 focus:ring-Primary flex-1"
+            className="chat-input w-full border border-gray-200 rounded-full py-3 px-4 focus:outline-none focus:ring-1 focus:ring-Primary flex-1 dark:bg-[#222222] dark:border-[#49494b] dark:text-[#F8FDFF]"
           />
           <button
             type="button"

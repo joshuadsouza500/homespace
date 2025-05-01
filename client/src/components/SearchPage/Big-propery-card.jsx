@@ -13,11 +13,18 @@ import { Button } from "@/components/UI/ShadCN/button";
 import { Card, CardContent } from "@/components/UI/ShadCN/card";
 import { Badge } from "@/components/UI/ShadCN/badge";
 import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
 /***/
 const BigPropertyCard = ({ property }) => {
+  const navigate = useNavigate();
   return (
     <Card className="hidden md:block max-w-md sm:max-w-2xl md:max-w-5xl mx-1 cursor-pointer hover:shadow-m h-full">
-      <div className="flex flex-col gap-1 sm:flex-row">
+      <div
+        className="flex flex-col gap-1 sm:flex-row"
+        onClick={() => {
+          navigate(`/property/${property?.id}`);
+        }}
+      >
         <div className="relative w-full sm:w-2/5">
           <img
             src={property?.image[0]}

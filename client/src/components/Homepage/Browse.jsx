@@ -44,7 +44,7 @@ const Browse = () => {
             handleChange({ id: "type", value });
           }}
         >
-          <TabsList className="bg-light_gray/50 dark:bg-[#121212] h-11  w-40 md:w-56    shadow-sm ring-1  ring-bborder dark:ring-[#49494b] [#4D4D4E]">
+          <TabsList className="bg-light_gray/50 dark:bg-[#121212] h-11  w-40 md:w-56    shadow-sm ring-1  ring-bborder dark:ring-[#49494b] ">
             <TabsTrigger
               value="Rent"
               className="w-20 md:w-28  text-base data-[state=active]:text-Primary data-[state=active]:border border-bborder font-bold  data-[state=active]:shadow-sm shadow-Primary "

@@ -73,10 +73,7 @@ const MobileHero = ({
     <section className="lg:hidden bg-[#E0DEF7]/40 m-1 mb-20 rounded-2xl">
       <div className=" rounded-2xl   relative  px-2 md:px-6  w-full  max-w-5xl  mx-auto min-h-[450px] sm:min-h-[500px] h-auto [400px]  pt-10 ">
         {/* Background Image */}
-        <div
-          className="absolute inset-0 bg-cover bg-center -z-10 rounded-2xl"
-          style={{ backgroundImage: "url(/signin.png)" }}
-        />
+        <div className="absolute inset-0 bg-cover bg-center z-0 rounded-2xl bg-[url('/signin.png')]" />
         <div className="h-full w-full bg-black/5 -z-0 absolute inset-0 rounded-2xl" />
         <div className="gap-y-2 sm:gap-y-4 px-4 pb-1 flex flex-col items-center justify-center leading-tight relative z-10 ">
           <h1 className="text-balance text-4xl sm:text-5xl text-text text-center font-semibold z-10 font-serif tracking-wide  sm:w-2/3">
@@ -110,7 +107,7 @@ const MobileHero = ({
         </div>
         {/* Search Bar */}
 
-        <div className="absolute -bottom-20 left-1/2 transform -translate-x-1/2 z-10 p-4 bg-white rounded-md w-[90%]  sm:w-[80%] md:w-[75%] shadow-xl dark:bg-slate-50">
+        <div className="absolute -bottom-20 left-1/2 transform -translate-x-1/2 z-10 p-4 bg-white rounded-md w-[90%]  sm:w-[80%] md:w-[75%] shadow-xl  dark:border-[#49494b] dark:bg-[#222222]">
           <Tabs
             id="type"
             value={filters?.type}
@@ -119,16 +116,16 @@ const MobileHero = ({
               handleFilterChange({ id: "type", value });
             }}
           >
-            <TabsList className="bg-muted dark:bg-[#121212] white/90 h-12  ring-0  ring-[#E0DEF7] mb-2 w-full grid grid-cols-2">
+            <TabsList className="bg-muted dark:bg-[#121212] white/90 h-12  ring-1  ring-[#E0DEF7] mb-2 w-full grid grid-cols-2 dark:ring-[#49494b]">
               <TabsTrigger
                 value="Rent"
-                className="w-auto text-base data-[state=active]:text-Primary data-[state=active]:border border-bborder font-semibold  data-[state=active]:dark:bg-muted "
+                className="w-auto text-base data-[state=active]:text-Primary data-[state=active]:border border-bborder font-semibold  "
               >
                 Rent
               </TabsTrigger>
               <TabsTrigger
                 value="Sell"
-                className="w-auto  text-base data-[state=active]:text-Primary data-[state=active]:border border-bborder font-semibold data-[state=active]:dark:bg-muted"
+                className="w-auto  text-base data-[state=active]:text-Primary data-[state=active]:border border-bborder font-semibold "
               >
                 Buy
               </TabsTrigger>
@@ -137,7 +134,7 @@ const MobileHero = ({
           <div className="grid  md:grid-cols-2 gap-y-2 md:gap-y-1  md:gap-x-2    md:justify-start ">
             <SearchBar
               setFilters={setFilters}
-              className={"max-w-lg   rounded-tl-none border-t-none"}
+              className={"max-w-lg   rounded-tl-none border-t-none "}
               applyFilters={applyFilters}
               isHero={true}
             />{" "}
@@ -195,7 +192,7 @@ const LargeHero = ({
           {/*  */}{" "}
           <div className=" absolute inset-0 h-auto w-full bg-black opacity-10 z-0 rounded-3xl" />
           <div className="flex flex-col items-start lg:w-6/12  gap-y-2  pb-2   lg:ml-12 mt-20 z-10 relative">
-            <h1 className="  lg:text-7xl text-balance font-semibold  font-serif tracking-wide dark:text-text">
+            <h1 className="  lg:text-7xl text-balance font-semibold  font-serif tracking-wide dark:text-[#2C2C2C] text">
               Home Hunting{" "}
               <span className=" pt-2 flex items-center  gap-2">
                 <img
@@ -207,13 +204,13 @@ const LargeHero = ({
               </span>{" "}
             </h1>
 
-            <p className="w-10/12 ml-2  font-medium text-black/60 dark:text-black/60 text-lg ">
+            <p className="w-10/12 ml-2  font-medium text-black/60 dark:text-[#374151] text-lg ">
               Discover a hasstle-free way to find residences that best suit your
               needs and lifestyle.
             </p>
             <div className="grid grid-cols-3 gap-4 py-4 px-1 ">
               <div className="text-center">
-                <div className="text-3xl font-bold text-text dark:text-text">
+                <div className="text-3xl font-bold text-text dark:text-[#374151]">
                   200+
                 </div>
                 <div className="text-sm text-slate-600 dark:text-muted-foreground">
@@ -221,7 +218,7 @@ const LargeHero = ({
                 </div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-text dark:text-text">
+                <div className="text-3xl font-bold text-text dark:text-[#374151]">
                   1K+
                 </div>
                 <div className="text-sm text-slate-600 dark:text-muted-foreground">
@@ -229,7 +226,7 @@ const LargeHero = ({
                 </div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-text dark:text-text">
+                <div className="text-3xl font-bold text-text dark:text-[#374151]">
                   100+
                 </div>
                 <div className="text-sm text-slate-600 dark:text-muted-foreground">

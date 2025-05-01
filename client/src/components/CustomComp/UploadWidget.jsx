@@ -54,7 +54,7 @@ function UploadWidget({ uwConfig, handleImageUpload }) {
       <Button
         id="upload_widget"
         type="button"
-        className=" w-24 mx-auto md:w-36 font-medium hover:bg-Bgpurple/80  bg-Bgpurple "
+        className=" w-24 mx-auto md:w-36 font-medium hover:bg-Bgpurple/80  bg-Bgpurple  dark:bg-indigo-600 dark:hover:bg-indigo-800"
         onClick={initializeCloudinaryWidget}
       >
         Upload

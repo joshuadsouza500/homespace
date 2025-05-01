@@ -76,7 +76,7 @@ const BrowsePropCard = ({ property }) => {
             {property?.city}, {property?.governate.replace("_", " ")}
           </span>{" "}
         </p>
-        <div className="flex justify-between items-center px-1 md:px-2 border-t mt-4 pt-3 pb-1  w-full  dark:border-t-[#181818]">
+        <div className="flex justify-between items-center px-1 md:px-2 border-t mt-4 pt-3 pb-1  w-full  dark:border-t-[#49494b]">
           {/* bottom-1 absolute left-0 right-0  */}
           <span className="flex items-center gap-1 text-xs font-semibold text-[#4d5461]">
             <BedDoubleIcon className="size-4 text-Primary dark:text-muted" />

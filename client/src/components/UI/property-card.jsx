@@ -208,7 +208,7 @@ export default function PropertyCard({ update, className, property, saved }) {
                   variant="outline"
                   size="sm"
                   className={`text-primary  dark:bg-[#121212] ${
-                    saved ? "xl:hidden 2xl:block" : ""
+                    saved ? "xl:hidden 2xl:flex" : ""
                   }`}
                 >
                   <Phone className="h-4 w-4 mr-1" />

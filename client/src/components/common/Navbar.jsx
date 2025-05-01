@@ -45,7 +45,7 @@ export default function Navbar() {
             setMobileToggle(!mobileToggle);
           }}
         >
-          <MenuIcon className="size-6" />
+          <MenuIcon className="size-6 dark:text-[#f8fdff]" />
         </button>
 
         <nav

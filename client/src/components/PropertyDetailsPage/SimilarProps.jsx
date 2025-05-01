@@ -9,6 +9,7 @@ import {
   Mail,
   Bookmark,
   Scan,
+  MessageCircle,
 } from "lucide-react";
 import { Button } from "@/components/UI/ShadCN/button";
 import { Card, CardContent } from "@/components/UI/ShadCN/card";
@@ -61,14 +62,14 @@ export default function SimilarProps({ className, property }) {
                 <Badge variant="secondary" className="mb-2">
                   {property?.property_type} {/* Use property's property_type */}
                 </Badge>
-                <h2 className="text-2xl font-bold text-Bgpurple">
+                <h2 className="text-2xl font-bold text-Bgpurple dark:text-[#F8FDFF]">
                   {property?.price.toLocaleString()} BHD
                 </h2>
               </div>
               <Button
-                variant="ghost"
+                variant="outline"
                 size="icon"
-                className="text-muted-foreground"
+                className="text-muted-foreground dark:bg-[#121212] dark:border-none"
               >
                 <MoreVertical className="h-4 w-4" />
               </Button>
@@ -81,12 +82,12 @@ export default function SimilarProps({ className, property }) {
               {/* Use city and location */}
             </div>
             <div className="flex justify-start gap-2 md:gap-3 text-sm text-muted-foreground mb-4 pl-1 ">
-              <div className="flex items-center border-r-2 pr-2">
+              <div className="flex items-center border-r-2 pr-2 dark:border-[#49494b]">
                 <Bed className="h-4 w-4 mr-1 dark:text-muted text-Primary" />
                 <span>{property?.bedrooms}</span>{" "}
                 {/* Use the number of bedrooms */}
               </div>
-              <div className="flex items-center border-r-2 pr-2">
+              <div className="flex items-center border-r-2 pr-2 dark:border-[#49494b]">
                 <Bath className="h-4 w-4 mr-1 dark:text-muted text-Primary" />
                 <span>{property?.bathrooms}</span>{" "}
                 {/* Use the number of bathrooms */}
@@ -100,27 +101,29 @@ export default function SimilarProps({ className, property }) {
               </div>
             </div>
           </div>
-          <div className="flex justify-between items-center mt-auto pt-2 border-t gap-x-2">
+          <div className="flex justify-between items-center mt-auto pt-2 border-t gap-x-2 dark:border-t-[#222222]">
             <span className="text-[10px] sm:text-xs font-light text-muted-foreground">
               Listed on {new Date(property?.createdAt).toLocaleDateString()}{" "}
               {/* Display listing date */}
             </span>
 
             <div className="flex space-x-2 items-center">
-              <Button variant="outline" size="sm" className="text-primary">
-                <Phone className="h-4 w-4 mr-2" />
-                Call
+              <Button
+                variant="outline"
+                size="sm"
+                className="text-primary dark:bg-[#121212]"
+              >
+                <MessageCircle className="h-4 w-4 mr-2" />
+                Message
               </Button>
-              <Button variant="outline" size="sm" className="text-primary">
-                <Mail className="h-4 w-4 mr-2" />
-                Email
-              </Button>
-              <Button variant="outline" size="sm" className={`text-primary `}>
+              <Button
+                variant="outline"
+                size="sm"
+                className={`text-primary dark:bg-[#121212]`}
+              >
                 <Bookmark
                   className={`size-4 ${
-                    property?.isSaved
-                      ? "fill-Primary"
-                      : "bg-white dark:bg-muted"
+                    property?.isSaved ? "fill-Primary" : " "
                   }`}
                 />
               </Button>

@@ -124,8 +124,8 @@ const SearchBar = ({ setFilters, className, isHero, city }) => {
           data-testid="search-bar"
           placeholder="Select Your City"
           onKeyDown={handleKeyDown}
-          className={`w-full  h-10  font-normal focus-visible:ring-[0.5px]   px-2 capitalize dark:bg-[#222222] dark:border-[#49494b] [#4D4D4E]  ${
-            isHero ? "h-10 lg:white/10 lg:h-9 lg:border-0" : ""
+          className={`w-full  h-10  font-normal focus-visible:ring-[0.5px] dark:placeholder:text-[#f8fdff]  px-2 capitalize dark:bg-[#222222] dark:border-[#49494b] [#4D4D4E]  ${
+            isHero ? "h-10 lg:white/10 lg:h-9 lg:border-0 " : ""
           }`}
           onChange={handleSuggestions}
           onFocus={() => {
@@ -154,7 +154,7 @@ const SearchBar = ({ setFilters, className, isHero, city }) => {
                 {suggestions.map((suggestion, index) => (
                   <button
                     key={suggestion}
-                    className={`text-sm w-full px-4 font-medium py-2 text-left hover:bg-gray-100 focus:bg-gray-100 focus:outline-none dark:text-[#F8FDFF] ${
+                    className={`text-sm w-full px-4 font-medium py-2 text-left hover:bg-gray-100 dark:hover:bg-[#222222] focus:bg-gray-100 focus:outline-none dark:text-[#F8FDFF] ${
                       highlightedIndex === index
                         ? "bg-gray-100 dark:bg-[#222222] "
                         : " "

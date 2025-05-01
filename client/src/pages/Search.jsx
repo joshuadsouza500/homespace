@@ -104,7 +104,7 @@ const Search = () => {
                         {/* Right now its mt-72 but after adding pagination making it self-center */}
                         {/* Only display it if there are multiple properties displayed */}
                         <div
-                          className={`items-start justify-center bg-white backdrop-blur-lg shadow-xl border-[0.5px] rounded-md max-w-72 max-h-72  col-span-1 p-3  flex flex-col gap-y-4 cursor-pointer transition-all duration-300 mt-72 self- center dark:bg-[#121212] dark:border-[#49494b] [#4D4D4E] ${
+                          className={`items-start justify-center bg-white backdrop-blur-lg shadow-xl border-[0.5px] rounded-md max-w-72 max-h-72  col-span-1 p-3   flex-col gap-y-4 cursor-pointer transition-all duration-300 mt-72 self- center dark:bg-[#121212] dark:border-[#49494b] [#4D4D4E] hidden lg:flex ${
                             Property.properties?.properties?.length > 2
                               ? "block"
                               : "hidden"
@@ -240,14 +240,17 @@ const Search = () => {
               </>
             ) : (
               <div className="flex items-start mt-10 md:mt-20 justify-center min-h-screen ">
-                <div className="text-center p-6 bg-Bgpurple rounded-lg shadow-xl">
-                  <h1 className="text-2xl md:text-3xl font-bold text-estate-100">
-                    Oops! Something went wrong.
+                <div className="text-center p-6 xl:p-8 bg-Bgpurple  rounded-lg shadow-xl flex flex-col gap-y-4 md:gap-y-5 items-center">
+                  <h1 className="text-xl md:text-2xl font-semibold text-estate-100 max-w-lg">
+                    {`We couldn't find the properties you were looking for !`}
                   </h1>
-                  <p className="mt-4 text-gray-100">{`We couldn't find the properties you were looking for .`}</p>
-                  <button className="mt-6 px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                  {/*  <p className="mt-4 text-gray-100">{`We couldn't find the properties you were looking for .`}</p> */}
+                  <a
+                    className=" px-4 py-2 max-sm:text-sm text-white bg-indigo-600 rounded hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+                    href={"/property"}
+                  >
                     Try Again
-                  </button>
+                  </a>
                 </div>
               </div>
             )}
