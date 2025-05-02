@@ -1,25 +1,36 @@
 import { Building2, Clock, Globe, Home, Users } from "lucide-react";
 import { Card, CardContent } from "@/components/UI/ShadCN/card";
 import CTA from "@/components/Homepage/CTA";
+import { MotionHeading, MotionText } from "@/components/UI/Animation/Motion";
+import { motion } from "motion/react";
 
 export default function AboutPage() {
   return (
-    <section className="px-2 md:px-6  w-full  max-w-5xl lg:max-w-6xl  xl:max-w-7xl  2xl:max-w-8xl mx-auto py-4 md:py-8 font-jakarta  bg-estat e-50">
+    <motion.section
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }} // Fade out and slide up on exit
+      transition={{ duration: 0.5 }} // Smooth transition
+      className="px-2 md:px-6  w-full  max-w-5xl lg:max-w-6xl  xl:max-w-7xl  2xl:max-w-8xl mx-auto py-4 md:py-8 font-jakarta  bg-estat e-50"
+    >
       {/* Hero Section */}
 
-      <div className="text-center mb-12">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4 dark:text-[#F8FDFF]">
-          About HomeSpace
-        </h1>
-        <p className="max-md:text-sm text-muted-foreground max-2xl:max-w-lg  mx-auto tracking-wide ">
-          Your trusted partner in finding the perfect property in the Kingdom of
-          Bahrain
-        </p>
+      <div className="justify-center flex flex-col items-center  mb-12 gap-y-2">
+        <MotionHeading
+          className="text-4xl md:text-5xl "
+          text={`About HomeSpace`}
+        />
+
+        <MotionText
+          className="max-md:max-w-sm  max-2xl:max-w-lg text-center  mx-auto "
+          text={`Your trusted partner in finding the perfect property in the Kingdom of
+          Bahrain`}
+        />
       </div>
 
       {/* Our Story Section */}
       <section className="py-4 md:py-16 container mx-auto px-4 ">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div>
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 mb-6 dark:text-[#F8FDFF]">
               Our Story
@@ -133,6 +144,6 @@ export default function AboutPage() {
 
       {/* CTA Section */}
       <CTA />
-    </section>
+    </motion.section>
   );
 }

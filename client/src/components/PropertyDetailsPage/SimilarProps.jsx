@@ -3,10 +3,7 @@ import {
   MoreVertical,
   Bed,
   Bath,
-  Maximize,
   MapPin,
-  Phone,
-  Mail,
   Bookmark,
   Scan,
   MessageCircle,
@@ -16,8 +13,9 @@ import { Card, CardContent } from "@/components/UI/ShadCN/card";
 import { Badge } from "@/components/UI/ShadCN/badge";
 import { cn } from "@/lib/utils";
 import { useNavigate } from "react-router-dom";
+import { motion } from "motion/react";
 
-export default function SimilarProps({ className, property }) {
+export default function SimilarProps({ className, property, cardVariants }) {
   const navigate = useNavigate();
 
   const propertyDetails = (propertyId) => {
@@ -25,11 +23,12 @@ export default function SimilarProps({ className, property }) {
   };
 
   return (
-    <Card
+    <motion.Card
       className={cn(
-        "max-w-sm   mx-1  cursor-pointer hover:shadow-md  ",
+        "max-w-sm border-[0.5px] dark:border-[#49494b] rounded-lg  mx-1  cursor-pointer hover:shadow-md  ",
         className
       )}
+      variants={cardVariants}
       onClick={() => {
         propertyDetails(property?.id);
       }}
@@ -131,6 +130,6 @@ export default function SimilarProps({ className, property }) {
           </div>
         </CardContent>
       </div>
-    </Card>
+    </motion.Card>
   );
 }

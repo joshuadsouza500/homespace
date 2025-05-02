@@ -3,8 +3,8 @@ import { BathIcon, BedDoubleIcon, MapPin, ScanIcon } from "lucide-react";
 import { Badge } from "./ShadCN/badge";
 import { Card, CardContent } from "./ShadCN/card";
 import { useNavigate } from "react-router-dom";
-
-const BrowsePropCard = ({ property }) => {
+import { motion } from "motion/react";
+const BrowsePropCard = ({ property, cardVariants }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   useEffect(() => {
     // Generate a random delay between 5 and 10 seconds for each card Math.random(0 - 1)
@@ -22,9 +22,10 @@ const BrowsePropCard = ({ property }) => {
   };
   return (
     /* md:h-[370px] h-[390px] w-[320px] md:w-[300px] xl:w-80 */
-    <Card
+    <motion.Card
+      variants={cardVariants}
       key={property?.id}
-      className=" min-w-80 max-w-sm  rounded-lg border-[0.5px] bg-white dark:bg-[#121212] dark:border-[#49494b] [#4D4D4E] relative cursor-pointer group  hover:shadow-lg transition-all duration-300 ease-in-out"
+      className=" min-w-80 max-w-sm  rounded-lg  bg-white dark:bg-[#121212] border-[0.5px] dark:border-[#49494b] [#4D4D4E] relative cursor-pointer group  hover:shadow-lg transition-all duration-300 ease-in-out"
       onClick={() => {
         propertyDetails(property?.id);
       }}
@@ -92,7 +93,7 @@ const BrowsePropCard = ({ property }) => {
           </span>
         </div>
       </CardContent>
-    </Card>
+    </motion.Card>
   );
 };
 

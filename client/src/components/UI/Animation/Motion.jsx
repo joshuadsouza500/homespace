@@ -34,7 +34,7 @@ export const MotionText = ({ text, className, delay }) => {
         initial={{ y: "100%", opacity: 0.8 }}
         whileInView={{ y: 0, opacity: 1 }}
         transition={{
-          delay: delay || 0.35,
+          delay: delay || 0.3,
           duration: 0.5,
         }}
         viewport={{ once: true }}

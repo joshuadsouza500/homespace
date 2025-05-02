@@ -16,7 +16,8 @@ import {
 import { ArrowRight } from "lucide-react";
 import SimilarProps from "@/components/PropertyDetailsPage/SimilarProps";
 import PropertyDetails from "@/components/PropertyDetailsPage/property-details";
-
+import { MotionHeading, MotionText } from "@/components/UI/Animation/Motion";
+import { motion } from "motion/react";
 const faqs = [
   {
     question: "What documents are required for property purchase in Bahrain?",
@@ -65,6 +66,27 @@ const PropertyDetailsPg = () => {
     }
   };
 
+  const containerVariants = {
+    hidden: {
+      opacity: 0,
+    },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2, // Stagger each child by 0.2 seconds
+      },
+    },
+  };
+  const cardVariants = {
+    hidden: { opacity: 0, filter: "blur(4px)", y: 20 },
+    visible: {
+      opacity: 1,
+      filter: "blur(0px)",
+      y: 0,
+      transition: { duration: 0.7 },
+    },
+  };
+
   return (
     <div className="px-2 md:px-6  w-full  max-w-5xl lg:max-w-6xl  xl:max-w-7xl  2xl:max-w-8xl mx-auto   font-jakarta  light_gray ">
       <PropertyDetails property={Property?.property} handleSave={handleSave} />
@@ -72,7 +94,7 @@ const PropertyDetailsPg = () => {
       <section className="w-full px-2  xl:max-w-6xl 2xl:max-w-8xl mx-auto py-12 lg:py-24 ">
         <div className="grid lg:grid-cols-[1fr_2fr] gap-8 lg:gap-12 2xl:gap-20 items-start">
           <div className="md:mt-5 ">
-            <h2 className=" max-lg:text-center text-4xl 2xl:text-5xl font-semibold mb-4  2xl:mb-6 dark:text-[#F8FDFF]">
+            <h2 className=" max-lg:text-center text-text text-4xl 2xl:text-5xl font-semibold mb-4  2xl:mb-6 dark:text-[#F8FDFF]">
               Frequently asked questions
             </h2>
             <p className="hidden lg:block text-muted-foreground mb-2 ">
@@ -108,18 +130,33 @@ const PropertyDetailsPg = () => {
       </section>
       {/* SImilar Properties */}
       <section className="  h-full mt-8 md:my-16 ">
-        <h1 className="text-4xl md:text-5xl font-bold text-center pt-6 pb-2 md:pb-3 text-text dark:text-[#F8FDFF]">
-          Similar Properties
-        </h1>
-        <p className=" max-sm:text-sm  text-pretty pt-1 text-muted-foreground  text-center pb-10">
-          Checkout some other properties near you
-        </p>
-
-        <div className="max-md:overflow-y-scroll md:gap-y-12 gap-x-4 lg:gap-x-8 justify-center lg:justify-start  mx-auto flex md:grid grid-cols-2 lg:grid-cols-3 similarProps">
-          {Property?.properties?.properties?.slice(0, 6).map((property) => (
-            <SimilarProps key={property?.id} property={property} />
-          ))}
+        <div className="flex flex-col items-center justify-center gap-y-2 pb-12">
+          {" "}
+          <MotionHeading
+            className="  text-center  "
+            text={`Similar Properties`}
+          />
+          <MotionText
+            className=" text-center "
+            text={`Checkout some other properties near you`}
+          />
         </div>
+
+        <motion.section
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="max-md:overflow-y-scroll md:gap-y-12 gap-x-4 lg:gap-x-8 justify-center lg:justify-start  mx-auto flex md:grid grid-cols-2 lg:grid-cols-3 similarProps"
+        >
+          {Property?.properties?.properties?.slice(0, 6).map((property) => (
+            <SimilarProps
+              key={property?.id}
+              property={property}
+              cardVariants={cardVariants}
+            />
+          ))}
+        </motion.section>
         <div className="w-full flex justify-center py-8 md:py-14">
           <Link to="/property">
             <Button className="flex  h-11 bg-indigo-700 px-6  rounded-lg hover:bg-Primary Bgpurple/80 text-white text-sm tracking-wide font-semibold hover:shadow-lg">

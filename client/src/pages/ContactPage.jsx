@@ -16,7 +16,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/UI/ShadCN/select";
-
+import { MotionHeading, MotionText } from "@/components/UI/Animation/Motion";
+import { motion } from "motion/react";
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: "",
@@ -41,7 +42,7 @@ export default function ContactPage() {
       subject: value,
     }));
   };
-  const handleSubmit = (e) => {
+  /*   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
@@ -58,19 +59,25 @@ export default function ContactPage() {
         subject: "",
         message: "",
       });
-    }, 1500);
-  };
+    }, 15000);
+  }; */
   return (
-    <section className=" px-2 md:px-6  w-full  max-w-5xl lg:max-w-6xl  xl:max-w-7xl  2xl:max-w-8xl mx-auto py-4 md:py-8 font-jakarta ">
+    <motion.section
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }} // Fade out and slide up on exit
+      transition={{ duration: 0.5 }}
+      className=" px-2 md:px-6  w-full  max-w-5xl lg:max-w-6xl  xl:max-w-7xl  2xl:max-w-8xl mx-auto py-4 md:py-8 font-jakarta "
+    >
       {/* Header Section */}
-      <div className="text-center mb-12">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4 dark:text-[#F8FDFF]">
-          Contact Us
-        </h1>
-        <p className="max-md:text-sm  text-muted-foreground max-w-xl mx-auto tracking-wide ">
-          Have questions about buying, selling, or renting properties? Our team
-          of experts is here to help you every step of the way.
-        </p>
+      <div className="justify-center flex flex-col items-center  mb-12 gap-y-2">
+        <MotionHeading text={`Contact Us`} className="text-4xl md:text-5xl " />
+
+        <MotionText
+          className=" max-w-xl mx-auto  text-center"
+          text={`Have questions about buying, selling, or renting properties? Our team
+          of experts is here to help you every step of the way.`}
+        />
       </div>
 
       <div className="grid lg:grid-cols-3 gap-8 mb-16">
@@ -202,7 +209,7 @@ export default function ContactPage() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 dark:text-muted-foreground ">
@@ -305,18 +312,19 @@ export default function ContactPage() {
         <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center dark:text-[#F8FDFF]">
           Find Us
         </h2>
+        {/**/}{" "}
         <div className="relative w-full md:w-[90%] mx-auto h-[400px] rounded-lg overflow-hidden border shadow">
           <iframe
-            title="Little Lemon Location"
+            title="Location"
             width="100%"
             height="100%"
             className=" rounded-lg"
-            src="https://www.google.com/maps/@26.2212477,50.533677,17z?entry=ttu&g_ep=EgoyMDI1MDQwOS4wIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D"
-            allowFullScreen
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2970.2596831892297!2d-87.6244212!3d41.8867074!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880e2ca3e2d9b6ef%3A0x4a79c2133bce7648!2sChicago%2C%20IL!5e0!3m2!1sen!2sus!4v1650000000000!5m2!1sen!2sus"
             loading="lazy"
+            tabIndex="-1" // Prevents auto-focus
           />
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
