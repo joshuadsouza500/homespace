@@ -5,6 +5,7 @@ import { Quote, Star } from "lucide-react";
 import { Carousel, CarouselContent, CarouselItem } from "../UI/ShadCN/carousel";
 import { Button } from "../UI/ShadCN/button";
 import { Link } from "react-router-dom";
+import { MotionHeading, MotionText } from "../UI/Animation/Motion";
 
 const testimonials = [
   {
@@ -70,19 +71,19 @@ export default function Testimonials() {
     };
   }, [api]);
 
-  //background colour option 1 : bg-[#f7f6fc]
-  // bg-gradient-to-b from-[#F0F4FD] to-[#FFFFFF]
   return (
     <section className=" pt-12 md:pt-16 pb-20 md:pb-28 bg-gradient-to-b from-[#f0f4fdab] /70 to-white dark:bg-gradient-to-b  dark:from-[#121212]  [#f7f6fc] relative">
       <div className="container px-2 md:px-6  w-full  max-w-5xl lg:max-w-6xl  xl:max-w-7xl  2xl:max-w-8xl mx-auto  ">
-        <div className="flex flex-col gap-3 items-center mt-8 mb-12   ">
-          <h2 className="text-3xl md:text-4xl text-center pb-1  font-bold text-text dark:text-[#F8FDFF]">
-            What Our Clients Say
-          </h2>
-          <p className=" max-sm:leading-relaxed max-sm:text-sm w-[90%] tracking-wide sm:w-[50%] lg:w-[35%] text-center text-muted-foreground pb-3">
-            Hear from happy buyers and sellers {"who've"} achieved their real
-            estate goals with us
-          </p>
+        <div className="flex flex-col gap-2  items-center mt-8 mb-14    justify-center">
+          <MotionHeading
+            text={`What Our Clients Say`}
+            className=" text-center  "
+          />
+          <MotionText
+            text={`Hear from happy buyers and sellers who've achieved their real
+            estate goals with us`}
+            className=" max-sm:leading-relaxed  w-[90%]  sm:w-[60%]  text-center mx-auto  "
+          />
         </div>
         <div>
           <Carousel
@@ -97,10 +98,11 @@ export default function Testimonials() {
               {testimonials.map((testimonial, index) => (
                 <CarouselItem
                   key={index}
+                  onClick={() => handleProfileClick(index)}
                   className=" relative basis-[75%] md:basis-1/2 lg:basis-1/3    overflow -hidden group mt-1"
                 >
                   <div
-                    className={` px-7 sm:px-10 py-8 mb-8 rounded-lg text-center relative tracking-wide  ${
+                    className={` px-7 sm:px-10 py-8 mb-8 rounded-lg text-center relative tracking-wide transition-colors ${
                       currentIndex === index
                         ? "bg-Primary scale-105 text-white shadow-lg "
                         : "opacity-40 scale-95 text-black dark:text-[#F8FDFF]"

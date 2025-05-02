@@ -16,6 +16,7 @@ import {
   SelectValue,
 } from "../UI/ShadCN/select";
 import SearchBar from "../CustomComp/SearchBar";
+import AnimatedCounter from "../UI/Animation/AnimatedCounter";
 
 const Hero = () => {
   const dispatch = useDispatch();
@@ -84,24 +85,34 @@ const MobileHero = ({
           </p>
 
           {/* Stats */}
-          <div className="grid grid-cols-3 sm:w-[60%] gap-4 py-2 px-3">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-text dark:text-Primary">
-                200+
+          <div className="grid grid-cols-3 sm:w-[60%] gap-3 py-2 px-3">
+            <div className="text-center ">
+              <span className="flex items-center gap-x-0.5  justify-center text-3xl font-bold text-text dark:text-[#374151]">
+                {" "}
+                <AnimatedCounter className="" number={200} /> +
+              </span>
+
+              <div className="text-sm text-slate-600 dark:text-muted-foreground">
+                Properties
               </div>
-              <div className="text-sm text-black/60">Properties</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-text dark:text-Primary">
-                10K+
+              <span className="flex items-center gap-x-0.5  justify-center text-3xl font-bold text-text dark:text-[#374151]">
+                {" "}
+                <AnimatedCounter className="" number={300} /> +
+              </span>
+              <div className="text-sm text-slate-600 dark:text-muted-foreground">
+                Customers
               </div>
-              <div className="text-sm text-slate-600">Customers</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-text dark:text-Primary">
-                100+
+              <span className="flex items-center gap-x-0.5  justify-center text-3xl font-bold text-text dark:text-[#374151]">
+                {" "}
+                <AnimatedCounter className="" number={100} /> +
+              </span>
+              <div className="text-sm text-slate-600 dark:text-muted-foreground">
+                Positive reviews
               </div>
-              <div className="text-sm text-slate-600">Reviews</div>
             </div>
           </div>
         </div>
@@ -208,33 +219,38 @@ const LargeHero = ({
               Discover a hasstle-free way to find residences that best suit your
               needs and lifestyle.
             </p>
-            <div className="grid grid-cols-3 gap-4 py-4 px-1 ">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-text dark:text-[#374151]">
-                  200+
-                </div>
+            <div className="grid grid-cols-3 gap-4 py-3 px-1 ">
+              <div className="text-center ">
+                <span className="flex items-center gap-x-0.5  justify-center text-3xl font-bold text-text dark:text-[#374151]">
+                  {" "}
+                  <AnimatedCounter className="" number={200} /> +
+                </span>
+
                 <div className="text-sm text-slate-600 dark:text-muted-foreground">
                   Properties
                 </div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-text dark:text-[#374151]">
-                  1K+
-                </div>
+                <span className="flex items-center gap-x-0.5  justify-center text-3xl font-bold text-text dark:text-[#374151]">
+                  {" "}
+                  <AnimatedCounter className="" number={300} /> +
+                </span>
                 <div className="text-sm text-slate-600 dark:text-muted-foreground">
                   Customers
                 </div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-text dark:text-[#374151]">
-                  100+
-                </div>
+                <span className="flex items-center gap-x-0.5  justify-center text-3xl font-bold text-text dark:text-[#374151]">
+                  {" "}
+                  <AnimatedCounter className="" number={100} /> +
+                </span>
                 <div className="text-sm text-slate-600 dark:text-muted-foreground">
                   Positive reviews
                 </div>
               </div>
             </div>
           </div>
+          {/* Property Search */}
           <section className="z-10 h-auto w-full    absolute bottom-12  ">
             {" "}
             <Tabs

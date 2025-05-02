@@ -37,6 +37,11 @@ export default App;
    * STYLING:
    * Add  number animations for  hero
    * Add Property add ability to add bullet points bold etc to description bar
+   * Animation:
+   * 1) Heading and sub-headings
+   * 2) Property cards have a staggered unblur?
+   *
+   *
    *
    *
    * EXTRAS:

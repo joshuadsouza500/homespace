@@ -1,6 +1,7 @@
 import { Handshake, KeyRoundIcon, Search, User } from "lucide-react";
 import { useState } from "react";
 import { Button } from "../UI/ShadCN/button";
+import { MotionHeading, MotionText } from "../UI/Animation/Motion";
 
 const steps = [
   {
@@ -36,15 +37,23 @@ const HowItWorks = () => {
     <section className="py-16 md:py-24 px-4 bg-white   dark:bg-[#121212]">
       <div className="px-2 md:px-6  w-full  max-w-5xl lg:max-w-6xl  xl:max-w-7xl  2xl:max-w-8xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 xl:gap-20 items-center">
-          <div className="space-y-3 ">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#000929] dark:text-[#F8FDFF] max-lg:text-center ">
+          <div className="space-y-1.5">
+            {/*  <h2 className="text-3xl md:text-4xl font-bold text-text dark:text-[#F8FDFF] max-lg:text-center  ">
               How It Works?
-            </h2>
-            <p className=" max-sm:text-sm max-sm:w-[80%]  mx-auto  text-pretty text-muted-foreground max-lg:text-center tracking-wide pb-8  ">
-              Find your dream home in just a few simple steps.
-            </p>
+            </h2> */}
+            <div className="flex flex-col max-lg:text-center gap-y-2">
+              {" "}
+              <MotionHeading
+                text={`How It Works?`}
+                className="max-lg:text-center  "
+              />
+              <MotionText
+                text={` Find your dream home in just a few simple steps.`}
+                className="  max-sm:w-[80%]  mx-auto  max-lg:text-center    "
+              />
+            </div>
 
-            <div className="space-y-4 relative ">
+            <div className="space-y-4 relative pt-8">
               {steps.map((step) => (
                 <div
                   key={step.id}

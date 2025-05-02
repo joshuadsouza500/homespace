@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { getAllProperties } from "@/store/property/action";
 import BrowsePropCard from "../UI/BrowsePropCard";
 import { Button } from "@/components/UI/ShadCN/button";
-//text-[#000929]
+import { MotionHeading, MotionText } from "../UI/Animation/Motion";
 
 const Browse = () => {
   const Property = useSelector((store) => store.property);
@@ -29,17 +29,17 @@ const Browse = () => {
 
   return (
     <div className="h-full  bg- [#F0F4FD] slate-50  pt-10 md:pt-16 pb-16 font-jakarta relative dark:bg-[#121212] [#121212]">
-      <div className="absolute inset-0  bg-[url('./bgGradient.png')]  bg-center  opacity-40 60  bg-cover bg-no-repeat rotate-180 dark:hidden"></div>
+      <div className="absolute inset-0  bg-[url('./bgGradient.png')]  bg-center  opacity-40 60  bg-cover bg-no-repeat rotate-180 dark:hidden" />
       <div className="flex flex-col gap-3 items-center justify-center px-2 md:px-6  w-full  max-w-5xl lg:max-w-6xl  xl:max-w-7xl  2xl:max-w-8xl mx-auto z-10 relative">
-        <h2 className="text-3xl md:text-4xl  font-bold text-[#000929] dark:text-[#F8FDFF]">
-          Featured Properties
-        </h2>
-        <p className=" max-sm:text-sm  text-pretty text-[#4d5461] pb-3   mx-auto text-muted-foreground tracking-wide ">
-          Here are some properties near you
-        </p>
+        <MotionHeading text={`Featured Properties`} />
+        <MotionText
+          text={`Here are some properties near you`}
+          className="tracking-wide"
+        />
+
         <Tabs
           defaultValue={filters.type}
-          className=" z-10  "
+          className=" z-10  pt-3"
           onValueChange={(value) => {
             handleChange({ id: "type", value });
           }}
