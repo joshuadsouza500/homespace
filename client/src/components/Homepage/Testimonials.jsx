@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 
 import { Quote, Star } from "lucide-react";
 
-import { Carousel, CarouselContent, CarouselItem } from "../ui/carousel";
-import { Button } from "../ui/button";
+import { Carousel, CarouselContent, CarouselItem } from "../UI/ShadCN/carousel";
+import { Button } from "../UI/ShadCN/button";
 import { Link } from "react-router-dom";
+import { MotionHeading, MotionText } from "../UI/Animation/Motion";
 
 const testimonials = [
   {
@@ -70,19 +71,19 @@ export default function Testimonials() {
     };
   }, [api]);
 
-  //background colour option 1 : bg-[#f7f6fc]
-  // bg-gradient-to-b from-[#F0F4FD] to-[#FFFFFF]
   return (
-    <section className=" pt-12 md:pt-16 pb-20 md:pb-28 bg-gradient-to-br from-[#F0F4FD] /70 to-[#FFFFFF] [#f7f6fc] relative">
+    <section className=" pt-12 md:pt-16 pb-20 md:pb-28 bg-gradient-to-b from-[#f0f4fdab] /70 to-white dark:bg-gradient-to-b  dark:from-[#121212]  [#f7f6fc] relative">
       <div className="container px-2 md:px-6  w-full  max-w-5xl lg:max-w-6xl  xl:max-w-7xl  2xl:max-w-8xl mx-auto  ">
-        <div className="flex flex-col gap-3 items-center mt-8 mb-12   ">
-          <h2 className="text-3xl md:text-4xl text-center pb-1  font-bold text-text">
-            What Our Clients Say
-          </h2>
-          <p className=" max-sm:leading-relaxed max-sm:text-sm w-[90%] tracking-wide sm:w-[50%] lg:w-[35%] text-center text-muted-foreground pb-3">
-            Hear from happy buyers and sellers {"who've"} achieved their real
-            estate goals with us
-          </p>
+        <div className="flex flex-col gap-2  items-center mt-8 mb-14    justify-center">
+          <MotionHeading
+            text={`What Our Clients Say`}
+            className=" text-center  "
+          />
+          <MotionText
+            text={`Hear from happy buyers and sellers who've achieved their real
+            estate goals with us`}
+            className=" max-sm:leading-relaxed  w-[90%]  sm:w-[60%]  text-center mx-auto  "
+          />
         </div>
         <div>
           <Carousel
@@ -97,13 +98,14 @@ export default function Testimonials() {
               {testimonials.map((testimonial, index) => (
                 <CarouselItem
                   key={index}
+                  onClick={() => handleProfileClick(index)}
                   className=" relative basis-[75%] md:basis-1/2 lg:basis-1/3    overflow -hidden group mt-1"
                 >
                   <div
-                    className={` px-7 sm:px-10 py-8 mb-8 rounded-lg text-center relative tracking-wide  ${
+                    className={` px-7 sm:px-10 py-8 mb-8 rounded-lg text-center relative tracking-wide transition-colors ${
                       currentIndex === index
                         ? "bg-Primary scale-105 text-white shadow-lg "
-                        : "opacity-40 scale-95 text-black"
+                        : "opacity-40 scale-95 text-black dark:text-[#F8FDFF]"
                     }`}
                   >
                     <Quote className="size-7 fill-black text-black/0 opacity-20 rotate-180 fixed left-2 sm:left-3 top-5 sm:top-7" />
@@ -139,8 +141,10 @@ export default function Testimonials() {
                       src={testimonial.avatar}
                       className="rounded-full size-12 bg-white border border-border object-cover"
                     />
-                    <h3 className=" text-sm pt-1">{testimonial.name}</h3>
-                    <p className="opacity-90 text-xs pt-0.5 text-gray-600">
+                    <h3 className=" text-sm pt-1 dark:text-[#F8FDFF]">
+                      {testimonial.name}
+                    </h3>
+                    <p className="opacity-90 text-xs pt-0.5 text-gray-600 dark:text-muted-foreground">
                       {testimonial.role}
                     </p>
                   </div>
@@ -172,95 +176,4 @@ export default function Testimonials() {
       </div>
     </section>
   );
-}
-
-{
-  /**
-   * 
-   * 
-   * 
-     <div className="relative max-w-2xl mx-auto">
-          <Card className="bg-white border-[#e0def7] shadow-md">
-            <CardContent className="p-4 md:p-6">
-              <QuoteIcon className="size-5 md:size-8 text-[#e0def7] mb-4 mx-auto " />
-              <p className="text-[#4d5461]  mb-4 text-center text-pretty max-md:tracking-wide text-base md:text-lg">
-                {testimonials[currentIndex].quote}
-              </p>
-              <div className="flex items-center justify-center">
-                <Avatar className="size-14 mr-2">
-                  <AvatarImage
-                    src={testimonials[currentIndex].avatar}
-                    alt={testimonials[currentIndex].name}
-                  />
-                </Avatar>
-                <div>
-                  <p className="font-semibold text-text">
-                    {testimonials[currentIndex].name}
-                  </p>
-                  <p className="text-sm text-black/60">
-                    {testimonials[currentIndex].role}
-                  </p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-        <div className="flex justify-center mt-4">
-          {testimonials.map((_, index) => (
-            <Button
-              key={index}
-              variant="ghost"
-              size="sm"
-              className={`w-2 h-2 rounded-full mx-1 p-0 ${
-                index === currentIndex ? "bg-text" : "bg-gray-300"
-              }`}
-              onClick={() => setCurrentIndex(index)}
-            >
-              <span className="sr-only">Go to testimonial {index + 1}</span>
-            </Button>
-          ))}
-        </div> * 
-   
-   
-   
-  
-  
-  
-  
-  
-  
-  
-  const nextTestimonial = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1
-    );
-  };
-
-  const prevTestimonial = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? testimonials.length - 1 : prevIndex - 1
-    );
-  };
-    <div className="absolute top-1/2 left-0 -translate-y-1/2 -translate-x-full">
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={prevTestimonial}
-              className="rounded-full"
-            >
-              <ChevronLeft className="h-4 w-4" />
-              <span className="sr-only">Previous testimonial</span>
-            </Button>
-          </div>
-          <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-full">
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={nextTestimonial}
-              className="rounded-full"
-            >
-              <ChevronRight className="h-4 w-4" />
-              <span className="sr-only">Next testimonial</span>
-            </Button>
-          </div> */
 }

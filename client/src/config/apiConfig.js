@@ -34,7 +34,7 @@ api.interceptors.request.use(
   (config) => {
     // Retrieve the JWT token each time a request is made
     const jwt = localStorage.getItem("jwt");
-    console.log("const jwt", jwt);
+    // console.log("const jwt", jwt);
     // If the jwt exists, set it in the Authorization header
     if (jwt) {
       config.headers.Authorization = `Bearer ${jwt}`;
@@ -45,6 +45,23 @@ api.interceptors.request.use(
     return config;
   },
   (error) => {
+    return Promise.reject(error);
+  }
+);
+
+//Interceps all responses and checks if its a 429 rate error. If so alerts user
+api.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error) => {
+    if (error.response && error.response.status === 429) {
+      alert(
+        error.response.data.message ||
+          "Too many requests. Please try again later."
+      );
+    }
+    // Even though the interceptor shows an alert for 429 Too Many Requests, other parts of the application might still need to know about the error.
     return Promise.reject(error);
   }
 );
