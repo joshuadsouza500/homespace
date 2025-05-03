@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserProfile } from "@/store/auth/action";
 import { logout } from "@/store/auth/action";
@@ -7,7 +7,6 @@ import { MenuIcon, Moon, Sun, X } from "lucide-react";
 import { Button } from "../UI/ShadCN/button";
 import UserDropdown from "../CustomComp/UserDropdown";
 
-//Get user.. if user exists isSigned is true and then pass logout and user to dropdown
 export default function Navbar() {
   const [isSigned, setIsSigned] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
@@ -15,8 +14,16 @@ export default function Navbar() {
   const [darkMode, setDarkMode] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const location = useLocation();
   const auth = useSelector((store) => store.auth);
   const jwt = localStorage.getItem("jwt");
+
+  const navItems = [
+    { name: "Home", path: "/" },
+    { name: "Properties", path: "/property" },
+    { name: "About", path: "/about" },
+    { name: "Contact", path: "/contact" },
+  ];
 
   useEffect(() => {
     if (jwt) {
@@ -90,13 +97,12 @@ export default function Navbar() {
         >
           <MenuIcon className="size-6 dark:text-[#f8fdff]" />
         </button>
-
+        {/* Mobile Navbar */}
         <nav
           className={`md:hidden block bg-Bgpurple space-y-6 w-[75%] sm:w-[50%] shadow-2xl  fixed top-0  left-0 z-30 h-full text-background1  transition-transform  duration-300 ease-in-out  ${
             mobileToggle ? "translate-x-0" : "-translate-x-full"
           }`}
         >
-          {/* Add something like sign in to ..... check property finder */}
           <section className=" flex justify-between  items-center   border-b-[0.5px] p-4 border-light_gray/50  ">
             <div
               className="flex  items-center  justify-center space-x-1 cursor-pointer "
@@ -124,7 +130,7 @@ export default function Navbar() {
           </section>
           {!isSigned && (
             <div className="px-4">
-              <p className="text-muted/90 text-sm pb-4 tracking-wide  px-1">
+              <p className="text-muted/90 text-sm pb-4 tracking-wide  px-1 dark:text-[#f8fdff]">
                 Sign in to save your favorite properties and stay updated on new
                 listings!
               </p>
@@ -133,36 +139,19 @@ export default function Navbar() {
               </Button>
             </div>
           )}
-          <ul className=" flex flex-col gap-y-1 px-4 text-xl font-medium  w-full justify-center  cursor-pointer ">
-            {" "}
-            <li
-              className="hover:text-Primary rounded-md  font-medium  transition-colors  px-2 py-3 dark:text-[#F8FDFF] dark:hover:text-Primary   "
-              onClick={() => setMobileToggle(false)}
-            >
-              {" "}
-              <Link to="/">Home</Link>
-            </li>
-            <li
-              className="hover:text-Primary rounded-md  font-medium  transition-colors  px-2 py-3 dark:text-[#F8FDFF] dark:hover:text-Primary   "
-              onClick={() => setMobileToggle(false)}
-            >
-              {" "}
-              <Link to="/property">Properties</Link>
-            </li>
-            <li
-              className="hover:text-Primary rounded-md  font-medium  transition-colors  px-2 py-3 dark:text-[#F8FDFF] dark:hover:text-Primary   "
-              onClick={() => setMobileToggle(false)}
-            >
-              {" "}
-              <Link to="/about">About</Link>
-            </li>
-            <li
-              className="hover:text-Primary rounded-md  font-medium  transition-colors  px-2 py-3 dark:text-[#F8FDFF] dark:hover:text-Primary   "
-              onClick={() => setMobileToggle(false)}
-            >
-              {" "}
-              <Link to="/contact">Contact</Link>
-            </li>
+          <ul className=" flex flex-col gap-y-1 px-2  text-xl font-medium  w-full justify-center  cursor-pointer ">
+            {navItems.map((navItem, index) => (
+              <li
+                key={index}
+                className={`hover:bg-Primary/40  font-medium rounded-md transition-colors  px-2 py-3 dark:text-[#F8FDFF] ${
+                  navItem.path === location.pathname ? "bg-Primary/40" : ""
+                } `}
+                onClick={() => setMobileToggle(false)}
+              >
+                {" "}
+                <Link to={navItem.path}>{navItem.name}</Link>
+              </li>
+            ))}
           </ul>
         </nav>
 
@@ -183,35 +172,17 @@ export default function Navbar() {
             </span>
           </div>
           <ul className="hidden md:flex space-x-4 max-xl:text-sm font-medium  w-full  justify-center ">
-            {" "}
-            <li
-              className="hover:text-Primary rounded-md  font-medium  transition-colors  px-2 py-3 dark:text-[#F8FDFF] dark:hover:text-Primary   "
-              onClick={() => setMobileToggle(false)}
-            >
-              {" "}
-              <Link to="/">Home</Link>
-            </li>
-            <li
-              className="hover:text-Primary rounded-md  font-medium  transition-colors  px-2 py-3 dark:text-[#F8FDFF] dark:hover:text-Primary   "
-              onClick={() => setMobileToggle(false)}
-            >
-              {" "}
-              <Link to="/property">Properties</Link>
-            </li>
-            <li
-              className="hover:text-Primary rounded-md  font-medium  transition-colors  px-2 py-3 dark:text-[#F8FDFF] dark:hover:text-Primary   "
-              onClick={() => setMobileToggle(false)}
-            >
-              {" "}
-              <Link to="/about">About</Link>
-            </li>
-            <li
-              className="hover:text-Primary rounded-md  font-medium  transition-colors  px-2 py-3 dark:text-[#F8FDFF] dark:hover:text-Primary   "
-              onClick={() => setMobileToggle(false)}
-            >
-              {" "}
-              <Link to="/contact">Contact</Link>
-            </li>
+            {navItems.map((navItem, index) => (
+              <li
+                key={index}
+                className={`hover:text-Primary  font-medium  transition-colors  px-2 py-3 dark:text-[#F8FDFF] dark:hover:text-Primary ${
+                  navItem.path === location.pathname ? "text-Primary" : ""
+                } `}
+              >
+                {" "}
+                <Link to={navItem.path}>{navItem.name}</Link>
+              </li>
+            ))}
           </ul>
         </div>
 

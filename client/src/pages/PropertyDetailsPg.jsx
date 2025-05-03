@@ -88,7 +88,13 @@ const PropertyDetailsPg = () => {
   };
 
   return (
-    <div className="px-2 md:px-6  w-full  max-w-5xl lg:max-w-6xl  xl:max-w-7xl  2xl:max-w-8xl mx-auto   font-jakarta  light_gray ">
+    <motion.section
+      initial={{ opacity: 0, y: 15 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }} // Fade out and slide up on exit
+      transition={{ duration: 0.5 }}
+      className="px-2 md:px-6  w-full  max-w-5xl lg:max-w-6xl  xl:max-w-7xl  2xl:max-w-8xl mx-auto   font-jakarta  light_gray "
+    >
       <PropertyDetails property={Property?.property} handleSave={handleSave} />
       {/* FAQ Section */}
       <section className="w-full px-2  xl:max-w-6xl 2xl:max-w-8xl mx-auto py-12 lg:py-24 ">
@@ -165,7 +171,7 @@ const PropertyDetailsPg = () => {
           </Link>
         </div>
       </section>
-    </div>
+    </motion.section>
   );
 };
 

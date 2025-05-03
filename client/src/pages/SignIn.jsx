@@ -2,7 +2,7 @@ import { Button } from "@/components/UI/ShadCN/button";
 import { Input } from "@/components/UI/ShadCN/input";
 import { Label } from "@/components/UI/ShadCN/label";
 import { getUserProfile, signin } from "@/store/auth/action";
-import { AlertCircle } from "lucide-react";
+import { AlertCircle, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -56,12 +56,22 @@ export default function SignIn() {
     <div className="flex min-h-screen dark:bg-[#121212]">
       <div className="hidden w-1/2 bg-gray-100  lg:block">
         <img
-          src="/HouseF.jpeg"
+          src="/signin.png"
           alt="Real Estate"
-          className=" h-screen w-full object-cover"
+          className=" h-screen w-full object-cover "
         />
       </div>
-      <div className="flex w-full items-center justify-center lg:w-1/2">
+      <div className="flex w-full items-center justify-center lg:w-1/2  relative">
+        <Button
+          size="sm"
+          variant="outline"
+          className="fixed top-2 right-3 border-0 hover:text-red-600 text-muted-foreground dark:bg-[#121212]"
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          <X className="size-5" />{" "}
+        </Button>
         <div className="mx-auto w-full max-w-sm space-y-4 p-6">
           <div className="space-y-2 text-center">
             <h1

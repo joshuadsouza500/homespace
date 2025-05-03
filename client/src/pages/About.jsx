@@ -7,9 +7,9 @@ import { motion } from "motion/react";
 export default function AboutPage() {
   return (
     <motion.section
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 15 }}
       whileInView={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }} // Fade out and slide up on exit
+      exit={{ opacity: 0, y: -15 }} // Fade out and slide up on exit
       transition={{ duration: 0.5 }} // Smooth transition
       className="px-2 md:px-6  w-full  max-w-5xl lg:max-w-6xl  xl:max-w-7xl  2xl:max-w-8xl mx-auto py-4 md:py-8 font-jakarta  bg-estat e-50"
     >

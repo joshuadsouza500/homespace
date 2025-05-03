@@ -63,7 +63,7 @@ export default function ContactPage() {
   }; */
   return (
     <motion.section
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 15 }}
       whileInView={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }} // Fade out and slide up on exit
       transition={{ duration: 0.5 }}

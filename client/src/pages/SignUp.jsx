@@ -99,13 +99,11 @@ export default function SignUp() {
     <div className="flex min-h-screen dark:bg-[#121212]">
       <div className="hidden w-1/2 bg-gray-100 lg:block h-screen relative">
         <img
-          src="/signin.png"
+          src="/SignUp1.jpg"
           alt="Real Estate"
           className=" object-cover h-full w-full"
         />
-        <h1 className="absolute top-4 left-[15%] font-black font-jakarta text-7xl text-Bgpurple">
-          HomeSpace
-        </h1>
+
         <div className="absolute h-full w-full bg-black inset-0 opacity-10" />
       </div>
       <div className="flex w-full items-center justify-center lg:w-1/2">

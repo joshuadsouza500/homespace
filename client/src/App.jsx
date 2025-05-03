@@ -29,18 +29,17 @@ export default App;
 /* PArt 3: Animations & Dark Styles & Optimize & comments  */
 {
   /**
-   * THINGS TO ADD
-   * Signin signup and about image
+   * THINGS TO ADD 
    * smooth scroll
-   *
+
+   * 
    *
    * STYLING:
+   * Hero animation
    * Mobile hero design
    * Add Property add ability to add bullet points bold etc to description bar
-   * Animation:
-   * 3) Page transition
-   *
-   *
+
+
    *
    *
    * EXTRAS:
@@ -48,11 +47,9 @@ export default App;
    * New logo
    * Add a Booking section in property details page and then add a calendar to the user profile check windows ss
    * Add a loan/ mortgage calculator for specific property etc.
-   * Optimizes sizes maybe dont use fixed sizes
+   * 
    * Add google auth
    * Maybe integrate CI CD
-   * Add dynamic imports for some pages const Dashboard = lazy(() => import('./Dashboard')); Can wrap them in suspense and add loading page as fallback
-   *
-   * When using bg as white when it goes to auto dark it becomes [#121212]
+
    */
 }
