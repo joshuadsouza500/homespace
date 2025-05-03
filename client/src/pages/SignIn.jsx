@@ -80,7 +80,7 @@ export default function SignIn() {
             >
               Sign In
             </h1>
-            <p className="text-gray-500 dark:text-gray-400">
+            <p className="text-gray-500 dark:text-gray-400 max-lg:w-[75%] max-lg:mx-auto">
               Enter your credentials to access your account
             </p>
           </div>

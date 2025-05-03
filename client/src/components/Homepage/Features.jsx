@@ -87,7 +87,7 @@ export default function Features() {
 
         {/* Right Side: Features */}
         <section className="lg:mt-6">
-          <div className="space-y-1 pb-4 md:pb-8">
+          <div className="flex flex-col  max-lg:justify-center gap-y-1 pb-4 md:pb-8">
             <MotionHeading
               className=" max-lg:text-center "
               text={`Why Choose Us`}

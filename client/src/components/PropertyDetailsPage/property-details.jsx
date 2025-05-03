@@ -56,16 +56,20 @@ export default function PropertyDetails({ property, handleSave }) {
     ["Air Conditioning"]: <Snowflake className="size-5 mr-2 text-Primary" />,
     ["Parking"]: <CarFront className="size-5 mr-2 text-Primary" />,
     ["Swimming Pool"]: <Waves className="size-5 mr-2 text-Primary" />,
+    ["Pool"]: <Waves className="size-5 mr-2 text-Primary" />,
     ["Laundry"]: <WashingMachine className="size-5 mr-2 text-Primary" />,
     ["Gym"]: <DumbbellIcon className="size-5 mr-2 text-Primary" />,
     ["Wifi"]: <Wifi className="size-5 mr-2 text-Primary" />,
+    ["WiFi"]: <Wifi className="size-5 mr-2 text-Primary" />,
     ["Wi-Fi"]: <Wifi className="size-5 mr-2 text-Primary" />,
     ["Balcony"]: <Columns3 className="size-5 mr-2 text-Primary" />,
     ["Garden"]: <Fence className="size-5 mr-2 text-Primary" />,
     ["Security System"]: <Cctv className="size-5 mr-2 text-Primary" />,
+    ["24/7 Security"]: <Cctv className="size-5 mr-2 text-Primary" />,
     ["Fireplace"]: <FlameKindling className="size-5 mr-2 text-Primary" />,
     ["Pet-Friendly"]: <Dog className="size-5 mr-2 text-Primary" />,
   };
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [toggleMessage, setToggleMessage] = useState(false);
@@ -102,7 +106,7 @@ export default function PropertyDetails({ property, handleSave }) {
               </h1>
               <Bookmark
                 data-testid="save-property-icon"
-                className={`block sm:p-2 rounded-full ring-[0.2px] ring-bborder dark:ring-0 shadow-sm text-Primary size-8 md:size-11 hover:scale-95 cursor-pointer hover:fill-Primary/90 ${
+                className={`block sm:p-2 rounded-full sm:ring-[0.2px] ring-bborder dark:ring-0 shadow-sm text-Primary size-7 md:size-11 hover:scale-95 cursor-pointer hover:fill-Primary/90 ${
                   property?.isSaved
                     ? "fill-Primary"
                     : "bg-white dark:bg-[#121212]"
@@ -173,10 +177,10 @@ export default function PropertyDetails({ property, handleSave }) {
               <h2 className="text-xl font-semibold mb-4 text-text dark:text-[#F8FDFF] ">
                 Amenities
               </h2>
-              <div className="grid grid-cols-3 lg:grid-cols-3 md:gap-x-5 gap-x-2 gap-y-6   font-medium max-sm:text-sm">
+              <div className="grid grid-cols-3  md:gap-x-5 gap-x-2 gap-y-6   font-medium max-sm:text-sm items-center justify-center">
                 {property?.amenities?.map((am) => (
                   <div
-                    className="flex items-center hover:text-Bgpurple"
+                    className="flex items-center hover:text-Bgpurple "
                     key={am}
                   >
                     {amenityIconMap[am] || (

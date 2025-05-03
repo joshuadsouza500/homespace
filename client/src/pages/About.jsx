@@ -100,7 +100,7 @@ export default function AboutPage() {
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 mb-4 dark:text-[#F8FDFF]">
               Our Mission & Vision
             </h2>
-            <p className="max-md:text-sm max-w-lg mx-auto text-gray-600 dark:text-muted-foreground ">
+            <p className="max-md:text-sm max-w-lg mx-auto  text-gray-600 dark:text-muted-foreground ">
               {`Guided by our core values, we're committed to transforming the
               real estate experience in Bahrain`}
             </p>
@@ -114,7 +114,7 @@ export default function AboutPage() {
                 <h3 className="text-xl font-bold text-gray-900 dark:text-[F8FDFF] mb-4 max-md:text-center dark:text-[#F8FDFF]">
                   Our Mission
                 </h3>
-                <p className="text-gray-600 dark:text-muted-foreground  max-md:text-center">
+                <p className="text-gray-600 dark:text-muted-foreground  max-md:text-center text-pretty">
                   Our mission is straightforward: to transform property
                   searching in Bahrain into a transparent, efficient, and
                   enjoyable experience.With HomeSpace, you can trust that your
@@ -130,7 +130,7 @@ export default function AboutPage() {
                 <h3 className="text-xl font-bold text-gray-900 dark:text-[F8FDFF] mb-4 max-md:text-center dark:text-[#F8FDFF] ">
                   Our Vision
                 </h3>
-                <p className="text-gray-600 dark:text-muted-foreground max-md:text-center ">
+                <p className="text-gray-600 dark:text-muted-foreground max-md:text-center  text-pretty">
                   To be the most trusted and innovative property platform in the
                   Middle East. We envision a future where finding your dream
                   property is just a few clicks away, regardless of your needs

@@ -17,6 +17,8 @@ import {
 } from "../UI/ShadCN/select";
 import SearchBar from "../CustomComp/SearchBar";
 import AnimatedCounter from "../UI/Animation/AnimatedCounter";
+import { motion } from "motion/react";
+import { MotionText } from "../UI/Animation/Motion";
 
 const Hero = () => {
   const dispatch = useDispatch();
@@ -72,49 +74,58 @@ const MobileHero = ({
 }) => {
   return (
     <section className="lg:hidden bg-[#E0DEF7]/40 m-1 mb-20 rounded-2xl">
-      <div className=" rounded-2xl   relative  px-2 md:px-6  w-full  max-w-5xl  mx-auto min-h-[450px] sm:min-h-[500px] h-auto [400px]  pt-10 ">
+      <div className=" rounded-2xl   relative  px-2 md:px-6  w-full  max-w-5xl  mx-auto min-h-[450px] sm:min-h-[500px] h-auto   pt-10 ">
         {/* Background Image */}
         <div className="absolute inset-0 bg-cover bg-center z-0 rounded-2xl bg-[url('/signin.png')]" />
-        <div className="h-full w-full bg-black/5 -z-0 absolute inset-0 rounded-2xl" />
+        <div className="h-full w-full bg-black/5 dark:bg-black/20 -z-0 absolute inset-0 rounded-2xl" />
         <div className="gap-y-2 sm:gap-y-4 px-4 pb-1 flex flex-col items-center justify-center leading-tight relative z-10 ">
-          <h1 className="text-balance text-4xl sm:text-5xl text-text text-center font-semibold z-10 font-serif tracking-wide  sm:w-2/3">
+          <h1 className="text-balance leading-none text-[40px] sm:text-5xl text-text text-center font-semibold z-10 font-serif tracking-wide  sm:w-2/3">
             Home Hunting Simplified
           </h1>
-          <p className=" text-center font-medium text-black/60 w-5/6 sm:w-3/6">
+          <p className=" text-sm text-center font-medium text-black/60 w-4/6 sm:w-3/6">
             Discover a hasstle-free way to Buy , Sell or Rent your properties.
           </p>
 
           {/* Stats */}
-          <div className="grid grid-cols-3 sm:w-[60%] gap-3 py-2 px-3">
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{
+              delay: 0.2,
+              duration: 0.5,
+            }}
+            viewport={{ once: true }}
+            className="grid grid-cols-3 sm:w-[60%] gap-3 py-2 px-3"
+          >
             <div className="text-center ">
-              <span className="flex items-center gap-x-0.5  justify-center text-3xl font-bold text-text dark:text-[#374151]">
+              <span className="flex items-center gap-x-0.5  justify-center text-2xl font-extrabold text-text dark:text-[#374151]">
                 {" "}
-                <AnimatedCounter className="" number={200} /> +
+                <AnimatedCounter delay={0.5} number={200} /> +
               </span>
 
-              <div className="text-sm text-slate-600 dark:text-muted-foreground">
+              <div className="text-xs text-slate-600 dark:text-muted-foreground">
                 Properties
               </div>
             </div>
             <div className="text-center">
-              <span className="flex items-center gap-x-0.5  justify-center text-3xl font-bold text-text dark:text-[#374151]">
+              <span className="flex items-center gap-x-0.5  justify-center text-2xl font-extrabold text-text dark:text-[#374151]">
                 {" "}
-                <AnimatedCounter className="" number={300} /> +
+                <AnimatedCounter delay={0.5} number={300} /> +
               </span>
-              <div className="text-sm text-slate-600 dark:text-muted-foreground">
+              <div className="text-xs text-slate-600 dark:text-muted-foreground">
                 Customers
               </div>
             </div>
             <div className="text-center">
-              <span className="flex items-center gap-x-0.5  justify-center text-3xl font-bold text-text dark:text-[#374151]">
+              <span className="flex items-center gap-x-0.5  justify-center text-2xl font-extrabold text-text dark:text-[#374151]">
                 {" "}
-                <AnimatedCounter className="" number={100} /> +
+                <AnimatedCounter delay={0.5} number={100} /> +
               </span>
-              <div className="text-sm text-slate-600 dark:text-muted-foreground">
+              <div className="text-xs text-slate-600 dark:text-muted-foreground">
                 Positive reviews
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
         {/* Search Bar */}
 
@@ -203,27 +214,51 @@ const LargeHero = ({
           {/*  */}{" "}
           <div className="hidden dark:block absolute inset-0 h-auto w-full bg-black opacity-10 z-0 rounded-3xl" />
           <div className="flex flex-col items-start lg:w-6/12  gap-y-2  pb-2   lg:ml-12 mt-20 z-10 relative">
-            <h1 className="  lg:text-7xl text-balance font-semibold  font-serif tracking-wide dark:text-[#2C2C2C] text">
-              Home Hunting{" "}
-              <span className=" pt-2 flex items-center  gap-2">
-                <img
-                  src="/oval.png"
-                  alt="oval house img"
-                  className="h-12 w-32 object-cover object-center bg-no-repeat "
-                />
-                Simplified.
-              </span>{" "}
-            </h1>
+            <span className="overflow-hidden inline-block">
+              {" "}
+              <motion.h1
+                initial={{ y: "80%", opacity: 0.2 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                transition={{
+                  delay: 0.2,
+                  duration: 0.5,
+                }}
+                viewport={{ once: true }}
+                className="   lg:text-7xl text-balance font-semibold  font-serif tracking-wide dark:text-[#2C2C2C] text lg:pb-1"
+              >
+                Home Hunting{" "}
+                <span className=" pt-2 flex items-center  gap-2">
+                  <img
+                    src="/oval.png"
+                    alt="oval house img"
+                    className="h-12 w-32 object-cover object-center bg-no-repeat "
+                  />
+                  Simplified.
+                </span>{" "}
+              </motion.h1>
+            </span>
 
-            <p className="w-10/12 ml-2  font-medium text-black/60 dark:text-[#374151] text-lg ">
-              Discover a hasstle-free way to find residences that best suit your
-              needs and lifestyle.
-            </p>
-            <div className="grid grid-cols-3 gap-4 py-3 px-1 ">
+            <MotionText
+              className="w-10/12 ml-2  font-medium text-black/60 dark:text-[#374151] text-lg "
+              text={`Discover a hasstle-free way to find residences that best suit your
+              needs and lifestyle.`}
+              delay={0.5}
+            />
+
+            <motion.div
+              initial={{ y: 20, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{
+                delay: 0.2,
+                duration: 0.5,
+              }}
+              viewport={{ once: true }}
+              className="grid grid-cols-3 gap-4 py-3 px-1 "
+            >
               <div className="text-center ">
                 <span className="flex items-center gap-x-0.5  justify-center text-3xl font-bold text-text dark:text-[#374151]">
                   {" "}
-                  <AnimatedCounter className="" number={200} /> +
+                  <AnimatedCounter delay={0.5} number={200} /> +
                 </span>
 
                 <div className="text-sm text-slate-600 dark:text-muted-foreground">
@@ -233,7 +268,7 @@ const LargeHero = ({
               <div className="text-center">
                 <span className="flex items-center gap-x-0.5  justify-center text-3xl font-bold text-text dark:text-[#374151]">
                   {" "}
-                  <AnimatedCounter className="" number={300} /> +
+                  <AnimatedCounter delay={0.5} number={300} /> +
                 </span>
                 <div className="text-sm text-slate-600 dark:text-muted-foreground">
                   Customers
@@ -242,13 +277,13 @@ const LargeHero = ({
               <div className="text-center">
                 <span className="flex items-center gap-x-0.5  justify-center text-3xl font-bold text-text dark:text-[#374151]">
                   {" "}
-                  <AnimatedCounter className="" number={100} /> +
+                  <AnimatedCounter delay={0.5} number={100} /> +
                 </span>
                 <div className="text-sm text-slate-600 dark:text-muted-foreground">
                   Positive reviews
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
           {/* Property Search */}
           <section className="z-10 h-auto w-full    absolute bottom-12  ">
