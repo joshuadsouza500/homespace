@@ -6,6 +6,7 @@ import HowItWorks from "@/components/Homepage/HowItWorks";
 import Slider from "@/components/Homepage/Slider";
 import Testimonials from "@/components/Homepage/Testimonials";
 import { motion } from "motion/react";
+import NewLogo from "../../public/NewLogo";
 
 const HomePage = () => {
   return (
@@ -18,6 +19,17 @@ const HomePage = () => {
     >
       <Hero />
       <Slider />
+      {/*  <NewLogo />
+      <div className="flex items-center w-full justify-center">
+        <div className="min-w-44 relative px-4 py-2 text-center border border-Bgpurple text-Bgpurple ">
+          <h2 className="font-serif text-3xl font-semibold tracking-wide">
+            HomeSpace
+          </h2>
+          <p className="text-muted-foreground fixed bottom-0 left-0">
+            est.2025
+          </p>
+        </div>
+      </div> */}
       <Browse />
       <HowItWorks />
       <Features />
