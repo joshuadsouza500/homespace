@@ -1,4 +1,5 @@
 const Slider = () => {
+  //Using a linear loop scroll to create a slider effect
   return (
     <section className=" py-10  bg-white dark:bg-[#121212]">
       <div className="  px-2   w-full  max-w-5xl lg:max-w-6xl  xl:max-w-7xl  2xl:max-w-8xl mx-auto space-y-4 md:space-y-6">

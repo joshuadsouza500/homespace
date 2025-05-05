@@ -19,7 +19,7 @@ const HomePage = () => {
     >
       <Hero />
       <Slider />
-      {/*  <NewLogo />
+      {/*   <NewLogo />
       <div className="flex items-center w-full justify-center">
         <div className="min-w-44 relative px-4 py-2 text-center border border-Bgpurple text-Bgpurple ">
           <h2 className="font-serif text-3xl font-semibold tracking-wide">
