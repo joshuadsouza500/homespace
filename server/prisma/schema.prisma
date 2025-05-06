@@ -1,5 +1,5 @@
 //Whenever you update your Prisma schema,run  prisma db push command to create new indexes and regenerate Prisma Client.
-
+//Database schema for different data types used in the application 
 datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
