@@ -73,7 +73,7 @@ const User = () => {
             height={20}
             width={20}
             className="mr-1 -mt-0.5"
-            src="/src/assets/Logo.svg"
+            src="./assets/Logo.svg"
           />
 
           <h2 className=" text"> HomeSpace</h2>

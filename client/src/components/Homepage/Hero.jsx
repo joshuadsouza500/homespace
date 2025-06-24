@@ -74,7 +74,7 @@ const MobileHero = ({
 }) => {
   return (
     <section className="lg:hidden bg-[#E0DEF7]/40 m-1 mb-20 rounded-2xl">
-      <div className=" rounded-2xl   relative  px-2 md:px-6  w-full  max-w-5xl  mx-auto min-h-[450px] sm:min-h-[500px] h-auto   pt-10 ">
+      <div className=" rounded-2xl   relative  px-2 md:px-6  w-full  max-w-5xl  mx-auto min-h-[475px] sm:min-h-[500px] h-auto   pt-10 ">
         {/* Background Image */}
         <div className="absolute inset-0 bg-cover bg-center z-0 rounded-2xl bg-[url('/signin.png')]" />
         <div className="h-full w-full bg-black/5 dark:bg-black/20 -z-0 absolute inset-0 rounded-2xl" />

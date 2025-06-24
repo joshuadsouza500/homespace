@@ -3,7 +3,7 @@ import { Button } from "../UI/ShadCN/button";
 const CTA = () => {
   return (
     <div className="container mx-auto pb-10 md:pb-20 bg-white dark:bg-[#121212]">
-      <div className="rounded-xl w-[90%] lg:w-[75%] xl:w-[70%] h-auto md:h-80 mx-auto bg-gradient-to-br from-Bgpurple/85 to-indigo-700 p-6 md:p-10 relative overflow-hidden shadow-lg ">
+      <div className="rounded-xl w-[95%] lg:w-[75%] xl:w-[70%] h-auto md:h-80 mx-auto bg-gradient-to-br from-Bgpurple/85 to-indigo-700 p-6 md:p-10 relative overflow-hidden shadow-lg ">
         <div className="absolute inset-0 -top-10  left-32 bg-[url('/housey.png')] bg-no-repeat bg-center bg-contain opacity -20" />
         <div className="relative z-10 text-center h-full flex flex-col justify-center gap-y-3">
           <h2 className="leading-tight text-2xl xl:text-4xl font-bold extrabold tracking-wide text-background1">

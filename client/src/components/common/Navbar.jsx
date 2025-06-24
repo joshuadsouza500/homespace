@@ -113,7 +113,7 @@ export default function Navbar() {
                 height={24}
                 width={24}
                 className="max-md:size-7"
-                src="/src/assets/Logo.svg"
+                src="./assets/Logo.svg"
               />
               <span className=" text-2xl  pt-0.5 font-bold  text-zinc-100">
                 HomeSpace
@@ -165,7 +165,7 @@ export default function Navbar() {
               height={24}
               width={24}
               className="size-5 max-md:size-[22px] "
-              src="/src/assets/Logo.svg"
+              src="./assets/Logo.svg"
             />
             <span className=" text-xl md:text-xl xl:text-2xl pt-0.5 font-bold  text-Bgpurple dark:text-[#F8FDFF]">
               HomeSpace

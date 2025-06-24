@@ -18,7 +18,7 @@ export default function Footer() {
                 height={24}
                 width={24}
                 className="size-8"
-                src="/src/assets/Logo.svg"
+                src="./assets/Logo.svg"
               />
               <span className="text-4xl font-bold text-transparent bg-gradient-to-b from-zinc-200 to-zinc-50 bg-clip-text dark:text-zinc-200">
                 HomeSpace

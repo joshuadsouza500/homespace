@@ -56,8 +56,8 @@ const features = [
 //./bgGradient.png
 export default function Features() {
   return (
-    <div className=" h-auto   py-14 0 md:py-24 bg- slate-50 [#EDF9F9] relative dark:bg-[#121212]">
-      <div className="absolute inset-0  bg-[url('/bgGradient.png')]  bg-center  opacity-40 60  bg-cover bg-no-repeat  dark:hidden"></div>
+    <div className=" h-auto   py-14 0 md:py-24  relative dark:bg-[#121212]">
+      <div className="absolute inset-0  bg-[url('/bgGradient.png')]  bg-center  opacity-40 60  bg-cover bg-no-repeat max-sm:hidden  dark:hidden"></div>
       <div className="px-2 md:px-6  w-full  max-w-5xl lg:max-w-6xl  xl:max-w-7xl  2xl:max-w-8xl mx-auto relative grid grid-cols-1 lg:grid-cols-2 gap-6 place-items-start justify-items-center">
         {/* Left Side: Card with image  f7f6fc*/}
 
