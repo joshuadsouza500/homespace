@@ -26,7 +26,7 @@ const BrowsePropCard = ({ property, cardVariants }) => {
     <motion.Card
       variants={cardVariants}
       key={property?.id}
-      className=" min-w-xs max-w-sm  rounded-lg  bg-white dark:bg-[#121212] border-[0.5px] dark:border-[#49494b]  relative cursor-pointer group  hover:shadow-lg transition-all duration-300 ease-in-out"
+      className=" min-w-80 max-w-sm  rounded-lg  bg-white dark:bg-[#121212] border-[0.5px] dark:border-[#49494b] [#4D4D4E] relative cursor-pointer group  hover:shadow-lg transition-all duration-300 ease-in-out"
       onClick={() => {
         propertyDetails(property?.id);
       }}
