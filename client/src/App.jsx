@@ -1,11 +1,11 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
-import Loader from "./components/common/Loader";
+import Loader from "./components/common/Loader"; //dynamically loads when route is naigated to
 import { NotFound } from "./pages/NotFound";
 import SignUp from "./pages/SignUp";
 import CustomerRoutes from "./components/CustomerRoutes";
-const SignIn = lazy(() => import("./pages/SignIn")); //dynamically loads when route is naigated to
+const SignIn = lazy(() => import("./pages/SignIn"));
 const User = lazy(() => import("./pages/User"));
 
 function App() {
