@@ -25,7 +25,7 @@ export default function SimilarProps({ className, property, cardVariants }) {
   return (
     <motion.Card
       className={cn(
-        "min-w-xs max-w-sm border-[0.5px] dark:border-[#49494b] rounded-lg  mx-1  cursor-pointer hover:shadow-md  ",
+        "min-w-80 max-w-sm  border-[0.5px] dark:border-[#49494b] rounded-lg mx-1 cursor-pointer hover:shadow-md ",
         className
       )}
       variants={cardVariants}

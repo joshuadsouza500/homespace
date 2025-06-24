@@ -114,15 +114,15 @@ const PropertyDetailsPg = () => {
               <ArrowRight className="group-hover:rotate-0 duration-200  size-5 transform -rotate-45" />
             </Link>
           </div>
-          <div className="">
+          <div>
             <Accordion type="single" collapsible className="w-full divide-y">
               {faqs.map((faq, index) => (
                 <AccordionItem
                   key={`item-${index}`}
                   value={`item-${index}`}
-                  className="py-2"
+                  className="py-2 pl-1"
                 >
-                  <AccordionTrigger className="flex items-center justify-between py-4 2 text-base md:text-lg xl:text-xl  font-medium md:tracking-wide dark:text-[#F8FDFF]">
+                  <AccordionTrigger className="flex items-center justify-between py-4  text-base md:text-lg xl:text-xl  font-medium  md:tracking-wide dark:text-[#F8FDFF]">
                     {faq.question}
                   </AccordionTrigger>
                   <AccordionContent className="pb-4 pt-1 mr-5 md:mr-8 lg:text-base text-muted-foreground text-sm text-pretty tracking-wider leading-snug font-normal">

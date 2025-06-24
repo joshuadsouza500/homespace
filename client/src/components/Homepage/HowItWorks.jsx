@@ -34,7 +34,7 @@ const HowItWorks = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
   //border-[#4D4D4E]
   return (
-    <section className="py-16 md:py-24  bg-white   dark:bg-[#121212]">
+    <section className="py-12 md:py-24  bg-white   dark:bg-[#121212]">
       <div className="px-2 md:px-6  w-full  max-w-5xl lg:max-w-6xl  xl:max-w-7xl  2xl:max-w-8xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 xl:gap-20 items-center">
           <div className="space-y-1.5">
@@ -91,8 +91,8 @@ const HowItWorks = () => {
           </div>
           <div className="relative">
             {" "}
-            <div className="absolute -top-4 -left-4 size-24 bg-[#7065f0]/10 rounded-lg" />
-            <div className="absolute -bottom-4 -right-4 size-24 bg-[#7065f0]/10  rounded-lg" />
+            <div className="absolute -top-3 md:-top-3 -left-2 md:-left-4 size-24 bg-[#7065f0]/10 rounded-lg" />
+            <div className="absolute -bottom-3 -right-1.5 md:-bottom-4 md:-right-4  size-24 bg-[#7065f0]/10  rounded-lg" />
             <div className="relative h-fit w-full min-h-[350px] max-h-[450px] md:max-h-[550px] rounded-2xl overflow-hidden opacity -0 animate-fade-in">
               <img
                 src="/Howitworks.png"

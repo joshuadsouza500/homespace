@@ -31,6 +31,9 @@ export default App;
   /**
    * THINGS TO ADD 
    * smooth scroll
+   * Fix saving and unsaving property
+   * mobile navbar and footer data alignment
+   * 
    * Add Property add ability to add bullet points bold etc to description bar Sanitize , react quill {Sanitize in frontend before sending to backend just for security}
    * Write comments for the code
    * Add Meta Data

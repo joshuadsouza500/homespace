@@ -86,7 +86,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className=" pt-3  lg:pt-5 pb-2 lg:pb-3   w-full  border-b dark:border-[#4D4D4E]">
+    <nav className=" pt-3  lg:pt-5 pb-2 lg:pb-3   w-full  border-b dark:border-[#4D4D4E] ">
       <section className="max-w-6xl xl:max-w-7xl 2xl:max-w-[1440px] flex  pb-2 items-center justify-start md:justify-between mx-auto px-3  md:px-4 relative ">
         {/* Add nabar for mobile */}
         <button
