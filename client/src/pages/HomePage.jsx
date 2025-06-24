@@ -6,7 +6,6 @@ import HowItWorks from "@/components/Homepage/HowItWorks";
 import Slider from "@/components/Homepage/Slider";
 import Testimonials from "@/components/Homepage/Testimonials";
 import { motion } from "motion/react";
-import NewLogo from "../../public/NewLogo";
 
 const HomePage = () => {
   return (

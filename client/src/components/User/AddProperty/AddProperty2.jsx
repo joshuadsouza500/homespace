@@ -130,11 +130,10 @@ export default function AddProperty2() {
           setSuccess(false);
         }, 3500);
       } else {
-        console.error("Error creating property:", response.message);
         setSuccess(false);
       }
     } else {
-      console.log("Validation failed:", errors);
+      //   console.log("Validation failed:", errors);
     }
   };
 

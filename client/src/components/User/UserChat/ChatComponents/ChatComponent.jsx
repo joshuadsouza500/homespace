@@ -40,7 +40,6 @@ const ChatComponent = ({ chat, userId, onClose }) => {
       // Emit the message event with chatId, userId, and message content
       socket.emit("sendMessage", { userId, chatId: chat.id, message });
       setMessage(""); // Clear input after sending
-      console.log("Sending message:", message, chat.id);
     }
   };
 

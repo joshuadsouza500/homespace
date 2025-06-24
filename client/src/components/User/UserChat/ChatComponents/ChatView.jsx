@@ -68,10 +68,6 @@ const ChatView = ({ chat, userId, onClose }) => {
     }
   };
 
-  /* useEffect(() => {
-    console.log("status changed", status);
-  }, status); */
-
   useEffect(() => {
     if (endOfMessagesRef.current) {
       endOfMessagesRef.current.scrollIntoView({ behavior: "smooth" });

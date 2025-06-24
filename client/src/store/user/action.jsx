@@ -27,13 +27,13 @@ import {
   /*export const getUserProfile = (jwt) => async (dispatch) => {
   dispatch({ type: GET_USER_PROFILE_REQUEST });
   try {
-    console.log("ddr", jwt);
+  
     const response = await api.get(`/api/user/profile`);
     const user = response.data;
-    console.log("ddr", user);
+  
     dispatch({ type: GET_USER_PROFILE_SUCCESS, payload: user });
   } catch (error) {
-    console.log(error);
+
     dispatch({ type: GET_USER_PROFILE_FAILURE, payload: error.message });
   }
 };*/
@@ -46,7 +46,7 @@ export const updateUserProfile = (userDetails) => async (dispatch) => {
     const response = await api.put(`/api/user/profile`, userDetails);
 
     const user = response.data;
-    console.log("upated user");
+
     dispatch({ type: UPDATE_USER_PROFILE_SUCCESS, payload: user });
   } catch (error) {
     dispatch({ type: UPDATE_USER_PROFILE_FAILURE, payload: error.message });
@@ -74,7 +74,7 @@ export const getUserProperties = () => async (dispatch) => {
   try {
     const response = await api.get(`/api/user/profile/property`);
     const property = response.data;
-    console.log("user prop", property);
+
     dispatch({
       type: GET_USER_PROPERTIES_SUCCESS,
       payload: property,

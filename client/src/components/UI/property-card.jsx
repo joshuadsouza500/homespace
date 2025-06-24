@@ -55,7 +55,7 @@ export default function PropertyCard({ update, className, property, saved }) {
     const message = await dispatch(deleteProperty(propertyId));
 
     if (message) {
-      console.log(message);
+      // console.log(message);
       // window.location.href = "/user/property";
       location.reload();
     }

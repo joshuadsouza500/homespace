@@ -54,7 +54,7 @@ export const signin = (userData) => async (dispatch) => {
 export const logout = () => (dispatch) => {
   dispatch({ type: LOGOUT, payload: null });
   localStorage.clear();
-  console.log("user logged out");
+  // console.log("user logged out");
 };
 
 //It relies on the JWT stored in localStorage when the api instance was created. If the JWT in localStorage changes after the api instance is created, the api instance won't automatically use the updated JWT.

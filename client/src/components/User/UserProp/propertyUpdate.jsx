@@ -140,7 +140,7 @@ export default function PropertyUpdate() {
     const result = await dispatch(updateProperty(details, propertyId));
     if (result.success) {
       setIsDialogOpen(true); // Show success dialog
-      console.log(result);
+      // console.log(result);
     } else {
       console.log(result.message); // Set error state
     }

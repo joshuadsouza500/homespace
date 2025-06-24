@@ -123,7 +123,7 @@ export default function UserProfile({ user }) {
     }
   };
   const comingSoon = true;
-  //console.log("jj", user);
+
   return (
     <section className="container mx-auto px-4 lg:px-8 pt-4 lg:pt-8 pb-8 font-jakarta bg-white estate-50 h-full  dark:bg-[#121212]">
       <h1 className="text-3xl md:text-4xl   font-bold text-text dark:text-white mb-6 xl:mb-10 text-center">

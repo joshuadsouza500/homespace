@@ -1,11 +1,11 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
-import Loader from "./components/common/Loader"; //dynamically loads when route is naigated to
+import Loader from "./components/common/Loader";
 import { NotFound } from "./pages/NotFound";
 import SignUp from "./pages/SignUp";
 import CustomerRoutes from "./components/CustomerRoutes";
-const SignIn = lazy(() => import("./pages/SignIn"));
+const SignIn = lazy(() => import("./pages/SignIn")); //dynamically loads when route is naigated to
 const User = lazy(() => import("./pages/User"));
 
 function App() {
@@ -34,14 +34,12 @@ export default App;
    * Add Property add ability to add bullet points bold etc to description bar Sanitize , react quill {Sanitize in frontend before sending to backend just for security}
    * Write comments for the code
    * Add Meta Data
-   * Better to host backend not on vercel maybe render , railway because vercel is good for serverless data and socket io etc need constant connection hich vercel is not ideal for
-   * 
+   * Add a readme file maybe to help navigate the project
+   * Add a favicon
+  
    * EXTRAS:
-   * For the project need to make the story match. If it is being created as a new modern verions then cant have yearsvof expiereicne etc maybe something else instead of it
-   * New logo
-   * Add a Booking section in property details page and then add a calendar to the user profile check windows ss
-   * Add a loan/ mortgage calculator for specific property etc.
-   * 
+   * For the project need to make the story match. If it is being created as a new modern verions then cant have years of expiereicne etc maybe something else instead of it
+  
    * Add google auth
    * Maybe integrate CI CD
 

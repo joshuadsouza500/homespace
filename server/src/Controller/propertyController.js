@@ -113,7 +113,7 @@ const saveProperty = async (req, res) => {
     if (!savedProperty) {
       return res.status(404).send({ message: "saved Property removed" });
     }
-    console.log("savedProperty", savedProperty);
+
     return res.status(201).send(savedProperty);
 
     {

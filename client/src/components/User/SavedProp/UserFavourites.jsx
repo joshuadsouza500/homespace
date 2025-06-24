@@ -39,7 +39,7 @@ const UserFavourites = () => {
     }
   };
   const navigate = useNavigate;
-  //console.log("user's saved prop", userSavedProperties);
+
   return (
     <div className="container mx-auto px-4 lg:px-6   pt-4 lg:pt-6 pb-8  bg-estate-50 dark:bg-[#121212] h-screen">
       <div

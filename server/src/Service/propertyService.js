@@ -358,13 +358,13 @@ const saveProperty = async (userId, propertyId) => {
     });
     if (existingSavedProperty) {
       // If the property is already saved, delete it
-      console.log("Property found, removing...");
+
       await prisma.savedProperty.delete({
         where: {
           userId_propertyId: { userId, propertyId },
         },
       });
-      console.log("Property removed successfully.");
+
       return { message: "Saved Property removed successfully" };
     } else {
       const savedProperty = await prisma.savedProperty.create({

@@ -38,13 +38,13 @@ async function main() {
   });
 
   io.on("connection", (socket) => {
-    console.log("User connected:", socket.id);
+    //console.log("User connected:", socket.id);
 
     socket.on("joinRoom", (chatId, userId) => {
       socket.join(chatId);
       activeChatTracker.addActiveUser(userId, socket.id, chatId); //Ads the id to activeUsers oj
       io.to(chatId).emit("userJoined", { userId }); //Emits a userJoined to all connected
-      console.log(`${userId} with Socket ${socket.id} joined room ${chatId}`);
+      //console.log(`${userId} with Socket ${socket.id} joined room ${chatId}`);
     });
 
     socket.on("sendMessage", async ({ userId, chatId, message }) => {
@@ -64,14 +64,14 @@ async function main() {
     });
 
     socket.on("disconnect", () => {
-      console.log(`Socket disconnected: ${socket.id}`);
+      // console.log(`Socket disconnected: ${socket.id}`);
       const userId = activeChatTracker.getUserIdBySocketId(socket.id);
       const chatId = activeChatTracker.getChatIdBySocketId(socket.id);
 
       if (userId && chatId) {
         activeChatTracker.removeActiveUser(socket.id);
         io.to(chatId).emit("userLeft", { userId }); // Notify all participants that the user left
-        console.log(`User ${userId} left room ${chatId}`);
+        //  console.log(`User ${userId} left room ${chatId}`);
       }
     });
   });
@@ -98,7 +98,7 @@ async function addChatsToExistingUsers() {
     });
   }
 
-  console.log("All users updated with empty chats array");
+  
 }  
 */
 }

@@ -60,7 +60,7 @@ export const propertyReducer = (state = initialState, action) => {
     case SAVE_PROPERTY_SUCCESS: {
       if (action.payload.message.includes("removed")) {
         // If property was removed
-        console.log("Remove");
+
         return {
           ...state,
           savedProperty: state.savedProperty.filter(
