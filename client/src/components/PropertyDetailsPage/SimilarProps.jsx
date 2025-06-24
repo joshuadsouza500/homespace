@@ -9,7 +9,7 @@ import {
   MessageCircle,
 } from "lucide-react";
 import { Button } from "@/components/UI/ShadCN/button";
-import { Card, CardContent } from "@/components/UI/ShadCN/card";
+import { CardContent } from "@/components/UI/ShadCN/card";
 import { Badge } from "@/components/UI/ShadCN/badge";
 import { cn } from "@/lib/utils";
 import { useNavigate } from "react-router-dom";
@@ -25,7 +25,7 @@ export default function SimilarProps({ className, property, cardVariants }) {
   return (
     <motion.Card
       className={cn(
-        "max-w-sm border-[0.5px] dark:border-[#49494b] rounded-lg  mx-1  cursor-pointer hover:shadow-md  ",
+        "min-w-xs max-w-sm border-[0.5px] dark:border-[#49494b] rounded-lg  mx-1  cursor-pointer hover:shadow-md  ",
         className
       )}
       variants={cardVariants}

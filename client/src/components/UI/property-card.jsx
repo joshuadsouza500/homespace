@@ -67,7 +67,7 @@ export default function PropertyCard({ update, className, property, saved }) {
   return (
     <Card
       className={cn(
-        "max-w-sm sm:max-w-xl md:max-w-3xl mx-1 md:h-64 lg:h-[275px] xl:h-60  2xl:h-72 cursor-pointer hover:shadow-md  ",
+        "max-w-[350px] sm:max-w-xl md:max-w-3xl mx-1 md:h-64 lg:h-[275px] xl:h-60  2xl:h-72 cursor-pointer hover:shadow-md  ",
         className
       )}
     >

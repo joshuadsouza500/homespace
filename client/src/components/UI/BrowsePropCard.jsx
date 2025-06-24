@@ -1,7 +1,8 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import { BathIcon, BedDoubleIcon, MapPin, ScanIcon } from "lucide-react";
 import { Badge } from "./ShadCN/badge";
-import { Card, CardContent } from "./ShadCN/card";
+import { CardContent } from "./ShadCN/card";
 import { useNavigate } from "react-router-dom";
 import { motion } from "motion/react";
 const BrowsePropCard = ({ property, cardVariants }) => {
@@ -25,7 +26,7 @@ const BrowsePropCard = ({ property, cardVariants }) => {
     <motion.Card
       variants={cardVariants}
       key={property?.id}
-      className=" min-w-80 max-w-sm  rounded-lg  bg-white dark:bg-[#121212] border-[0.5px] dark:border-[#49494b] [#4D4D4E] relative cursor-pointer group  hover:shadow-lg transition-all duration-300 ease-in-out"
+      className=" min-w-xs max-w-sm  rounded-lg  bg-white dark:bg-[#121212] border-[0.5px] dark:border-[#49494b]  relative cursor-pointer group  hover:shadow-lg transition-all duration-300 ease-in-out"
       onClick={() => {
         propertyDetails(property?.id);
       }}

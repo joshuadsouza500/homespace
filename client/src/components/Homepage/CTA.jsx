@@ -10,8 +10,7 @@ const CTA = () => {
             Ready to Find Your Dream Property in Bahrain? {/*  */}
           </h2>
           <p className="w-[95%] md:w-[80%] mx-auto lg:hidden block  text-background1/80">
-            Join thousands of satisfied customers who found their perfect
-            property with HomeSpace.
+            Join thousands who found their dream home with HomeSpace.
           </p>
           <p className="mt-2 text-background1/80  md:w-[70%] mx-auto hidden lg:block">
             Join thousands of satisfied customers who found their perfect

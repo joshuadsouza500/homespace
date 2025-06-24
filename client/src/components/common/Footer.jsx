@@ -29,11 +29,11 @@ export default function Footer() {
               home.
             </p>
             <div className="space-y-3 text-white/75 cursor-pointer">
-              <div className="flex items-center">
+              <div className="flex items-center hover:text-white/50">
                 <Phone className="size-5 text-white" />
                 <span className="ml-2">+973 3665256</span>
               </div>
-              <div className="flex items-center">
+              <div className="flex items-center hover:text-white/50">
                 <Mail className="size-5 text-white" />
                 <span className="ml-2">support@homespace.com</span>
               </div>

@@ -56,7 +56,7 @@ export default function SignIn() {
     <div className="flex min-h-screen dark:bg-[#121212]">
       <div className="hidden w-1/2 bg-gray-100  lg:block">
         <img
-          src="/signin.png"
+          src="/HomeSpaceMobile.webp"
           alt="Real Estate"
           className=" h-screen w-full object-cover "
         />
