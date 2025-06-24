@@ -26,7 +26,7 @@ app.use(globalRateLimiter);
 
 // routes
 app.get("/", (req, res) => {
-  return res.status(200).send("Hello World!");
+  return res.status(200).send("HomeSpace server running successfully");
 });
 app.use("/auth", AuthRoute);
 app.use("/api/user", UserRoute);

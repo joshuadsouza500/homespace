@@ -1,9 +1,8 @@
 import axios from "axios";
 
-//server localhost"http://localhost:5000"
-const LocalHost = "http://localhost:5000";
-//const Deployment = "https://homespacebh.vercel.app";
-export const API_BASE_URL = LocalHost;
+//const LocalHost = "http://localhost:5000";
+const Deployment = "https://homespace-server.onrender.com";
+export const API_BASE_URL = Deployment; // Change to LocalHost for local development
 
 {
   /**
