@@ -164,7 +164,7 @@ export default function Navbar() {
               alt="Homespace logo"
               height={24}
               width={24}
-              className="size-5 max-md:size-[22px] "
+              className="size-5 max-md:size-[22px] lg:size-7"
               src="./assets/Logo.svg"
             />
             <span className=" text-xl md:text-xl xl:text-2xl pt-0.5 font-bold  text-Bgpurple dark:text-[#F8FDFF]">
