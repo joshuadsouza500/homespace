@@ -57,7 +57,7 @@ const User = () => {
 
   const Sidebar = (
     <div
-      className={`bg-Bgpurple  text-white shadow-lg backdrop-blur-md h-dvh z-10 w-56 md:w-[30%] xl:w-[22%] max-w-80 
+      className={`bg-Bgpurple  text-white shadow-lg backdrop-blur-md h-dvh z-10 w-60 md:w-[30%] xl:w-[22%] max-w-80 
       fixed top-0 left-0 transition-transform duration-500 ease-in-out 2xl:px-4
       ${isOpen ? "translate-x-0" : "-translate-x-full"}
       lg:relative lg:translate-x-0
@@ -73,7 +73,7 @@ const User = () => {
             height={20}
             width={20}
             className="mr-1 -mt-0.5"
-            src="./assets/Logo.svg"
+            src="/assets/Logo.svg"
           />
 
           <h2 className=" text"> HomeSpace</h2>

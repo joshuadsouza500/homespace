@@ -26,7 +26,7 @@ function PropertyCardSkeleton() {
   return (
     <div className="border rounded-lg overflow-hidden flex max-w-sm sm:max-w-xl md:max-w-3xl mx-1 md:h-64 lg:h-[275px]">
       {/* Property image skeleton */}
-      <Skeleton className="h-full w-full" />
+      <Skeleton className="h-full w-full px-2" />
 
       {/* Property content skeleton */}
       <div className="p-4 space-y-3 w-full">

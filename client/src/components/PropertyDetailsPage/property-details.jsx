@@ -91,6 +91,15 @@ export default function PropertyDetails({ property, handleSave }) {
       }
     }
   };
+  const callHandleSave = async (propertyId) => {
+    if (!isSignedIn) {
+      // If the user is not signed in
+      setToggleMessage(true);
+      return;
+    } else {
+      await handleSave(propertyId);
+    }
+  };
 
   return (
     <div className="  mx-auto px-1 md:px-3 pt-2 md:pt-4 pb-8  ">
@@ -106,13 +115,11 @@ export default function PropertyDetails({ property, handleSave }) {
               </h1>
               <Bookmark
                 data-testid="save-property-icon"
-                className={`block sm:p-2 rounded-full sm:ring-[0.2px] ring-bborder dark:ring-0 shadow-sm text-Primary size-7 md:size-11 hover:scale-95 cursor-pointer hover:fill-Primary/90 ${
-                  property?.isSaved
-                    ? "fill-Primary"
-                    : "bg-white dark:bg-[#121212]"
+                className={`block sm:p-2 rounded-full   text-Primary size-7 md:size-11 hover:scale-[.98] cursor-pointer hover:fill-Primary/90 ${
+                  property?.isSaved ? "fill-Primary" : " fill-none"
                 }`}
                 onClick={() => {
-                  handleSave(property?.id);
+                  callHandleSave(property?.id);
                 }}
               />
             </span>
@@ -204,53 +211,6 @@ export default function PropertyDetails({ property, handleSave }) {
 
         {/* Right column - Agent details and Map */}
         <div className="max-md:w-[90%] max-md:mx-auto md:flex gap-x-4 lg:flex-col max-md:space-y-6 lg:space-y-6 lg:sticky lg:top-6 lg:self-start items-start ">
-          {/*  <Card className="cursor-pointer md:h-64 lg:h-auto md:w-auto lg:w-full mx-auto ">
-            <CardContent className="p-7 ">
-              <div className="flex items-center  gap-3 -ml-2 mb-4 justify-center">
-                <img
-                  src={property?.user?.avatar}
-                  alt="Agent profile"
-                  className="rounded-full size-14  ring-1 ring-bborder"
-                />
-                <div>
-                  <h3 className="font-semibold ">
-                    {property?.user?.name}
-                  </h3>
-                  {property?.user?.role === "AGENT" ? (
-                    <p className="text-sm text-muted-foreground">
-                      Real Estate Agent
-                    </p>
-                  ) : null}
-                </div>
-              </div>
-
-              <div className="mb-6 ">
-                {property?.user?.role === "AGENT" ? (
-                  <div className="flex items-center text-sm justify-center gap-1 text-muted-foreground mb-1.5">
-                    <MapPin className="w-4 h-4  text-Primary" />
-                    <span>{property?.user?.company}</span>
-                  </div>
-                ) : null}
-
-                <p className="mx-auto w-fit  text-xs hover:underline text-center text-blue-500">
-                  View all listings
-                </p>
-              </div>
-              <div className="  gap-x-2 flex  items-center justify-center">
-                <Button
-                  className=" bg-indigo-600 w-40 hover:bg-Primary"
-                  onClick={() => {
-                    handleMessage(property?.userId);
-                  }}
-                >
-                  Message
-                </Button>
-                <Button className="w-40 bg-[#01a849] hover:bg-green-700 text-white">
-                  Call
-                </Button>
-              </div>
-            </CardContent>
-          </Card> */}
           <div className="lg:col-span-1">
             <Card className="sticky top-8">
               <CardHeader>
@@ -277,12 +237,6 @@ export default function PropertyDetails({ property, handleSave }) {
                     ) : null}
 
                     <div className="flex items-center mt-1">
-                      {/*   {[1, 2, 3, 4].map((star) => (
-                        <Star
-                          key={star}
-                          className="h-4 w-4 fill-yellow-400 text-yellow-400"
-                        />
-                      ))} */}
                       <span className="text-xs ml-1 text-indigo-400">
                         View all listings
                       </span>
@@ -325,34 +279,15 @@ export default function PropertyDetails({ property, handleSave }) {
                     </div>
                   ) : null}
                 </div>
-                {/*{" "}
-                <div>
-                  <h4 className="font-medium mb-2">Schedule a Viewing</h4>
-                  <div className="grid grid-cols-3 gap-2 mb-4">
-                    {["Sun", "Mon", "Tue", "Wed", "Thu", "Sat"].map((day) => (
-                      <Button
-                        key={day}
-                        variant="outline"
-                        size="sm"
-                        className="text-xs"
-                      >
-                        {day}
-                      </Button>
-                    ))}
-                  </div>
-                  <Button variant="secondary" className="w-full">
-                    <Calendar className="mr-2 h-4 w-4" /> View All Available
-                    Times
-                  </Button>
-                </div>*/}
               </CardContent>
             </Card>
+            {/* Toggle Message */}
             <AlertDialog open={toggleMessage} onOpenChange={setToggleMessage}>
               <AlertDialogContent>
                 <AlertDialogHeader>
                   <AlertDialogTitle>Sign in required</AlertDialogTitle>
                   <AlertDialogDescription className="pr-4">
-                    You need to be signed in to message the agent. Would you
+                    You need to be signed in to perform this action. Would you
                     like to sign in now?
                   </AlertDialogDescription>
                 </AlertDialogHeader>

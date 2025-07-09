@@ -84,11 +84,14 @@ export default function Navbar() {
       return newTheme;
     });
   };
-
+  const handleMobileNavigation = (navItemPath) => {
+    navigate(navItemPath);
+    setMobileToggle(false);
+  };
   return (
     <nav className=" pt-3   pb-2    w-full  border-b dark:border-[#4D4D4E] ">
       <section className="max-w-6xl xl:max-w-7xl 2xl:max-w-[1440px] flex  pb-2 items-center justify-start md:justify-between mx-auto px-3  md:px-4 relative ">
-        {/* Add nabar for mobile */}
+        {/* navbar  mobile */}
         <button
           className="md:hidden block "
           onClick={() => {
@@ -113,7 +116,7 @@ export default function Navbar() {
                 height={24}
                 width={24}
                 className="max-md:size-7"
-                src="./assets/Logo.svg"
+                src="/assets/Logo.svg"
               />
               <span className=" text-2xl  pt-0.5 font-bold  text-zinc-100">
                 HomeSpace
@@ -146,10 +149,10 @@ export default function Navbar() {
                 className={`hover:bg-Primary/40  font-medium rounded-md transition-colors  px-2 py-3 dark:text-[#F8FDFF] ${
                   navItem.path === location.pathname ? "bg-Primary/40" : ""
                 } `}
-                onClick={() => setMobileToggle(false)}
+                onClick={() => handleMobileNavigation(navItem.path)}
               >
                 {" "}
-                <Link to={navItem.path}>{navItem.name}</Link>
+                {navItem.name}
               </li>
             ))}
           </ul>
@@ -165,7 +168,7 @@ export default function Navbar() {
               height={24}
               width={24}
               className="size-5 max-md:size-[22px] lg:size-7"
-              src="./assets/Logo.svg"
+              src="/assets/Logo.svg"
             />
             <span className=" text-xl md:text-xl xl:text-2xl pt-0.5 font-bold  text-Bgpurple dark:text-[#F8FDFF]">
               HomeSpace
