@@ -31,11 +31,6 @@ export default App;
   /**
    * THINGS TO ADD 
    * smooth scroll
-   * Fix saving and unsaving property
-   * mobile navbar and footer data alignment
-   * navbar height decrease for large screens
-   * user dashboard logo not showing
-   * Display the same sign in required message that is displayed when trying to message agent to when trying to save property
    * Make logo and name into one image
    * Add Property add ability to add bullet points bold etc to description bar Sanitize , react quill {Sanitize in frontend before sending to backend just for security}
    * Write comments for the code
