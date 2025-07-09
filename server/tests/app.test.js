@@ -7,6 +7,6 @@ describe("Returns the correct root response", () => {
   test("Should return hello world!", async () => {
     const response = await request(app).get("/");
     expect(response.statusCode).toEqual(200),
-      expect(response.text).toBe("Hello World!");
+      expect(response.text).toBe("HomeSpace server running successfully");
   });
 });

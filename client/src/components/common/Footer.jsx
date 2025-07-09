@@ -39,92 +39,97 @@ export default function Footer() {
               </div>
             </div>
           </div>{" "}
-          <div>
-            <h3 className="font-semibold mb-3 lg:mb-6 text-xl">Quick Links</h3>
-            <ul className="space-y-3 pl-1">
-              <li>
-                <a
-                  href="/"
-                  className="hover:text-white text-white/70 transition duration-300"
-                >
-                  Home
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/property"
-                  className="hover:text-white text-white/70 transition duration-300"
-                >
-                  Properties
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/about"
-                  className="hover:text-white text-white/70 transition duration-300"
-                >
-                  About
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="font-semibold mb-3 lg:mb-6 text-xl">Support</h3>
-            <ul className="space-y-3 pl-1">
-              <li>
-                <a
-                  href="/contact"
-                  className="hover:text-white text-white/70 transition duration-300"
-                >
-                  Contact
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/contact"
-                  className="hover:text-white text-white/70 transition duration-300"
-                >
-                  Customer Support
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/terms-conditions"
-                  className="hover:text-white text-white/70 transition duration-300"
-                >
-                  Terms & Conditions
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div className="hidden lg:block">
-            <h3 className="font-semibold mb-3 lg:mb-6 text-xl">Resources</h3>
-            <ul className="space-y-3 pl-1 text-light_gray ">
-              <li>
-                <a
-                  href="/faqs"
-                  className="hover:text-white text-white/70 transition duration-300"
-                >
-                  FAQs
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/contact"
-                  className="hover:text-white text-white/70 transition duration-300"
-                >
-                  Help
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/"
-                  className="hover:text-white text-white/70 transition duration-300"
-                >
-                  Settings
-                </a>
-              </li>
-            </ul>
+          {/* Links */}
+          <div className="flex justify-between items-center   md:col-span-3">
+            <div>
+              <h3 className="font-semibold mb-3 lg:mb-6 text-xl">
+                Quick Links
+              </h3>
+              <ul className="space-y-3 pl-1">
+                <li>
+                  <a
+                    href="/"
+                    className="hover:text-white text-white/70 transition duration-300"
+                  >
+                    Home
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/property"
+                    className="hover:text-white text-white/70 transition duration-300"
+                  >
+                    Properties
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/about"
+                    className="hover:text-white text-white/70 transition duration-300"
+                  >
+                    About
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-semibold mb-3 lg:mb-6 text-xl">Support</h3>
+              <ul className="space-y-3 pl-1">
+                <li>
+                  <a
+                    href="/contact"
+                    className="hover:text-white text-white/70 transition duration-300"
+                  >
+                    Contact
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/contact"
+                    className="hover:text-white text-white/70 transition duration-300"
+                  >
+                    Customer Support
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/terms-conditions"
+                    className="hover:text-white text-white/70 transition duration-300"
+                  >
+                    Terms & Conditions
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div className="hidden lg:block">
+              <h3 className="font-semibold mb-3 lg:mb-6 text-xl">Resources</h3>
+              <ul className="space-y-3 pl-1 text-light_gray ">
+                <li>
+                  <a
+                    href="/faqs"
+                    className="hover:text-white text-white/70 transition duration-300"
+                  >
+                    FAQs
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/contact"
+                    className="hover:text-white text-white/70 transition duration-300"
+                  >
+                    Help
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="/"
+                    className="hover:text-white text-white/70 transition duration-300"
+                  >
+                    Settings
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
 

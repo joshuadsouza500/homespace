@@ -91,8 +91,8 @@ const HowItWorks = () => {
           </div>
           <div className="relative">
             {" "}
-            <div className="absolute -top-3 md:-top-3 -left-2 md:-left-4 size-24 bg-[#7065f0]/10 rounded-lg" />
-            <div className="absolute -bottom-3 -right-1.5 md:-bottom-4 md:-right-4  size-24 bg-[#7065f0]/10  rounded-lg" />
+            <div className="absolute -top-3 md:-top-3 -left-2 md:-left-4 overflow-hidden size-24 bg-[#7065f0]/10 rounded-lg" />
+            <div className="absolute -bottom-3 -right-1 overflow-hidden md:-bottom-4 md:-right-4  size-24 bg-[#7065f0]/10  rounded-lg" />
             <div className="relative h-fit w-full min-h-[350px] max-h-[450px] md:max-h-[550px] rounded-2xl overflow-hidden opacity -0 animate-fade-in">
               <img
                 src="/Howitworks.png"

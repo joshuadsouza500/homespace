@@ -67,7 +67,7 @@ export default function PropertyCard({ update, className, property, saved }) {
   return (
     <Card
       className={cn(
-        "max-w-[350px] sm:max-w-xl md:max-w-3xl mx-1 md:h-64 lg:h-[275px] xl:h-60  2xl:h-72 cursor-pointer hover:shadow-md  ",
+        "min-w-[350px] max-w-[350px] sm:max-w-xl md:max-w-3xl mx-1 md:h-64 lg:h-[275px]   2xl:h-72 cursor-pointer hover:shadow-md  ",
         className
       )}
     >
@@ -119,10 +119,16 @@ export default function PropertyCard({ update, className, property, saved }) {
               </div>
               <Button
                 variant="ghost"
-                size="icon"
-                className="text-muted-foreground "
+                size="sm"
+                className={`text-text dark:bg-[#121212] `}
               >
-                <MoreVertical className="h-4 w-4" />
+                <Bookmark
+                  className={`size-5 lg:size-6 text-Primary/50  ${
+                    property?.isSaved
+                      ? "fill-Primary"
+                      : "text-gray-700 dark:text-muted"
+                  }`}
+                />
               </Button>
             </div>
             <div className="flex items-center text-muted-foreground text-sm mb-4 xl:pt-2">
@@ -222,7 +228,7 @@ export default function PropertyCard({ update, className, property, saved }) {
                   <MessageCircle className="h-4 w-4  mr-1" />
                   Message
                 </Button>
-                <Button
+                {/*  <Button
                   variant="outline"
                   size="sm"
                   className={`text-text dark:bg-[#121212]`}
@@ -234,7 +240,7 @@ export default function PropertyCard({ update, className, property, saved }) {
                         : "text-gray-700 dark:text-muted"
                     }`}
                   />
-                </Button>
+                </Button> */}
               </div>
             )}
           </div>

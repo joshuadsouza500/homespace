@@ -1,6 +1,6 @@
 import axios from "axios";
 
-//const LocalHost = "http://localhost:5000";
+const LocalHost = "http://localhost:5000";
 const Deployment = "https://homespace-server.onrender.com";
 export const API_BASE_URL = Deployment; // Change to LocalHost for local development
 
