@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function Footer() {
   //text-[#4d5461]
   return (
-    <footer className="text-white border-t pt-12 pb-8 bg- slate-900 bg- bg-gradient-to-br from-text  to-Bgpurple  text dark:bg-[#121212] dark:border-t-muted-foreground rounded-t-md">
+    <footer className="text-white border-t pt-12 pb-8 bg-gradient-to-br from-text  to-Bgpurple  text dark:bg-[#121212] dark:border-t-muted rounded-t-md">
       <div className="container mx-auto px-4 w-full h-auto bg-no-repeat">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Company Info Section */}

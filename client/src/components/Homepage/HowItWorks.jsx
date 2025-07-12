@@ -7,26 +7,26 @@ const steps = [
   {
     id: 1,
     title: "Search Properties",
-    desc: "Browse our extensive collection of properties filtered by your preferences.",
+    desc: "Explore a wide range of listings tailored to your specific needs.",
     icon: <Search />,
   },
 
   {
     id: 2,
     title: "Meet Realtor",
-    desc: "Browse our extensive collection of properties filtered by your preferences.",
+    desc: "Schedule a visit and meet the property owner in person.",
     icon: <User />,
   },
   {
     id: 3,
     title: "Make an Offer",
-    desc: "Browse our extensive collection of properties filtered by your preferences.",
+    desc: "Submit your best offer and start negotiating with confidence.",
     icon: <Handshake />,
   },
   {
     id: 4,
     title: "Take the Keys",
-    desc: "Browse our extensive collection of properties filtered by your preferences.",
+    desc: "Complete the deal and move into your dream property today.",
     icon: <KeyRoundIcon />,
   },
 ];

@@ -59,7 +59,7 @@ const BrowsePropCard = ({ property, cardVariants }) => {
           {property?.property_type}
         </Badge>
         <div className="flex justify-between items-center py-1 ">
-          <h6 className="font-bold text-Primary flex items-center gap-[2px]  dark:text-muted ">
+          <h6 className="font-bold text-Primary flex items-center gap-[2px]  dark:text-[#F8FDFF]">
             <span className=" flex items-end gap-1 ">
               <h6 className="text-xl ">{property?.price.toLocaleString()} </h6>
               <p>BHD</p>
@@ -73,7 +73,7 @@ const BrowsePropCard = ({ property, cardVariants }) => {
           {property?.title}
         </h6>
         <p className="flex items-center gap-[2px] md:gap-1 text-sm font-medium tracking-wide text-muted-foreground pb-1">
-          <MapPin className="h-4 w-4 mr-0.5 text-Primary flex-shrink-0 dark:text-muted" />
+          <MapPin className="h-4 w-4 mr-0.5 text-Primary flex-shrink-0 dark:text-muted-foreground" />
           <span>
             {property?.city}, {property?.governate.replace("_", " ")}
           </span>{" "}
@@ -81,15 +81,15 @@ const BrowsePropCard = ({ property, cardVariants }) => {
         <div className="flex justify-between items-center px-1 md:px-2 border-t mt-4 pt-3 pb-1  w-full  dark:border-t-[#49494b]">
           {/* bottom-1 absolute left-0 right-0  */}
           <span className="flex items-center gap-1 text-xs font-semibold text-[#4d5461]">
-            <BedDoubleIcon className="size-4 text-Primary dark:text-muted" />
+            <BedDoubleIcon className="size-4 text-Primary dark:text-muted-foreground" />
             {property?.bedrooms} Beds
           </span>
           <span className="tracking-wide flex items-center gap-1 text-xs font-semibold text-[#4d5461]">
-            <BathIcon className="size-4 text-Primary dark:text-muted" />
+            <BathIcon className="size-4 text-Primary dark:text-muted-foreground" />
             {property?.bathrooms} Baths
           </span>
           <span className="flex items-center gap-1 text-xs font-semibold text-[#4d5461]">
-            <ScanIcon className="size-4 text-Primary dark:text-muted" />
+            <ScanIcon className="size-4 text-Primary dark:text-muted-foreground" />
             {property?.area} sqm<sup>2</sup>
           </span>
         </div>

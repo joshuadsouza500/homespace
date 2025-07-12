@@ -85,21 +85,3 @@ main()
   .finally(async () => {
     await prisma.$disconnect();
   });
-
-{
-  /** Function to initialize exisitng users with empty chats array
-async function addChatsToExistingUsers() {
-  const users = await prisma.user.findMany();
-
-  // Update each user to initialize the `chats` array if not already set
-  for (const user of users) {
-    await prisma.user.update({
-      where: { id: user.id },
-      data: { chatIds: [] }, //In MongoDB, relations are not stored as direct array references. Instead, you need to store IDs explicitly in an array (chatIds) and reference them in Prisma.
-    });
-  }
-
-  
-}  
-*/
-}

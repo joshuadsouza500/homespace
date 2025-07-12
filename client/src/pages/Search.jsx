@@ -113,7 +113,7 @@ const Search = () => {
                       }`}
                     >
                       <span>
-                        <h2 className="text-lg font-semibold text-text flex items-center dark:text-muted">
+                        <h2 className="text-lg font-semibold text-text flex items-center dark:text-[#F8FDFF]">
                           <SearchCheck className="mr-2.5 text-Primary" />{" "}
                           Popular Searches
                         </h2>
@@ -154,7 +154,7 @@ const Search = () => {
                         </ul>
                       </span>
                       <span>
-                        <h2 className="text-lg font-semibold text-text flex items-center hover:text-Primary dark:text-muted">
+                        <h2 className="text-lg font-semibold text-text flex items-center hover:text-Primary dark:text-[#F8FDFF]">
                           <MapPinCheck className="mr-2.5 text-Primary" /> Nearby
                           Areas
                         </h2>
@@ -183,8 +183,8 @@ const Search = () => {
                           </li>
                         </ul>
                       </span>
-                      <button className="text-lg font-semibold text-text  hover:text-Primary dark:text-muted">
-                        <Link to="/user/saved" className="flex items-center">
+                      <button className="text-lg font-semibold text-text  hover:text-Primary dark:text-[#F8FDFF]">
+                        <Link to="/user/saved" className="flex items-center ">
                           <Bookmark className="mr-2.5 text-Primary " /> Saved
                           Properties
                         </Link>

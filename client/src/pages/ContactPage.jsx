@@ -75,8 +75,7 @@ export default function ContactPage() {
 
         <MotionText
           className=" max-w-xl mx-auto  text-center"
-          text={`Have questions about buying, selling, or renting properties? Our team
-          of experts is here to help you every step of the way.`}
+          text={`Have questions about buying, selling, or renting properties? Get guidance and answers to help you every step of the way.`}
         />
       </div>
 
@@ -87,7 +86,7 @@ export default function ContactPage() {
             <CardHeader>
               <CardTitle>Get in Touch</CardTitle>
               <CardDescription className="tracking-wide">
-                Our team is here to help you
+                {`We're is here to help you`}
               </CardDescription>
             </CardHeader>
             <CardContent className="md:grid grid-cols-2 lg:grid-cols-1 space-y-4">
@@ -116,9 +115,9 @@ export default function ContactPage() {
                   <h3 className="font-medium dark:text-[#F8FDFF]">
                     Main Office
                   </h3>
-                  <p className="text-muted-foreground">123 Jabbir Avn</p>
+                  <p className="text-muted-foreground">123 Lorem Ipsum</p>
                   <p className="text-muted-foreground">
-                    2nd Floor, StarPrize Towers{" "}
+                    2nd Floor, Lorem Ipsun{" "}
                   </p>
                 </div>
               </div>
@@ -323,6 +322,22 @@ export default function ContactPage() {
             loading="lazy"
             tabIndex="-1" // Prevents auto-focus
           />
+          <div className="absolute inset-0 bg-gradient-to-br from-Bgpurple/80 to-blue-900/80 backdrop-blur-sm flex flex-col items-center justify-center text-white transition-all duration-300 rounded-md">
+            <div className="transform rotate-12 bg-Primary  text-white px-6 py-1 font-bold text-sm  rounded-r-sm absolute top-6 right-0">
+              COMING SOON
+            </div>
+
+            <div className="flex flex-col items-center p-6 text-center">
+              <div className="bg-white/10 p-4 rounded-full mb-4">
+                <Clock className="h-10 w-10" />
+              </div>
+
+              <p className="text-white/80 mb-6 max-w-xs">
+                {`  We're working on this`}
+              </p>
+              <button className="group relative px-6 py-3 overflow-hidden rounded-lg bg-white/10 text-white shadow backdrop-blur-sm hover:bg-white/20 transition-all duration-300"></button>
+            </div>
+          </div>
         </div>
       </div>
     </motion.section>

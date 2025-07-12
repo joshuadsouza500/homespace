@@ -17,23 +17,11 @@ const HomePage = () => {
       className=" font-jakarta   bg-white dark:bg-[#121212]"
     >
       <Hero />
-      <Slider />
-      {/*   <NewLogo />
-      <div className="flex items-center w-full justify-center">
-        <div className="min-w-44 relative px-4 py-2 text-center border border-Bgpurple text-Bgpurple ">
-          <h2 className="font-serif text-3xl font-semibold tracking-wide">
-            HomeSpace
-          </h2>
-          <p className="text-muted-foreground fixed bottom-0 left-0">
-            est.2025
-          </p>
-        </div>
-      </div> */}
+      {/*       <Slider /> */}
       <Browse />
       <HowItWorks />
       <Features />
       <Testimonials />
-
       <CTA />
     </motion.section>
   );

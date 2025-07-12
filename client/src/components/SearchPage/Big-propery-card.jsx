@@ -51,14 +51,14 @@ const BigPropertyCard = ({ property }) => {
                 <Badge variant="secondary" className=" px-4 tracking-wide">
                   {property?.property_type}
                 </Badge>
-                <h2 className="text-2xl font-bold text-Primary pt-1 pb-0.5 dark:text-muted">
+                <h2 className="text-2xl font-bold text-Primary pt-1 pb-0.5 dark:text-[#F8FDFF]">
                   {property?.price.toLocaleString()} BHD
                 </h2>
-                <h2 className="text-lg lg:text-2xl font-semibold text-text  line-clamp-1 dark:text-muted">
+                <h2 className="text-lg lg:text-2xl font-semibold text-text  line-clamp-1 dark:text-[#F8FDFF]">
                   {property?.title}
                 </h2>
                 <div className="flex items-center text-muted-foreground text-sm pt-1">
-                  <MapPin className="size-4 mr-1 text-Primary dark:text-muted flex-shrink-0" />
+                  <MapPin className="size-4 mr-1 text-Primary dark:text-muted-foreground flex-shrink-0" />
                   <span>
                     {property?.city}, {property?.governate.replace("_", " ")}
                   </span>
@@ -76,15 +76,15 @@ const BigPropertyCard = ({ property }) => {
             </p>
             <div className="flex justify-start gap-2 lg:gap-3 text-sm text-muted-foreground mb-4 pl-1 absolute bottom-0">
               <div className="flex items-center border-r-2 pr-2 dark:border-r-[#222222]">
-                <Bed className="size-4 mr-1 text-Primary dark:text-muted" />
+                <Bed className="size-4 mr-1 text-Primary dark:text-muted-foreground" />
                 <span>{property?.bedrooms}</span>
               </div>
               <div className="flex items-center border-r-2 pr-2 dark:border-r-[#222222]">
-                <Bath className="size-4 mr-1 text-Primary dark:text-muted" />
+                <Bath className="size-4 mr-1 text-Primary dark:text-muted-foreground" />
                 <span>{property?.bathrooms} </span>
               </div>
               <div className="flex items-center  pr-2">
-                <Maximize className="size-4 mr-1 text-Primary dark:text-muted" />
+                <Maximize className="size-4 mr-1 text-Primary dark:text-muted-foreground" />
                 <span>{property?.area} sqm</span>
               </div>
             </div>

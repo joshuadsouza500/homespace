@@ -36,7 +36,7 @@ export default function AboutPage() {
               Our Story
             </h2>
             <p className="text-gray-600 dark:text-muted-foreground mb-4">
-              {`HomeSpace is a revolutionary property finder platform that has quickly made its mark in Bahrain's real estate landscape. Emerging as a solution to the common challenges faced by property seekers, we utilize cutting-edge technology and innovative features to streamline the home search process, connecting you with a curated selection of properties that match your needs.`}
+              {`HomeSpace is a newly developed property finder platform created to address common challenges faced by property seekers in Bahrain. It leverages modern web technologies and user-friendly features to simplify the property search process. The platform helps users discover properties that match their preferences efficiently and conveniently, demonstrating the potential of digital solutions in the real estate sector.`}
             </p>
             <p className="text-gray-600 dark:text-muted-foreground mb-6">
               {` At HomeSpace, we recognize that finding a home is about more than just a transaction; it's about discovering a place where cherished memories can be made and we are here to help you find the one that resonates with you.  `}
@@ -48,7 +48,7 @@ export default function AboutPage() {
                 </div>
                 <div>
                   <p className="font-bold text-gray-900 dark:text-[#F8FDFF]">
-                    200+
+                    100+
                   </p>
                   <p className="text-sm text-gray-500">Properties Listed</p>
                 </div>
@@ -59,7 +59,7 @@ export default function AboutPage() {
                 </div>
                 <div>
                   <p className="font-bold text-gray-900 dark:text-[#F8FDFF]">
-                    1000+
+                    50+
                   </p>
                   <p className="text-sm text-gray-500">Happy Clients</p>
                 </div>

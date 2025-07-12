@@ -35,7 +35,8 @@ export default App;
    * smooth scroll
    * Make logo and name into one image
    * Add Property add ability to add bullet points bold etc to description bar Sanitize , react quill {Sanitize in frontend before sending to backend just for security}
-   * Write comments for the code
+   
+  * Write comments for the code
    * Add Meta Data
    * Add a readme file maybe to help navigate the project
    * Add a favicon

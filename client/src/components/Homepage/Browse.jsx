@@ -49,7 +49,7 @@ const Browse = () => {
   return (
     <div className="h-full  bg- [#F0F4FD] slate-50  pt-6 md:pt-16 pb-16 font-jakarta relative dark:bg-[#121212] ">
       {/* Background Gradient */}
-      <div className="absolute inset-0  bg-[url('./bgGradient.png')]  bg-center  opacity-40 60  bg-cover bg-no-repeat rotate-180 dark:hidden" />
+      <div className="absolute inset-0  bg-[url('/bgGradient.png')]  bg-center  opacity-40 60  bg-cover bg-no-repeat rotate-180 dark:hidden" />
       <div className="flex flex-col gap-3 items-center justify-center px-2 md:px-6  w-full  max-w-5xl lg:max-w-6xl  xl:max-w-7xl  2xl:max-w-8xl mx-auto z-10 relative">
         <MotionHeading text={`Featured Properties`} />
         <MotionText
