@@ -22,7 +22,7 @@ const CTA = () => {
             </Button>
             <Button
               variant="outline"
-              className="border-Primary text-white py-2 px-4  hover:bg-indigo-50 hover:text-indigo-700  dark:hover:text-white hidden md:block dark:bg-white/0 dark:text-white dark:hover:bg-Primary"
+              className="border-Primary dark:border-none text-white py-2 px-4  hover:bg-indigo-50 hover:text-indigo-700  dark:hover:text-white hidden md:block dark:bg-white/0 dark:text-white dark:hover:bg-Primary"
             >
               List Your Property
             </Button>

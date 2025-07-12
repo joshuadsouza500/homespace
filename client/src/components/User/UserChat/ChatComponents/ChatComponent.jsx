@@ -10,7 +10,7 @@ import {
 import ChatMessage from "../ChatMessage";
 import { io } from "socket.io-client";
 import PropTypes from "prop-types";
-import { Deployment } from "@/config/apiConfig";
+import { Deployment, LocalHost } from "@/config/apiConfig";
 const ChatComponent = ({ chat, userId, onClose }) => {
   const [socket, setSocket] = useState(null);
   const [allMessages, setAllMessages] = useState([]);

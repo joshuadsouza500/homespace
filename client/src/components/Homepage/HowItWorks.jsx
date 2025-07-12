@@ -57,7 +57,7 @@ const HowItWorks = () => {
               {steps.map((step) => (
                 <div
                   key={step.id}
-                  className={`p-4 cursor-pointer rounded-l-md rounded-xl border border-gray-100 dark:border-[#49494b] [#4D4D4E] relative transition-all duration-300 hover:shadow-lg group flex items-start max-2xl:justify-between gap-x-5 2xl:gap-x-8 hover:border-l-4   hover:border-l-Primary md:w-[70%] lg:w-full  max-lg:mx-auto  ${
+                  className={`p-4 cursor-pointer rounded-l-md rounded-xl border border-gray-100 dark:border-[#49494b] [#4D4D4E] relative transition-all duration-300 hover:shadow-lg group flex items-start  gap-x-5 xl:gap-x-6 2xl:gap-x-8 hover:border-l-4   hover:border-l-Primary md:w-[70%] lg:w-full  max-lg:mx-auto  ${
                     step.id === 1 && hoveredIndex !== null && hoveredIndex !== 1 //CHecks if something else is hovered
                       ? "bg-white/70 dark:bg-[#121212]"
                       : step.id === 1

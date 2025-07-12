@@ -309,7 +309,7 @@ export default function UserProfile({ user }) {
                         name="role"
                         value={editedUser?.role}
                         onChange={handleInputChange}
-                        className="border rounded ml-3 p-1 bg-estate-50"
+                        className="border rounded ml-3 p-1 bg-estate-50 dark:bg-muted dark:text-white"
                       >
                         <option className="text-sm" value="AGENT">
                           AGENT

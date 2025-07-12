@@ -105,7 +105,7 @@ export default function ContactPage() {
                 <Mail className="h-5 w-5 mt-0.5 text-Primary" />
                 <div>
                   <h3 className="font-medium dark:text-[#F8FDFF]">Email</h3>
-                  <p className="text-muted-foreground">info@homespace.com</p>
+                  <p className="text-muted-foreground">support@homespace.com</p>
                 </div>
               </div>
 
@@ -116,9 +116,9 @@ export default function ContactPage() {
                     Main Office
                   </h3>
                   <p className="text-muted-foreground">123 Lorem Ipsum</p>
-                  <p className="text-muted-foreground">
+                  {/*   <p className="text-muted-foreground">
                     2nd Floor, Lorem Ipsun{" "}
-                  </p>
+                  </p> */}
                 </div>
               </div>
 
@@ -332,7 +332,7 @@ export default function ContactPage() {
                 <Clock className="h-10 w-10" />
               </div>
 
-              <p className="text-white/80 mb-6 max-w-xs">
+              <p className="text-white/80 mb-6 text-lg md:text-xl max-w-xs">
                 {`  We're working on this`}
               </p>
               <button className="group relative px-6 py-3 overflow-hidden rounded-lg bg-white/10 text-white shadow backdrop-blur-sm hover:bg-white/20 transition-all duration-300"></button>

@@ -38,7 +38,7 @@ const testimonials = [
       "As a first-time homebuyer, I was nervous about the process. This platform made everything easy to understand !",
   },
   {
-    name: "David Thompson",
+    name: "David Lewis",
     avatar:
       "https://img.freepik.com/free-photo/worldface-british-guy-white-background_53876-14467.jpg?ga=GA1.1.232563297.1691509462&semt=ais_hybrid",
     role: "Property Seller",

@@ -53,7 +53,7 @@ const features = [
     ),
   },
 ];
-//./bgGradient.png
+
 export default function Features() {
   return (
     <div className=" h-auto   py-12 0 md:py-24  relative dark:bg-[#121212]">
@@ -78,7 +78,7 @@ export default function Features() {
                 <Star className="size-[14px] fill-Primary  " />
                 <StarHalf className="size-[14px] fill-Primary   " />
               </span>
-              <p className="text-sm text-gray-700 dark:text-muted">
+              <p className="text-sm text-gray-700 dark:text-muted-foreground">
                 500+ Reviews
               </p>
             </span>

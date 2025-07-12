@@ -101,7 +101,7 @@ const MobileHero = ({
             <div className="text-center ">
               <span className="flex items-center gap-x-0.5  justify-center text-2xl font-extrabold text-text dark:text-[#374151]">
                 {" "}
-                <AnimatedCounter delay={0.5} number={200} /> +
+                <AnimatedCounter delay={0.5} number={100} /> +
               </span>
 
               <div className="text-xs text-slate-600 dark:text-muted-foreground">
@@ -111,7 +111,7 @@ const MobileHero = ({
             <div className="text-center">
               <span className="flex items-center gap-x-0.5  justify-center text-2xl font-extrabold text-text dark:text-[#374151]">
                 {" "}
-                <AnimatedCounter delay={0.5} number={300} /> +
+                <AnimatedCounter delay={0.5} number={100} /> +
               </span>
               <div className="text-xs text-slate-600 dark:text-muted-foreground">
                 Customers
@@ -120,7 +120,7 @@ const MobileHero = ({
             <div className="text-center">
               <span className="flex items-center gap-x-0.5  justify-center text-2xl font-extrabold text-text dark:text-[#374151]">
                 {" "}
-                <AnimatedCounter delay={0.5} number={100} /> +
+                <AnimatedCounter delay={0.5} number={50} /> +
               </span>
               <div className="text-xs text-slate-600 dark:text-muted-foreground">
                 Positive reviews
