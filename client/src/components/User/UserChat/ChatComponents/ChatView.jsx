@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import ChatMessage from "./ChatMessage";
 import { io } from "socket.io-client";
+import { Deployment } from "@/config/apiConfig";
 
 const ChatView = ({ chat, userId, onClose }) => {
   const [socket, setSocket] = useState();
@@ -23,7 +24,7 @@ const ChatView = ({ chat, userId, onClose }) => {
   );
   //const status = useSelector((state) => state.user.status);
   useEffect(() => {
-    const newSocket = io("http://localhost:5000");
+    const newSocket = io(Deployment);
     setSocket(newSocket);
     newSocket.emit("joinRoom", chat?.id, userId);
     if (chat) {

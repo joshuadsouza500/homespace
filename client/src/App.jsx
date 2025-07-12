@@ -28,7 +28,7 @@ export default App;
 
 /* Part 3:  Optimize & comments  */
 
-/* While testing chat feature in development change frontend io(localhost) in chatcomponent  */
+/* While testing chat feature in development change frontend io(localhost) in chatcomponent  and at chatview */
 {
   /**
    * THINGS TO ADD 
