@@ -10,14 +10,15 @@ import {
 import ChatMessage from "../ChatMessage";
 import { io } from "socket.io-client";
 import PropTypes from "prop-types";
+import { Deployment } from "@/config/apiConfig";
 const ChatComponent = ({ chat, userId, onClose }) => {
   const [socket, setSocket] = useState(null);
   const [allMessages, setAllMessages] = useState([]);
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    // Connect to the server
-    const newSocket = io("http://localhost:5000");
+    // Connect to the server(previously localhost now changed to deployment server)
+    const newSocket = io(Deployment);
     setSocket(newSocket);
     setAllMessages(chat.messages || []);
     // Join the room using the chatId

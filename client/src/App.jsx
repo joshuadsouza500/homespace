@@ -27,6 +27,8 @@ function App() {
 export default App;
 
 /* Part 3:  Optimize & comments  */
+
+/* While testing chat feature in development change frontend io(localhost) in chatcomponent  */
 {
   /**
    * THINGS TO ADD 

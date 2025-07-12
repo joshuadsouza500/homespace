@@ -39,7 +39,7 @@ async function main() {
   });
 
   io.on("connection", (socket) => {
-    //console.log("User connected:", socket.id);
+    //console.log("User connected:", socket.id,);
 
     socket.on("joinRoom", (chatId, userId) => {
       socket.join(chatId);
