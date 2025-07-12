@@ -132,7 +132,7 @@ const ChatSidebar = ({ chats, activeChat, onChatSelect, userId }) => {
                         <p
                           className={`capitalize-first-letter line-clamp-1 ${
                             unreadLastMessage
-                              ? "text-gray-700 font-semibold"
+                              ? "text-gray-700 dark:text-gray-300 font-semibold"
                               : "text-muted-foreground"
                           }`}
                         >

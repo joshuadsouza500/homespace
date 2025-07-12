@@ -126,7 +126,7 @@ export default function PropertyCard({ update, className, property, saved }) {
                   className={`size-5 lg:size-6 text-Primary/50  ${
                     property?.isSaved
                       ? "fill-Primary"
-                      : "text-gray-700 dark:text-muted"
+                      : "text-gray-700 dark:text-muted-foreground"
                   }`}
                 />
               </Button>
@@ -228,19 +228,6 @@ export default function PropertyCard({ update, className, property, saved }) {
                   <MessageCircle className="h-4 w-4  mr-1" />
                   Message
                 </Button>
-                {/*  <Button
-                  variant="outline"
-                  size="sm"
-                  className={`text-text dark:bg-[#121212]`}
-                >
-                  <Bookmark
-                    className={`size-4 lg:size-5 text-Primary/50  ${
-                      property?.isSaved
-                        ? "fill-Primary"
-                        : "text-gray-700 dark:text-muted"
-                    }`}
-                  />
-                </Button> */}
               </div>
             )}
           </div>
