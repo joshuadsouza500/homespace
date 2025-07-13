@@ -106,7 +106,7 @@ export default function Navbar() {
             mobileToggle ? "translate-x-0" : "-translate-x-full"
           }`}
         >
-          <section className=" flex justify-between  items-center   border-b-[0.5px] p-4 border-light_gray/50  ">
+          <section className=" flex justify-between  items-center   border-b-[0.5px] py-3 px-4 border-light_gray/50  ">
             <div
               className="flex  items-center  justify-center space-x-1 cursor-pointer "
               onClick={() => navigate("/")}
@@ -118,7 +118,8 @@ export default function Navbar() {
                 className="max-md:size-7"
                 src="/assets/Logo.svg"
               />
-              <span className=" text-2xl  pt-0.5 font-bold  text-zinc-100">
+
+              <span className=" text-[28px] font-serif tracking-wide pt-0.5 font-bold  text-zinc-100">
                 HomeSpace
               </span>
             </div>
@@ -167,10 +168,10 @@ export default function Navbar() {
               alt="Homespace logo"
               height={24}
               width={24}
-              className="size-5 max-md:size-[22px] lg:size-7"
+              className="size-6  lg:size-7"
               src="/assets/Logo.svg"
             />
-            <span className=" text-xl md:text-xl xl:text-2xl pt-0.5 font-bold  text-Bgpurple dark:text-[#F8FDFF]">
+            <span className="font-serif text-2xl tracking-wide  xl:text-[28px] pt-0.5 font-bold  text-Bgpurple dark:text-Primary ">
               HomeSpace
             </span>
           </div>

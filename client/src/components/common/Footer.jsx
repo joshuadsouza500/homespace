@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function Footer() {
   //text-[#4d5461]
   return (
-    <footer className="text-white border-t pt-12 pb-8 bg-gradient-to-br from-text  to-Bgpurple  text dark:bg-[#121212] dark:border-t-muted rounded-t-md">
+    <footer className="text-white border-t pt-8 md:pt-12 pb-8 bg-gradient-to-br from-text  to-Bgpurple  text dark:bg-[#121212] dark:border-t-muted rounded-t-md">
       <div className="container mx-auto px-4 w-full h-auto bg-no-repeat">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Company Info Section */}
@@ -20,7 +20,7 @@ export default function Footer() {
                 className="size-8"
                 src="/assets/Logo.svg"
               />
-              <span className="text-4xl font-bold text-transparent bg-gradient-to-b from-zinc-200 to-zinc-50 bg-clip-text dark:text-zinc-200">
+              <span className="font-serif tracking-wide pt-0.5 text-4xl font-bold text-zinc-50 dark:text-Primary">
                 HomeSpace
               </span>
             </Link>

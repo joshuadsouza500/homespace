@@ -70,13 +70,15 @@ const User = () => {
         >
           <img
             alt="Homespace logo"
-            height={20}
-            width={20}
-            className="mr-1 -mt-0.5"
+            height={24}
+            width={24}
+            className="mr-1 -mt-0.5 size-6 lg:size-7"
             src="/assets/Logo.svg"
           />
 
-          <h2 className=" text"> HomeSpace</h2>
+          <span className="font-serif text-2xl tracking-wide xl:text-[28px] pt-0.5 font-bold  text-zinc-50 dark:text-Primary ">
+            HomeSpace
+          </span>
         </div>
 
         <button

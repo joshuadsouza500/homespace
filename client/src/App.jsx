@@ -33,8 +33,6 @@ export default App;
   /**
    * THINGS TO ADD 
    * smooth scroll
-   * Make logo and name into one image
-
 
    * EXTRAS:
  
