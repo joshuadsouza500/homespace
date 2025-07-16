@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Button } from "../UI/ShadCN/button";
 
 const CTA = () => {
@@ -18,13 +19,13 @@ const CTA = () => {
           </p>
           <div className="mt-4 flex flex-col sm:flex-row justify-center gap-4 items-center">
             <Button className="bg-Primary text-white py-2 px-4  shadow ">
-              Start Your Search
+              <Link to="/property">Start Your Search</Link>
             </Button>
             <Button
               variant="outline"
               className="border-Primary dark:border-none text-white py-2 px-4  hover:bg-indigo-50 hover:text-indigo-700  dark:hover:text-white hidden md:block dark:bg-white/0 dark:text-white dark:hover:bg-Primary"
             >
-              List Your Property
+              <Link to={"/signin"}>List Your Property</Link>
             </Button>
           </div>
         </div>

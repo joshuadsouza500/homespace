@@ -7,6 +7,7 @@ import BrowsePropCard from "../UI/BrowsePropCard";
 import { Button } from "@/components/UI/ShadCN/button";
 import { MotionHeading, MotionText } from "../UI/Animation/Motion";
 import { motion } from "motion/react";
+
 const Browse = () => {
   const Property = useSelector((store) => store.property);
 

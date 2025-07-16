@@ -2,9 +2,8 @@ import { Mail, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function Footer() {
-  //text-[#4d5461]
   return (
-    <footer className="text-white border-t pt-8 md:pt-12 pb-8 bg-gradient-to-br from-text  to-Bgpurple  text dark:bg-[#121212] dark:border-t-muted rounded-t-md">
+    <footer className="text-white border-t pt-8 md:pt-12 pb-6 bg-gradient-to-br from-text  to-Bgpurple  text dark:bg-[#121212] dark:border-t-muted rounded-t-md">
       <div className="container mx-auto px-4 w-full h-auto bg-no-repeat">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Company Info Section */}
@@ -30,11 +29,11 @@ export default function Footer() {
             </p>
             <div className="space-y-3 text-white/75 cursor-pointer">
               <div className="flex items-center hover:text-white/50">
-                <Phone className="size-5 text-white" />
+                <Phone className="size-5 " />
                 <span className="ml-2">+973 3665256</span>
               </div>
               <div className="flex items-center hover:text-white/50">
-                <Mail className="size-5 text-white" />
+                <Mail className="size-5 " />
                 <span className="ml-2">support@homespace.com</span>
               </div>
             </div>
@@ -133,7 +132,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 pt-6 border-t border-white/40 text-center text-white/70">
+        <div className="mt-10 pt-4 border-t border-white/40 text-center text-white/70">
           <p>© HomeSpace 2025, All rights reserved.</p>
         </div>
       </div>

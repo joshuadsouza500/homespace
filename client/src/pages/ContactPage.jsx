@@ -65,7 +65,7 @@ export default function ContactPage() {
     <motion.section
       initial={{ opacity: 0, y: 15 }}
       whileInView={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }} // Fade out and slide up on exit
+      exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.5 }}
       className=" px-2 md:px-6  w-full  max-w-5xl lg:max-w-6xl  xl:max-w-7xl  2xl:max-w-8xl mx-auto py-4 md:py-8 font-jakarta "
     >
@@ -116,9 +116,6 @@ export default function ContactPage() {
                     Main Office
                   </h3>
                   <p className="text-muted-foreground">123 Lorem Ipsum</p>
-                  {/*   <p className="text-muted-foreground">
-                    2nd Floor, Lorem Ipsun{" "}
-                  </p> */}
                 </div>
               </div>
 

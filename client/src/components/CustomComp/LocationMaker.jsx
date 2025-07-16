@@ -8,34 +8,6 @@ setMaxBounds:Sets the max bounds of the map, restricting the area within which t
 */
 }
 
-{
-  /**
-  
-  useEffect(() => {
-    if (!city) return;
-
-    // Geocode the provided city name
-    ELG.geocode()
-      .text(city)
-      .run((err, results, response) => {
-        if (err) {
-          console.error("Geocoding error:", err);
-          return;
-        }
-
-        // Check if results are available
-        if (results?.results?.length > 0) {
-          const { lat, lng } = results.results[0].latlng;
-
-          setPosition([lat, lng]);
-          map.flyTo([lat, lng], 6);
-        } else {
-          console.warn("No results found for the specified city.");
-        }
-      });
-  }, [city, map]);*/
-}
-
 const LocationMaker = ({ city, image, address, price }) => {
   const map = useMap();
   const [position, setPosition] = useState([26.0667, 50.5577]);

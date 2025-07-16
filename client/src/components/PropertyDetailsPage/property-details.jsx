@@ -103,7 +103,7 @@ export default function PropertyDetails({ property, handleSave }) {
 
   return (
     <div className="  mx-auto px-1 md:px-3 pt-2 md:pt-4 pb-8  ">
-      {/**images */}
+      {/*images */}
       {property?.image && <PropertyGallery images={property?.image} />}
       <div className="flex flex-col lg:flex-row gap-8 pt-4  md:pt-6  ">
         {/* Left column - Property details */}
@@ -165,20 +165,6 @@ export default function PropertyDetails({ property, handleSave }) {
                 </span>
               </div>
             </div>
-            {/* <div className="flex   md:w-[60%] items-center justify-start pb-2 md:pb-4 gap-x-4 text-text dark:text-[#F8FDFF]  font-medium   ">
-              <div className="  flex items-center pl-1  border-r pr-3">
-                <Bed className="size-5 mr-2 text-Primary" />
-                <span className="   ">{property?.bedrooms} Bed</span>
-              </div>
-              <div className="flex items-center   pl-1  border-r pr-3">
-                <Bath className="size-5 mr-2 text-Primary" />
-                <span className="   ">{property?.bathrooms} Baths</span>
-              </div>
-              <div className="flex items-center pl-1">
-                <Maximize className="size-5 mr-2 text-Primary" />
-                <span className=" ">{property?.area} sqft</span>
-              </div>
-            </div> */}
 
             <div className="pt-2">
               <h2 className="text-xl font-semibold mb-4 text-text dark:text-[#F8FDFF] ">
@@ -326,10 +312,6 @@ export default function PropertyDetails({ property, handleSave }) {
               </MapContainer>
             </CardContent>
           </Card>
-          {/** <div className="flex items-center text-muted-foreground text-sm pl-1 py-1">
-            <MapPin className="size-5 mr-2 text-Primary" />
-            <span>{property?.address}</span>
-          </div> */}
         </div>
       </div>
     </div>

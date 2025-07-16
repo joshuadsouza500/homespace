@@ -3,7 +3,7 @@ import jwtProvider from "../config/jwtProvider.js";
 import userService from "../Service/userService.js";
 
 const signup = async (req, res) => {
-  //we generate a token here aswell cause the useris directly navigated to homepage and not need to login again
+  //we generate a token here aswell cause the userid directly navigated to homepage and not need to login again
 
   try {
     const user = await userService.createUser(req.body);

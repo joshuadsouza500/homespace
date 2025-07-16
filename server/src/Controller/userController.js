@@ -90,33 +90,6 @@ const getUserChats = async (req, res) => {
     res.status(500).send({ message: "Failed to get user's chats!" });
   }
 };
-{
-  /**
-// get specific chat
-const getChatById = async (req, res) => {
-  const userId = req.user.id;
-  const chatId = req.params.id;
-  try {
-    const userChat = await userService.getUserChatById(userId, chatId);
-
-    return res.status(200).send(userChat);
-  } catch (error) {
-    res.status(500).send({ message: "Failed to get user's chat!" });
-  }
-};
-
-const addChat = async (req, res) => {
-  const userId = req.user.id;
-  const otherParticipant = req.body.otherParticipant;
-  try {
-    const userChat = await userService.addChat(userId, otherParticipant);
-    return res.status(200).send(userChat);
-  } catch (error) {
-    res.status(500).send({ message: "Failed to create chat!" });
-  }
-};
- */
-}
 
 const getOrCreateChat = async (req, res) => {
   const userId = req.user.id;
@@ -126,7 +99,7 @@ const getOrCreateChat = async (req, res) => {
   try {
     let userChat;
 
-    // Icf a chatId is provided, try to fetch the chat by ID
+    // If a chatId is provided, try to fetch the chat by ID
     if (chatId) {
       const result = await userService.getUserChatById(userId, chatId);
       userChat = result.chat; // Destructure chat

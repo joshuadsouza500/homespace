@@ -34,8 +34,7 @@ export default App;
    * THINGS TO ADD 
    * smooth scroll
 
-   * EXTRAS:
- 
+   * EXTRA:
    * Add google auth
    * Maybe integrate CI CD
    * Add Property add ability to add bullet points bold etc to description bar Sanitize , react quill {Sanitize in frontend before      sending to backend just for security}

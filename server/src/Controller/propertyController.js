@@ -115,18 +115,6 @@ const saveProperty = async (req, res) => {
     }
 
     return res.status(201).send(savedProperty);
-
-    {
-      /**
-     if (savedProperty.message == "Property saved successfully") {
-      res.status(201).send({ message: "Property saved successfully " });
-    } else {
-      res
-        .status(200)
-        .send({ message: " Property removed from saved propereties" });
-    }
-    */
-    }
   } catch (error) {
     console.log(error.message);
     return res.status(500).send({ error: error.message });

@@ -33,7 +33,6 @@ export default function Navbar() {
 
   useEffect(() => {
     if (auth.user) {
-      //console.log(" navbar", auth.user);
       setIsSigned(true);
     }
   }, [auth.user]);

@@ -4,21 +4,6 @@ export const LocalHost = "http://localhost:5000";
 export const Deployment = "https://homespace-server.onrender.com";
 export const API_BASE_URL = Deployment; // Change to LocalHost for local development
 
-{
-  /**
-  const jwt = localStorage.getItem("jwt");
-console.log("const jwt", jwt);
-//creates an instance and sets jwt for auth used for protected routes
-export const api = axios.create({
-  baseURL: API_BASE_URL,
-  headers: {
-    Authorization: `Bearer ${jwt}`,
-    "Content-Type": "application/json",
-  },
-});
- */
-}
-
 export const api = axios.create({
   baseURL: API_BASE_URL,
   headers: {

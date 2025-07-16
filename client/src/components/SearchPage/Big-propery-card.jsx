@@ -14,7 +14,7 @@ import { Card, CardContent } from "@/components/UI/ShadCN/card";
 import { Badge } from "@/components/UI/ShadCN/badge";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
-/***/
+
 const BigPropertyCard = ({ property }) => {
   const navigate = useNavigate();
   return (
