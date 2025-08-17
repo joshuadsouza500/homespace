@@ -86,7 +86,7 @@ const Browse = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="mobileBrowse w-full px-10  md:hidden   pt-12 pb-4  grid-flow-col overflow-y-auto grid   gap-x-8 gap-y-10 "
+          className="mobileBrowse w-full px-10  md:hidden   pt-8 pb-4  grid-flow-col overflow-y-auto grid   gap-x-8 gap-y-10 "
         >
           {" "}
           {Property?.isLoading ? (
