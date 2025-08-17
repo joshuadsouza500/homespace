@@ -48,7 +48,7 @@ export const BrowsePropertySkeleton = () => {
   return (
     <div className="border rounded-lg overflow-hidden flex flex-col max-w-sm sm:max-w-xl md:max-w-3xl mx-1 md:h-64 lg:h-[275px]">
       {/* Property image skeleton */}
-      <Skeleton className="h-full w-full px-2 min-h-32 md:max-h-40" />
+      <Skeleton className="h-full w-full px-2 min-h-44 md:max-h-52" />
 
       {/* Property content skeleton */}
       <div className="p-4 space-y-3 w-full">
