@@ -14,8 +14,8 @@ import { getAllProperties } from "@/store/property/action";
 import { Button } from "../components/UI/ShadCN/button";
 import BigPropertyCard from "@/components/SearchPage/Big-propery-card";
 import PropertyCard from "@/components/UI/property-card";
-import SkeletonLoader from "@/components/UI/SkeletonLoader";
 import { motion } from "motion/react";
+import { SkeletonLoader } from "@/components/UI/SkeletonLoader";
 
 const Search = () => {
   const Property = useSelector((store) => store.property);

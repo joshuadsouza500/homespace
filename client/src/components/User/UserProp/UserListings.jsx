@@ -5,7 +5,7 @@ import { getUserProperties } from "@/store/user/action";
 import { Button } from "@/components/UI/ShadCN/button";
 import { useNavigate } from "react-router-dom";
 import PropertyCard from "@/components/UI/property-card";
-import SkeletonLoader from "@/components/UI/SkeletonLoader";
+import { SkeletonLoader } from "@/components/UI/SkeletonLoader";
 
 const UserListings = () => {
   const dispatch = useDispatch();

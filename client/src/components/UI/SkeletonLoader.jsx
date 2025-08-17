@@ -1,6 +1,6 @@
 import { Skeleton } from "./ShadCN/skeleton";
 
-const SkeletonLoader = () => {
+export const SkeletonLoader = () => {
   return (
     <div className="container mx-auto px-4 py-8">
       {/* Results count skeleton */}
@@ -19,8 +19,6 @@ const SkeletonLoader = () => {
     </div>
   );
 };
-
-export default SkeletonLoader;
 
 function PropertyCardSkeleton() {
   return (
@@ -45,3 +43,18 @@ function PropertyCardSkeleton() {
     </div>
   );
 }
+
+export const BrowsePropertySkeleton = () => {
+  return (
+    <div className="border rounded-lg overflow-hidden flex flex-col max-w-sm sm:max-w-xl md:max-w-3xl mx-1 md:h-64 lg:h-[275px]">
+      {/* Property image skeleton */}
+      <Skeleton className="h-full w-full px-2 md:max-h-40" />
+
+      {/* Property content skeleton */}
+      <div className="p-4 space-y-3 w-full">
+        <Skeleton className="h-4 w-full" />
+        <Skeleton className="h-4 w-full" />
+      </div>
+    </div>
+  );
+};

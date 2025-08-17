@@ -7,6 +7,7 @@ import BrowsePropCard from "../UI/BrowsePropCard";
 import { Button } from "@/components/UI/ShadCN/button";
 import { MotionHeading, MotionText } from "../UI/Animation/Motion";
 import { motion } from "motion/react";
+import { BrowsePropertySkeleton } from "../UI/SkeletonLoader";
 
 const Browse = () => {
   const Property = useSelector((store) => store.property);
@@ -88,13 +89,19 @@ const Browse = () => {
           className="mobileBrowse w-full px-10  md:hidden   pt-12 pb-4  grid-flow-col overflow-y-auto grid   gap-x-8 gap-y-10 "
         >
           {" "}
-          {Property?.properties?.properties?.slice(0, 4).map((property) => (
-            <BrowsePropCard
-              key={property.id}
-              property={property}
-              cardVariants={cardVariants}
-            />
-          ))}
+          {Property?.isLoading ? (
+            <BrowsePropertySkeleton />
+          ) : (
+            Property?.properties?.properties
+              ?.slice(0, 4)
+              .map((property) => (
+                <BrowsePropCard
+                  key={property.id}
+                  property={property}
+                  cardVariants={cardVariants}
+                />
+              ))
+          )}
         </motion.section>
         <motion.section
           className=" hidden w-full max-w-7xl 6xl md:grid    grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10 lg:gap-x-10 pt-12 px-4 pb-4   "
@@ -103,13 +110,19 @@ const Browse = () => {
           whileInView="visible"
           viewport={{ once: true }}
         >
-          {Property?.properties?.properties?.slice(0, 6).map((property) => (
-            <BrowsePropCard
-              key={property.id}
-              property={property}
-              cardVariants={cardVariants}
-            />
-          ))}
+          {Property?.isLoading ? (
+            <BrowsePropertySkeleton />
+          ) : (
+            Property?.properties?.properties
+              ?.slice(0, 6)
+              .map((property) => (
+                <BrowsePropCard
+                  key={property.id}
+                  property={property}
+                  cardVariants={cardVariants}
+                />
+              ))
+          )}
         </motion.section>
         <div className="w-full flex justify-center pt-4">
           <Link to="/property">
