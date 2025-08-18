@@ -104,25 +104,25 @@ const Browse = () => {
           )}
         </motion.section>
         <motion.section
-          className=" hidden w-full max-w-7xl 6xl md:grid    grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10 lg:gap-x-10 pt-12 px-4 pb-4   "
+          className=" hidden w-full max-w-7xl  md:grid    grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10 lg:gap-x-10 pt-12 px-4 pb-4   "
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
         >
-          {Property?.isLoading ? (
-            <BrowsePropertySkeleton />
-          ) : (
-            Property?.properties?.properties
-              ?.slice(0, 6)
-              .map((property) => (
-                <BrowsePropCard
-                  key={property.id}
-                  property={property}
-                  cardVariants={cardVariants}
-                />
+          {Property?.isLoading
+            ? Array.from({ length: 6 }).map((_, index) => (
+                <BrowsePropertySkeleton key={index} />
               ))
-          )}
+            : Property?.properties?.properties
+                ?.slice(0, 6)
+                .map((property) => (
+                  <BrowsePropCard
+                    key={property.id}
+                    property={property}
+                    cardVariants={cardVariants}
+                  />
+                ))}
         </motion.section>
         <div className="w-full flex justify-center pt-4">
           <Link to="/property">
